@@ -1,0 +1,13 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: Import {{ controller_pascal }}
+    modelClass: {{ author_pascal }}\{{ plugin_pascal }}\Models\{{ model_pascal }}Import
+    list: $/{{ author_lower }}/{{ plugin_lower }}/models/{{ model_lower }}/columns.yaml
+
+export:
+    title: Export {{ controller_pascal }}
+    modelClass: {{ author_pascal }}\{{ plugin_pascal }}\Models\{{ model_pascal }}Export
+    list: $/{{ author_lower }}/{{ plugin_lower }}/models/{{ model_lower }}/columns.yaml

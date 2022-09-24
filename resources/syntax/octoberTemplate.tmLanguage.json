@@ -1,0 +1,50 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "text.html.twig.octoberTemplate",
+    "name": "October CMS Template",
+    "patterns": [
+        {
+            "contentName": "source.php.octoberTemplate",
+            "begin": "\\<\\?php",
+            "end": "\\?\\>",
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "include": "source.php"
+                        }
+                    ],
+                    "contentName": "meta.embedded.source.php"
+                }
+            ]
+        },
+        {
+            "contentName": "source.ini.octoberTemplate",
+            "begin": "^##",
+            "end": "(==\\s*$)|\\<",
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "include": "source.ini"
+                        }
+                    ],
+                    "contentName": "meta.embedded.source.ini"
+                }
+            ]
+        },
+        {
+            "contentName": "text.html.twig.october",
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "include": "text.html.twig.october"
+                        }
+                    ],
+                    "contentName": "meta.embedded.text.html.twig.october"
+                }
+            ]
+        }
+    ]
+}

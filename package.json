@@ -1,0 +1,256 @@
+{
+    "name": "october-code",
+    "displayName": "October Code",
+    "description": "October CMS tools for VSCode",
+    "publisher": "SergeyKasyanov",
+    "version": "0.7.0",
+    "preview": true,
+    "icon": "resources/images/icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SergeyKasyanov/vscode-october-extension"
+    },
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Formatters",
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "html": {
+            "customData": [
+                "./resources/syntax/attributes.json"
+            ]
+        },
+        "htmlLanguageParticipants": [
+            {
+                "autoInsert": false,
+                "languageId": "october-tpl"
+            }
+        ],
+        "languages": [
+            {
+                "id": "october-tpl",
+                "aliases": [
+                    "October CMS Template"
+                ],
+                "extensions": [
+                    ".htm"
+                ],
+                "configuration": "./resources/syntax/octoberTemplate.language-configuration.json"
+            },
+            {
+                "id": "october-twig-embed",
+                "configuration": "./resources/syntax/twig.language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "october-tpl",
+                "scopeName": "text.html.twig.octoberTemplate",
+                "path": "./resources/syntax/octoberTemplate.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.ini": "ini",
+                    "source.php": "php",
+                    "text.html.twig.october": "october-twig-embed",
+                    "source.css": "css",
+                    "source.js": "javascript"
+                }
+            },
+            {
+                "language": "october-twig-embed",
+                "scopeName": "text.html.twig.october",
+                "path": "./resources/syntax/twig.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "october-tpl",
+                "path": "./resources/snippets/twigSnippets.json"
+            }
+        ],
+        "yamlValidation": [
+            {
+                "fileMatch": "app/blueprints/**/*.yaml",
+                "url": "./resources/schemas/blueprint.yaml.json"
+            },
+            {
+                "fileMatch": "**/*columns*.yaml",
+                "url": "./resources/schemas/columns.yaml.json"
+            },
+            {
+                "fileMatch": "**/*fields*.yaml",
+                "url": "./resources/schemas/fields.yaml.json"
+            },
+            {
+                "fileMatch": "**/*list*.yaml",
+                "url": "./resources/schemas/config_list.yaml.json"
+            },
+            {
+                "fileMatch": "**/*filter*.yaml",
+                "url": "./resources/schemas/config_filter.yaml.json"
+            },
+            {
+                "fileMatch": "**/*form*.yaml",
+                "url": "./resources/schemas/config_form.yaml.json"
+            },
+            {
+                "fileMatch": "**/*relation*.yaml",
+                "url": "./resources/schemas/config_relation.yaml.json"
+            },
+            {
+                "fileMatch": "**/*reorder*.yaml",
+                "url": "./resources/schemas/config_reorder.yaml.json"
+            },
+            {
+                "fileMatch": "**/*import_export*.yaml",
+                "url": "./resources/schemas/config_import_export.yaml.json"
+            },
+            {
+                "fileMatch": "theme.yaml",
+                "url": "./resources/schemas/theme.yaml.json"
+            },
+            {
+                "fileMatch": "version.yaml",
+                "url": "./resources/schemas/version.yaml.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "octoberCode.generate",
+                "title": "Generate...",
+                "category": "OctoberCode"
+            },
+            {
+                "command": "octoberCode.goToRelatedFile",
+                "title": "Go to config/view/partial",
+                "category": "OctoberCode",
+                "enablement": "editorLangId == php || editorLangId == october-htm || editorLangId == yaml"
+            },
+            {
+                "command": "octoberCode.goToClass",
+                "title": "Go to class",
+                "category": "OctoberCode",
+                "enablement": "editorLangId == php || editorLangId == october-htm || editorLangId == yaml"
+            },
+            {
+                "command": "octoberCode.goToPlugin",
+                "title": "Go to plugin registration file",
+                "category": "OctoberCode"
+            },
+            {
+                "command": "octoberCode.goToController",
+                "title": "Go to controller",
+                "category": "OctoberCode"
+            },
+            {
+                "command": "octoberCode.goToModel",
+                "title": "Go to model",
+                "category": "OctoberCode"
+            },
+            {
+                "command": "octoberCode.addModelAttributesToConfig",
+                "title": "Add model attributes to config",
+                "category": "OctoberCode",
+                "enablement": "editorLangId == yaml"
+            }
+        ],
+        "configuration": {
+            "title": "October Code",
+            "properties": {
+                "octoberCode.phpExecutable": {
+                    "type": "string",
+                    "default": "php",
+                    "title": "PHP Executable",
+                    "description": "Path to PHP executable. By default uses global php executable."
+                },
+                "octoberCode.pluginsPath": {
+                    "type": "string",
+                    "default": "plugins",
+                    "title": "Plugins directory",
+                    "description": "Path to plugins directory of OctoberCMS project. By default uses \"plugins\"."
+                },
+                "octoberCode.themesPath": {
+                    "type": "string",
+                    "default": "themes",
+                    "title": "Themes directory",
+                    "description": "Path to themes directory of OctoberCMS project. By default uses \"themes\"."
+                },
+                "octoberCode.enableThemeFilesFolding": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "Enable folding in theme files",
+                    "description": "Enable sections folding in theme files. (Breaks html/php folding. Reload window for apply change.)"
+                },
+                "octoberCode.structuredControllers": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "Generator: Structured controller directory.",
+                    "description": "Place config files and partials of controller in separated directories (e.g. controllers/posts/config/list.yaml, controllers/posts/partials/_list_toolbar.htm, etc...)"
+                },
+                "octoberCode.adjacentModelTraits": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "Generator: Adjacent models traits and their configs.",
+                    "description": "Place \"use TraitName;\" and \"protected $traitConfig = [];\" on adjacent lines."
+                },
+                "octoberCode.hideTailorPermissions": {
+                    "type": "boolean",
+                    "default": true,
+                    "title": "Autocomplete: Hide tailor permissions.",
+                    "description": "Hide tailor permissions from permissions autocomplete."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.2.0",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "@types/pluralize": "^0.0.29",
+        "@types/prettier": "^2.6.3",
+        "@types/twig": "^1.12.9",
+        "@types/vscode": "^1.65.0",
+        "@typescript-eslint/eslint-plugin": "^5.12.1",
+        "@typescript-eslint/parser": "^5.12.1",
+        "@vscode/test-electron": "^2.1.2",
+        "eslint": "^8.9.0",
+        "glob": "^7.2.0",
+        "mocha": "^9.2.1",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.5",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2"
+    },
+    "dependencies": {
+        "@prettier/plugin-php": "^0.18.9",
+        "php-parser": "^3.1.0-beta.7",
+        "pluralize": "^8.0.0",
+        "prettier": "^2.7.1",
+        "prettier-plugin-django": "^0.5.6",
+        "prettier-plugin-ini": "^1.0.0",
+        "twig": "^1.15.4",
+        "twigjs-loader": "^1.0.2",
+        "yaml": "^2.1.1"
+    },
+    "extensionDependencies": [
+        "redhat.vscode-yaml"
+    ]
+}

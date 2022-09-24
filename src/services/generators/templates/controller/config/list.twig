@@ -1,0 +1,66 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/{{ author_lower }}/{{ plugin_lower }}/models/{{ model_lower }}/columns.yaml
+
+# Model Class name
+modelClass: {{ author_pascal }}\{{ plugin_pascal }}\Models\{{ model_pascal }}
+
+# List Title
+title: {{ controller_pascal }}
+
+# Link URL for each record
+recordUrl: {{ author_lower }}/{{ plugin_lower }}/{{ controller_lower }}/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20
+
+# Display page numbers with pagination, disable to improve performance
+showPageNumbers: true
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+# defaultSort:
+#     column: created_at
+#     direction: desc
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+{% if structured %}
+    buttons: partials/list_toolbar
+{% else %}
+    buttons: list_toolbar
+{% endif %}
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt
+
+{% if addListFilter %}
+{% if structured %}
+filter: config/filter.yaml
+{% else %}
+filter: config_filter.yaml
+{% endif %}
+{% endif %}
+
+{% if addStructure %}
+structure:
+    showTree: true
+    treeExpanded: true
+    showReorder: true
+{% endif %}

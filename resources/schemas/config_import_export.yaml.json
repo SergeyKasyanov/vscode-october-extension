@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+        "defaultFormatOptions": {
+            "properties": {
+                "delimiter": {
+                    "type": "string"
+                },
+                "enclosure": {
+                    "type": "string"
+                },
+                "encoding": {
+                    "type": "string"
+                },
+                "escape": {
+                    "type": "string"
+                },
+                "fileFormat": {
+                    "enum": [
+                        "csv",
+                        "json"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "defaultRedirect": {
+            "type": "string"
+        },
+        "export": {
+            "properties": {
+                "fileName": {
+                    "type": "string"
+                },
+                "form": {
+                    "type": "string"
+                },
+                "list": {
+                    "type": "string"
+                },
+                "modelClass": {
+                    "type": "string"
+                },
+                "redirect": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "useList": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "definition": {
+                                    "type": "string"
+                                },
+                                "raw": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "import": {
+            "properties": {
+                "form": {
+                    "type": "string"
+                },
+                "list": {
+                    "type": "string"
+                },
+                "modelClass": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "redirect": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "list",
+                "modelClass",
+                "title"
+            ],
+            "type": "object"
+        }
+    },
+    "type": "object"
+}

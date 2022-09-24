@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var \{{ author_pascal }}\{{ plugin_pascal }}\Controllers\{{ controller_pascal }} $this
+ */
+?>
+
+{% if addListControllerBehavior %}
+<?= $this->listRender() ?>
+{% else %}
+{{ controller_pascal }}
+{% endif %}

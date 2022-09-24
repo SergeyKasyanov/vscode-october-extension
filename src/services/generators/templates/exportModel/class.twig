@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ author_pascal }}\{{ plugin_pascal }}\Models;
+
+use Backend\Models\ExportModel;
+use Exception;
+
+class {{ model_pascal }}Export extends ExportModel
+{
+    public function exportData($columns, $sessionKey = null)
+    {
+        $records = {{ model_pascal }}::all();
+
+        $records->each(function($record) use ($columns) {
+            $record->addVisible($columns);
+        });
+
+        return $records->toArray();
+    }
+}

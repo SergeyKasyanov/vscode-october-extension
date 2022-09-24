@@ -1,0 +1,70 @@
+<?php
+
+namespace {{ author_pascal }}\{{ plugin_pascal }}\Controllers;
+
+use BackendMenu;
+use Backend\Classes\Controller;
+
+class {{ controller_pascal }} extends Controller
+{
+{% if addListControllerBehavior or addFormControllerBehavior or addRelationControllerBehavior or addImportExportControllerBehavior %}
+    public $implement = [
+{% if addListControllerBehavior %}
+        \Backend\Behaviors\ListController::class,
+{% endif %}
+{% if addFormControllerBehavior %}
+        \Backend\Behaviors\FormController::class,
+{% endif %}
+{% if addRelationControllerBehavior %}
+        \Backend\Behaviors\RelationController::class,
+{% endif %}
+{% if addImportExportControllerBehavior %}
+        \Backend\Behaviors\ImportExportController::class,
+{% endif %}
+    ];
+
+{% endif %}
+{% if addListControllerBehavior %}
+{% if structured %}
+    public $listConfig = 'config/list.yaml';
+{% else %}
+    public $listConfig = 'config_list.yaml';
+{% endif %}
+{% endif %}
+{% if addFormControllerBehavior %}
+{% if structured %}
+    public $formConfig = 'config/form.yaml';
+{% else %}
+    public $formConfig = 'config_form.yaml';
+{% endif %}
+{% endif %}
+{% if addRelationControllerBehavior %}
+{% if structured %}
+    public $relationConfig = 'config/relation.yaml';
+{% else %}
+    public $relationConfig = 'config_relation.yaml';
+{% endif %}
+{% endif %}
+{% if addImportExportControllerBehavior %}
+{% if structured %}
+    public $importExportConfig = 'config/import_export.yaml';
+{% else %}
+    public $importExportConfig = 'config_import_export.yaml';
+{% endif %}
+{% endif %}
+{% if addListControllerBehavior or addFormControllerBehavior or addRelationControllerBehavior or addImportExportControllerBehavior %}
+{# empty line #}
+{% endif %}
+    public function __construct()
+    {
+        parent::__construct();
+
+        BackendMenu::setContext('{{ author_pascal }}.{{ plugin_pascal }}', '{{ plugin_lower }}', '{{ controller_lower }}');
+    }
+{% if not addListControllerBehavior %}
+
+    public function index()
+    {
+    }
+{% endif %}
+}

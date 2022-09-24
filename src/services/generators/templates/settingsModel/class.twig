@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ author_pascal }}\{{ plugin_pascal }}\Models;
+
+use Model;
+use System\Behaviors\SettingsModel;
+
+/**
+ * @method static mixed get(string $key, mixed $default = null)
+ * @method static void set(string $key, string $value)
+ */
+class {{ model_pascal }} extends Model
+{
+    public $implement = [SettingsModel::class];
+    public $settingsCode = '{{ code }}';
+{% if placeFieldsInArray %}
+    public $settingsFields = [
+        'fields' => [
+            //
+        ]
+    ];
+{% else %}
+    public $settingsFields = 'fields.yaml';
+{% endif %}
+}

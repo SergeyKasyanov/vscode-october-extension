@@ -1,0 +1,42 @@
+<?php
+
+namespace {{ author_pascal }}\{{ plugin_pascal }}\FormWidgets;
+
+use Backend\Classes\FormWidgetBase;
+
+class {{ widget_pascal }} extends FormWidgetBase
+{
+    protected $defaultAlias = '{{ author_snake }}_{{ plugin_snake }}_{{ widget_snake }}';
+
+    public function init()
+    {
+        // $this->fillFromConfig([]);
+    }
+
+    public function render()
+    {
+        $this->prepareVars();
+
+        return $this->makePartial('{{ widget_snake }}');
+    }
+
+    public function prepareVars()
+    {
+        $this->vars['name'] = $this->formField->getName();
+        $this->vars['value'] = $this->getLoadValue();
+        $this->vars['model'] = $this->model;
+    }
+
+    public function getSaveValue($value)
+    {
+        return $value;
+    }
+{% if addAssets %}
+
+    public function loadAssets()
+    {
+        $this->addCss('css/{{ widget_snake }}.css', '{{ author_pascal }}.{{ plugin_pascal }}');
+        $this->addJs('js/{{ widget_snake }}.js', '{{ author_pascal }}.{{ plugin_pascal }}');
+    }
+{% endif %}
+}

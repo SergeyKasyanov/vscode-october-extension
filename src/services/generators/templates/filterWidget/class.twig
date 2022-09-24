@@ -1,0 +1,64 @@
+<?php
+
+namespace {{ author_pascal }}\{{ plugin_pascal }}\FilterWidgets;
+
+use Backend\Classes\FilterWidgetBase;
+
+class {{ widget_pascal }} extends FilterWidgetBase
+{
+    public function init()
+    {
+        // $this->fillFromConfig([]);
+    }
+
+    public function render()
+    {
+        $this->prepareVars();
+
+        return $this->makePartial('{{ widget_snake }}');
+    }
+
+    public function renderForm()
+    {
+        $this->prepareVars();
+
+        return $this->makePartial('{{ widget_snake }}_form');
+    }
+
+    public function prepareVars()
+    {
+        $this->vars['scope'] = $this->filterScope;
+        $this->vars['name'] = $this->getScopeName();
+        $this->vars['value'] = $this->getLoadValue();
+    }
+
+    public function getActiveValue()
+    {
+        if (post('clearScope')) {
+            return null;
+        }
+
+        if (!$this->hasPostValue('value')) {
+            return null;
+        }
+
+        return post('Filter');
+    }
+
+    public function applyScopeToQuery($query)
+    {
+        if ($this->filterScope->value) {
+            // $query->where(...);
+        } else {
+            // $query->where(...);
+        }
+    }
+{% if addAssets %}
+
+    public function loadAssets()
+    {
+        $this->addCss('css/{{ widget_snake }}.css', '{{ author_pascal }}.{{ plugin_pascal }}');
+        $this->addJs('js/{{ widget_snake }}.js', '{{ author_pascal }}.{{ plugin_pascal }}');
+    }
+{% endif %}
+}
