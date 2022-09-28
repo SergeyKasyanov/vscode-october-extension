@@ -438,7 +438,13 @@
     "AJAX Framework turbo": {
         "prefix": "frameworkturbo",
         "body": "{% framework turbo %}",
-        "description": "Enable turbo router",
+        "description": "Enable ajax framework with turbo router",
+        "scope": "text.html.twig.october"
+    },
+    "AJAX Framework extras turbo": {
+        "prefix": "frameworkextrasturbo",
+        "body": "{% framework extras turbo %}",
+        "description": "Enable ajax framework with extra features and turbo router",
         "scope": "text.html.twig.october"
     }
 }
