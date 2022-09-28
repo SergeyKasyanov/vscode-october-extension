@@ -1,13 +1,13 @@
 import { existsSync, readFileSync } from "fs";
 import * as vscode from "vscode";
 import { phpSelector } from "../../../helpers/fileSelectors";
+import { getClassPropertiesFromDocument } from "../../../helpers/parsePhp";
 import { pluginsPath } from "../../../helpers/paths";
 import { PluginFileUtils } from "../../../helpers/pluginFileUtils";
 import { readDirectoryRecursively } from "../../../helpers/readDirectoryRecursively";
 import { regExps } from "../../../helpers/regExps";
 import { Project } from "../../../services/project";
 import path = require("path");
-import { getClassPropertiesFromDocument } from "../../../helpers/parsePhp";
 
 const COMMAND_SHOW_MIGRATIONS_BY_MODEL = 'command.showMigrationsByModel';
 
@@ -57,7 +57,7 @@ class ModelMigrationsLensProvider implements vscode.CodeLensProvider {
         const tableName = tableNameMatch[0].slice(1, -1);
 
         codeLens.command = {
-            title: 'Find migrations',
+            title: 'Go to migration',
             command: COMMAND_SHOW_MIGRATIONS_BY_MODEL,
             tooltip: 'Show all migrations with this table',
             arguments: [tableName]
@@ -97,7 +97,14 @@ async function showMigrations(tableName: string) {
         return;
     }
 
-    const fileToOpen = await vscode.window.showQuickPick(Object.keys(migrations), { title: 'Choose migration to open' });
+    let fileToOpen: string | undefined;
+
+    if (Object.keys(migrations).length === 1) {
+        fileToOpen = Object.keys(migrations)[0];
+    } else {
+        fileToOpen = await vscode.window.showQuickPick(Object.keys(migrations), { title: 'Choose migration to open' });
+    }
+
     if (fileToOpen === undefined) {
         return;
     }

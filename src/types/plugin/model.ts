@@ -16,6 +16,7 @@ export class Model {
         private _optionsMethods: string[] = [],
         private _relations: { [name: string]: Relation } = {},
         private _columns: { [name: string]: Column } = {},
+        private _table: string | undefined
     ) { }
 
     public get fqn(): string {
@@ -54,5 +55,9 @@ export class Model {
 
     public get columns(): { [name: string]: Column } {
         return this._columns;
+    }
+
+    public get table(): string | undefined {
+        return this._table;
     }
 }

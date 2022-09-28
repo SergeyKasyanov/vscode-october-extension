@@ -196,6 +196,9 @@ export const regExps = {
     phpMakePartialMethodStartParamStart: /^[\w\$\/]*$/,
     phpMakePartialMethodParamWord: /[\w\$\/]+/,
 
+    phpSchemaGlobal: /Schema::(create|table|drop|dropIfExists)\s*\(\s*[\'\"]\w+[\'\"]/g,
+    phpSchemaTableName: /[\'\"]\w+[\'\"]/,
+
     //
     // Yaml
     //

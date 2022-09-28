@@ -197,6 +197,10 @@ export class Project {
         return relations[relationName];
     }
 
+    public getModelsByTable(table: string) {
+        return this.modelsLoader.getModelsByTable(table);
+    }
+
     // Components
 
     public getComponents(): { [name: string]: Component } {

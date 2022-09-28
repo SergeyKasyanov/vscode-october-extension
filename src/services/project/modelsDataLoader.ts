@@ -55,6 +55,26 @@ export class ModelsDataLoader {
         return Object.keys(pluginModels);
     }
 
+    public getModelsByTable(table: string): Model[] {
+        let models = [];
+
+        for (const code in this._models) {
+            if (Object.prototype.hasOwnProperty.call(this._models, code)) {
+                const pluginModels = this._models[code];
+                for (const name in pluginModels) {
+                    if (Object.prototype.hasOwnProperty.call(pluginModels, name)) {
+                        const model = pluginModels[name];
+                        if (model.table === table) {
+                            models.push(model);
+                        }
+                    }
+                }
+            }
+        }
+
+        return models;
+    }
+
     public getModelByFqn(fqn: string): Model | undefined {
         let parts = fqn.toLowerCase().split('\\');
         if (parts[0] === '') {
@@ -125,6 +145,7 @@ export class ModelsDataLoader {
 
         let optionsMethods: string[] = [];
         let scopes: string[] = [];
+        let table: string | undefined = undefined;
 
         modelClass.body
             .filter(child => child.kind === 'method' && (child as phpParser.Method).visibility === 'public')
@@ -140,6 +161,23 @@ export class ModelsDataLoader {
                     const scopeName = lcFirst(name.slice(5));
 
                     scopes.push(scopeName);
+                }
+            });
+
+        modelClass.body
+            .forEach(el => {
+                if (el.kind === 'propertystatement') {
+                    const classProperties = (el as unknown as phpParser.PropertyStatement).properties;
+                    for (const prop of classProperties) {
+                        if (prop.kind === 'property') {
+                            const propIdentifier = prop.name as phpParser.Identifier | string;
+                            const propName = propIdentifier instanceof Object ? propIdentifier.name : propIdentifier;
+
+                            if (propName === 'table') {
+                                table = (prop.value as phpParser.String).value;
+                            }
+                        }
+                    }
                 }
             });
 
@@ -174,7 +212,7 @@ export class ModelsDataLoader {
             this._models[pluginCode] = {};
         }
 
-        this._models[pluginCode][modelName] = new Model(modelFqn, scopes, optionsMethods, relations, columns);
+        this._models[pluginCode][modelName] = new Model(modelFqn, scopes, optionsMethods, relations, columns, table);
 
         this.updating[modelFile] = false;
     }
