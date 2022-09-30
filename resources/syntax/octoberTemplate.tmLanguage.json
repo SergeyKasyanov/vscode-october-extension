@@ -5,8 +5,21 @@
     "patterns": [
         {
             "contentName": "source.php.octoberTemplate",
-            "begin": "\\<\\?php",
-            "end": "\\?\\>",
+            "begin": "<\\?(?i:php|=)?(?![^?]*\\?>)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.begin.php"
+                }
+            },
+            "end": "(\\?)>",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.end.php"
+                },
+                "1": {
+                    "name": "source.php"
+                }
+            },
             "patterns": [
                 {
                     "patterns": [
