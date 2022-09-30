@@ -201,6 +201,19 @@
                     "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
                 }
             ]
+        },
+        {
+            "name": "data-attach-loading",
+            "description": {
+                "kind": "markdown",
+                "value": "When any element contains the `data-attach-loading` attribute, the CSS class `oc-attach-loader` will be added to it during the AJAX request. This class will spawn a loading spinner on button and anchor elements using the `:after` CSS selector."
+            },
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
         }
     ]
 }
