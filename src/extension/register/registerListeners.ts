@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { ControllersDataLoader } from "../../services/project/conrtollersDataLoader";
 import { ModelsDataLoader } from "../../services/project/modelsDataLoader";
 import { Themes } from "../../services/themes";
 import { spacer } from "../spacer";
@@ -20,6 +21,10 @@ function useSpacer(context: vscode.ExtensionContext) {
 
         if (ModelsDataLoader.instance.isModelFile(e.document.fileName)) {
             return ModelsDataLoader.instance.loadModel(e.document.fileName, e.document.getText());
+        }
+
+        if (ControllersDataLoader.instance.isControllerFile(e.document.fileName)) {
+            return ControllersDataLoader.instance.loadController(e.document.fileName, e.document.getText());
         }
     }));
 }

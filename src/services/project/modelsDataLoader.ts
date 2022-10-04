@@ -104,7 +104,7 @@ export class ModelsDataLoader {
                 .filter(entry => entry.isDirectory())
                 .map(entry => entry.name)
                 .forEach(plugin => {
-                    const modelsDir = pluginsPath([vendor, plugin, 'models'].join(path.sep));
+                    const modelsDir = pluginsPath(path.join(vendor, plugin, 'models'));
 
                     if (!fs.existsSync(modelsDir)) {
                         return;
@@ -114,7 +114,7 @@ export class ModelsDataLoader {
                         .filter(entry => entry.isFile() && entry.name.endsWith('.php'))
                         .map(entry => entry.name)
                         .forEach(model => {
-                            const modelFile = pluginsPath([vendor, plugin, 'models', model].join(path.sep));
+                            const modelFile = pluginsPath(path.join(vendor, plugin, 'models', model));
                             this.loadModel(modelFile);
                         });
                 }));

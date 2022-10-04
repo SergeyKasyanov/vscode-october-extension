@@ -21,6 +21,8 @@ import { ModelsDataLoader } from "./project/modelsDataLoader";
 import { Model, Relation } from "../types/plugin/model";
 import { MailTemplatesDataLoader } from "./project/mailTemplatesDataLoader";
 import { EnvDataLoader } from "./project/envDataLoader";
+import { ControllersDataLoader } from "./project/conrtollersDataLoader";
+import { Controller } from "../types/plugin/controller";
 
 export class Project {
 
@@ -37,6 +39,7 @@ export class Project {
     private pluginsLoader: PluginsDataLoader;
     private componentsLoader: ComponentsDataLoader;
     private modelsLoader: ModelsDataLoader;
+    private controllersLoader: ControllersDataLoader;
     private permissionsLoader: PermissionsDataLoader;
     private envLoader: EnvDataLoader;
     private configLoader: ConfigDataLoader;
@@ -50,6 +53,7 @@ export class Project {
         this.pluginsLoader = PluginsDataLoader.getInstance();
         this.componentsLoader = ComponentsDataLoader.getInstance();
         this.modelsLoader = ModelsDataLoader.instance;
+        this.controllersLoader = ControllersDataLoader.instance;
         this.permissionsLoader = PermissionsDataLoader.getInstance();
         this.envLoader = EnvDataLoader.instance;
         this.configLoader = ConfigDataLoader.getInstance();
@@ -64,6 +68,7 @@ export class Project {
         this.pluginsLoader.refreshData();
         this.componentsLoader.refreshData();
         this.modelsLoader.refreshData();
+        this.controllersLoader.refreshData();
         this.permissionsLoader.refreshData();
         this.envLoader.refreshData();
         this.configLoader.refreshData();
@@ -123,6 +128,18 @@ export class Project {
         }
 
         return controllers;
+    }
+
+    public getControllerObjectsByPluginCode(pluginCode: string): { [controller: string]: Controller; } {
+        return this.controllersLoader.getControllersByPlugin(pluginCode);
+    }
+
+    public getControllerByFqn(fqn: string) {
+        return this.controllersLoader.getControllerByFqn(fqn);
+    }
+
+    public getControllerByPluginCodeAndName(pluginCode: string, name: string) {
+        return this.controllersLoader.getController(pluginCode, name);
     }
 
     // Mail templates
