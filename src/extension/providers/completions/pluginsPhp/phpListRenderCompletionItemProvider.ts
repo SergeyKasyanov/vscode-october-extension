@@ -4,7 +4,7 @@ import { regExps } from "../../../../helpers/regExps";
 import { Project } from "../../../../services/project";
 import { isRightAfter } from "../../../helpers/isRightAfter";
 
-export class PhpRelationRenderCompletionItemProvider implements vscode.CompletionItemProvider {
+export class PhpListRenderCompletionItemProvider implements vscode.CompletionItemProvider {
 
     provideCompletionItems(
         document: vscode.TextDocument,
@@ -18,7 +18,7 @@ export class PhpRelationRenderCompletionItemProvider implements vscode.Completio
             return;
         }
 
-        if (!isRightAfter(document, position, regExps.phpRelationRenderMethodStartGlobal, regExps.empty)) {
+        if (!isRightAfter(document, position, regExps.phpListRenderMethodStartGlobal, regExps.empty)) {
             return;
         }
 
@@ -26,16 +26,14 @@ export class PhpRelationRenderCompletionItemProvider implements vscode.Completio
 
         if (
             !controller
-            || !controller.behaviors['\\Backend\\Behaviors\\RelationController']
-            || !controller.behaviors['\\Backend\\Behaviors\\RelationController']['default']
-            || !controller.behaviors['\\Backend\\Behaviors\\RelationController']['default'].config
+            || !controller.behaviors['\\Backend\\Behaviors\\ListController']
         ) {
             return;
         }
 
-        const behaviorConfig = controller.behaviors['\\Backend\\Behaviors\\RelationController']['default'].config;
+        const definitions = controller.behaviors['\\Backend\\Behaviors\\ListController'];
 
-        return Object.keys(behaviorConfig).map(def =>
+        return Object.keys(definitions).map(def =>
             new vscode.CompletionItem(def, vscode.CompletionItemKind.EnumMember)
         );
     }

@@ -199,6 +199,7 @@ export const regExps = {
     phpSchemaGlobal: /Schema::(create|table|drop|dropIfExists)\s*\(\s*[\'\"]\w+[\'\"]/g,
     phpSchemaTableName: /[\'\"]\w+[\'\"]/,
 
+    phpListRenderMethodStartGlobal: /->listRender\(\s*[\'\"]/g,
     phpRelationRenderMethodStartGlobal: /->relationRender\(\s*[\'\"]/g,
 
     //

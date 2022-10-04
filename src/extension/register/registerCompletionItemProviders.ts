@@ -39,6 +39,7 @@ import { YamlScopesCompletionItemProvider } from "../providers/completions/yaml/
 import { PhpControllerActionUrlCompletionItemProvider } from "../providers/completions/pluginsPhp/phpControllerActionUrlCompletionItemProvider";
 import { PhpPluginIconCompletionItemProvider } from "../providers/completions/pluginsPhp/phpPluginIconCompletionItemProvider";
 import { PhpRelationRenderCompletionItemProvider } from "../providers/completions/pluginsPhp/phpRelationRenderCompletionItemProvider";
+import { PhpListRenderCompletionItemProvider } from "../providers/completions/pluginsPhp/phpListRenderCompletionItemProvider";
 
 export function registerCompletionItemProviders(context: vscode.ExtensionContext) {
     themeIni(context);
@@ -73,6 +74,7 @@ function pluginsPhp(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(phpSelector, new PhpMakePartialCompletionItemProvider, ...quotes, '/', '~', '$'));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(phpSelector, new PhpControllerActionUrlCompletionItemProvider, ...quotes));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(phpSelector, new PhpPluginIconCompletionItemProvider, ...quotes));
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(phpSelector, new PhpListRenderCompletionItemProvider, ...quotes));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(phpSelector, new PhpRelationRenderCompletionItemProvider, ...quotes));
 }
 
