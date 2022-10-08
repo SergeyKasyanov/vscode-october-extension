@@ -37,6 +37,10 @@ const TRAITS: { [trait: string]: { property: string, command: string } } = {
         property: 'revisionable',
         command: 'command.add_trait_config.Revisionable'
     },
+    '\\October\\Rain\\Database\\Traits\\Multisite': {
+        property: 'propagatable',
+        command: 'command.add_trait_config.Multisite'
+    },
 };
 
 export function registerTraitsConfigsChecks(context: vscode.ExtensionContext) {

@@ -55,6 +55,7 @@ export class ModelGenerator extends GeneratorBase {
             addTraitValidation: !!vars.addTraitValidation,
             addTraitSoftDelete: !!vars.addTraitSoftDelete,
             addTraitRevisionable: !!vars.addTraitRevisionable,
+            addTraitMultisite: !!vars.addTraitMultisite,
         });
     }
 

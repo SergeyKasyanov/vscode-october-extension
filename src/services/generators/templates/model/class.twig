@@ -33,6 +33,9 @@ use October\Rain\Database\Traits\SimpleTree;
 {% if addTraitNestedTree %}
 use October\Rain\Database\Traits\NestedTree;
 {% endif %}
+{% if addTraitMultisite %}
+use October\Rain\Database\Traits\Multisite;
+{% endif %}
 {% if addTraitValidation %}
 use October\Rain\Database\Traits\Validation;
 {% endif %}
@@ -46,11 +49,21 @@ use BackendAuth;
 
 /**
  * @property int $id
+{% if addTraitSimpleTree %}
+ * @property int|null $parent_id
+{% endif %}
 {% if addTraitNestedTree %}
  * @property int|null $parent_id
  * @property int|null $nest_left
  * @property int|null $nest_right
  * @property int|null $nest_depth
+{% endif %}
+{% if addTraitMultisite %}
+ * @property int|null $site_id
+ * @property int|null $site_root_id
+{% endif %}
+{% if addTraitSortable %}
+ * @property int $sort_order
 {% endif %}
 {% if addTimestamps %}
  * @property Argon $created_at
@@ -97,6 +110,9 @@ class {{ model_pascal }} extends Model
 {% endif %}
 {% if addTraitRevisionable and not adjacent %}
     use Revisionable;
+{% endif %}
+{% if addTraitMultisite and not adjacent %}
+    use Multisite;
 {% endif %}
 
     public $table = '{{ table }}';
@@ -205,5 +221,13 @@ class {{ model_pascal }} extends Model
     {
         return BackendAuth::getUser()->id;
     }
+{% endif %}
+{% if addTraitMultisite %}
+
+{% if adjacent %}
+    use Multisite;
+
+{% endif %}
+    protected $propagatable = [];
 {% endif %}
 }

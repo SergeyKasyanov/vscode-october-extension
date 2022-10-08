@@ -30,6 +30,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
         validation: 'Add trait Validation',
         softDelete: 'Add trait SoftDelete',
         revisionable: 'Add trait Revisionable',
+        multisite: 'Add trait Multisite',
         migration: 'Create migration',
     };
 
@@ -100,6 +101,10 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             optionValues.push({ label: this.options.sortableRelation });
         }
 
+        if (Platform.getInstance().hasMultisite()) {
+            optionValues.push({ label: this.options.multisite });
+        }
+
         const options = await vscode.window.showQuickPick(optionValues, { canPickMany: true });
 
         if (options === undefined) {
@@ -131,6 +136,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             addTraitValidation: options.includes(this.options.validation),
             addTraitSoftDelete: options.includes(this.options.softDelete),
             addTraitRevisionable: options.includes(this.options.revisionable),
+            addTraitMultisite: options.includes(this.options.multisite),
         };
     }
 
@@ -144,7 +150,8 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             addSimpleTree: options.includes(this.options.simpleTree),
             addNestedTree: options.includes(this.options.nestedTree),
             addSoftDelete: options.includes(this.options.softDelete),
-            addTimestamps: options.includes(this.options.timestamps)
+            addTimestamps: options.includes(this.options.timestamps),
+            addMultisite: options.includes(this.options.multisite),
         };
     }
 }
