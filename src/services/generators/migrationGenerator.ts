@@ -35,6 +35,7 @@ export class MigrationGenerator extends GeneratorBase {
             addSimpleTree: !!vars.addSimpleTree,
             addNestedTree: !!vars.addNestedTree,
             addSoftDelete: !!vars.addSoftDelete,
+            addMultisite: !!vars.addMultisite,
             usesTableId: !!Platform.getInstance().usesTableIdInMigrations()
         });
     }

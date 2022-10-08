@@ -121,7 +121,12 @@ export class Platform {
         return this._currentVersion && this._currentVersion >= Version.oc30;
     }
 
+    public hasMultisite() {
+        return this._currentVersion && this._currentVersion >= Version.oc31;
+    }
+
     public hasFilterWidgets() {
         return this._currentVersion && this._currentVersion >= Version.oc30;
     }
+
 }

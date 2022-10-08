@@ -9,6 +9,7 @@ import { MigrationGenerator } from '../../../services/generators/migrationGenera
 import { GeneratorUiBase, InputValidators } from "./generatorUiBase";
 
 import pluralize = require('pluralize');
+import { Platform } from '../../../services/platform';
 
 export class MigrationGeneratorUi extends GeneratorUiBase {
 
@@ -29,6 +30,7 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
         addSimpleTree: 'Add simple tree',
         addNestedTree: 'Add nested tree',
         addSoftDelete: 'Add soft delete',
+        addMultisite: 'Add multisite columns',
     };
 
     protected async show() {
@@ -40,7 +42,7 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
         const migration = await this.ask('Migration file name', this.getMigrationValidator(), migrationGuess);
         const table = await this.ask('Table name', InputValidators.migration, tableGuess);
 
-        const { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete } = await this.getOptions(action);
+        const { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete, addMultisite } = await this.getOptions(action);
 
         const generator = new MigrationGenerator(this.pluginCode, {
             migration,
@@ -51,6 +53,7 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addSimpleTree,
             addNestedTree,
             addSoftDelete,
+            addMultisite
         });
 
         const generated = generator.generate();
@@ -128,16 +131,23 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addSortOrder = false,
             addSimpleTree = false,
             addNestedTree = false,
-            addSoftDelete = false;
+            addSoftDelete = false,
+            addMultisite = false;
 
         if (action === TableAction.create) {
-            const options = await vscode.window.showQuickPick([
+            const labels = [
                 { label: this.options.addSlug, description: 'Add "slug" column' },
                 { label: this.options.addSortOrder, description: 'Add "sort_order" column for Sortable model trait' },
                 { label: this.options.addSimpleTree, description: 'Add "parent_id" column for SimpleTree model trait' },
                 { label: this.options.addNestedTree, description: 'Add columns for NestedTree model trait' },
                 { label: this.options.addSoftDelete, description: 'Add "deleted_at" column for SoftDelete trait' },
-            ], { canPickMany: true });
+            ];
+
+            if (Platform.getInstance().hasMultisite()) {
+                labels.push({ label: this.options.addMultisite, description: 'Add columns for Multisite trait' },);
+            }
+
+            const options = await vscode.window.showQuickPick(labels, { canPickMany: true });
 
             if (options === undefined) {
                 throw new Canceled();
@@ -150,9 +160,10 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addSimpleTree = picked.includes(this.options.addSimpleTree);
             addNestedTree = picked.includes(this.options.addNestedTree);
             addSoftDelete = picked.includes(this.options.addSoftDelete);
+            addMultisite = picked.includes(this.options.addMultisite);
         }
 
-        return { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete };
+        return { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete, addMultisite };
     }
 }
 

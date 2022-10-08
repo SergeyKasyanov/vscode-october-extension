@@ -47,13 +47,18 @@ class {{ migration_pascal }} extends Migration
             $table->integer('nest_right')->nullable();
             $table->integer('nest_depth')->nullable();
 {% endif %}
-
 {% if addTimestamps %}
+
             $table->timestamps();
 {% endif %}
 {% if addSoftDelete %}
 
             $table->softDeletes();
+{% endif %}
+{% if addMultisite %}
+
+            $table->integer('site_id')->nullable()->index();
+            $table->integer('site_root_id')->nullable()->index();
 {% endif %}
         });
 {% else %}
