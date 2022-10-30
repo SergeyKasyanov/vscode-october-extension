@@ -3,16 +3,20 @@ import { ControllersDataLoader } from "../../services/project/conrtollersDataLoa
 import { ModelsDataLoader } from "../../services/project/modelsDataLoader";
 import { Themes } from "../../services/themes";
 import { spacer } from "../spacer";
+import * as config from "../../config";
 
 export function registerListeners(context: vscode.ExtensionContext) {
     useSpacer(context);
+    autoIndexClasses(context);
     htmlOnEnter();
 }
 
 function useSpacer(context: vscode.ExtensionContext) {
     // Auto insert spaces in twig statements
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(e => spacer(e)));
+}
 
+function autoIndexClasses(context: vscode.ExtensionContext) {
     // Update files index on type
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(e => {
         if (Themes.instance.isThemeFile(e.document.fileName)) {

@@ -28,6 +28,10 @@ export function getPhpPath(): string {
     return getExtensionConfig().get<string>('phpExecutable') || 'php';
 }
 
+export function useSpacer() {
+    return getExtensionConfig().get<boolean>('useSpacer') || false;
+}
+
 function getExtensionConfig(): vscode.WorkspaceConfiguration {
     return vscode.workspace.getConfiguration('octoberCode');
 }

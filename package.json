@@ -3,7 +3,7 @@
     "displayName": "October Code",
     "description": "October CMS tools for VSCode",
     "publisher": "SergeyKasyanov",
-    "version": "0.7.4",
+    "version": "0.7.5",
     "preview": true,
     "icon": "resources/images/icon.png",
     "repository": {
@@ -205,6 +205,12 @@
                     "default": true,
                     "title": "Autocomplete: Hide tailor permissions.",
                     "description": "Hide tailor permissions from permissions autocomplete."
+                },
+                "octoberCode.useSpacer": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}",
+                    "description": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}"
                 }
             }
         }

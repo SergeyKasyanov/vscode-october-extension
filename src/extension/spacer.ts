@@ -1,39 +1,31 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
+import * as config from "../config";
 
-const CONFIG = {
-    triggers: [
-        '{',
-        '%',
-        '#',
-    ],
-    braces: [
-        '{{',
-        '{%',
-        '{#',
-    ],
-    expressions: [
-        /\{\{.*\}\}/,
-        /\{\%.*\%\}/,
-        /\{\#.*\#\}/,
-    ]
+const TRIGGERS = ['{', '%', '#'];
+const BRACES: { [name: string]: string } = {
+    '{{': '{{ $0 }}${TM_SELECTED_TEXT/\{\{(\}\}){0,1}//g}',
+    '{%': '{% $0 %}${TM_SELECTED_TEXT/\{\%(\%\}){0,1}//g}',
+    '{#': '{# $0 #}${TM_SELECTED_TEXT/\{\#(\#\}){0,1}//g}',
 };
 
 export async function spacer(event: vscode.TextDocumentChangeEvent) {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
+    if (!config.useSpacer()) {
         return;
     }
 
-    if (!editor.selection.isEmpty) {
+    const autoClosingBrackets = vscode.workspace.getConfiguration('editor').get<string>('autoClosingBrackets');
+    if (autoClosingBrackets === 'never') {
+        return;
+    }
+
+    const editor = vscode.window.activeTextEditor;
+    if (!editor || !editor.selection.isEmpty) {
         return;
     }
 
     const lastChange = event.contentChanges[event.contentChanges.length - 1];
-    if (!lastChange) {
-        return;
-    }
-
-    if (!CONFIG.triggers.includes(lastChange.text[0])) {
+    if (!lastChange || !TRIGGERS.includes(lastChange.text[0])) {
         return;
     }
 
@@ -43,22 +35,18 @@ export async function spacer(event: vscode.TextDocumentChangeEvent) {
     }
 
     const lineText = event.document.lineAt(lastChange.range.start.line).text;
-    const twoSymbols = lineText.slice(character - 1, character + 1);
+    const brace = lineText.slice(character - 1, character + 1);
 
-    const braceIndex = CONFIG.braces.indexOf(twoSymbols);
-    if (braceIndex === -1) {
+    if (!Object.keys(BRACES).includes(brace)) {
         return;
     }
 
-    const brace = CONFIG.braces[CONFIG.braces.indexOf(twoSymbols)];
-    const range = new vscode.Range(lastChange.range.start.translate(0, -1), lastChange.range.start.translate(0, 5));
+    const snippet = new vscode.SnippetString(BRACES[brace]);
 
-    switch (brace) {
-        case '{{':
-            return editor.insertSnippet(new vscode.SnippetString('{{ $0 }}${TM_SELECTED_TEXT/\{\{\}\}//g}'), range);
-        case '{%':
-            return editor.insertSnippet(new vscode.SnippetString('{% $0 %}${TM_SELECTED_TEXT/\{\%\}//g}'), range);
-        case '{#':
-            return editor.insertSnippet(new vscode.SnippetString('{# $0 #}${TM_SELECTED_TEXT/\{\#\}//g}'), range);
-    }
+    const start = lastChange.range.start.translate(0, -1);
+    const end = lastChange.range.start.translate(0, 3);
+
+    const range = new vscode.Range(start, end);
+
+    return editor.insertSnippet(snippet, range);
 }
