@@ -33,6 +33,51 @@ Extension requires valid php installation on your system for load some project r
 
 Also October Code requires **redhat.vscode-yaml** extension to be installed for validate and autocomplete yaml configs based on provided json schemas.
 
+## Configuring VS Code
+
+For better file associations it is recommended to add following lines to your vscode config file:
+
+```json
+    "files.associations": {
+        "**/themes/**/*.htm": "october-tpl",
+        "**/plugins/**/*.htm": "php"
+    },
+```
+
+For emmet to work in theme files, add this to config:
+
+```json
+    "emmet.includeLanguages": {
+        "october-tpl": "html"
+    },
+```
+
+If you use **IntelliSense for CSS class names in HTML** (Zignd.html-css-class-completion) add `october-tpl` to `html-css-class-completion.HTMLLanguages`
+
+```json
+    "html-css-class-completion.HTMLLanguages": [
+        ...
+        "october-tpl"
+    ],
+```
+
+For **CSS Peek** (pranaygp.vscode-css-peek) add `october-tpl` to `cssPeek.peekFromLanguages`
+
+```json
+    "cssPeek.peekFromLanguages": [
+        ...
+        "october-tpl"
+    ]
+```
+
+For **Tailwind CSS IntelliSense** (bradlc.vscode-tailwindcss) add this:
+
+```json
+    "tailwindCSS.includeLanguages": {
+        "october-tpl": "html"
+    },
+```
+
 ## Notice
 
 October CMS name and logo belongs to Aleksey Bobkov and Sam Georges.
