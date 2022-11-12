@@ -6,6 +6,9 @@
     "version": "0.7.5",
     "preview": true,
     "icon": "resources/images/icon.png",
+    "sponsor": {
+        "url": "https://linktr.ee/sergeykasyanov"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/SergeyKasyanov/vscode-october-extension"
