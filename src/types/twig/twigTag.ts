@@ -1,5 +1,5 @@
 import { MarkdownString } from "vscode";
-import { Version } from "../octoberVersion";
+import { Version } from "../../domain/enums/october-version";
 
 export interface TwigTag {
     name: string,

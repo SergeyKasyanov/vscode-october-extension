@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { rootPath } from '../helpers/paths';
-import { Version, versionNames } from '../types/octoberVersion';
+import { Version, versionNames } from '../domain/enums/october-version';
 
 export class Platform {
 
@@ -110,6 +110,10 @@ export class Platform {
     }
 
     public hasTailor() {
+        return this._currentVersion && this._currentVersion >= Version.oc30;
+    }
+
+    public hasAppDirectory() {
         return this._currentVersion && this._currentVersion >= Version.oc30;
     }
 

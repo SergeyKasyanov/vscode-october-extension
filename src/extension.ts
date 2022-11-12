@@ -52,7 +52,6 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(octoberTplSelector, new OctoberHtmDocumentFormatting));
 
     } else {
-        sayOctoberNotDetected();
         ocVersionStatusBarItem.text = `OctoberCMS: not detected`;
 
         //#region Disable commands
@@ -69,7 +68,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     ocVersionStatusBarItem.show();
 }
-
 
 export function deactivate() { }
 

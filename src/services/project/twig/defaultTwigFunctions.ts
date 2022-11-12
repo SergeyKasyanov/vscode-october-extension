@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { MarkdownString } from "vscode";
 import { TwigFunction } from "../../../types/twig/twigFunction";
-import { Version } from "../../../types/octoberVersion";
+import { Version } from "../../../domain/enums/october-version";
 
 const defaultTwigFunctions: { [name: string]: TwigFunction } = {
 
