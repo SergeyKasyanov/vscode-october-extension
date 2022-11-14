@@ -185,12 +185,6 @@
                     "title": "Themes directory",
                     "description": "Path to themes directory of OctoberCMS project. By default uses \"themes\"."
                 },
-                "octoberCode.enableThemeFilesFolding": {
-                    "type": "boolean",
-                    "default": false,
-                    "title": "Enable folding in theme files",
-                    "description": "Enable sections folding in theme files. (Breaks html/php folding. Reload window for apply change.)"
-                },
                 "octoberCode.structuredControllers": {
                     "type": "boolean",
                     "default": false,
@@ -214,6 +208,19 @@
                     "default": false,
                     "title": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}",
                     "description": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}"
+                },
+                "octoberCode.excludeFromIndex": {
+                    "type": "array",
+                    "default": [
+                        ".git",
+                        ".idea",
+                        ".vscode",
+                        "node_modules",
+                        "vendor",
+                        ".DS_Store"
+                    ],
+                    "title": "List of directories and files for exclude from index",
+                    "description": "List of directories and files for exclude from index"
                 }
             }
         }

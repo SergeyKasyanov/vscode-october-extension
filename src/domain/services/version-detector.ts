@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import { Version } from '../enums/october-version';
-import { WorkspacePathHelpers } from '../../helpers/ws-path-helpers';
+import { WorkspacePathHelpers } from '../helpers/ws-path-helpers';
 
 /**
  * Detects version of OctoberCMS in opened project

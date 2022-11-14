@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { Config } from '../config';
+import { Config } from '../../config';
 
 /**
  * Helpers for generate workspace related files paths

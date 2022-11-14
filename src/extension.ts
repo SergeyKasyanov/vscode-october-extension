@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as vscode from 'vscode';
+import { Indexer } from "./domain/services/indexer";
 import { OctoberHtmDocumentFormatting } from "./extension/providers/formatting/octoberHtmFormatting";
 import { registerCodeActions } from "./extension/register/registerCodeActions";
 import { registerCodeLenses } from "./extension/register/registerCodeLenses";
@@ -71,9 +72,14 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() { }
 
-async function preloadData() {
-    Themes.instance;
-    Project.instance;
+function preloadData() {
+    const indexer = new Indexer;
+
+    for (const ws of vscode.workspace.workspaceFolders || []) {
+        indexer.index(ws);
+    }
+    // Themes.instance;
+    // Project.instance;
 }
 
 function sayOctoberNotDetected() {

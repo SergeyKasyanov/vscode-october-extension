@@ -38,34 +38,38 @@ function getExtensionConfig(): vscode.WorkspaceConfiguration {
 
 export class Config {
     static get getPhpPath(): string {
-        return Config.getExtensionConfig().get<string>('phpExecutable') || 'php';
+        return Config.extensionConfig.get<string>('phpExecutable') || 'php';
     }
 
     static get pluginsDirectory(): string {
-        return Config.getExtensionConfig().get<string>('pluginsPath') || 'plugins';
+        return Config.extensionConfig.get<string>('pluginsPath') || 'plugins';
     }
 
     static get themesDirectory(): string {
-        return Config.getExtensionConfig().get<string>('themesPath') || 'themes';
+        return Config.extensionConfig.get<string>('themesPath') || 'themes';
     }
 
     static get isTailorPermissionsHidden(): boolean {
-        return Config.getExtensionConfig().get<boolean>('hideTailorPermissions') === true;
+        return Config.extensionConfig.get<boolean>('hideTailorPermissions') === true;
     }
 
     static get isBackendControllerStructured(): boolean {
-        return Config.getExtensionConfig().get<boolean>('structuredControllers') || false;
+        return Config.extensionConfig.get<boolean>('structuredControllers') || false;
     }
 
     static get isModelsTraitAdjacent(): boolean {
-        return Config.getExtensionConfig().get<boolean>('adjacentModelTraits') || false;
+        return Config.extensionConfig.get<boolean>('adjacentModelTraits') || false;
     }
 
     static get isSpacerEnabled(): boolean {
-        return Config.getExtensionConfig().get<boolean>('useSpacer') || false;
+        return Config.extensionConfig.get<boolean>('useSpacer') || false;
     }
 
-    private static getExtensionConfig(): vscode.WorkspaceConfiguration {
+    static get excludeFromIndex(): string[] {
+        return this.extensionConfig.get<string[]>('excludeFromIndex') || [];
+    }
+
+    private static get extensionConfig(): vscode.WorkspaceConfiguration {
         return vscode.workspace.getConfiguration('octoberCode');
     }
 }

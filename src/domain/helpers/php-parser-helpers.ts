@@ -148,12 +148,26 @@ export class PhpParserHelpers {
     }
 
     /**
+     * Returns identifier name
+     *
+     * @param identifier
+     * @returns
+     */
+    static identifierToString(identifier: phpParser.Identifier | string): string {
+        if (identifier instanceof Object) {
+            return identifier.name;
+        }
+
+        return identifier;
+    }
+
+    /**
      * Returns list of public methods from class not having `__` or `_on` in name
      *
      * @param controllerClass
      * @returns
      */
-    static getControllerPageMethodsFromDocument(controllerClass: phpParser.Class): MethodsList {
+    static getControllerPageMethods(controllerClass: phpParser.Class): MethodsList {
         const methods = this.getMethods(controllerClass);
         if (!methods) {
             return {};
