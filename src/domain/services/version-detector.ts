@@ -1,7 +1,6 @@
-import * as vscode from 'vscode';
-import * as fs from 'fs';
 import { Version } from '../enums/october-version';
-import { WorkspacePathHelpers } from '../helpers/ws-path-helpers';
+import { FsHelpers } from '../helpers/fs-helpers';
+import { PathHelpers } from '../helpers/path-helpers';
 
 /**
  * Detects version of OctoberCMS in opened project
@@ -11,24 +10,28 @@ export class VersionDetector {
     /**
      * Detect version of OctoberCMS in opened project
      *
-     * @param wsFolder
+     * @param projectPath
      * @returns
      */
-    detect(wsFolder: vscode.WorkspaceFolder): Version | undefined {
-        return this.tryDetectByComposerJson(wsFolder)
-            || this.tryDetectByDirectory(wsFolder);
+    detect(projectPath: string): Version | undefined {
+        return this.tryDetectByComposerJson(projectPath)
+            || this.tryDetectByDirectory(projectPath);
     }
 
     /**
      * Try to detect version by `require` in `composer.json`
      *
-     * @param wsFolder
+     * @param projectPath
      * @returns
      */
-    private tryDetectByComposerJson(wsFolder: vscode.WorkspaceFolder): Version | undefined {
-        const composerJsonPath = WorkspacePathHelpers.rootPath(wsFolder, 'composer.json');
-        const composerJsonRaw = fs.readFileSync(composerJsonPath);
-        const composerJson = JSON.parse(composerJsonRaw.toString());
+    private tryDetectByComposerJson(projectPath: string): Version | undefined {
+        const composerJsonPath = PathHelpers.rootPath(projectPath, 'composer.json');
+        if (!FsHelpers.exists(composerJsonPath)) {
+            return;
+        }
+
+        const composerJsonRaw = FsHelpers.readFile(composerJsonPath);
+        const composerJson = JSON.parse(composerJsonRaw);
         const requires: { [key: string]: string } = composerJson['require'];
 
         let version: string | undefined = undefined;
@@ -61,16 +64,16 @@ export class VersionDetector {
     }
 
     /**
-     * Try to detect OctoberCMS in project by existence of `vendor/october` directory
+     * Try to detect OctoberCMS in project by existence of `vendor/october` directory.
      * Returns only v1.0 or undefined.
      *
-     * @param wsFolder
+     * @param projectPath
      * @returns
      */
-    private tryDetectByDirectory(wsFolder: vscode.WorkspaceFolder): Version.oc10 | undefined {
-        const vendorOctoberPath = WorkspacePathHelpers.rootPath(wsFolder, 'vendor/october');
+    private tryDetectByDirectory(projectPath: string): Version.oc10 | undefined {
+        const vendorOctoberPath = PathHelpers.rootPath(projectPath, 'vendor/october');
 
-        if (fs.existsSync(vendorOctoberPath)) {
+        if (FsHelpers.exists(vendorOctoberPath)) {
             return Version.oc10;
         }
 

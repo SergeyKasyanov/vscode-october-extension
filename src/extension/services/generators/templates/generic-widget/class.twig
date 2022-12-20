@@ -1,0 +1,35 @@
+<?php
+
+namespace {{ namespace }}\Widgets;
+
+use Backend\Classes\WidgetBase;
+
+class {{ widget_pascal }} extends WidgetBase
+{
+    protected $defaultAlias = '{{ namespace_snake }}_{{ widget_snake }}';
+
+    public function init()
+    {
+        // $this->fillFromConfig([]);
+    }
+
+    public function render()
+    {
+        $this->prepareVars();
+
+        return $this->makePartial('{{ widget_snake }}');
+    }
+
+    public function prepareVars()
+    {
+        //
+    }
+{% if addAssets %}
+
+    public function loadAssets()
+    {
+        $this->addCss('css/{{ widget_snake }}.css', '{{ namespace_dot_capital }}');
+        $this->addJs('js/{{ widget_snake }}.js', '{{ namespace_dot_capital }}');
+    }
+{% endif %}
+}

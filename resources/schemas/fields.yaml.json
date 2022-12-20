@@ -2532,11 +2532,8 @@
                     "$ref": "#/definitions/Fields"
                 },
                 "icons": {
-                    "additionalProperties": false,
-                    "patternProperties": {
-                        "^[0-9]+$": {
-                            "type": "string"
-                        }
+                    "additionalProperties": {
+                        "type": "string"
                     },
                     "type": "object"
                 },
@@ -2547,11 +2544,8 @@
                     "type": "array"
                 },
                 "paneCssClass": {
-                    "additionalProperties": false,
-                    "patternProperties": {
-                        "^[0-9]+$": {
-                            "type": "string"
-                        }
+                    "additionalProperties": {
+                        "type": "string"
                     },
                     "type": "object"
                 },
@@ -4520,6 +4514,9 @@
                 },
                 "select": {
                     "type": "string"
+                },
+                "showSearch": {
+                    "type": "boolean"
                 },
                 "span": {
                     "enum": [
@@ -6729,6 +6726,7 @@
                         "disable",
                         "empty",
                         "enable",
+                        "fill",
                         "hide",
                         "show"
                     ],

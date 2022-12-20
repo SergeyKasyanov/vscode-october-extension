@@ -1,46 +1,6 @@
 import * as vscode from "vscode";
 
-export function isBackendControllerStructured(): boolean {
-    return getExtensionConfig().get<boolean>('structuredControllers') || false;
-}
-
-export function adjacentModelTraits(): boolean {
-    return getExtensionConfig().get<boolean>('adjacentModelTraits') || false;
-}
-
-export function pluginsDirectory(): string {
-    return getExtensionConfig().get<string>('pluginsPath') || 'plugins';
-}
-
-export function themesDirectory(): string {
-    return getExtensionConfig().get<string>('themesPath') || 'themes';
-}
-
-export function enableThemeFilesFolding(): boolean {
-    return getExtensionConfig().get<boolean>('enableThemeFilesFolding') || false;
-}
-
-export function hideTailorPermissions(): boolean {
-    return getExtensionConfig().get<boolean>('hideTailorPermissions') === true;
-}
-
-export function getPhpPath(): string {
-    return getExtensionConfig().get<string>('phpExecutable') || 'php';
-}
-
-export function useSpacer() {
-    return getExtensionConfig().get<boolean>('useSpacer') || false;
-}
-
-function getExtensionConfig(): vscode.WorkspaceConfiguration {
-    return vscode.workspace.getConfiguration('octoberCode');
-}
-
 export class Config {
-    static get getPhpPath(): string {
-        return Config.extensionConfig.get<string>('phpExecutable') || 'php';
-    }
-
     static get pluginsDirectory(): string {
         return Config.extensionConfig.get<string>('pluginsPath') || 'plugins';
     }
@@ -67,6 +27,10 @@ export class Config {
 
     static get excludeFromIndex(): string[] {
         return this.extensionConfig.get<string[]>('excludeFromIndex') || [];
+    }
+
+    static get showModulesEntitiesInGoToCommands(): boolean {
+        return this.extensionConfig.get<boolean>('showModulesEntitiesInGoToCommands') || false;
     }
 
     private static get extensionConfig(): vscode.WorkspaceConfiguration {

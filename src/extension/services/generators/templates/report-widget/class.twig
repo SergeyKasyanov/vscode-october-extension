@@ -1,0 +1,49 @@
+<?php
+
+namespace {{ namespace }}\ReportWidgets;
+
+use Backend\Classes\ReportWidgetBase;
+use Exception;
+
+class {{ widget_pascal }} extends ReportWidgetBase
+{
+    protected $defaultAlias = '{{ widget_pascal }}ReportWidget';
+
+    public function defineProperties()
+    {
+        return [
+            'title' => [
+                'title' => 'backend::lang.dashboard.widget_title_label',
+                'default' => '{{ widget_pascal }} Report Widget',
+                'type' => 'string',
+                'validationPattern' => '^.+$',
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error',
+            ],
+        ];
+    }
+
+    public function render()
+    {
+        try {
+            $this->prepareVars();
+        }
+        catch (Exception $ex) {
+            $this->vars['error'] = $ex->getMessage();
+        }
+
+        return $this->makePartial('{{ widget_snake }}');
+    }
+
+    public function prepareVars()
+    {
+        //
+    }
+{% if addAssets %}
+
+    public function loadAssets()
+    {
+        $this->addCss('css/{{ widget_snake }}.css', '{{ namespace_dot_capital }}');
+        $this->addJs('js/{{ widget_snake }}.js', '{{ namespace_dot_capital }}');
+    }
+{% endif %}
+}

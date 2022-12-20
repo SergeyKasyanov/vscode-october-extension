@@ -1,0 +1,40 @@
+<?php
+
+namespace {{ namespace }}\Console;
+
+use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
+
+class {{ command_pascal }} extends Command
+{
+    protected $name = '{{ plugin_lower }}:{{ command_dashed }}';
+
+    protected $description = '{{ description }}';
+{% if hidden %}
+
+    protected $hidden = true;
+{% endif %}
+
+    public function handle()
+    {
+        // $argument = $this->argument('example');
+        // $option   = $this->option('example');
+
+        $this->output->writeln('Hello world!');
+    }
+
+    protected function getArguments()
+    {
+        return [
+            // ['example', InputArgument::REQUIRED, 'An example argument.'],
+        ];
+    }
+
+    protected function getOptions()
+    {
+        return [
+            // ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+        ];
+    }
+}

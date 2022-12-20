@@ -131,6 +131,16 @@
         "description": "If statement",
         "scope": "text.html.twig.october"
     },
+    "If tag with test": {
+        "prefix": "ifis",
+        "body": [
+            "{% if ${1:variable} is ${2:test} %}",
+            "    $0",
+            "{% endif %}"
+        ],
+        "description": "If statement",
+        "scope": "text.html.twig.october"
+    },
     "If-else tag": {
         "prefix": "ifelse",
         "body": [
@@ -353,6 +363,14 @@
             "{% put ${1:placeholder} %}",
             "    $0",
             "{% endput %}"
+        ],
+        "description": "Replace placeholder with provided content",
+        "scope": "text.html.twig.october"
+    },
+    "Put to variable": {
+        "prefix": "putvar",
+        "body": [
+            "{% put ${1:placeholder} = ${0:value} %}"
         ],
         "description": "Replace placeholder with provided content",
         "scope": "text.html.twig.october"

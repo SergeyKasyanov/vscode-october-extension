@@ -1,0 +1,39 @@
+<?php
+
+namespace {{ namespace }}\Components;
+
+use Cms\Classes\ComponentBase;
+
+class {{ component_pascal }} extends ComponentBase
+{
+    public function componentDetails()
+    {
+        return [
+            'name' => '{{ component_pascal }}',
+{% if description is not empty %}
+            'description' => '{{ description }}'
+{% endif %}
+        ];
+    }
+{% if defineProperties %}
+
+    public function defineProperties()
+    {
+        return [];
+    }
+{% endif %}
+{% if init %}
+
+    public function init()
+    {
+        //
+    }
+{% endif %}
+{% if onRun %}
+
+    public function onRun()
+    {
+        //
+    }
+{% endif %}
+}

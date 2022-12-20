@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: {{ model_pascal }}
+
+# Model Form Field configuration
+form: $/{{ namespace_slash }}/models/{{ model_lower }}/fields.yaml
+
+# Model Class name
+modelClass: {{ namespace }}\Models\{{ model_pascal }}
+
+# Default redirect location
+defaultRedirect: {{ namespace_slash }}/{{ controller_lower }}
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: {{ namespace_slash }}/{{ controller_lower }}/update/:id
+    redirectClose: {{ namespace_slash }}/{{ controller_lower }}
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: {{ namespace_slash }}/{{ controller_lower }}
+    redirectClose: {{ namespace_slash }}/{{ controller_lower }}
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

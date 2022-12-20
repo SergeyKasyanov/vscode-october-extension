@@ -4,7 +4,9 @@ import { Version } from "../enums/october-version";
  * Represents OctoberCMS platform of opened project.
  */
 export class Platform {
-    constructor(private _version: Version) { }
+    constructor(
+        private _version: Version
+    ) { }
 
     /**
      * Version of OctoberCMS used in opened project
@@ -18,14 +20,14 @@ export class Platform {
     //
 
     /**
-     * Returns main extension for backend views
+     * Main extension for backend views
      */
     get mainBackendViewExtension(): "php" | "htm" {
         return this._version >= Version.oc30 ? 'php' : 'htm';
     }
 
     /**
-     * Returns supported extensions for backend views
+     * Supported extensions for backend views
      */
     get backendViewExtensions(): string[] {
         return this._version >= Version.oc30 ? ['php', 'htm'] : ['htm'];
