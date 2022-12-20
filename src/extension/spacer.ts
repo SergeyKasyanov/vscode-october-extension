@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from "vscode";
-import * as config from "../config";
+import { Config } from "../config";
 
 const TRIGGERS = ['{', '%', '#'];
 const BRACES: { [name: string]: string } = {
@@ -10,7 +10,7 @@ const BRACES: { [name: string]: string } = {
 };
 
 export async function spacer(event: vscode.TextDocumentChangeEvent) {
-    if (!config.useSpacer()) {
+    if (!Config.isSpacerEnabled) {
         return;
     }
 

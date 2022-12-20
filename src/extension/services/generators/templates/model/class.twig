@@ -1,0 +1,233 @@
+<?php
+
+namespace {{ namespace }}\Models;
+
+use Model;
+{% if addTimestamps or addTraitSoftDelete %}
+use October\Rain\Argon\Argon;
+{% endif %}
+{% if addTraitNullable %}
+use October\Rain\Database\Traits\Nullable;
+{% endif %}
+{% if addTraitHashable %}
+use October\Rain\Database\Traits\Hashable;
+{% endif %}
+{% if addTraitPurgeable %}
+use October\Rain\Database\Traits\Purgeable;
+{% endif %}
+{% if addTraitEncryptable %}
+use October\Rain\Database\Traits\Encryptable;
+{% endif %}
+{% if addTraitSluggable %}
+use October\Rain\Database\Traits\Sluggable;
+{% endif %}
+{% if addTraitSortable %}
+use October\Rain\Database\Traits\Sortable;
+{% endif %}
+{% if addTraitSortableRelation %}
+use October\Rain\Database\Traits\SortableRelation;
+{% endif %}
+{% if addTraitSimpleTree %}
+use October\Rain\Database\Traits\SimpleTree;
+{% endif %}
+{% if addTraitNestedTree %}
+use October\Rain\Database\Traits\NestedTree;
+{% endif %}
+{% if addTraitMultisite %}
+use October\Rain\Database\Traits\Multisite;
+{% endif %}
+{% if addTraitValidation %}
+use October\Rain\Database\Traits\Validation;
+{% endif %}
+{% if addTraitSoftDelete %}
+use October\Rain\Database\Traits\SoftDelete;
+{% endif %}
+{% if addTraitRevisionable %}
+use October\Rain\Database\Traits\Revisionable;
+use BackendAuth;
+{% endif %}
+
+/**
+ * @property int $id
+{% if addTraitSimpleTree %}
+ * @property int|null $parent_id
+{% endif %}
+{% if addTraitNestedTree %}
+ * @property int|null $parent_id
+ * @property int|null $nest_left
+ * @property int|null $nest_right
+ * @property int|null $nest_depth
+{% endif %}
+{% if addTraitMultisite %}
+ * @property int|null $site_id
+ * @property int|null $site_root_id
+{% endif %}
+{% if addTraitSortable %}
+ * @property int $sort_order
+{% endif %}
+{% if addTimestamps %}
+ * @property Argon $created_at
+ * @property Argon $updated_at
+{% endif %}
+{% if addTraitSoftDelete %}
+ * @property Argon $deleted_at
+{% endif %}
+ */
+class {{ model_pascal }} extends Model
+{
+{% if addTraitNullable and not adjacent %}
+    use Nullable;
+{% endif %}
+{% if addTraitHashable and not adjacent %}
+    use Hashable;
+{% endif %}
+{% if addTraitPurgeable and not adjacent %}
+    use Purgeable;
+{% endif %}
+{% if addTraitEncryptable and not adjacent %}
+    use Encryptable;
+{% endif %}
+{% if addTraitSluggable and not adjacent %}
+    use Sluggable;
+{% endif %}
+{% if addTraitSortable %}
+    use Sortable;
+{% endif %}
+{% if addTraitSortableRelation %}
+    use SortableRelation;
+{% endif %}
+{% if addTraitSimpleTree %}
+    use SimpleTree;
+{% endif %}
+{% if addTraitNestedTree %}
+    use NestedTree;
+{% endif %}
+{% if addTraitValidation and not adjacent %}
+    use Validation;
+{% endif %}
+{% if addTraitSoftDelete %}
+    use SoftDelete;
+{% endif %}
+{% if addTraitRevisionable and not adjacent %}
+    use Revisionable;
+{% endif %}
+{% if addTraitMultisite and not adjacent %}
+    use Multisite;
+{% endif %}
+
+    public $table = '{{ table }}';
+
+    protected $guarded = ['*'];
+{% if not addTimestamps %}
+
+    public $timestamps = false;
+{% endif %}
+{% if addCasts %}
+
+    protected $dates = [{% if addTraitSoftDelete %}'deleted_at'{% endif %}];
+
+    protected $jsonable = [];
+
+    protected $casts = [];
+{% endif %}
+{% if not addCasts and addTraitSoftDelete %}
+
+    protected $dates = ['deleted_at'];
+{% endif %}
+{% if addRelations %}
+
+    public $hasOne = [];
+    public $hasMany = [];
+    public $belongsTo = [];
+    public $belongsToMany = [];
+    public $morphTo = [];
+    public $morphOne = [];
+{% if addTraitRevisionable %}
+    public $morphMany = [
+        'revision_history' => [\System\Models\Revision::class, 'name' => 'revisionable']
+    ];
+{% else %}
+    public $morphMany = [];
+{% endif %}
+    public $attachOne = [];
+    public $attachMany = [];
+{% endif %}
+{% if addTraitRevisionable and not addRelations %}
+
+    public $morphMany = [
+        'revision_history' => [\System\Models\Revision::class, 'name' => 'revisionable']
+    ];
+{% endif %}
+{% if addTraitNullable %}
+
+{% if adjacent %}
+    use Nullable;
+
+{% endif %}
+    protected $nullable = [];
+{% endif %}
+{% if addTraitHashable %}
+
+{% if adjacent %}
+    use Hashable;
+
+{% endif %}
+    protected $hashable = ['password'];
+{% endif %}
+{% if addTraitPurgeable %}
+
+{% if adjacent %}
+    use Purgeable;
+
+{% endif %}
+    protected $purgeable = ['password_confirmation'];
+{% endif %}
+{% if addTraitEncryptable %}
+
+{% if adjacent %}
+    use Encryptable;
+
+{% endif %}
+    protected $encryptable = ['api_key', 'api_secret'];
+{% endif %}
+{% if addTraitSluggable %}
+
+{% if adjacent %}
+    use Sluggable;
+
+{% endif %}
+    protected $slugs = ['slug' => 'name'];
+{% endif %}
+{% if addTraitValidation %}
+
+{% if adjacent %}
+    use Validation;
+
+{% endif %}
+    public $rules = [];
+    public $customMessages = [];
+    public $attributeNames = [];
+{% endif %}
+{% if addTraitRevisionable %}
+
+{% if adjacent %}
+    use Revisionable;
+
+{% endif %}
+    protected $revisionable = ['name', 'email'];
+    public $revisionableLimit = 500;
+
+    public function getRevisionableUser ()
+    {
+        return BackendAuth::getUser()->id;
+    }
+{% endif %}
+{% if addTraitMultisite %}
+
+{% if adjacent %}
+    use Multisite;
+
+{% endif %}
+    protected $propagatable = [];
+{% endif %}
+}

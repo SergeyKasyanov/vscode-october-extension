@@ -1,0 +1,171 @@
+<?php
+
+namespace {{ namespace }};
+
+use Backend;
+use System\Classes\PluginBase;
+{% if addRegisterScheduleMethod %}
+use Illuminate\Console\Scheduling\Schedule;
+{% endif %}
+
+class Plugin extends PluginBase
+{
+    public function pluginDetails()
+    {
+        return [
+            'name'        => '{{ plugin_pascal }}',
+            'description' => '{{ description }}',
+            'author'      => '{{ author_pascal }}',
+            'icon'        => 'icon-{{ icon }}'
+        ];
+    }
+
+{% if addBootMethod %}
+    public function boot()
+    {
+    }
+
+{% endif %}
+{% if addRegisterMethod %}
+    public function register()
+    {
+    }
+
+{% endif %}
+{% if addRegisterComponentsMethod %}
+    public function registerComponents()
+    {
+        return [
+            // \{{ namespace }}\Components\MyComponent::class => 'myComponent',
+        ];
+    }
+
+{% endif %}
+{% if addRegisterPermissionsMethod %}
+    public function registerPermissions()
+    {
+        return [
+            // '{{ namespace_dot }}.access' => [
+            //     'label' => 'Access to {{ namespace_dot_capital }}',
+            //     'tab'   => '{{ namespace_dot_capital }}',
+            // ],
+            // '{{ namespace_dot }}.access_settings' => [
+            //     'label' => 'Access to {{ namespace_dot_capital }} settings',
+            //     'tab'   => '{{ namespace_dot_capital }}',
+            // ],
+        ];
+    }
+
+{% endif %}
+{% if addRegisterSettingsMethod %}
+    public function registerSettings()
+    {
+        return [
+            //
+            // Settings Page
+            //
+
+            // 'settings' => [
+            //     'label'       => '{{ namespace_dot_capital }}',
+            //     'description' => '{{ namespace_dot_capital }} description',
+            //     'category'    => \System\Classes\SettingsManager::CATEGORY_SYSTEM,
+            //     'icon'        => 'icon-cog',
+            //     'url'         => Backend::url('{{ namespace_slash }}/settings'),
+            //     'order'       => 500,
+            //     'keywords'    => '{{ author_lower }} {{ plugin_lower }}',
+            //     'permissions' => ['{{ namespace_dot }}.access_settings']
+            // ],
+
+            //
+            // Settings Model
+            //
+
+            // 'settings' => [
+            //     'label'       => '{{ namespace_dot_capital }}',
+            //     'description' => '{{ namespace_dot_capital }} description',
+            //     'category'    => \System\Classes\SettingsManager::CATEGORY_SYSTEM,
+            //     'icon'        => 'icon-cog',
+            //     'class'       => \{{ namespace }}\Models\Setting::class,
+            //     'order'       => 500,
+            //     'keywords'    => '{{ author_lower }} {{ plugin }}',
+            //     'permissions' => ['{{ namespace_dot }}.access_settings']
+            // ],
+        ];
+    }
+
+{% endif %}
+{% if addRegisterScheduleMethod %}
+    /**
+     * @param Schedule $schedule
+     */
+    public function registerSchedule($schedule)
+    {
+        // $schedule->command('{{ plugin_lower }}:my-command')->daily();
+    }
+
+{% endif %}
+{% if addRegisterMailTemplatesMethod %}
+    public function registerMailTemplates()
+    {
+        return [
+            // '{{ namespace_dot }}::mail.welcome'
+        ];
+    }
+
+{% endif %}
+{% if addRegisterMailLayoutsMethod %}
+    public function registerMailLayouts()
+    {
+        return [
+            // 'marketing' => '{{ namespace_dot }}::layouts.marketing',
+            // 'notification' => '{{ namespace_dot }}::layouts.notification',
+        ];
+    }
+
+{% endif %}
+{% if addRegisterMailPartialsMethod %}
+    public function registerMailPartials()
+    {
+        return [
+            // 'tracking' => '{{ namespace_dot }}::partials.tracking',
+            // 'promotion' => '{{ namespace_dot }}::partials.promotion',
+        ];
+    }
+
+{% endif %}
+{% if addRegisterMarkupTagsMethod %}
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+            ],
+            'functions' => [
+            ]
+        ];
+    }
+
+{% endif %}
+{% if addRegisterContentFieldsMethod %}
+    public function registerContentFields()
+    {
+        return [
+            // \{{ namespace }}\ContentFields\MyContentField::class => 'mycontentfield'
+        ];
+    }
+
+{% endif %}
+{% if addRegisterNavigationMethod %}
+    public function registerNavigation()
+    {
+        return [
+        //    '{{ plugin_lower }}' => [
+        //         'label'       => '{{ plugin_pascal }}',
+        //         'url'         => Backend::url('{{ namespace_slash }}'),
+        //         'icon'        => 'icon-leaf',
+        //         'permissions' => ['{{ namespace_dot }}.*'],
+        //     ],
+        ];
+    }
+
+{% endif %}
+}

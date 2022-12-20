@@ -21,7 +21,7 @@
 
 * configurable **code generators** for controllers, models, commands, migrations, widgets and more...
 * **yaml config validation and completions** based on json schemas
-* completions of **model classes**, **models scopes**, **model getFieldNameOptions**, **config path** and **partials path** in yaml configs
+* completions of **model attributes**, **model classes**, **models scopes**, **model getFieldNameOptions**, **config path** and **partials path** in yaml configs
 * completions of **permission codes**, **mail templates**, **validation rules**, **config and env keys**
 * simplified code navigation by **go to model**, **go to controller** and **go to related file** commands
 * document links for **partials**, **configs** and **model classes** in yaml configs and php files
@@ -29,9 +29,7 @@
 
 ## Requirements
 
-Extension requires valid php installation on your system for load some project related data.
-
-Also October Code requires **redhat.vscode-yaml** extension to be installed for validate and autocomplete yaml configs based on provided json schemas.
+October Code requires **redhat.vscode-yaml** extension to be installed for validate and autocomplete yaml configs based on provided json schemas.
 
 ## Configuring VS Code
 

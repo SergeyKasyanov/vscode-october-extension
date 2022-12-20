@@ -1,0 +1,35 @@
+<?php
+/**
+ * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
+ * @var {{ namespace }}\Models\{{ model_pascal }} $formModel
+ */
+?>
+<?php Block::put('breadcrumb') ?>
+{% if structured %}
+    <?= $this->makePartial('partials/breadcrumb') ?>
+{% else %}
+    <ul>
+        <li><a href="<?= $this->actionUrl('/') ?>">{{ controller_pascal }}</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+{% endif %}
+<?php Block::endPut() ?>
+
+<?= Form::open(['class' => 'layout']) ?>
+
+    <div class="layout-row">
+        <?= $this->exportRender() ?>
+    </div>
+
+    <div class="form-buttons">
+        <button
+            type="submit"
+            data-control="popup"
+            data-handler="onExportLoadForm"
+            data-keyboard="false"
+            class="btn btn-primary">
+            Export {{ controller_pascal }}
+        </button>
+    </div>
+
+<?= Form::close() ?>

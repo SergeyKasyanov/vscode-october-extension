@@ -3,7 +3,7 @@
     "displayName": "October Code",
     "description": "October CMS tools for VSCode",
     "publisher": "SergeyKasyanov",
-    "version": "0.7.6",
+    "version": "0.9.0",
     "preview": true,
     "icon": "resources/images/icon.png",
     "sponsor": {
@@ -134,13 +134,13 @@
                 "command": "octoberCode.goToRelatedFile",
                 "title": "Go to config/view/partial",
                 "category": "OctoberCode",
-                "enablement": "editorLangId == php || editorLangId == october-htm || editorLangId == yaml"
+                "enablement": "editorLangId == php || editorLangId == october-tpl || editorLangId == yaml"
             },
             {
                 "command": "octoberCode.goToClass",
                 "title": "Go to class",
                 "category": "OctoberCode",
-                "enablement": "editorLangId == php || editorLangId == october-htm || editorLangId == yaml"
+                "enablement": "editorLangId == php || editorLangId == october-tpl || editorLangId == yaml"
             },
             {
                 "command": "octoberCode.goToPlugin",
@@ -158,6 +158,11 @@
                 "category": "OctoberCode"
             },
             {
+                "command": "octoberCode.goToLogFile",
+                "title": "Go to log file",
+                "category": "OctoberCode"
+            },
+            {
                 "command": "octoberCode.addModelAttributesToConfig",
                 "title": "Add model attributes to config",
                 "category": "OctoberCode",
@@ -167,12 +172,6 @@
         "configuration": {
             "title": "October Code",
             "properties": {
-                "octoberCode.phpExecutable": {
-                    "type": "string",
-                    "default": "php",
-                    "title": "PHP Executable",
-                    "description": "Path to PHP executable. By default uses global php executable."
-                },
                 "octoberCode.pluginsPath": {
                     "type": "string",
                     "default": "plugins",
@@ -184,12 +183,6 @@
                     "default": "themes",
                     "title": "Themes directory",
                     "description": "Path to themes directory of OctoberCMS project. By default uses \"themes\"."
-                },
-                "octoberCode.enableThemeFilesFolding": {
-                    "type": "boolean",
-                    "default": false,
-                    "title": "Enable folding in theme files",
-                    "description": "Enable sections folding in theme files. (Breaks html/php folding. Reload window for apply change.)"
                 },
                 "octoberCode.structuredControllers": {
                     "type": "boolean",
@@ -214,6 +207,25 @@
                     "default": false,
                     "title": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}",
                     "description": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}"
+                },
+                "octoberCode.showModulesEntitiesInGoToCommands": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "Show models and controllers in goToModel and goToController commands",
+                    "description": "Show models and controllers in goToModel and goToController commands"
+                },
+                "octoberCode.excludeFromIndex": {
+                    "type": "array",
+                    "default": [
+                        ".git",
+                        ".idea",
+                        ".vscode",
+                        "node_modules",
+                        "vendor",
+                        ".DS_Store"
+                    ],
+                    "title": "List of directories and files for exclude from index",
+                    "description": "List of directories and files for exclude from index"
                 }
             }
         }
@@ -231,6 +243,7 @@
     },
     "devDependencies": {
         "@types/glob": "^7.2.0",
+        "@types/ini": "^1.3.31",
         "@types/mocha": "^9.1.0",
         "@types/node": "14.x",
         "@types/pluralize": "^0.0.29",
@@ -250,6 +263,7 @@
     },
     "dependencies": {
         "@prettier/plugin-php": "^0.18.9",
+        "ini": "^3.0.1",
         "php-parser": "^3.1.0-beta.7",
         "pluralize": "^8.0.0",
         "prettier": "^2.7.1",

@@ -1,109 +1,84 @@
 import * as vscode from 'vscode';
-import { Platform } from '../../services/platform';
-import { CommandGeneratorUi } from './generate/commandGeneratorUi';
-import { ComponentGeneratorUi } from './generate/componentGeneratorUi';
-import { ControllerGeneratorUi } from './generate/controllerGeneratorUi';
-import { ExportModelGeneratorUi } from './generate/exportModelGeneratorUi';
-import { FilterWidgetGeneratorUi } from './generate/filterWidgetGeneratorUi';
-import { FormWidgetGeneratorUi } from './generate/formWidgetGeneratorUi';
-import { GenericWidgetGeneratorUi } from './generate/genericWidgetGeneratorUi';
-import { ImportModelGeneratorUi } from './generate/importModelGeneratorUi';
-import { MailTemplateGeneratorUi } from './generate/mailTemplateGeneratorUi';
-import { MigrationGeneratorUi } from './generate/migrationGeneratorUi';
-import { ModelGeneratorUi } from './generate/modelGeneratorUi';
-import { PluginGeneratorUi } from './generate/pluginGeneratorUi';
-import { ReportWidgetGeneratorUi } from './generate/reportWidgetGeneratorUi';
-import { SettingsModelGeneratorUi } from './generate/settingsModelGeneratorUi';
+import { chooseProject } from './concerns/choose-project';
+import { CommandGeneratorUi } from './generate/command-generator-ui';
+import { ComponentGeneratorUi } from './generate/component-generator-ui';
+import { ControllerGeneratorUi } from './generate/controller-generator-ui';
+import { ExportModelGeneratorUi } from './generate/export-model-generator-ui';
+import { FilterWidgetGeneratorUi } from './generate/filter-widget-generator-ui';
+import { FormWidgetGeneratorUi } from './generate/form-widget-generator-ui';
+import { GenericWidgetGeneratorUi } from './generate/generic-widget-generator-ui';
+import { ImportModelGeneratorUi } from './generate/import-model-generator-ui';
+import { MailTemplateGeneratorUi } from './generate/mail-template-generator-ui';
+import { MigrationGeneratorUi } from './generate/migration-generator-ui';
+import { ModelGeneratorUi } from './generate/model-generator-ui';
+import { PluginGeneratorUi } from './generate/plugin-generator-ui';
+import { ReportWidgetGeneratorUi } from './generate/report-widget-generator-ui';
+import { SettingsModelGeneratorUi } from './generate/settings-model-generator-ui';
 
-export class Generate {
-    private generators: string[] = [
-        'Plugin',
-        'Model',
-        'Controller',
-        'Component',
-        'Settings Model',
-        'Import Model',
-        'Export Model',
-        'Migration',
-        'Artisan Command',
-        'Mail Template',
-        'Widget',
-        'Form Widget',
-        'Report Widget',
-    ];
+const GENERATORS: string[] = [
+    'Artisan Command',
+    'Component',
+    'Controller',
+    'Export Model',
+    'Filter Widget',
+    'Form Widget',
+    'Import Model',
+    'Mail Template',
+    'Migration',
+    'Model',
+    'Plugin',
+    'Report Widget',
+    'Settings Model',
+    'Widget',
+];
 
-    constructor() {
-        if (Platform.getInstance().hasFilterWidgets()) {
-            this.generators.push('Filter Widget');
-        }
+/**
+ * Command for run generators
+ */
+export async function runGenerator() {
+    const project = await chooseProject();
+    if (!project) {
+        return;
     }
 
-    public async chooseGenerator() {
-        const generatorName = await vscode.window.showQuickPick(this.generators);
+    const generatorName = await vscode.window.showQuickPick(GENERATORS);
+    if (!generatorName) {
+        return;
+    }
 
-        if (!generatorName) {
-            return;
-        }
+    switch (generatorName) {
+        case 'Plugin':
+            return new PluginGeneratorUi(project).run();
+        case 'Controller':
+            return new ControllerGeneratorUi(project).run();
+        case 'Model':
+            return new ModelGeneratorUi(project).run();
+        case 'Component':
+            return new ComponentGeneratorUi(project).run();
+        case 'Settings Model':
+            return new SettingsModelGeneratorUi(project).run();
+        case 'Import Model':
+            return new ImportModelGeneratorUi(project).run();
+        case 'Export Model':
+            return new ExportModelGeneratorUi(project).run();
+        case 'Migration':
+            return new MigrationGeneratorUi(project).run();
+        case 'Artisan Command':
+            return new CommandGeneratorUi(project).run();
+        case 'Mail Template':
+            return new MailTemplateGeneratorUi(project).run();
+        case 'Widget':
+            return new GenericWidgetGeneratorUi(project).run();
+        case 'Form Widget':
+            return new FormWidgetGeneratorUi(project).run();
+        case 'Report Widget':
+            return new ReportWidgetGeneratorUi(project).run();
+        case 'Filter Widget':
+            if (!project.platform!.hasFilterWidgets) {
+                vscode.window.showErrorMessage('OctoberCMS version of this project does not support filter widgets');
+                return;
+            }
 
-        switch (generatorName) {
-            case 'Plugin':
-                (new PluginGeneratorUi).run();
-                break;
-
-            case 'Controller':
-                (new ControllerGeneratorUi).run();
-                break;
-
-            case 'Model':
-                (new ModelGeneratorUi).run();
-                break;
-
-            case 'Component':
-                (new ComponentGeneratorUi).run();
-                break;
-
-            case 'Settings Model':
-                (new SettingsModelGeneratorUi).run();
-                break;
-
-            case 'Import Model':
-                (new ImportModelGeneratorUi).run();
-                break;
-
-            case 'Export Model':
-                (new ExportModelGeneratorUi).run();
-                break;
-
-            case 'Migration':
-                (new MigrationGeneratorUi).run();
-                break;
-
-            case 'Artisan Command':
-                (new CommandGeneratorUi).run();
-                break;
-
-            case 'Mail Template':
-                (new MailTemplateGeneratorUi).run();
-                break;
-
-            case 'Widget':
-                (new GenericWidgetGeneratorUi).run();
-                break;
-
-            case 'Form Widget':
-                (new FormWidgetGeneratorUi).run();
-                break;
-
-            case 'Report Widget':
-                (new ReportWidgetGeneratorUi).run();
-                break;
-
-            case 'Filter Widget':
-                (new FilterWidgetGeneratorUi).run();
-                break;
-
-            default:
-                break;
-        }
+            return new FilterWidgetGeneratorUi(project).run();
     }
 }
