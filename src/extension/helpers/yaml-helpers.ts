@@ -32,7 +32,17 @@ export class YamlHelpers {
         while (line > 0) {
             line--;
 
-            if (this.getLineIndent(document, line) < indent) {
+            const lineText = document.lineAt(line).text;
+            if (lineText.trim().length === 0) {
+                continue;
+            }
+
+            const match = lineText.match(/\s*/);
+            const lineIndent = !match || match.index !== 0
+                ? 0
+                : match[0].length;
+
+            if (lineIndent < indent) {
                 return this.getKeyAndValue(document.lineAt(line).text).key;
             }
         }
