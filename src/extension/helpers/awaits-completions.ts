@@ -1,4 +1,4 @@
-const SEARCH_START = 300;
+const SEARCH_START = 500;
 
 /**
  * Check if offset is right after "what" and "spacer"
