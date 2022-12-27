@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.9.1
+
+- Fixed completions model attributes in yaml configs
+- Fixed diagnostic and link in yaml configs
+- Improved completions of validation rules and messages in model
+- Added `instance()` method inside docblock and `initSettingsData()` method in settings model generator
+
 ## 0.9.0
 
 In this release code responsible for load project information was completely rewritten. This gives us significant improvements:

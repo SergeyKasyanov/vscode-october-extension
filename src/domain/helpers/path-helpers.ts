@@ -111,6 +111,8 @@ export class PathHelpers {
                 if (!filePath) {
                     filePath = path.join(controller.filesDirectory, ...nameParts, '_' + fileName + '.' + project!.platform!.mainBackendViewExtension);
                 }
+            } else {
+                filePath = path.join(controller.filesDirectory, ...nameParts, fileName!);
             }
         }
 

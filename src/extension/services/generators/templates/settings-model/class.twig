@@ -23,4 +23,9 @@ class {{ model_pascal }} extends Model
 {% else %}
     public $settingsFields = 'fields.yaml';
 {% endif %}
+
+    public function initSettingsData()
+    {
+        //
+    }
 }
