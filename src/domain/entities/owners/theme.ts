@@ -42,6 +42,19 @@ export class Theme extends Owner {
     }
 
     /**
+     * Children themes of current theme
+     */
+    get childrenThemes(): Theme[] {
+        return this.project.themes.reduce<Theme[]>((acc, theme) => {
+            if (theme.parentTheme?.name === this.name) {
+                acc.push(theme, ...theme.childrenThemes);
+            }
+
+            return acc;
+        }, []);
+    }
+
+    /**
      * Layouts registered in theme
      */
     get layouts(): Layout[] {

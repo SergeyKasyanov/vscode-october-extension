@@ -1,15 +1,16 @@
 import * as vscode from 'vscode';
 import { Indexer } from "./domain/services/indexer";
+import { octoberTplSelector } from "./extension/helpers/file-selectors";
 import { OctoberTplDocumentFormatting } from "./extension/providers/formatting/october-tpl";
 import { registerCodeActions } from "./extension/register/actions";
-import { registerCodeLenses } from "./extension/register/lenses";
 import { registerCommands } from "./extension/register/commands";
 import { registerCompletions } from "./extension/register/completions";
 import { registerDiagnostics } from "./extension/register/diagnostics";
-import { registerDocumentLinks } from "./extension/register/links";
 import { registerHovers } from "./extension/register/hovers";
+import { registerCodeLenses } from "./extension/register/lenses";
+import { registerDocumentLinks } from "./extension/register/links";
 import { registerListeners } from "./extension/register/listeners";
-import { octoberTplSelector } from "./extension/helpers/file-selectors";
+import { registerReferences } from './extension/register/references';
 
 export function activate(context: vscode.ExtensionContext) {
     Indexer.instance.start();
@@ -25,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
     registerDocumentLinks(context);
     registerHovers(context);
     registerListeners(context);
+    registerReferences(context);
 
     context.subscriptions.push(
         vscode.languages.registerDocumentFormattingEditProvider(
