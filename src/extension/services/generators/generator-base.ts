@@ -88,9 +88,9 @@ export abstract class GeneratorBase {
 
         if (this.plugin instanceof Plugin) {
             this.templateVars['namespace'] = Str.pascalCase(this.plugin.author) + '\\' + Str.pascalCase(this.plugin.nameWithoutAuthor);
-            this.templateVars['namespace_snake'] = this.plugin.author + '_' + this.plugin.nameWithoutAuthor;
-            this.templateVars['namespace_slash'] = this.plugin.author + '/' + this.plugin.nameWithoutAuthor;
-            this.templateVars['namespace_dot'] = this.plugin.author + '.' + this.plugin.nameWithoutAuthor;
+            this.templateVars['namespace_snake'] = this.plugin.author.toLowerCase() + '_' + this.plugin.nameWithoutAuthor.toLowerCase();
+            this.templateVars['namespace_slash'] = this.plugin.author.toLowerCase() + '/' + this.plugin.nameWithoutAuthor.toLowerCase();
+            this.templateVars['namespace_dot'] = this.plugin.author.toLowerCase() + '.' + this.plugin.nameWithoutAuthor.toLowerCase();
             this.templateVars['namespace_dot_capital'] = Str.pascalCase(this.plugin.author) + '.' + Str.pascalCase(this.plugin.nameWithoutAuthor);
         } else if (this.plugin instanceof AppDirectory) {
             this.templateVars['namespace'] = 'App';
@@ -100,9 +100,9 @@ export abstract class GeneratorBase {
             this.templateVars['namespace_dot_capital'] = 'App';
         } else {
             this.templateVars['namespace'] = Str.pascalCase(vars['author']) + '\\' + Str.pascalCase(vars['plugin']);
-            this.templateVars['namespace_snake'] = vars['author'] + '_' + vars['plugin'];
-            this.templateVars['namespace_slash'] = vars['author'] + '/' + vars['plugin'];
-            this.templateVars['namespace_dot'] = vars['author'] + '.' + vars['plugin'];
+            this.templateVars['namespace_snake'] = vars['author'].toLowerCase() + '_' + vars['plugin'].toLowerCase();
+            this.templateVars['namespace_slash'] = vars['author'].toLowerCase() + '/' + vars['plugin'].toLowerCase();
+            this.templateVars['namespace_dot'] = vars['author'].toLowerCase() + '.' + vars['plugin'].toLowerCase();
             this.templateVars['namespace_dot_capital'] = Str.pascalCase(vars['author']) + '.' + Str.pascalCase(vars['plugin']);
         }
 
