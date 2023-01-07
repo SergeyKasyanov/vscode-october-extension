@@ -32,18 +32,18 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
         let onlyTwig = true;
 
-        if (sections.ini?.length) {
-            result += this.formatIni(sections.ini.trim());
+        if (sections.ini?.text.length) {
+            result += this.formatIni(sections.ini.text.trim());
             onlyTwig = false;
         }
 
-        if (sections.php?.length) {
-            result += this.formatPhp(sections.php.trim());
+        if (sections.php?.text.length) {
+            result += this.formatPhp(sections.php.text.trim());
             onlyTwig = false;
         }
 
         if (sections.twig) {
-            result += this.formatTwig(sections.twig.trim(), onlyTwig);
+            result += this.formatTwig(sections.twig.text.trim(), onlyTwig);
         }
 
         return new Promise(resolve => {

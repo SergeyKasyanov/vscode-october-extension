@@ -33,12 +33,32 @@ export type AttachedComponents = {
 };
 
 /**
+ * Used files in current file with offsets
+ * Ex: partials in page
+ */
+export type UsedFilesList = {
+    [name: string]: {
+        start: number,
+        end: number
+    }[]
+};
+
+/**
  * Contains theme file sections as strings
  */
 export interface ThemFileSections {
-    ini?: string,
-    php?: string,
-    twig: string
+    ini?: {
+        text: string,
+        offset: number
+    },
+    php?: {
+        text: string,
+        offset: number
+    },
+    twig: {
+        text: string,
+        offset: number
+    }
 }
 
 /**
@@ -67,7 +87,7 @@ export abstract class MarkupFile extends ThemeFile {
 
         const result: { [key: string]: string } = {};
 
-        const config = ini.parse(this.sections.ini);
+        const config = ini.parse(this.sections.ini.text);
         for (const key in config) {
             if (Object.prototype.hasOwnProperty.call(config, key)) {
                 const value = config[key];
@@ -88,7 +108,7 @@ export abstract class MarkupFile extends ThemeFile {
             return {};
         }
 
-        const config = ini.parse(this.sections.ini);
+        const config = ini.parse(this.sections.ini.text);
         const attachedComponents: AttachedComponents = {};
 
         for (const compName in config) {
@@ -124,7 +144,7 @@ export abstract class MarkupFile extends ThemeFile {
      * Ajax methods declared in php section of this file
      */
     get ajaxMethods(): string[] {
-        const phpSection = this.sections.php;
+        const phpSection = this.sections.php?.text;
         if (!phpSection) {
             return [];
         }
@@ -150,15 +170,23 @@ export abstract class MarkupFile extends ThemeFile {
     /**
      * Page links in this file
      */
-    get pageLinks(): string[] {
-        const pageLinks: string[] = [];
+    get pages(): UsedFilesList {
+        const pagesNames: UsedFilesList = {};
 
         const sections = this.sections;
 
         const pickNameFromMatch = (match: RegExpMatchArray) => {
-            const pageName = match[0].match(PAGE_NAME);
-            if (pageName) {
-                pageLinks.push(pageName[0].slice(1, -1));
+            const pageNameMatch = match[0].match(PAGE_NAME);
+            if (pageNameMatch) {
+                const pageName = pageNameMatch[0].slice(1, -1);
+                const start = match.index! + pageNameMatch.index! + 1;
+                const end = start + pageName.length;
+
+                if (!pagesNames[pageName]) {
+                    pagesNames[pageName] = [];
+                }
+
+                pagesNames[pageName].push({ start, end });
             }
         };
 
@@ -174,28 +202,35 @@ export abstract class MarkupFile extends ThemeFile {
             pickNameFromMatch(pageUrlMatch);
         }
 
-        return pageLinks;
+        return pagesNames;
     }
 
     /**
      * Partials used in this file
      */
-    get partials(): string[] {
-        const partialNames: string[] = [];
+    get partials(): UsedFilesList {
+        const partialNames: UsedFilesList = {};
 
         const pickNameFromMatch = (match: RegExpMatchArray) => {
-            const partialName = match[0].match(PARTIAL_NAME);
-            if (partialName) {
-                partialNames.push(partialName[0].slice(1, -1));
+            const partialNameMatch = match[0].match(PARTIAL_NAME);
+            if (partialNameMatch) {
+                const partialName = partialNameMatch[0].slice(1, -1);
+                const start = match.index! + partialNameMatch.index! + 1;
+                const end = start + partialName.length;
+
+                if (!partialNames[partialName]) {
+                    partialNames[partialName] = [];
+                }
+
+                partialNames[partialName].push({ start, end });
             }
         };
 
-        const twig = this.sections.twig;
-        for (const match of twig.matchAll(PARTIAL_TAGS)) {
+        for (const match of this.fileContent?.matchAll(PARTIAL_TAGS) || []) {
             pickNameFromMatch(match);
         }
 
-        for (const match of twig.matchAll(PARTIAL_FUNC_CALLS)) {
+        for (const match of this.fileContent?.matchAll(PARTIAL_FUNC_CALLS) || []) {
             pickNameFromMatch(match);
         }
 
@@ -205,22 +240,29 @@ export abstract class MarkupFile extends ThemeFile {
     /**
      * Contents used in this file
      */
-    get contents(): string[] {
-        const contentNames: string[] = [];
+    get contents(): UsedFilesList {
+        const contentNames: UsedFilesList = {};
 
         const pickNameFromMatch = (match: RegExpMatchArray) => {
-            const contentName = match[0].match(CONTENT_NAME);
-            if (contentName) {
-                contentNames.push(contentName[0].slice(1, -1));
+            const contentNameMatch = match[0].match(CONTENT_NAME);
+            if (contentNameMatch) {
+                const contentName = contentNameMatch[0].slice(1, -1);
+                const start = match.index! + contentNameMatch.index! + 1;
+                const end = start + contentName.length;
+
+                if (!contentNames[contentName]) {
+                    contentNames[contentName] = [];
+                }
+
+                contentNames[contentName].push({ start, end });
             }
         };
 
-        const twig = this.sections.twig;
-        for (const match of twig.matchAll(CONTENT_TAGS)) {
+        for (const match of this.fileContent?.matchAll(CONTENT_TAGS) || []) {
             pickNameFromMatch(match);
         }
 
-        for (const match of twig.matchAll(CONTENT_FUNC_CALLS)) {
+        for (const match of this.fileContent?.matchAll(CONTENT_FUNC_CALLS) || []) {
             pickNameFromMatch(match);
         }
 
@@ -235,7 +277,7 @@ export abstract class MarkupFile extends ThemeFile {
 
         const sections = this.sections;
         if (sections.php) {
-            const phpVarMatches = sections.php.matchAll(PHP_VARS);
+            const phpVarMatches = sections.php.text.matchAll(PHP_VARS);
             for (const phpVarMatch of phpVarMatches) {
                 const varNameMatch = phpVarMatch[0].match(PHP_VAR_NAME);
                 if (!varNameMatch) {
@@ -253,7 +295,7 @@ export abstract class MarkupFile extends ThemeFile {
             }
         }
 
-        const twigVarMatches = sections.twig.matchAll(TWIG_SET_TAG);
+        const twigVarMatches = sections.twig.text.matchAll(TWIG_SET_TAG);
         for (const twigVarMatch of twigVarMatches) {
             const varName = twigVarMatch[0].replace(TWIG_SET_TAG_START, '').replace('=', '').trim();
             if (varName.length === 0) {
@@ -275,25 +317,49 @@ export abstract class MarkupFile extends ThemeFile {
         const splitted = this.fileContent?.split(SECTIONS_DIVIDER);
         if (!splitted) {
             return {
-                twig: ''
+                twig: {
+                    text: '',
+                    offset: 0
+                }
             };
         }
 
         if (splitted.length === 1) {
             return {
-                twig: splitted[0]
+                twig: {
+                    text: splitted[0],
+                    offset: 0
+                }
             };
         } else if (splitted.length === 2) {
             return {
-                ini: splitted[0],
-                twig: splitted[1]
+                ini: {
+                    text: splitted[0],
+                    offset: 0
+                },
+                twig: {
+                    text: splitted[1],
+                    offset: splitted[0].length + SECTIONS_DIVIDER_LENGTH
+                }
             };
         }
 
         return {
-            ini: splitted[0],
-            php: splitted[1],
-            twig: splitted[2]
+            ini: {
+                text: splitted[0],
+                offset: 0
+            },
+            php: {
+                text: splitted[1],
+                offset: splitted[0].length + SECTIONS_DIVIDER_LENGTH
+            },
+            twig: {
+                text: splitted[2],
+                offset: splitted[0].length
+                    + SECTIONS_DIVIDER_LENGTH
+                    + splitted[1].length
+                    + SECTIONS_DIVIDER_LENGTH
+            }
         };
     }
 
@@ -309,7 +375,7 @@ export abstract class MarkupFile extends ThemeFile {
             return false;
         }
 
-        return offset <= sections.ini.length;
+        return offset <= sections.ini.text.length;
     }
 
     /**
@@ -323,7 +389,7 @@ export abstract class MarkupFile extends ThemeFile {
             return false;
         }
 
-        const firstComponentIndex = this.sections.ini!.indexOf('[');
+        const firstComponentIndex = this.sections.ini!.text.indexOf('[');
         if (firstComponentIndex > -1) {
             return offset < firstComponentIndex;
         }
@@ -343,8 +409,8 @@ export abstract class MarkupFile extends ThemeFile {
             return false;
         }
 
-        const phpStart = (sections.ini?.length || 0) + SECTIONS_DIVIDER_LENGTH;
-        const phpEnd = phpStart + sections.php.length;
+        const phpStart = sections.php.offset;
+        const phpEnd = phpStart + sections.php.text.length;
 
         return offset >= phpStart && offset <= phpEnd;
     }
@@ -356,16 +422,6 @@ export abstract class MarkupFile extends ThemeFile {
      * @returns
      */
     isOffsetInsideTwig(offset: number) {
-        const sections = this.sections;
-
-        let twigStart = 0;
-        if (sections.ini) {
-            twigStart = sections.ini.length + SECTIONS_DIVIDER_LENGTH;
-        }
-        if (sections.php) {
-            twigStart = sections.php.length + SECTIONS_DIVIDER_LENGTH;
-        }
-
-        return offset >= twigStart;
+        return offset >= this.sections.twig.offset;
     }
 }

@@ -27,13 +27,13 @@ export class Layout extends MarkupFile {
         const sections = this.sections;
         const placeholders: string[] = [];
 
-        const placeholderTagsMatches = sections.twig.matchAll(PLACEHOLDER_TAGS);
+        const placeholderTagsMatches = sections.twig.text.matchAll(PLACEHOLDER_TAGS);
         for (const match of placeholderTagsMatches) {
             const placeholder = match[0].replace(PLACEHOLDER_TAG_START, '').trim();
             placeholders.push(placeholder);
         }
 
-        const placeholderVarsMatches = sections.twig.matchAll(PLACEHOLDER_VARS);
+        const placeholderVarsMatches = sections.twig.text.matchAll(PLACEHOLDER_VARS);
         for (const match of placeholderVarsMatches) {
             const placeholder = match[0].replace(PLACEHOLDER_VAR_START, '').trim().slice(0, -1);
             placeholders.push(placeholder);

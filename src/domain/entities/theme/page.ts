@@ -21,7 +21,7 @@ export class Page extends MarkupFile {
             return;
         }
 
-        const config = ini.parse(this.sections.ini);
+        const config = ini.parse(this.sections.ini.text);
         if (!config.layout) {
             return;
         }

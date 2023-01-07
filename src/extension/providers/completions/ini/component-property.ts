@@ -28,7 +28,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
             return;
         }
 
-        const firstComponentIndex = themeFile.sections.ini!.indexOf('[');
+        const firstComponentIndex = themeFile.sections.ini!.text.indexOf('[');
         if (!firstComponentIndex || offset < firstComponentIndex) {
             return;
         }
@@ -40,7 +40,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
 
         let componentAlias: string | undefined;
 
-        const attachComponentMatches = themeFile.sections.ini!.matchAll(COMPONENT_NAME);
+        const attachComponentMatches = themeFile.sections.ini!.text.matchAll(COMPONENT_NAME);
         for (const match of attachComponentMatches) {
             if (offset > match.index! + match[0].length) {
                 componentAlias = match[0].slice(1, -1).split(/\s+/)[0];

@@ -70,45 +70,45 @@ async function openLinkedFile(themeFile: ThemeFile) {
 
         // all theme files with links to this page
         theme.layouts
-            .filter(tf => tf.pageLinks.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.pages).includes(themeFile.name))
             .forEach(tf => files['layouts/' + tf.name] = tf.path);
 
         theme.pages
-            .filter(tf => tf.pageLinks.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.pages).includes(themeFile.name))
             .forEach(tf => files['pages/' + tf.name] = tf.path);
 
         theme.partials
-            .filter(tf => tf.pageLinks.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.pages).includes(themeFile.name))
             .forEach(tf => files['partials/' + tf.name] = tf.path);
 
     } else if (themeFile instanceof Partial) {
 
         // all theme files uses this partial
         theme.layouts
-            .filter(tf => tf.partials.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.partials).includes(themeFile.name))
             .forEach(tf => files['layouts/' + tf.name] = tf.path);
 
         theme.pages
-            .filter(tf => tf.partials.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.partials).includes(themeFile.name))
             .forEach(tf => files['pages/' + tf.name] = tf.path);
 
         theme.partials
-            .filter(tf => tf.partials.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.partials).includes(themeFile.name))
             .forEach(tf => files['partials/' + tf.name] = tf.path);
 
     } else if (themeFile instanceof Content) {
 
         // all theme files uses this content
         theme.layouts
-            .filter(tf => tf.contents.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.contents).includes(themeFile.name))
             .forEach(tf => files['layouts/' + tf.name] = tf.path);
 
         theme.pages
-            .filter(tf => tf.contents.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.contents).includes(themeFile.name))
             .forEach(tf => files['pages/' + tf.name] = tf.path);
 
         theme.partials
-            .filter(tf => tf.contents.includes(themeFile.name))
+            .filter(tf => Object.keys(tf.contents).includes(themeFile.name))
             .forEach(tf => files['partials/' + tf.name] = tf.path);
 
     } else {
