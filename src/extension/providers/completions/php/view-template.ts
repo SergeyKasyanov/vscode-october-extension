@@ -26,11 +26,16 @@ export class ViewTemplate implements vscode.CompletionItemProvider {
         position: vscode.Position
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
+        const owner = Store.instance.findOwner(document.fileName);
+        if (!owner) {
+            return;
+        }
+
         const offset = document.offsetAt(position);
 
         const entity = Store.instance.findEntity(document.fileName);
 
-        const phpCode = entity instanceof OctoberClass
+        const phpCode = document.fileName.endsWith('php')
             || (entity instanceof MarkupFile && entity.isOffsetInsidePhp(offset));
 
         if (!phpCode) {
@@ -51,7 +56,7 @@ export class ViewTemplate implements vscode.CompletionItemProvider {
             return;
         }
 
-        return entity.owner.project.views.map(tpl => {
+        return owner.project.views.map(tpl => {
             const item = new vscode.CompletionItem(tpl, vscode.CompletionItemKind.EnumMember);
             item.range = document.getWordRangeAtPosition(position, TEMPLATE_NAME);
 
