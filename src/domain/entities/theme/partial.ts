@@ -1,4 +1,4 @@
-import { MarkupFile } from "./theme-file";
+import { MarkupFile, ThemeFileType } from "./theme-file";
 
 const ECHO_BASE = /\{\{\s*/;
 const ECHO_STATEMENTS = /\{\{\s*\w+/g;
@@ -16,6 +16,13 @@ export class Partial extends MarkupFile {
      */
     static getBaseDirectories(): string[] {
         return ['partials'];
+    }
+
+    /**
+     * Entity type
+     */
+    get type(): ThemeFileType {
+        return 'partial';
     }
 
     /**

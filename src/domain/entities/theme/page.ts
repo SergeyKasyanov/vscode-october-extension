@@ -1,6 +1,6 @@
 import * as ini from 'ini';
 import { Layout } from "./layout";
-import { MarkupFile } from "./theme-file";
+import { MarkupFile, ThemeFileType } from "./theme-file";
 
 const LAYOUT_PROPERTY = /layout\s*=\s*[\'\"]{0,1}[\w\-\_\/\.]+[\'\"]{0,1}/g;
 
@@ -13,6 +13,13 @@ export class Page extends MarkupFile {
      */
     static getBaseDirectories(): string[] {
         return ['pages'];
+    }
+
+    /**
+     * Entity type
+     */
+    get type(): ThemeFileType {
+        return 'page';
     }
 
     /**

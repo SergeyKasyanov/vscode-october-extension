@@ -1,4 +1,6 @@
 import * as ini from 'ini';
+import * as vscode from 'vscode';
+import { MethodCalledFromBaseClass } from '../../errors/method-called-from-base-class';
 import { Component } from '../classes/component';
 import { OctoberEntity } from "../october-entity";
 import { Theme } from "../owners/theme";
@@ -44,6 +46,11 @@ export type UsedFilesList = {
 };
 
 /**
+ * Theme file type
+ */
+export type ThemeFileType = 'layout' | 'page' | 'partial' | 'content';
+
+/**
  * Contains theme file sections as strings
  */
 export interface ThemFileSections {
@@ -70,6 +77,69 @@ export abstract class ThemeFile extends OctoberEntity {
      */
     get owner(): Theme {
         return this._owner as Theme;
+    }
+
+    /**
+     * Entity type
+     */
+    get type(): ThemeFileType {
+        throw new MethodCalledFromBaseClass();
+    }
+
+    /**
+     * Finds usages of this file
+     */
+    async findReferences(): Promise<vscode.Location[]> {
+        const locations: vscode.Location[] = [];
+
+        const themeFiles = [
+            ...this.owner.layouts,
+            ...this.owner.pages,
+            ...this.owner.partials
+        ];
+
+        this.owner.childrenThemes.forEach(child => {
+            themeFiles.push(...child.layouts);
+            themeFiles.push(...child.pages);
+            themeFiles.push(...child.partials);
+        });
+
+        let type: 'pages' | 'partials' | 'contents';
+
+        if (this.type === 'page') {
+            type = 'pages';
+        } else if (this.type === 'partial') {
+            type = 'partials';
+        } else if (this.type === 'content') {
+            type = 'contents';
+        } else {
+            return [];
+        }
+
+        const processedFiles: string[] = [];
+        for (const file of themeFiles) {
+            if (processedFiles.includes(file.path)) {
+                continue;
+            }
+
+            const offsets = file[type][this.name] || [];
+
+            for (const offset of offsets) {
+                const fileDocument = await vscode.workspace.openTextDocument(vscode.Uri.file(file.path));
+                const start = fileDocument.positionAt(offset.start);
+                const end = fileDocument.positionAt(offset.end);
+                const range = new vscode.Range(start, end);
+                const location = new vscode.Location(vscode.Uri.file(file.path), range);
+
+                if (!locations.includes(location)) {
+                    locations.push(location);
+                }
+            }
+
+            processedFiles.push(file.path);
+        }
+
+        return locations;
     }
 }
 

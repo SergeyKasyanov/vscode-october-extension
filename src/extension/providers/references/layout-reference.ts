@@ -14,23 +14,14 @@ export class LayoutReference implements vscode.ReferenceProvider, vscode.Definit
         context: vscode.ReferenceContext
     ): Promise<vscode.Location[] | undefined> {
 
-        const { thisPage, layout } = this.getLayout(document, position) || {};
-        if (!thisPage || !layout) {
-            return;
-        }
-
-        const layoutNameRange = new vscode.Range(
-            document.positionAt(thisPage.layoutOffset!.start),
-            document.positionAt(thisPage.layoutOffset!.end),
-        );
-
-        if (!layoutNameRange.contains(position)) {
+        const layout = this.getLayout(document, position);
+        if (!layout) {
             return;
         }
 
         const locations: vscode.Location[] = [];
 
-        for (const theme of [thisPage.owner, ...thisPage.owner.childrenThemes]) {
+        for (const theme of [layout.owner, ...layout.owner.childrenThemes]) {
             for (const page of theme.pages) {
                 if (page.layout?.name === layout.name) {
                     const pageDoc = page.path === document.fileName
@@ -62,8 +53,8 @@ export class LayoutReference implements vscode.ReferenceProvider, vscode.Definit
         document: vscode.TextDocument,
         position: vscode.Position
     ): vscode.ProviderResult<vscode.Definition | vscode.LocationLink[]> {
-        const { thisPage, layout } = this.getLayout(document, position) || {};
-        if (!thisPage || !layout) {
+        const layout = this.getLayout(document, position);
+        if (!layout) {
             return;
         }
 
@@ -76,7 +67,7 @@ export class LayoutReference implements vscode.ReferenceProvider, vscode.Definit
     private getLayout(
         document: vscode.TextDocument,
         position: vscode.Position
-    ): { thisPage: Page; layout: Layout; } | undefined {
+    ): Layout | undefined {
         const thisPage = Store.instance.findEntity(document.fileName) as Page;
         if (!(thisPage instanceof Page)) {
             return;
@@ -96,6 +87,6 @@ export class LayoutReference implements vscode.ReferenceProvider, vscode.Definit
             return;
         }
 
-        return { thisPage, layout };
+        return layout;
     }
 }

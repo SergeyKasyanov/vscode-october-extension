@@ -1,4 +1,5 @@
-import { MarkupFile } from "./theme-file";
+import * as vscode from "vscode";
+import { MarkupFile, ThemeFileType } from "./theme-file";
 
 const PLACEHOLDER_TAGS = /\{\%\s*placeholder\s+\w+/g;
 const PLACEHOLDER_TAG_START = /\{\%\s*placeholder\s+/;
@@ -14,6 +15,49 @@ export class Layout extends MarkupFile {
      */
     static getBaseDirectories(): string[] {
         return ['layouts'];
+    }
+
+    /**
+     * Entity type
+     */
+    get type(): ThemeFileType {
+        return 'layout';
+    }
+
+    /**
+     * Finds usages of this layout
+     */
+    async findReferences(): Promise<vscode.Location[]> {
+        const locations: vscode.Location[] = [];
+
+        const pages = this.owner.pages;
+
+        this.owner.childrenThemes.forEach(child => {
+            pages.push(...child.pages);
+        });
+
+        const processedFiles: string[] = [];
+        for (const page of pages) {
+            if (processedFiles.includes(page.path)) {
+                continue;
+            }
+
+            if (page.layout?.name === this.name) {
+                const pageDoc = await vscode.workspace.openTextDocument(vscode.Uri.file(page.path));
+
+                const range = new vscode.Range(
+                    pageDoc.positionAt(page.layoutOffset!.start),
+                    pageDoc.positionAt(page.layoutOffset!.end)
+                );
+
+                const location = new vscode.Location(vscode.Uri.file(page.path), range);
+                locations.push(location);
+            }
+
+            processedFiles.push(page.path);
+        }
+
+        return locations;
     }
 
     /**

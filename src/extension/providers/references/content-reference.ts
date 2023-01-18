@@ -23,32 +23,7 @@ export class ContentReference implements vscode.ReferenceProvider, vscode.Defini
             return;
         }
 
-        const locations: vscode.Location[] = [];
-
-        for (const theme of [content.owner, ...content.owner.childrenThemes]) {
-            const themeFiles = [
-                ...theme.layouts,
-                ...theme.pages,
-                ...theme.partials,
-            ];
-
-            for (const file of themeFiles) {
-                const offsets = file.contents[content.name] || [];
-
-                for (const offset of offsets) {
-                    const fileDocument = file.path === document.fileName
-                        ? document
-                        : await vscode.workspace.openTextDocument(vscode.Uri.file(file.path));
-                    const start = fileDocument.positionAt(offset.start);
-                    const end = fileDocument.positionAt(offset.end);
-                    const range = new vscode.Range(start, end);
-                    const location = new vscode.Location(vscode.Uri.file(file.path), range);
-
-                    locations.push(location);
-                }
-            }
-
-        }
+        const locations: vscode.Location[] = await content.findReferences();
 
         if (context.includeDeclaration) {
             locations.push(new vscode.Location(

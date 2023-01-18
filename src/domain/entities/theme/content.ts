@@ -1,4 +1,4 @@
-import { ThemeFile } from "./theme-file";
+import { ThemeFile, ThemeFileType } from "./theme-file";
 
 const ECHO_VAR = /\{\w+\}/g;
 
@@ -11,6 +11,13 @@ export class Content extends ThemeFile {
      */
     static getBaseDirectories(): string[] {
         return ['content'];
+    }
+
+    /**
+     * Entity type
+     */
+    get type(): ThemeFileType {
+        return 'content';
     }
 
     /**

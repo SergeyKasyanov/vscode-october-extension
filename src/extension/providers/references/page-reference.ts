@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { Page } from "../../../domain/entities/theme/page";
 import { MarkupFile } from "../../../domain/entities/theme/theme-file";
 import { Store } from "../../../domain/services/store";
 
@@ -23,31 +24,7 @@ export class PageReference implements vscode.ReferenceProvider, vscode.Definitio
             return;
         }
 
-        const locations: vscode.Location[] = [];
-
-        for (const theme of [page.owner, ...page.owner.childrenThemes]) {
-            const themeFiles = [
-                ...theme.layouts,
-                ...theme.pages,
-                ...theme.partials,
-            ];
-
-            for (const file of themeFiles) {
-                const offsets = file.pages[page.name] || [];
-
-                for (const offset of offsets) {
-                    const fileDocument = file.path === document.fileName
-                        ? document
-                        : await vscode.workspace.openTextDocument(vscode.Uri.file(file.path));
-                    const start = fileDocument.positionAt(offset.start);
-                    const end = fileDocument.positionAt(offset.end);
-                    const range = new vscode.Range(start, end);
-                    const location = new vscode.Location(vscode.Uri.file(file.path), range);
-
-                    locations.push(location);
-                }
-            }
-        }
+        const locations: vscode.Location[] = await page.findReferences();
 
         if (context.includeDeclaration) {
             locations.push(new vscode.Location(
