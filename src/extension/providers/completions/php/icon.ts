@@ -4,7 +4,7 @@ import { ocIcons } from "../../../../domain/static/oc-icons";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
 const ICON_KEY = /icon[\'\"]\s*=>\s*[\'\"]/g;
-const ICON_PART = /\w*/;
+const ICON_PART = /^[\w\-]*$/;
 const ICON_NAME = /[\w\-]+/;
 
 /**
@@ -32,7 +32,8 @@ export class Icon implements vscode.CompletionItemProvider {
         position: vscode.Position
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
-        if (!document.fileName.endsWith('Plugin.php')) {
+        const isRegistrationFile = document.fileName.endsWith('Plugin.php') || document.fileName.endsWith('Provider.php');
+        if (!isRegistrationFile) {
             return;
         }
 
@@ -44,8 +45,8 @@ export class Icon implements vscode.CompletionItemProvider {
         const methods = PhpHelpers.getMethods(phpClass);
 
         let ranges = [];
-        if (methods?.registerNavigation.loc) {
-            const loc = methods?.registerNavigation.loc;
+        if (methods?.registerNavigation?.loc) {
+            const loc = methods.registerNavigation.loc;
 
             ranges.push(new vscode.Range(
                 new vscode.Position(loc.start.line - 1, loc.start.column),
@@ -53,8 +54,8 @@ export class Icon implements vscode.CompletionItemProvider {
             ));
         }
 
-        if (methods?.pluginDetails.loc) {
-            const loc = methods?.pluginDetails.loc;
+        if (methods?.pluginDetails?.loc) {
+            const loc = methods.pluginDetails.loc;
 
             ranges.push(new vscode.Range(
                 new vscode.Position(loc.start.line - 1, loc.start.column),
@@ -75,8 +76,8 @@ export class Icon implements vscode.CompletionItemProvider {
         }
 
         if (!awaitsCompletions(
-            document.getText(),
-            document.offsetAt(position),
+            document.lineAt(position.line).text,
+            position.character,
             ICON_KEY,
             ICON_PART
         )) {
