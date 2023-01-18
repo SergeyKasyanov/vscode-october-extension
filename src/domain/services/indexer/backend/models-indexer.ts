@@ -10,7 +10,8 @@ export class ModelsIndexer extends DirectoryIndexer<Model> {
         return [
             'Model',
             'October\\Rain\\Database\\Model',
-            'October\\Rain\\Auth\\Models\\User'
+            'October\\Rain\\Database\\Attach\\File',
+            'October\\Rain\\Auth\\Models\\User',
         ];
     }
 
