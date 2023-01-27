@@ -44,28 +44,24 @@ export class Icon implements vscode.CompletionItemProvider {
 
         const methods = PhpHelpers.getMethods(phpClass);
 
-        let ranges = [];
-        if (methods?.registerNavigation?.loc) {
-            const loc = methods.registerNavigation.loc;
-
-            ranges.push(new vscode.Range(
-                new vscode.Position(loc.start.line - 1, loc.start.column),
-                new vscode.Position(loc.end.line - 1, loc.end.column)
-            ));
-        }
-
-        if (methods?.pluginDetails?.loc) {
-            const loc = methods.pluginDetails.loc;
-
-            ranges.push(new vscode.Range(
-                new vscode.Position(loc.start.line - 1, loc.start.column),
-                new vscode.Position(loc.end.line - 1, loc.end.column)
-            ));
-        }
-
         let contains = false;
-        for (const range of ranges) {
-            if (range.contains(position)) {
+        const methodsLocations = [
+            methods?.registerNavigation?.loc,
+            methods?.pluginDetails?.loc,
+            methods?.registerSettings?.loc,
+        ];
+
+        for (const loc of methodsLocations) {
+            if (!loc) {
+                continue;
+            }
+
+            const methodRange = new vscode.Range(
+                new vscode.Position(loc!.start.line - 1, loc!.start.column),
+                new vscode.Position(loc!.end.line - 1, loc!.end.column)
+            );
+
+            if (methodRange.contains(position)) {
                 contains = true;
                 break;
             }
