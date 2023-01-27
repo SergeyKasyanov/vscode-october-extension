@@ -59,7 +59,7 @@ class {{ controller_pascal }} extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('{{ namespace_dot_capital }}', '{{ plugin_lower }}', '{{ controller_lower }}');
+        BackendMenu::setContext('{{ namespace_dot_capital == 'App' ? 'October.App' : namespace_dot_capital }}', '{{ plugin_lower }}', '{{ controller_lower }}');
     }
 {% if not addListControllerBehavior %}
 

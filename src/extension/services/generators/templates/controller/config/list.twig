@@ -3,7 +3,7 @@
 # ===================================
 
 # Model List Column configuration
-list: $/{{ namespace_slash }}/models/{{ model_lower }}/columns.yaml
+list: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/columns.yaml
 
 # Model Class name
 modelClass: {{ namespace }}\Models\{{ model_pascal }}

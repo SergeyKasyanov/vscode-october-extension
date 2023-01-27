@@ -116,7 +116,7 @@ export class BackendIndexer {
 
             owner = project.plugins.find(m => m.name === ownerName);
             if (!owner) {
-                const plugin = new Plugin(ownerName, path.join(projectPath, Config.pluginsDirectory, ownerName));
+                const plugin = new Plugin(ownerName, path.join(projectPath, Config.pluginsDirectory, pluginVendor, pluginName));
                 this.indexOwner(plugin);
                 this.store.addPlugin(projectPath, plugin);
                 return;

@@ -6,7 +6,7 @@
 name: {{ model_pascal }}
 
 # Model Form Field configuration
-form: $/{{ namespace_slash }}/models/{{ model_lower }}/fields.yaml
+form: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/fields.yaml
 
 # Model Class name
 modelClass: {{ namespace }}\Models\{{ model_pascal }}
