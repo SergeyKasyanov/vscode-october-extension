@@ -7,7 +7,7 @@ import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 
-const CONFIG_PATH_PART = /^[\'\"]|((\[|(array\())\s*[\'\"][\w\-\_]+[\'\"]\s*=>\s*[\'\"]([\w\-\_\.\$\~\/]+[\'\"]\s*,\s*[\'\"][\w\-\_]+[\'\"]\s*=>\s*[\'\"])*)[\w\-\_\.\$\~\/]*$/;
+const CONFIG_PATH_PART = /^[\$\~\w\\\/\-\_\.]*$/;
 const CONFIG_PATH = /[\$\~\w\\\/\-\_\.]+/;
 
 /**
@@ -36,7 +36,9 @@ export class BehaviorConfigPath implements vscode.CompletionItemProvider {
 
         const requiredProperties = behaviors.flatMap(beh => beh.requiredProperties);
 
-        const regExpStr = 'public\\s+\\$(' + requiredProperties.join('|') + ')\\s*=\\s*';
+        const regExpStr = 'public\\s+\\$(' + requiredProperties.join('|') + ')\\s*=\\s*'
+            + '[\\\'\\\"]|((\\\[|(array\\\())\\\s*[\\\'\\\"][\\\w\\\-\\\_]+[\\\'\\\"]\\\s*=>\\\s*[\\\'\\\"]([\\\w\\\-\\\_\\\.\\\$\\\~\\\/]+[\\\'\\\"]\\\s*,\\\s*[\\\'\\\"][\\\w\\\-\\\_]+[\\\'\\\"]\\\s*=>\\\s*[\\\'\\\"])*)';
+
         const PROPERTY_NAME = new RegExp(regExpStr, 'g');
 
         if (!awaitsCompletions(
