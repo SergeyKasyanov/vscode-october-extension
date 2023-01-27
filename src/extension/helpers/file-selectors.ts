@@ -1,4 +1,5 @@
 import { DocumentFilter } from "vscode";
+import { Config } from "../../config";
 
 /**
  * Selector for october cms template files
@@ -9,19 +10,11 @@ export const octoberTplSelector: DocumentFilter = {
 };
 
 /**
- * Selector for text files
+ * Selector for all theme files (markup and content)
  */
-export const txtSelector: DocumentFilter = {
+export const themeFileSelector: DocumentFilter = {
     scheme: 'file',
-    pattern: '**/*.txt'
-};
-
-/**
- * Selector for markdown files
- */
-export const mdSelector: DocumentFilter = {
-    scheme: 'file',
-    pattern: '**/*.md'
+    pattern: '**/' + Config.themesDirectory + '/**/*.{htm,txt,md}'
 };
 
 /**
