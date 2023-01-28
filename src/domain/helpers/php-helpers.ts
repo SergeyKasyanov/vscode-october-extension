@@ -102,6 +102,33 @@ export class PhpHelpers {
     }
 
     /**
+     * Return class ast for "return new class" files
+     *
+     * @param code
+     * @param fileName
+     * @returns
+     */
+    static getReturnNewClass(code: string, fileName: string): phpParser.Class | undefined {
+        const ast = PhpHelpers.getAst(code, fileName);
+        const ns = PhpHelpers.getNamespace(code, fileName);
+
+        const returnStmt = (ns || ast)?.children.find(el => el.kind === 'return') as phpParser.Return;
+        if (!returnStmt) {
+            return;
+        }
+
+        if (returnStmt.expr?.kind !== 'new') {
+            return;
+        }
+
+        if ((returnStmt.expr! as phpParser.New).what.kind !== 'class') {
+            return;
+        }
+
+        return (returnStmt.expr as phpParser.New).what as phpParser.Class;
+    }
+
+    /**
      * Returns class properties
      *
      * @param phpClass

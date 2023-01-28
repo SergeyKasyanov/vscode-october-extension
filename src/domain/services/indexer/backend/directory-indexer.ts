@@ -1,3 +1,4 @@
+import * as phpParser from "php-parser";
 import { OctoberClass } from "../../../entities/classes/october-class";
 import { Owner } from "../../../entities/owners/owner";
 import { FsHelpers } from '../../../helpers/fs-helpers';
@@ -61,7 +62,8 @@ export abstract class DirectoryIndexer<T extends OctoberClass> {
             return;
         }
 
-        const phpClass = PhpHelpers.getClass(content, filePath);
+        let phpClass = PhpHelpers.getClass(content, filePath)
+            || PhpHelpers.getReturnNewClass(content, filePath);
         if (!phpClass || !phpClass.extends) {
             return;
         }
@@ -70,14 +72,20 @@ export abstract class DirectoryIndexer<T extends OctoberClass> {
         const parentFqn = uses[phpClass.extends.name] || phpClass.extends.name;
         const ns = PhpHelpers.getNamespace(content, filePath);
 
-        // migrations may be without namespaces
-        const fqn = (ns ? ns.name + '\\' : '') + PhpHelpers.identifierToString(phpClass.name);
+        // filename as name is for anonymous migrations
+        const name = phpClass.name
+            ? PhpHelpers.identifierToString(phpClass.name)
+            : filePath.split(path.sep).pop()!.split('.').shift();
+
+            // migrations may be without namespaces
+        const fqn = (ns ? ns.name + '\\' : '') + name;
 
         if (!this.getOctoberClassParentsFqn().includes(parentFqn)) {
             return;
         }
 
         return this.makeOctoberClass(filePath, fqn);
+
     }
 
     /**
