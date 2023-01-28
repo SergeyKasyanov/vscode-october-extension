@@ -1,5 +1,19 @@
 # Change Log
 
+## 0.10.0
+
+New features:
+
+- "Show usages" for theme files replaced with pick references view
+- Document link for theme files replaced with go to definition
+
+Fixes:
+
+- Fixed namespaces in class generators when used with app directory
+- Fixed completions of view file names in View::make(), view(), Mail::send() and Mail::sendTo() calls
+- Fixed icon names and behavior config names completions
+- "Go to model" and "go to migration" code lenses now works in app directory models and migrations
+
 ## 0.9.1
 
 - Fixed completions model attributes in yaml configs
