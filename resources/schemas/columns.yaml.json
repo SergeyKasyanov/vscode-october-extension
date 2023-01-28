@@ -478,6 +478,101 @@
             ],
             "type": "object"
         },
+        "LinkageColumn": {
+            "properties": {
+                "align": {
+                    "enum": [
+                        "center",
+                        "left",
+                        "right"
+                    ],
+                    "type": "string"
+                },
+                "attributes": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "clickable": {
+                    "type": "boolean"
+                },
+                "cssClass": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "displayFrom": {
+                    "type": "string"
+                },
+                "headCssClass": {
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "invisible": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "relation": {
+                    "type": "string"
+                },
+                "relationCount": {
+                    "type": "boolean"
+                },
+                "searchable": {
+                    "type": "boolean"
+                },
+                "select": {
+                    "type": "string"
+                },
+                "shortLabel": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "enum": [
+                        "linkage"
+                    ],
+                    "type": "string"
+                },
+                "valueFrom": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "type": "object"
+        },
         "NumberColumn": {
             "properties": {
                 "align": {
@@ -1363,6 +1458,9 @@
                     },
                     {
                         "$ref": "#/definitions/ColorPickerColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/LinkageColumn"
                     },
                     {
                         "$ref": "#/definitions/CustomColumn"

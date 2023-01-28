@@ -953,6 +953,9 @@
                                 "$ref": "#/definitions/ColorPickerColumn"
                             },
                             {
+                                "$ref": "#/definitions/LinkageColumn"
+                            },
+                            {
                                 "$ref": "#/definitions/CustomColumn"
                             }
                         ]
@@ -2277,6 +2280,9 @@
                     },
                     {
                         "$ref": "#/definitions/TagListField"
+                    },
+                    {
+                        "$ref": "#/definitions/PageFinderField"
                     }
                 ]
             },
@@ -2831,6 +2837,101 @@
                 },
                 "width": {
                     "type": "number"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "LinkageColumn": {
+            "properties": {
+                "align": {
+                    "enum": [
+                        "center",
+                        "left",
+                        "right"
+                    ],
+                    "type": "string"
+                },
+                "attributes": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "clickable": {
+                    "type": "boolean"
+                },
+                "cssClass": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "displayFrom": {
+                    "type": "string"
+                },
+                "headCssClass": {
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "invisible": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "relation": {
+                    "type": "string"
+                },
+                "relationCount": {
+                    "type": "boolean"
+                },
+                "searchable": {
+                    "type": "boolean"
+                },
+                "select": {
+                    "type": "string"
+                },
+                "shortLabel": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "enum": [
+                        "linkage"
+                    ],
+                    "type": "string"
+                },
+                "valueFrom": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 }
             },
             "required": [
@@ -3582,6 +3683,156 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "value": {},
+                "valueFrom": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "PageFinderField": {
+            "properties": {
+                "attributes": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                },
+                "autoFocus": {
+                    "type": "boolean"
+                },
+                "changeHandler": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "commentAbove": {
+                    "type": "string"
+                },
+                "commentHtml": {
+                    "type": "boolean"
+                },
+                "containerAttributes": {
+                    "allOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        }
+                    ]
+                },
+                "context": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "cssClass": {
+                    "type": "string"
+                },
+                "default": {},
+                "defaultFrom": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "placeholder": {
+                    "type": "string"
+                },
+                "preset": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Preset"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "readOnly": {
+                    "type": "boolean"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "span": {
+                    "enum": [
+                        "adaptive",
+                        "auto",
+                        "full",
+                        "left",
+                        "right",
+                        "row"
+                    ],
+                    "type": "string"
+                },
+                "spanClass": {
+                    "type": "string"
+                },
+                "stretch": {
+                    "type": "boolean"
+                },
+                "tab": {
+                    "type": "string"
+                },
+                "trigger": {
+                    "$ref": "#/definitions/Trigger"
+                },
+                "type": {
+                    "enum": [
+                        "pagefinder"
+                    ],
+                    "type": "string"
                 },
                 "value": {},
                 "valueFrom": {

@@ -22,6 +22,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "checkbox"
@@ -46,6 +49,9 @@
                     "type": "string"
                 },
                 "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
                     "type": "string"
                 },
                 "type": {
@@ -104,6 +110,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "date"
@@ -152,6 +161,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "scope": {
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -211,6 +223,9 @@
                         }
                     ]
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "group"
@@ -249,6 +264,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "number"
@@ -284,6 +302,9 @@
                     "type": "string"
                 },
                 "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
                     "type": "string"
                 },
                 "type": {
@@ -326,6 +347,9 @@
                     "type": "string"
                 },
                 "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
                     "type": "string"
                 },
                 "type": {

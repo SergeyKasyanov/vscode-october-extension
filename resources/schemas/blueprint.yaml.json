@@ -515,6 +515,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "checkbox"
@@ -988,6 +991,9 @@
                                 "$ref": "#/definitions/ColorPickerColumn"
                             },
                             {
+                                "$ref": "#/definitions/LinkageColumn"
+                            },
+                            {
                                 "$ref": "#/definitions/CustomColumn"
                             }
                         ]
@@ -1239,6 +1245,9 @@
                     "type": "string"
                 },
                 "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
                     "type": "string"
                 },
                 "type": {
@@ -1862,6 +1871,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "date"
@@ -2181,6 +2193,9 @@
                         }
                     ]
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "dropdown"
@@ -2350,6 +2365,40 @@
             ],
             "type": "object"
         },
+        "EntriesField": {
+            "properties": {
+                "conditions": {
+                    "type": "string"
+                },
+                "displayMode": {
+                    "enum": [
+                        "recordfinder",
+                        "relation"
+                    ],
+                    "type": "string"
+                },
+                "maxItems": {
+                    "type": "number"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "entries"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "source",
+                "type"
+            ],
+            "type": "object"
+        },
         "Fields": {
             "additionalProperties": {
                 "anyOf": [
@@ -2442,6 +2491,9 @@
                     },
                     {
                         "$ref": "#/definitions/TagListField"
+                    },
+                    {
+                        "$ref": "#/definitions/PageFinderField"
                     }
                 ]
             },
@@ -2767,6 +2819,9 @@
                         }
                     ]
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "group"
@@ -3064,6 +3119,101 @@
             ],
             "type": "object"
         },
+        "LinkageColumn": {
+            "properties": {
+                "align": {
+                    "enum": [
+                        "center",
+                        "left",
+                        "right"
+                    ],
+                    "type": "string"
+                },
+                "attributes": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "clickable": {
+                    "type": "boolean"
+                },
+                "cssClass": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "displayFrom": {
+                    "type": "string"
+                },
+                "headCssClass": {
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "invisible": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "relation": {
+                    "type": "string"
+                },
+                "relationCount": {
+                    "type": "boolean"
+                },
+                "searchable": {
+                    "type": "boolean"
+                },
+                "select": {
+                    "type": "string"
+                },
+                "shortLabel": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "enum": [
+                        "linkage"
+                    ],
+                    "type": "string"
+                },
+                "valueFrom": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "type": "object"
+        },
         "ListStructure": {
             "properties": {
                 "dragRow": {
@@ -3075,6 +3225,9 @@
                 "showReorder": {
                     "type": "boolean"
                 },
+                "showSorting": {
+                    "type": "boolean"
+                },
                 "showTree": {
                     "type": "boolean"
                 },
@@ -3082,11 +3235,6 @@
                     "type": "boolean"
                 }
             },
-            "required": [
-                "showReorder",
-                "showTree",
-                "treeExpanded"
-            ],
             "type": "object"
         },
         "MarkdownEditorField": {
@@ -3904,6 +4052,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "number"
@@ -3913,6 +4064,156 @@
             },
             "required": [
                 "label",
+                "type"
+            ],
+            "type": "object"
+        },
+        "PageFinderField": {
+            "properties": {
+                "attributes": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                },
+                "autoFocus": {
+                    "type": "boolean"
+                },
+                "changeHandler": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "commentAbove": {
+                    "type": "string"
+                },
+                "commentHtml": {
+                    "type": "boolean"
+                },
+                "containerAttributes": {
+                    "allOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        }
+                    ]
+                },
+                "context": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "cssClass": {
+                    "type": "string"
+                },
+                "default": {},
+                "defaultFrom": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "placeholder": {
+                    "type": "string"
+                },
+                "preset": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Preset"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "readOnly": {
+                    "type": "boolean"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "span": {
+                    "enum": [
+                        "adaptive",
+                        "auto",
+                        "full",
+                        "left",
+                        "right",
+                        "row"
+                    ],
+                    "type": "string"
+                },
+                "spanClass": {
+                    "type": "string"
+                },
+                "stretch": {
+                    "type": "boolean"
+                },
+                "tab": {
+                    "type": "string"
+                },
+                "trigger": {
+                    "$ref": "#/definitions/Trigger"
+                },
+                "type": {
+                    "enum": [
+                        "pagefinder"
+                    ],
+                    "type": "string"
+                },
+                "value": {},
+                "valueFrom": {
+                    "type": "string"
+                }
+            },
+            "required": [
                 "type"
             ],
             "type": "object"
@@ -6202,6 +6503,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "scope": {
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "switch"
@@ -6676,6 +6980,9 @@
                     "type": "string"
                 },
                 "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
                     "type": "string"
                 },
                 "type": {
@@ -7160,6 +7467,9 @@
                         "$ref": "#/definitions/MixinField"
                     },
                     {
+                        "$ref": "#/definitions/EntriesField"
+                    },
+                    {
                         "allOf": [
                             {
                                 "$ref": "#/definitions/CustomField"
@@ -7206,6 +7516,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -7307,6 +7620,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -7404,6 +7720,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -7505,6 +7824,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -7602,6 +7924,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -7703,6 +8028,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -7800,6 +8128,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -7901,6 +8232,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -7998,6 +8332,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -8099,6 +8436,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -8196,6 +8536,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -8297,6 +8640,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -8394,6 +8740,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -8495,6 +8844,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -8592,6 +8944,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -8693,6 +9048,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -8790,6 +9148,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -8891,6 +9252,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -8988,6 +9352,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -9089,6 +9456,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -9186,6 +9556,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -9287,6 +9660,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -9384,6 +9760,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -9485,6 +9864,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -9582,6 +9964,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -9683,6 +10068,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -9780,6 +10168,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -9881,6 +10272,9 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -9978,6 +10372,9 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
                                             },
                                             {
                                                 "$ref": "#/definitions/CustomColumn"
@@ -10079,6 +10476,111 @@
                                                 "$ref": "#/definitions/ColorPickerColumn"
                                             },
                                             {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/CustomColumn"
+                                            }
+                                        ]
+                                    },
+                                    "scope": {
+                                        "anyOf": [
+                                            {
+                                                "$ref": "#/definitions/CheckboxScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/SwitchScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/TextScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/NumberScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/DropdownScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/GroupScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/DateScope"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/CustomScope"
+                                            }
+                                        ]
+                                    },
+                                    "validation": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    {
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/PageFinderField"
+                            },
+                            {
+                                "properties": {
+                                    "column": {
+                                        "anyOf": [
+                                            {
+                                                "$ref": "#/definitions/TextColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/NumberColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/ImageColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/SwitchColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/SummaryColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/DateTimeColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/DateColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/TimeColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/TimeSinceColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/TimeTenseColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/SelectableColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/PartialColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/ColorPickerColumn"
+                                            },
+                                            {
+                                                "$ref": "#/definitions/LinkageColumn"
+                                            },
+                                            {
                                                 "$ref": "#/definitions/CustomColumn"
                                             }
                                         ]
@@ -10143,6 +10645,9 @@
                                     "$ref": "#/definitions/MixinField"
                                 },
                                 {
+                                    "$ref": "#/definitions/EntriesField"
+                                },
+                                {
                                     "allOf": [
                                         {
                                             "$ref": "#/definitions/CustomField"
@@ -10189,6 +10694,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -10290,6 +10798,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -10387,6 +10898,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -10488,6 +11002,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -10585,6 +11102,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -10686,6 +11206,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -10783,6 +11306,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -10884,6 +11410,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -10981,6 +11510,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -11082,6 +11614,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -11179,6 +11714,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -11280,6 +11818,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -11377,6 +11918,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -11478,6 +12022,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -11575,6 +12122,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -11676,6 +12226,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -11773,6 +12326,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -11874,6 +12430,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -11971,6 +12530,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -12072,6 +12634,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -12169,6 +12734,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -12270,6 +12838,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -12367,6 +12938,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -12468,6 +13042,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -12565,6 +13142,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -12666,6 +13246,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -12763,6 +13346,9 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
@@ -12864,6 +13450,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -12963,6 +13552,9 @@
                                                             "$ref": "#/definitions/ColorPickerColumn"
                                                         },
                                                         {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
                                                             "$ref": "#/definitions/CustomColumn"
                                                         }
                                                     ]
@@ -13060,6 +13652,111 @@
                                                         },
                                                         {
                                                             "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/CustomColumn"
+                                                        }
+                                                    ]
+                                                },
+                                                "scope": {
+                                                    "anyOf": [
+                                                        {
+                                                            "$ref": "#/definitions/CheckboxScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/SwitchScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/TextScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/NumberScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/DropdownScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/GroupScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/DateScope"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/CustomScope"
+                                                        }
+                                                    ]
+                                                },
+                                                "validation": {
+                                                    "anyOf": [
+                                                        {
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        {
+                                                            "type": "string"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/definitions/PageFinderField"
+                                        },
+                                        {
+                                            "properties": {
+                                                "column": {
+                                                    "anyOf": [
+                                                        {
+                                                            "$ref": "#/definitions/TextColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/NumberColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/ImageColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/SwitchColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/SummaryColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/DateTimeColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/DateColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/TimeColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/TimeSinceColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/TimeTenseColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/SelectableColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/PartialColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/ColorPickerColumn"
+                                                        },
+                                                        {
+                                                            "$ref": "#/definitions/LinkageColumn"
                                                         },
                                                         {
                                                             "$ref": "#/definitions/CustomColumn"
