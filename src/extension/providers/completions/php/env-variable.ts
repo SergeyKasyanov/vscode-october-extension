@@ -17,8 +17,8 @@ export class EnvVariable implements vscode.CompletionItemProvider {
         position: vscode.Position
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
-        const file = Store.instance.findEntity(document.fileName);
-        if (!file) {
+        const project = Store.instance.findProject(document.fileName);
+        if (!project) {
             return;
         }
 
@@ -31,7 +31,7 @@ export class EnvVariable implements vscode.CompletionItemProvider {
             return;
         }
 
-        return Object.keys(file.owner.project.envVariables).map(
+        return Object.keys(project.envVariables).map(
             key => new vscode.CompletionItem(key, vscode.CompletionItemKind.EnumMember)
         );
     }
