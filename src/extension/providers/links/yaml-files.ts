@@ -84,6 +84,10 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
                 controller = this.entity!;
             }
 
+            if (!controller) {
+                return;
+            }
+
             const filePath = PathHelpers.relativePath(
                 this.project!.path,
                 value,
@@ -95,9 +99,6 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
 
                 return link;
             }
-
-            vscode.window.showErrorMessage('File does not exists');
-            return;
         } else if (link.mode === 'model') {
             const modelFqn = value.startsWith('\\')
                 ? value.slice(1)
@@ -109,7 +110,8 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
                 return;
             }
 
-            link.target = vscode.Uri.file(model.path);
+            link.target = vscode.Uri.file(model.path)
+                .with({fragment: model.classPosition});
 
             return link;
         }

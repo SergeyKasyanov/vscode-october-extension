@@ -324,7 +324,14 @@ export class Model extends OctoberClass {
     get controller() {
         const name = Str.plural(this.uqn);
         const fqnParts = this.fqn.split('\\');
-        const fqn = [fqnParts.shift(), fqnParts.shift(), 'Controllers', name].join('\\');
+
+        let fqn: string;
+        const vendor = fqnParts.shift();
+        if (vendor === 'App') {
+            fqn = [vendor, 'Controllers', name].join('\\');
+        } else {
+            fqn = [vendor, fqnParts.shift(), 'Controllers', name].join('\\');
+        }
 
         return this.owner.project.controllers.find(c => c.fqn === fqn);
     }
