@@ -12,6 +12,10 @@ export class ModelsIndexer extends DirectoryIndexer<Model> {
             'October\\Rain\\Database\\Model',
             'October\\Rain\\Database\\Attach\\File',
             'October\\Rain\\Auth\\Models\\User',
+            'October\\Rain\\Auth\\Models\\Role',
+            'October\\Rain\\Auth\\Models\\Group',
+            'October\\Rain\\Auth\\Models\\Throttle',
+            'October\\Rain\\Auth\\Models\\Preferences',
         ];
     }
 
