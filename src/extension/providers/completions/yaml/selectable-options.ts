@@ -79,12 +79,7 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
             return;
         }
 
-        return model.optionsMethods.map(method => {
-            const item = new vscode.CompletionItem(method, vscode.CompletionItemKind.Method);
-            item.range = this.document!.getWordRangeAtPosition(this.position!, METHOD_NAME);
-
-            return item;
-        });
+        return this.getModelOptionsCompletions(model);
     }
 
     private getCompletionsForFilters(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
@@ -100,11 +95,15 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
             return;
         }
 
-        const model = this.owner!.findEntityByFqn(modelClass);
+        const model = this.owner!.project.models.find(m => m.fqn === modelClass);
         if (!(model instanceof Model)) {
             return;
         }
 
+        return this.getModelOptionsCompletions(model);
+    }
+
+    private getModelOptionsCompletions(model: Model): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         return model.optionsMethods.map(method => {
             const item = new vscode.CompletionItem(method, vscode.CompletionItemKind.Method);
             item.range = this.document!.getWordRangeAtPosition(this.position!, METHOD_NAME);
