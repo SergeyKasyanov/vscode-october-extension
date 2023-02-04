@@ -4,6 +4,7 @@ import { ComponentName } from "../providers/completions/ini/component-name";
 import { ComponentProperty as IniComponentProperty } from "../providers/completions/ini/component-property";
 import { IniProperty } from "../providers/completions/ini/ini-property";
 import { LayoutName } from "../providers/completions/ini/layout-name";
+import { AttributeCast } from "../providers/completions/php/attribute-cast";
 import { BackendUrl } from "../providers/completions/php/backend-url";
 import { BehaviorConfigPath } from "../providers/completions/php/behavior-config-path";
 import { BehaviorName } from "../providers/completions/php/behavior-name";
@@ -55,59 +56,60 @@ export function registerCompletions(context: vscode.ExtensionContext) {
 }
 
 function ini(context: vscode.ExtensionContext) {
-    register(context, octoberTplSelector, new IniProperty, ...ALPHABET);
-    register(context, octoberTplSelector, new LayoutName, '=', "'", '"');
     register(context, octoberTplSelector, new ComponentName, '[');
     register(context, octoberTplSelector, new IniComponentProperty, ...ALPHABET);
+    register(context, octoberTplSelector, new IniProperty, ...ALPHABET);
+    register(context, octoberTplSelector, new LayoutName, '=', "'", '"');
 }
 
 function php(context: vscode.ExtensionContext) {
-    register(context, phpSelector, new PhpPermissions, ...QUOTES);
-    register(context, phpSelector, new PhpComponentProperty, ...QUOTES);
-    register(context, phpSelector, new BehaviorConfigPath, ...QUOTES, '/', '~', '$');
-    register(context, phpSelector, new PhpModelAttribute, ...QUOTES);
-    register(context, phpSelector, new MenuContext, ...QUOTES);
+    register(context, phpSelector, new AttributeCast, ...QUOTES);
     register(context, phpSelector, new BackendPartialName, ...QUOTES, '/', '~', '$');
+    register(context, phpSelector, new BehaviorConfigPath, ...QUOTES, '/', '~', '$');
+    register(context, phpSelector, new BehaviorName, ...QUOTES);
     register(context, phpSelector, new ControllerAction, ...QUOTES);
     register(context, phpSelector, new Icon, ...QUOTES);
     register(context, phpSelector, new ListName, ...QUOTES);
+    register(context, phpSelector, new MenuContext, ...QUOTES);
+    register(context, phpSelector, new PhpComponentProperty, ...QUOTES);
+    register(context, phpSelector, new PhpModelAttribute, ...QUOTES);
+    register(context, phpSelector, new PhpPermissions, ...QUOTES);
     register(context, phpSelector, new PhpRelationName, ...QUOTES);
-    register(context, phpSelector, new BehaviorName, ...QUOTES);
 
+    register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ConfigKey, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new EnvVariable, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new LangKey, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ValidationRule, ...QUOTES, '|');
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
-    register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
 
     register(context, octoberTplSelector, new PageNamePhp, ...QUOTES);
 }
 
 function twig(context: vscode.ExtensionContext) {
-    register(context, octoberTplSelector, new TwigTag, '%', ' ');
-    register(context, octoberTplSelector, new EchoStatement, ' ', '(');
-    register(context, octoberTplSelector, new TwigFilter, '|', ' ');
-    register(context, octoberTplSelector, new TwigTest, ' ');
-    register(context, octoberTplSelector, new PageName, ...QUOTES);
-    register(context, octoberTplSelector, new FrontendPartialName, ...QUOTES);
-    register(context, octoberTplSelector, new PartialArgument, ' ');
-    register(context, octoberTplSelector, new ContentName, ...QUOTES);
-    register(context, octoberTplSelector, new ContentArguments, ' ');
-    register(context, octoberTplSelector, new RenderComponent, ...QUOTES);
-    register(context, octoberTplSelector, new ComponentArgument, ' ');
-    register(context, octoberTplSelector, new PlaceholderName, ' ');
     register(context, octoberTplSelector, new AjaxMethod, ...QUOTES);
+    register(context, octoberTplSelector, new ComponentArgument, ' ');
+    register(context, octoberTplSelector, new ContentArguments, ' ');
+    register(context, octoberTplSelector, new ContentName, ...QUOTES);
+    register(context, octoberTplSelector, new EchoStatement, ' ', '(');
+    register(context, octoberTplSelector, new FrontendPartialName, ...QUOTES);
+    register(context, octoberTplSelector, new PageName, ...QUOTES);
+    register(context, octoberTplSelector, new PartialArgument, ' ');
+    register(context, octoberTplSelector, new PlaceholderName, ' ');
+    register(context, octoberTplSelector, new RenderComponent, ...QUOTES);
+    register(context, octoberTplSelector, new TwigFilter, '|', ' ');
+    register(context, octoberTplSelector, new TwigTag, '%', ' ');
+    register(context, octoberTplSelector, new TwigTest, ' ');
 }
 
 function yaml(context: vscode.ExtensionContext) {
-    register(context, yamlSelector, new YamlPermission, ' ');
-    register(context, yamlSelector, new ModelFqn, ' ');
-    register(context, yamlSelector, new YamlModelAttribute, ' ');
-    register(context, yamlSelector, new MigrationName, ' ');
     register(context, yamlSelector, new FilePath, ' ', '/', '~', '$');
-    register(context, yamlSelector, new SelectableOptions, ' ');
+    register(context, yamlSelector, new MigrationName, ' ');
+    register(context, yamlSelector, new ModelFqn, ' ');
     register(context, yamlSelector, new ScopeMethod, ' ');
+    register(context, yamlSelector, new SelectableOptions, ' ');
+    register(context, yamlSelector, new YamlModelAttribute, ' ');
+    register(context, yamlSelector, new YamlPermission, ' ');
     register(context, yamlSelector, new YamlRelationName, ' ');
 }
 
