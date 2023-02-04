@@ -3262,6 +3262,11 @@
                             "$ref": "#/definitions/ConfigFilterRoot"
                         },
                         {
+                            "maxItems": 0,
+                            "minItems": 0,
+                            "type": "array"
+                        },
+                        {
                             "type": "string"
                         }
                     ]
@@ -4945,6 +4950,11 @@
                     "anyOf": [
                         {
                             "$ref": "#/definitions/ColumnsRoot"
+                        },
+                        {
+                            "maxItems": 0,
+                            "minItems": 0,
+                            "type": "array"
                         },
                         {
                             "type": "string"
@@ -7669,6 +7679,11 @@
                     "anyOf": [
                         {
                             "$ref": "#/definitions/ConfigFilterRoot"
+                        },
+                        {
+                            "maxItems": 0,
+                            "minItems": 0,
+                            "type": "array"
                         },
                         {
                             "type": "string"

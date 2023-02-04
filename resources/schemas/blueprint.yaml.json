@@ -4901,6 +4901,11 @@
                             "$ref": "#/definitions/ColumnsRoot"
                         },
                         {
+                            "maxItems": 0,
+                            "minItems": 0,
+                            "type": "array"
+                        },
+                        {
                             "type": "string"
                         }
                     ]

@@ -2,6 +2,44 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": {},
     "definitions": {
+        "CheckboxScope": {
+            "properties": {
+                "conditions": {
+                    "type": "string"
+                },
+                "default": {
+                    "enum": [
+                        0,
+                        1
+                    ],
+                    "type": "number"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "checkbox"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "conditions",
+                "label",
+                "type"
+            ],
+            "type": "object"
+        },
         "ColorPickerColumn": {
             "properties": {
                 "align": {
@@ -151,6 +189,45 @@
             ],
             "type": "object"
         },
+        "ConfigFilterRoot": {
+            "properties": {
+                "scopes": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/CheckboxScope"
+                            },
+                            {
+                                "$ref": "#/definitions/SwitchScope"
+                            },
+                            {
+                                "$ref": "#/definitions/TextScope"
+                            },
+                            {
+                                "$ref": "#/definitions/NumberScope"
+                            },
+                            {
+                                "$ref": "#/definitions/DropdownScope"
+                            },
+                            {
+                                "$ref": "#/definitions/GroupScope"
+                            },
+                            {
+                                "$ref": "#/definitions/DateScope"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomScope"
+                            }
+                        ]
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "scopes"
+            ],
+            "type": "object"
+        },
         "CustomColumn": {
             "additionalProperties": {},
             "properties": {
@@ -233,6 +310,31 @@
                     ]
                 }
             },
+            "type": "object"
+        },
+        "CustomScope": {
+            "additionalProperties": {},
+            "properties": {
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
+                "type"
+            ],
             "type": "object"
         },
         "DateColumn": {
@@ -323,6 +425,68 @@
                 }
             },
             "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "DateScope": {
+            "properties": {
+                "conditions": {
+                    "properties": {
+                        "after": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "before": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "between": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "equals": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "default": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "maxDate": {
+                    "type": "string"
+                },
+                "minDate": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "date"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
                 "type"
             ],
             "type": "object"
@@ -418,6 +582,122 @@
                 }
             },
             "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "DropdownScope": {
+            "properties": {
+                "conditions": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelClass": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "options": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "dropdown"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
+                "type"
+            ],
+            "type": "object"
+        },
+        "GroupScope": {
+            "properties": {
+                "conditions": {
+                    "type": "string"
+                },
+                "default": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelClass": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "nameFrom": {
+                    "type": "string"
+                },
+                "options": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "group"
+                    ],
+                    "type": "string"
+                },
+                "valueFrom": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
                 "type"
             ],
             "type": "object"
@@ -746,6 +1026,44 @@
             },
             "required": [
                 "format",
+                "type"
+            ],
+            "type": "object"
+        },
+        "NumberScope": {
+            "properties": {
+                "conditions": {
+                    "properties": {
+                        "between": {
+                            "type": "string"
+                        },
+                        "greater": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "number"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
                 "type"
             ],
             "type": "object"
@@ -1140,6 +1458,47 @@
             ],
             "type": "object"
         },
+        "SwitchScope": {
+            "properties": {
+                "conditions": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "default": {
+                    "enum": [
+                        0,
+                        1
+                    ],
+                    "type": "number"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "switch"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "conditions",
+                "label",
+                "type"
+            ],
+            "type": "object"
+        },
         "TextColumn": {
             "properties": {
                 "align": {
@@ -1225,6 +1584,50 @@
                 }
             },
             "required": [
+                "type"
+            ],
+            "type": "object"
+        },
+        "TextScope": {
+            "properties": {
+                "conditions": {
+                    "properties": {
+                        "contains": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "exact": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                },
+                "dependsOn": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "modelScope": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "text"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label",
                 "type"
             ],
             "type": "object"
@@ -1537,12 +1940,29 @@
             "type": "string"
         },
         "filter": {
-            "type": "string"
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/ConfigFilterRoot"
+                },
+                {
+                    "maxItems": 0,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                {
+                    "type": "string"
+                }
+            ]
         },
         "list": {
             "anyOf": [
                 {
                     "$ref": "#/definitions/ColumnsRoot"
+                },
+                {
+                    "maxItems": 0,
+                    "minItems": 0,
+                    "type": "array"
                 },
                 {
                     "type": "string"
