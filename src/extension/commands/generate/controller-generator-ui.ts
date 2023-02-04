@@ -13,6 +13,7 @@ export class ControllerGeneratorUi extends GeneratorUiBase {
         formController: 'Add FormController behavior',
         relationController: 'Add RelationController behavior',
         importExportController: 'Add ImportExportController behavior',
+        hasSidebar: 'Add sidebar',
     };
 
     private ways = {
@@ -52,6 +53,7 @@ export class ControllerGeneratorUi extends GeneratorUiBase {
             addFormControllerBehavior: options.includes(this.options.formController),
             addRelationControllerBehavior: options.includes(this.options.relationController),
             addImportExportControllerBehavior: options.includes(this.options.importExportController),
+            hasSidebar: options.includes(this.options.hasSidebar),
         });
 
         const generated = generator.generate();
@@ -86,6 +88,7 @@ export class ControllerGeneratorUi extends GeneratorUiBase {
             { label: this.options.addListFilter },
             { label: this.options.relationController },
             { label: this.options.importExportController },
+            { label: this.options.hasSidebar },
         ], { canPickMany: true });
 
         if (options === undefined) {

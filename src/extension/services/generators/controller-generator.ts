@@ -116,6 +116,7 @@ export class ControllerGenerator extends GeneratorBase {
             addFormControllerBehavior: !!vars.addFormControllerBehavior,
             addRelationControllerBehavior: !!vars.addRelationControllerBehavior,
             addImportExportControllerBehavior: !!vars.addImportExportControllerBehavior,
+            hasSidebar: !!vars.hasSidebar
         });
     }
 

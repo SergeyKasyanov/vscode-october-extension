@@ -52,7 +52,11 @@ class {{ controller_pascal }} extends Controller
     public $importExportConfig = 'config_import_export.yaml';
 {% endif %}
 {% endif %}
-{% if addListControllerBehavior or addFormControllerBehavior or addRelationControllerBehavior or addImportExportControllerBehavior %}
+
+{% if hasSidebar %}
+    public $bodyClass = 'compact-container';
+{% endif %}
+{% if addListControllerBehavior or addFormControllerBehavior or addRelationControllerBehavior or addImportExportControllerBehavior or hasSidebar %}
 {# empty line #}
 {% endif %}
     public function __construct()
