@@ -1,5 +1,22 @@
 # Change Log
 
+## 0.10.1
+
+New features:
+
+- Document links for options and scopes methods used in yaml configs
+- Now you can generate controllers with sidebar
+- Completions for behaviors names in `$this->asExtension()` and `$this->getClassExtension()` methods
+- Completions for model attribute casts
+
+Fixes:
+
+- Completions for env variables now works in any php file inside project
+- Document links for models now works in `app` directory
+- Options methods completions in yaml configs now uses right model
+- `list` and `filter` properties in yaml configs can be an empty array
+-
+
 ## 0.10.0
 
 New features:
