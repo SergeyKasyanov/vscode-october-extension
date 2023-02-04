@@ -1,6 +1,6 @@
 import * as phpParser from 'php-parser';
 import { Str } from '../../../helpers/str';
-import { PhpHelpers } from "../../helpers/php-helpers";
+import { MethodsList, PhpHelpers } from "../../helpers/php-helpers";
 import { Owner } from '../owners/owner';
 import { ModelBehavior } from './behavior';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
@@ -264,13 +264,13 @@ export class Model extends OctoberClass {
     /**
      * List of public methods starts wth "get" and ends with "Options"
      */
-    get optionsMethods(): string[] {
+    get optionsMethods(): MethodsList {
         const phpClass = PhpHelpers.getClass(this.fileContent!, this.path);
         if (!phpClass) {
-            return [];
+            return {};
         }
 
-        const optionsMethods: string[] = [];
+        const optionsMethods: MethodsList = {};
 
         const classMethods = PhpHelpers.getMethods(phpClass);
         for (const methodName in classMethods) {
@@ -281,7 +281,7 @@ export class Model extends OctoberClass {
                     && methodName.startsWith('get')
                     && methodName.includes('Options')
                 ) {
-                    optionsMethods.push(methodName);
+                    optionsMethods[methodName] = method;
                 }
             }
         }
@@ -292,13 +292,13 @@ export class Model extends OctoberClass {
     /**
      * List of scopes defined in model with ranges
      */
-    get scopes(): string[] {
+    get scopes(): MethodsList {
         const phpClass = PhpHelpers.getClass(this.fileContent!, this.path);
         if (!phpClass) {
-            return [];
+            return {};
         }
 
-        const optionsMethods: string[] = [];
+        const optionsMethods: MethodsList = {};
 
         const classMethods = PhpHelpers.getMethods(phpClass);
         for (const methodName in classMethods) {
@@ -310,7 +310,7 @@ export class Model extends OctoberClass {
                 ) {
                     const scopeName = Str.lcFirst(methodName.substring('scope'.length));
 
-                    optionsMethods.push(scopeName);
+                    optionsMethods[scopeName] = method;
                 }
             }
         }

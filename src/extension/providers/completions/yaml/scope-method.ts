@@ -1,13 +1,13 @@
 import * as vscode from "vscode";
 import * as yaml from 'yaml';
+import { Controller } from "../../../../domain/entities/classes/controller";
+import { Model } from "../../../../domain/entities/classes/model";
+import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Project } from "../../../../domain/entities/project";
 import { Store } from "../../../../domain/services/store";
+import { Str } from "../../../../helpers/str";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
-import pluralize = require("pluralize");
-import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
-import { Model } from "../../../../domain/entities/classes/model";
-import { Controller } from "../../../../domain/entities/classes/controller";
 
 const SCOPE = /\s*scope\:\s*/g;
 const SEARCH_SCOPE = /\s*searchScope\:\s*/g;
@@ -97,41 +97,15 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
             return this.getScopesForFilterConfig();
         }
 
+        // config_filter.yaml, scope
+        if (isScopeAttr && isFilterConfig) {
+            return this.getScopesForFilterConfig();
+        }
+
         // config_list.yaml, scope
         if (isScopeAttr && isListConfig) {
             return this.getScopesForListConfig();
         }
-    }
-
-    /**
-     * Completions for "modelScope" in config_filter.yaml
-     *
-     * @returns
-     */
-    private getScopesForFilterConfig(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        let model: Model | undefined;
-        let modelClass = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'modelClass');
-        if (modelClass) {
-            if (modelClass.startsWith('\\')) {
-                modelClass = modelClass.substring(1);
-            }
-
-            model = this.project!.models.find(m => m.fqn === modelClass);
-        } else {
-            const controller = this.owner!.findEntityByRelatedName(this.document!.fileName);
-            if (!(controller instanceof Controller)) {
-                return;
-            }
-
-            const modelUqn = pluralize.singular(controller.uqn);
-            model = this.owner!.models.find(m => m.uqn === modelUqn);
-        }
-
-        if (!model) {
-            return;
-        }
-
-        return this.getCompletionItems(model);
     }
 
     /**
@@ -184,6 +158,26 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
     }
 
     /**
+     * Completions for "scope" and "modelScope" in config_filter.yaml
+     *
+     * @returns
+     */
+    private getScopesForFilterConfig(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+        const controller = this.owner!.findEntityByRelatedName(this.document!.fileName);
+        if (!(controller instanceof Controller)) {
+            return;
+        }
+
+        const modelUqn = Str.singular(controller.uqn);
+        const model = this.owner!.models.find(m => m.uqn === modelUqn);
+        if (!model) {
+            return;
+        }
+
+        return this.getCompletionItems(model);
+    }
+
+    /**
      * Completions for "scope" in config_list.yaml/toolbar/search
      *
      * @returns
@@ -212,7 +206,7 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
     }
 
     private getCompletionItems(model: Model): vscode.CompletionItem[] {
-        return model.scopes.map(scope => {
+        return Object.keys(model.scopes).map(scope => {
             const item = new vscode.CompletionItem(scope, vscode.CompletionItemKind.Method);
             item.range = this.document!.getWordRangeAtPosition(this.position!, METHOD_NAME);
 

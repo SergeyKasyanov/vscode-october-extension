@@ -104,7 +104,7 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
     }
 
     private getModelOptionsCompletions(model: Model): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        return model.optionsMethods.map(method => {
+        return Object.keys(model.optionsMethods).map(method => {
             const item = new vscode.CompletionItem(method, vscode.CompletionItemKind.Method);
             item.range = this.document!.getWordRangeAtPosition(this.position!, METHOD_NAME);
 
