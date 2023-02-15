@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.10.2
+
+Fixes:
+
+- Fixed template for controller with sidebar generator
+- Fixed version detection for October 3.2 based projects
+
 ## 0.10.1
 
 New features:
@@ -15,7 +22,6 @@ Fixes:
 - Document links for models now works in `app` directory
 - Options methods completions in yaml configs now uses right model
 - `list` and `filter` properties in yaml configs can be an empty array
--
 
 ## 0.10.0
 
