@@ -103,10 +103,6 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
             controller = this.entity!;
         }
 
-        if (!controller) {
-            return;
-        }
-
         const filePath = PathHelpers.relativePath(
             this.project!.path,
             value,
