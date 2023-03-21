@@ -2,7 +2,11 @@ import * as vscode from "vscode";
 import { Model } from "../../../../domain/entities/classes/model";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
+import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
+
+const DISPLAY_FROM_KEY = /displayFrom:\s*/g;
+const DISPLAY_FROM_VALUE_PART = /^[\w\\]*$/;
 
 /**
  * Completions for model attributes in it's config file (fields.yaml or columns.yaml)
@@ -23,6 +27,15 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
             return;
         }
 
+        if (awaitsCompletions(
+            document.getText(),
+            document.offsetAt(position),
+            DISPLAY_FROM_KEY,
+            DISPLAY_FROM_VALUE_PART
+        )) {
+            return this.completions(model);
+        }
+
         const parent = YamlHelpers.getParent(document, position.line);
         if (!parent || !['columns', 'fields'].includes(parent)) {
             return;
@@ -34,6 +47,10 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
             return;
         }
 
+        return this.completions(model);
+    }
+
+    private completions(model: Model): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         return [...new Set([
             ...model.attributes,
             ...model.guessAttributes,
