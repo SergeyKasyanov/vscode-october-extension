@@ -74,4 +74,11 @@ export class Platform {
     get hasFilterWidgets(): boolean {
         return this._version >= Version.oc30;
     }
+
+    /**
+     * Uses bootstrap5 in admin panel
+     */
+    get usesBootstrap5(): boolean {
+        return this._version >= Version.oc30;
+    }
 }

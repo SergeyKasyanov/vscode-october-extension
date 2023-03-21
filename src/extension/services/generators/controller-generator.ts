@@ -106,6 +106,15 @@ export class ControllerGenerator extends GeneratorBase {
             throw new PropertyIsRequired('Property "controller" is required');
         }
 
+        let errorWrapper: string | boolean = false;
+        if (!!vars.hasSidebar) {
+            if (this.project.platform?.usesBootstrap5) {
+                errorWrapper = 'p-4';
+            } else {
+                errorWrapper = 'p-a';
+            }
+        }
+
         super.setVars({
             controller: vars.controller,
             model: vars.model || Str.singular(vars.controller.toString()),
@@ -116,7 +125,8 @@ export class ControllerGenerator extends GeneratorBase {
             addFormControllerBehavior: !!vars.addFormControllerBehavior,
             addRelationControllerBehavior: !!vars.addRelationControllerBehavior,
             addImportExportControllerBehavior: !!vars.addImportExportControllerBehavior,
-            hasSidebar: !!vars.hasSidebar
+            hasSidebar: !!vars.hasSidebar,
+            errorWrapper: errorWrapper
         });
     }
 
