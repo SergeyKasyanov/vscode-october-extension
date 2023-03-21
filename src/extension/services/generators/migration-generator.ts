@@ -50,7 +50,8 @@ export class MigrationGenerator extends GeneratorBase {
             addSoftDelete: !!vars.addSoftDelete,
             addMultisite: !!vars.addMultisite,
             usesTableId: !!this.project.platform!.usesIdMethodInMigrations,
-            anonymousClass: this.plugin instanceof AppDirectory
+            anonymousClass: this.plugin instanceof AppDirectory,
+            withTimezones: !!vars.withTimezones,
         });
     }
 

@@ -53,11 +53,19 @@ class {{ migration_pascal }} extends Migration
 {% endif %}
 {% if addTimestamps %}
 
+{% if withTimezones %}
+            $table->timestampsTz();
+{% else %}
             $table->timestamps();
+{% endif %}
 {% endif %}
 {% if addSoftDelete %}
 
+{% if withTimezones %}
+            $table->softDeletesTz();
+{% else %}
             $table->softDeletes();
+{% endif %}
 {% endif %}
 {% if addMultisite %}
 

@@ -14,6 +14,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
         columnsYaml: 'Add columns.yaml config',
         fieldsYaml: 'Add fields.yaml config',
         timestamps: 'Add timestamps',
+        timezones: 'Add timezones to dates',
         casts: 'Add casts',
         relations: 'Add relations',
         nullable: 'Add trait Nullable',
@@ -88,6 +89,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             { label: this.options.casts, picked: true },
             { label: this.options.relations, picked: true },
             { label: this.options.validation, picked: true },
+            { label: this.options.timezones },
             { label: this.options.nullable },
             { label: this.options.hashable },
             { label: this.options.purgeable },
@@ -140,6 +142,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             addTraitSoftDelete: options.includes(this.options.softDelete),
             addTraitRevisionable: options.includes(this.options.revisionable),
             addTraitMultisite: options.includes(this.options.multisite),
+            withTimezones: options.includes(this.options.timezones)
         };
     }
 
@@ -155,6 +158,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             addSoftDelete: options.includes(this.options.softDelete),
             addTimestamps: options.includes(this.options.timestamps),
             addMultisite: options.includes(this.options.multisite),
+            withTimezones: options.includes(this.options.timezones)
         };
     }
 }

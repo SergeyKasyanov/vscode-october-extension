@@ -29,6 +29,7 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
         addNestedTree: 'Add nested tree',
         addSoftDelete: 'Add soft delete',
         addMultisite: 'Add multisite columns',
+        withTimezones: 'Add timezones to dates',
     };
 
     protected async show() {
@@ -54,7 +55,15 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
         const migration = await this.ask('Migration file name', this.getMigrationValidator(), migrationGuess);
         const table = await this.ask('Table name', InputValidators.migration, tableGuess);
 
-        const { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete, addMultisite } = await this.getOptions(action);
+        const {
+            addSlug,
+            addSortOrder,
+            addSimpleTree,
+            addNestedTree,
+            addSoftDelete,
+            addMultisite,
+            withTimezones
+        } = await this.getOptions(action);
 
         const generator = new MigrationGenerator(this.project, pluginCode, {
             migration,
@@ -65,7 +74,8 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addSimpleTree,
             addNestedTree,
             addSoftDelete,
-            addMultisite
+            addMultisite,
+            withTimezones
         });
 
         const generated = generator.generate();
@@ -156,7 +166,8 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addSimpleTree = false,
             addNestedTree = false,
             addSoftDelete = false,
-            addMultisite = false;
+            addMultisite = false,
+            withTimezones = false;
 
         if (action === TableAction.create) {
             const labels = [
@@ -165,6 +176,7 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
                 { label: this.options.addSimpleTree, description: 'Add "parent_id" column for SimpleTree model trait' },
                 { label: this.options.addNestedTree, description: 'Add columns for NestedTree model trait' },
                 { label: this.options.addSoftDelete, description: 'Add "deleted_at" column for SoftDelete trait' },
+                { label: this.options.withTimezones, description: 'Add timezones to datetime columns' },
             ];
 
             if (this.project.platform!.hasMultisite) {
@@ -185,9 +197,18 @@ export class MigrationGeneratorUi extends GeneratorUiBase {
             addNestedTree = picked.includes(this.options.addNestedTree);
             addSoftDelete = picked.includes(this.options.addSoftDelete);
             addMultisite = picked.includes(this.options.addMultisite);
+            withTimezones = picked.includes(this.options.withTimezones);
         }
 
-        return { addSlug, addSortOrder, addSimpleTree, addNestedTree, addSoftDelete, addMultisite };
+        return {
+            addSlug,
+            addSortOrder,
+            addSimpleTree,
+            addNestedTree,
+            addSoftDelete,
+            addMultisite,
+            withTimezones
+        };
     }
 }
 

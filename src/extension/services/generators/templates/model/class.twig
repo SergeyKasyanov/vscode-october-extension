@@ -122,6 +122,10 @@ class {{ model_pascal }} extends Model
 
     public $timestamps = false;
 {% endif %}
+{% if withTimezones %}
+
+    protected $dateFormat = 'Y-m-d H:i:sP';
+{% endif %}
 {% if addCasts %}
 
     protected $dates = [{% if addTraitSoftDelete %}'deleted_at'{% endif %}];
