@@ -4,9 +4,11 @@
  */
 ?>
 <div data-control="toolbar">
+{% if addFormControllerBehavior %}
 	<a href="<?= $this->actionUrl('create') ?>" class="btn btn-primary oc-icon-plus">
 		<?= e(trans('backend::lang.list.create_button', ['name' => '{{ model_pascal }}'])) ?>
 	</a>
+{% endif %}
 
 	<button class="btn btn-danger oc-icon-trash-o"
             disabled="disabled"
