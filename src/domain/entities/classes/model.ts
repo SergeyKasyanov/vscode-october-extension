@@ -149,7 +149,20 @@ export class Model extends OctoberClass {
 
             const classProperties = PhpHelpers.getProperties(phpClass);
 
-            const relationTypes = ['belongsTo', 'hasOne', 'hasMany', 'belongsToMany', 'hasManyThrough', 'hasOneThrough', 'morphOne', 'morphMany'];
+            const relationTypes = [
+                'belongsTo',
+                'hasOne',
+                'hasMany',
+                'belongsToMany',
+                'hasManyThrough',
+                'hasOneThrough',
+                'morphOne',
+                'morphMany',
+                'morphTo',
+                'attachOne',
+                'attachMany'
+            ];
+
             for (const type of relationTypes) {
                 const definition = classProperties[type];
                 if (!definition || definition.value?.kind !== 'array') {
