@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { Model } from "../../../../domain/entities/classes/model";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
+import { Str } from "../../../../helpers/str";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
 
@@ -47,16 +48,28 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
             return;
         }
 
-        return this.completions(model);
+        return this.completions(model, true);
     }
 
-    private completions(model: Model): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+    private completions(model: Model, withLabel: boolean = false): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         return [...new Set([
             ...model.attributes,
             ...model.guessAttributes,
             ...Object.keys(model.relations)
-        ])].sort().map(
-            attr => new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property)
-        );
+        ])].sort().map(attr => {
+            const item = new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property);
+            if (!withLabel) {
+                return item;
+            }
+
+            const label = Str.pascalCase(attr);
+
+            item.insertText = new vscode.SnippetString(
+                `${attr}:
+    label: \${1:${label}}
+    $0`);
+
+            return item;
+        });
     }
 }
