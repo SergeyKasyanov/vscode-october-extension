@@ -1,5 +1,26 @@
 # Change Log
 
+## 0.10.3
+
+New features:
+
+- "Add timezones" option in model and migration generators
+- Completions for `displayFrom` column option in `columns.yaml`
+
+Improvements:
+
+- Controller generator now not adding "New" button if there is no `FormController` behavior
+- Added padding to `error` view when controller created with sidebar
+- Attributes guessing now reads model accessors and mutators
+- Completions for model attributes in `fields.yaml` and `columns.yaml` now inserts labels
+
+Fixes:
+
+- Links to partials placed not in controller directory now works correctly
+- Add `morphTo`, `attachOne` and `attachMany` relations to guessing model relations names
+- Cast types no completes correctly when cast on previous line is empty,
+- Attributes in model properties now completes correctly
+
 ## 0.10.2
 
 Fixes:
@@ -33,7 +54,7 @@ New features:
 Fixes:
 
 - Fixed namespaces in class generators when used with app directory
-- Fixed completions of view file names in View::make(), view(), Mail::send() and Mail::sendTo() calls
+- Fixed completions of view file names in `View::make()`, `view()`, `Mail::send()` and `Mail::sendTo()` calls
 - Fixed icon names and behavior config names completions
 - "Go to model" and "go to migration" code lenses now works in app directory models and migrations
 
