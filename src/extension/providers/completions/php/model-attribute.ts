@@ -8,7 +8,7 @@ const MODEL_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(guarded|fillable|
 const MODEL_PROPERTY_SPACER = /^\s*[\'\"](\w*[\'\"],\s*[\'\"])*$/;
 
 const MODEL_ASSOCIATIVE_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(slugs|rules|casts|attributeNames)\s*=\s*(\[|array\()/g;
-const MODEL_ASSOCIATIVE_PROPERTY_SPACER = /^\s*(\s*[\'\"][\w\*\-\_\.]+[\'\"]\s*=>\s*[\'\"].*[\'\"],\s*)*[\'\"]$/;
+const MODEL_ASSOCIATIVE_PROPERTY_SPACER = /^\s*(\s*[\'\"][\w\*\-\_\.]+[\'\"]\s*=>\s*(([\'\"].*[\'\"])|[\w:]+),\s*)*[\'\"]$/;
 
 const CUSTOM_MESSAGES_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$customMessages\s*=\s*(\[|array\()/g;
 const CUSTOM_MESSAGES_PROPERTY_SPACER = /^\s*(\s*[\'\"][\w\*\-\_\.]+[\'\"]\s*=>\s*[\'\"].*[\'\"],\s*)*[\'\"][а-я\w\*\-\_\.]*$/;
