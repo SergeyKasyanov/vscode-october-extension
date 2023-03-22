@@ -123,6 +123,15 @@ export class Model extends OctoberClass {
             }
         }
 
+        const methods = this.phpClassMethods || {};
+        for (const name of Object.keys(methods)) {
+            if ((name.startsWith('get') || name.startsWith('set')) && name.endsWith('Attribute')) {
+                const guessedAttr = name.substring(3, name.length - 9);
+
+                attributes.push(Str.snakeCase(guessedAttr));
+            }
+        }
+
         return attributes;
     }
 
