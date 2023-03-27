@@ -9,6 +9,7 @@ export class ModelsIndexer extends DirectoryIndexer<Model> {
     protected getOctoberClassParentsFqn(): string[] {
         return [
             'Model',
+            'System\\Models\\SettingModel',
             'October\\Rain\\Database\\Model',
             'October\\Rain\\Database\\Attach\\File',
             'October\\Rain\\Auth\\Models\\User',
