@@ -3,6 +3,9 @@
     "properties": {
         "defaultFormatOptions": {
             "properties": {
+                "customJson": {
+                    "type": "boolean"
+                },
                 "delimiter": {
                     "type": "string"
                 },
@@ -18,9 +21,13 @@
                 "fileFormat": {
                     "enum": [
                         "csv",
+                        "csv_custom",
                         "json"
                     ],
                     "type": "string"
+                },
+                "firstRowTitles": {
+                    "type": "boolean"
                 }
             },
             "type": "object"

@@ -92,6 +92,10 @@
                 "url": "./resources/schemas/fields.yaml.json"
             },
             {
+                "fileMatch": "**/*groups*.yaml",
+                "url": "./resources/schemas/repeater_groups.yaml.json"
+            },
+            {
                 "fileMatch": "**/*list*.yaml",
                 "url": "./resources/schemas/config_list.yaml.json"
             },

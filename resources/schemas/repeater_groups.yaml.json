@@ -1,4 +1,5 @@
 {
+    "$ref": "#/definitions/Groups",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "BalloonSelectorField": {
@@ -7331,54 +7332,5 @@
             ],
             "type": "object"
         }
-    },
-    "properties": {
-        "author": {
-            "type": "string"
-        },
-        "authorCode": {
-            "type": "string"
-        },
-        "code": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
-        "form": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/FieldsRoot"
-                },
-                {
-                    "type": "string"
-                }
-            ]
-        },
-        "homepage": {
-            "type": "string"
-        },
-        "name": {
-            "type": "string"
-        },
-        "parent": {
-            "type": "string"
-        },
-        "previewImage": {
-            "type": "string"
-        },
-        "require": {
-            "items": {
-                "type": "string"
-            },
-            "type": "array"
-        }
-    },
-    "required": [
-        "author",
-        "description",
-        "homepage",
-        "name"
-    ],
-    "type": "object"
+    }
 }

@@ -69,6 +69,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "colorpicker"
@@ -159,6 +166,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "type": "string"
                 },
@@ -241,6 +255,13 @@
                 },
                 "sortable": {
                     "type": "boolean"
+                },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -337,6 +358,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "datetime"
@@ -402,32 +430,7 @@
                     "type": "string"
                 },
                 "options": {
-                    "properties": {
-                        "mode": {
-                            "enum": [
-                                "auto",
-                                "crop",
-                                "exact",
-                                "fit",
-                                "landscape",
-                                "portrait"
-                            ],
-                            "type": "string"
-                        },
-                        "offset": {
-                            "items": {
-                                "type": "number"
-                            },
-                            "type": "array"
-                        },
-                        "quality": {
-                            "type": "number"
-                        },
-                        "sharpen": {
-                            "type": "number"
-                        }
-                    },
-                    "type": "object"
+                    "$ref": "#/definitions/ThumbsOptions"
                 },
                 "permissions": {
                     "anyOf": [
@@ -459,6 +462,13 @@
                 },
                 "sortable": {
                     "type": "boolean"
+                },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -552,6 +562,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "linkage"
@@ -644,6 +661,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "number"
@@ -661,7 +685,6 @@
                 }
             },
             "required": [
-                "format",
                 "type"
             ],
             "type": "object"
@@ -736,6 +759,13 @@
                 },
                 "sortable": {
                     "type": "boolean"
+                },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -845,6 +875,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "selectable"
@@ -909,6 +946,9 @@
                 "limitChars": {
                     "type": "number"
                 },
+                "limitWords": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -939,6 +979,13 @@
                 },
                 "sortable": {
                     "type": "boolean"
+                },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -1035,6 +1082,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "switch"
@@ -1124,6 +1178,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "text"
@@ -1143,6 +1204,34 @@
             "required": [
                 "type"
             ],
+            "type": "object"
+        },
+        "ThumbsOptions": {
+            "properties": {
+                "mode": {
+                    "enum": [
+                        "auto",
+                        "crop",
+                        "exact",
+                        "fit",
+                        "landscape",
+                        "portrait"
+                    ],
+                    "type": "string"
+                },
+                "offset": {
+                    "items": {
+                        "type": "number"
+                    },
+                    "type": "array"
+                },
+                "quality": {
+                    "type": "number"
+                },
+                "sharpen": {
+                    "type": "number"
+                }
+            },
             "type": "object"
         },
         "TimeColumn": {
@@ -1212,6 +1301,13 @@
                 },
                 "sortable": {
                     "type": "boolean"
+                },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
                 },
                 "type": {
                     "enum": [
@@ -1305,6 +1401,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "timesince"
@@ -1394,6 +1497,13 @@
                 "sortable": {
                     "type": "boolean"
                 },
+                "sortableDefault": {
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "type": "string"
+                },
                 "type": {
                     "enum": [
                         "timetense"
@@ -1454,13 +1564,13 @@
                         "$ref": "#/definitions/SelectableColumn"
                     },
                     {
+                        "$ref": "#/definitions/LinkageColumn"
+                    },
+                    {
                         "$ref": "#/definitions/PartialColumn"
                     },
                     {
                         "$ref": "#/definitions/ColorPickerColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/LinkageColumn"
                     },
                     {
                         "$ref": "#/definitions/CustomColumn"

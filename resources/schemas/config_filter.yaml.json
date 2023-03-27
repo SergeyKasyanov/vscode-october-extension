@@ -9,9 +9,10 @@
                 "default": {
                     "enum": [
                         0,
-                        1
-                    ],
-                    "type": "number"
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "dependsOn": {
                     "type": "string"
@@ -19,8 +20,18 @@
                 "label": {
                     "type": "string"
                 },
-                "modelScope": {
-                    "type": "string"
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "scope": {
                     "type": "string"
@@ -35,6 +46,7 @@
             "required": [
                 "conditions",
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -48,8 +60,18 @@
                 "label": {
                     "type": "string"
                 },
-                "modelScope": {
-                    "type": "string"
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "scope": {
                     "type": "string"
@@ -60,6 +82,7 @@
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -87,7 +110,16 @@
                             ]
                         },
                         "equals": {
-                            "type": "boolean"
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "notEquals": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
                         }
                     },
                     "type": "object"
@@ -98,6 +130,18 @@
                 "dependsOn": {
                     "type": "string"
                 },
+                "firstDay": {
+                    "enum": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6
+                    ],
+                    "type": "number"
+                },
                 "label": {
                     "type": "string"
                 },
@@ -107,21 +151,38 @@
                 "minDate": {
                     "type": "string"
                 },
-                "modelScope": {
-                    "type": "string"
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "scope": {
                     "type": "string"
+                },
+                "showWeekNumber": {
+                    "type": "boolean"
                 },
                 "type": {
                     "enum": [
                         "date"
                     ],
                     "type": "string"
+                },
+                "useTimezone": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -134,13 +195,13 @@
                 "dependsOn": {
                     "type": "string"
                 },
+                "emptyOption": {
+                    "type": "string"
+                },
                 "label": {
                     "type": "string"
                 },
                 "modelClass": {
-                    "type": "string"
-                },
-                "modelScope": {
                     "type": "string"
                 },
                 "options": {
@@ -162,6 +223,19 @@
                         }
                     ]
                 },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "scope": {
                     "type": "string"
                 },
@@ -174,6 +248,7 @@
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -198,9 +273,6 @@
                 "modelClass": {
                     "type": "string"
                 },
-                "modelScope": {
-                    "type": "string"
-                },
                 "nameFrom": {
                     "type": "string"
                 },
@@ -223,6 +295,19 @@
                         }
                     ]
                 },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "scope": {
                     "type": "string"
                 },
@@ -238,6 +323,7 @@
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -247,10 +333,28 @@
                 "conditions": {
                     "properties": {
                         "between": {
-                            "type": "string"
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "exact": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
                         },
                         "greater": {
-                            "type": "string"
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
+                        },
+                        "lesser": {
+                            "type": [
+                                "string",
+                                "boolean"
+                            ]
                         }
                     },
                     "type": "object"
@@ -264,6 +368,19 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "scope": {
                     "type": "string"
                 },
@@ -276,6 +393,7 @@
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -291,9 +409,10 @@
                 "default": {
                     "enum": [
                         0,
-                        1
-                    ],
-                    "type": "number"
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "dependsOn": {
                     "type": "string"
@@ -301,8 +420,18 @@
                 "label": {
                     "type": "string"
                 },
-                "modelScope": {
-                    "type": "string"
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "scope": {
                     "type": "string"
@@ -317,6 +446,7 @@
             "required": [
                 "conditions",
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
@@ -349,6 +479,19 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "permissions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "scope": {
                     "type": "string"
                 },
@@ -361,6 +504,7 @@
             },
             "required": [
                 "label",
+                "permissions",
                 "type"
             ],
             "type": "object"
