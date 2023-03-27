@@ -60,6 +60,8 @@ export class VersionDetector {
             return Version.oc31;
         } else if (version.includes('3.2')) {
             return Version.oc32;
+        } else if (version.includes('3.3')) {
+            return Version.oc33;
         }
 
         return undefined;
