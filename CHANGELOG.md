@@ -1,5 +1,24 @@
 # Change Log
 
+## 0.11.0
+
+The main goal for this release was update version detection and yaml schemas to OctoberCMS v3.3.
+
+Other changes includes:
+
+New features:
+
+- Completions for path helpers (`plugins_path()`, `themes_path()`, `storage_path()`, etc)
+- Document links for arguments in path helpers
+- Completions for view names in columns and fields partials
+- Document links for view names in columns and fields partials
+- Completions for table names in `exists` and `unique` validation rules
+- New yaml schema for repeater groups files
+
+Improvements:
+
+- Extensions now correctly recognizes models extending `System\Models\SettingsModel`
+
 ## 0.10.3
 
 New features:
