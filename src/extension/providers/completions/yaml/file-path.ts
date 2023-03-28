@@ -25,6 +25,8 @@ const CONFIG_KEY_ROOT = /\s*(list|form|groups|filter)\:\s*\~/;
 const PATH_PART = /^[\$\~\w\\\/\-\_\.]*$/;
 const PATH = /[\$\~\w\\\/\-\_\.]+/;
 
+const TEMPLATE_NAME = /[\w\_\-\.\:]+/;
+
 /**
  * Completions for path keys in yaml configs.
  *
@@ -78,7 +80,26 @@ export class FilePath implements vscode.CompletionItemProvider {
         }
 
         if (this.entity instanceof Model && this.awaitsControllerPartialsPathCompletions()) {
-            return this.getPathCompletions(this.project!.platform!.backendViewExtensions, true);
+            const partialsCompletions = this.getPathCompletions(this.project!.platform!.backendViewExtensions, true);
+            const viewsCompletions = this.project!.views.map(tpl => {
+                const item = new vscode.CompletionItem(tpl, vscode.CompletionItemKind.EnumMember);
+                item.range = document.getWordRangeAtPosition(position, TEMPLATE_NAME);
+                item.sortText = '1';
+
+                return item;
+            });
+
+            let result: vscode.CompletionItem[] = [];
+
+            if (partialsCompletions) {
+                result = result.concat(partialsCompletions);
+            }
+
+            if (viewsCompletions) {
+                result = result.concat(viewsCompletions);
+            }
+
+            return result;
         }
 
         if (this.awaitsPrefixedConfigPathCompletions(CONFIG_KEY_PLUGIN)) {
@@ -279,6 +300,7 @@ export class FilePath implements vscode.CompletionItemProvider {
             .map(file => {
                 const item = new vscode.CompletionItem(file!, vscode.CompletionItemKind.File);
                 item.range = this.document!.getWordRangeAtPosition(this.position!, PATH);
+                item.sortText = '0';
 
                 return item;
             });
