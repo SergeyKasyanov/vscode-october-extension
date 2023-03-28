@@ -21,6 +21,19 @@ const PUBLIC = /public_path\s*\(\s*[\'\"]/g;
 const PATH_PART = /^[\w\/\-\_\.]*$/;
 const PATH = /[\w\/\-\_\.]+/;
 
+/**
+ * Completions for path helpers
+ *
+ * plugins_path('....');
+ * themes_path('....');
+ * storage_path('....');
+ * temp_path('....');
+ * app_path('....');
+ * base_path('....');
+ * config_path('....');
+ * lang_path('....');
+ * public_path('....');
+ */
 export class PathHelper implements vscode.CompletionItemProvider {
 
     private document?: vscode.TextDocument;
@@ -86,13 +99,13 @@ export class PathHelper implements vscode.CompletionItemProvider {
             root = path.join(this.entity!.owner.project.path, 'storage');
         } else if (awaitsCompletions(content, offset, TEMP, PATH_PART)) {
             root = path.join(this.entity!.owner.project.path, 'storage', 'temp');
-        } else if (awaitsCompletions(content, offset, APP, PATH_PART)) {
+        } else if (this.entity?.owner.project.platform?.hasAppDirectory && awaitsCompletions(content, offset, APP, PATH_PART)) {
             root = path.join(this.entity!.owner.project.path, 'app');
         } else if (awaitsCompletions(content, offset, BASE, PATH_PART)) {
             root = this.entity!.owner.project.path;
         } else if (awaitsCompletions(content, offset, CONFIG, PATH_PART)) {
             root = path.join(this.entity!.owner.project.path, 'config');
-        } else if (awaitsCompletions(content, offset, LANG, PATH_PART)) {
+        } else if (this.entity?.owner.project.platform?.hasAppDirectory && awaitsCompletions(content, offset, LANG, PATH_PART)) {
             root = path.join(this.entity!.owner.project.path, 'app', 'lang');
         } else if (awaitsCompletions(content, offset, PUBLIC, PATH_PART)) {
             root = path.join(this.entity!.owner.project.path, 'public');
