@@ -11,11 +11,19 @@ export class YamlHelpers {
      * @returns
      */
     static getKeyAndValue(lineText: string): { key: string; value?: string; } {
-        const parts = lineText.split(':');
+        const div = lineText.indexOf(':');
+        if (div === -1) {
+            return {
+                key: lineText
+            };
+        }
+
+        const key = lineText.slice(0, div).trim();
+        const value = lineText.slice(div + 1).trim();
 
         return {
-            key: parts[0].trim(),
-            value: parts[1] ? parts[1].trim() : undefined
+            key,
+            value: value.length > 0 ? value : undefined
         };
     }
 

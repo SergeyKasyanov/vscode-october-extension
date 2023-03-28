@@ -9,10 +9,12 @@ import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
 import { Str } from '../../../helpers/str';
+import { resolveViewPath } from "../../helpers/view-path-resolver";
 import { YamlHelpers } from "../../helpers/yaml-helpers";
 import { DocumentLink as _DocumentLInk } from '../../types/document-link';
 
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
+const VIEW_PAIR = /path:\s*[\'\"]{0,1}[\w\-\_\.\/]+::[\w\-\_\.\/]+[\'\"]{0,1}/g;
 const MODEL_CLASS_PAIR = /modelClass:\s*[\w\\\_]+/g;
 const OPTIONS_PAIR = /options:\s*[\w\\\:\_]+/g;
 const SCOPE_PAIR = /(scope|searchScope|modelScope):\s*[\w\_]+/g;
@@ -44,6 +46,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
 
         return [
             ...this.processMatches(document, content.matchAll(PATH_PAIR), 'file'),
+            ...this.processMatches(document, content.matchAll(VIEW_PAIR), 'view'),
             ...this.processMatches(document, content.matchAll(MODEL_CLASS_PAIR), 'model'),
             ...this.processMatches(document, content.matchAll(OPTIONS_PAIR), 'options'),
             ...this.processMatches(document, content.matchAll(SCOPE_PAIR), 'scope'),
@@ -64,6 +67,10 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
                 continue;
             }
 
+            if (mode === 'file' && value.includes('::')) {
+                continue;
+            }
+
             const valueOffset = match[0].indexOf(value);
 
             const start = document.positionAt(match.index! + valueOffset);
@@ -79,7 +86,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
         return links;
     }
 
-    resolveDocumentLink(link: DocumentLink, token: vscode.CancellationToken): vscode.ProviderResult<vscode.DocumentLink> {
+    resolveDocumentLink(link: DocumentLink): vscode.ProviderResult<vscode.DocumentLink> {
         const value = link.markedText;
 
         switch (link.mode) {
@@ -91,6 +98,8 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
                 return this.resolveOptionsLink(value, link);
             case 'scope':
                 return this.resolveScopeLink(value, link);
+            case 'view':
+                return this.resolveViewLink(value, link);
         }
     }
 
@@ -259,6 +268,18 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
         return link;
     }
 
+    private resolveViewLink(value: string, link: DocumentLink): vscode.ProviderResult<vscode.DocumentLink> {
+        const viewPath = resolveViewPath(this.project!, value);
+        if (!viewPath) {
+            vscode.window.showErrorMessage('View does not exists');
+            return;
+        }
+
+        link.target = vscode.Uri.file(viewPath);
+
+        return link;
+    }
+
     private getModelForFields(position: vscode.Position): Model | undefined {
         const type = YamlHelpers.getSameParentProperty(this.document!, position, 'type');
         if (!type) {
@@ -320,7 +341,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
     }
 }
 
-type LinkMode = 'file' | 'model' | 'options' | 'scope';
+type LinkMode = 'file' | 'view' | 'model' | 'options' | 'scope';
 
 class DocumentLink extends _DocumentLInk {
     mode?: LinkMode;

@@ -1,8 +1,7 @@
 import * as vscode from "vscode";
-import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { Store } from "../../../domain/services/store";
+import { resolveViewPath } from "../../helpers/view-path-resolver";
 import { DocumentLink } from "../../types/document-link";
-import path = require("path");
 
 const CALL_VIEW = /((::send\s*\()|(::sendTo\s*\(\s*.*,)|(View\s*::\s*make\s*\()|(view\s*\())\s*[\'\"][\w\_\-\.\:]+[\'\"]/g;
 const VIEWS = /[\'\"][\w\_\-\.\:]+[\'\"]/g;
@@ -48,31 +47,7 @@ export class ViewTemplate implements vscode.DocumentLinkProvider {
             return;
         }
 
-        const viewName = link.markedText;
-
-        const projectViews = project.views;
-
-        if (!projectViews.includes(viewName)) {
-            vscode.window.showErrorMessage('View does not exists');
-            return;
-        }
-
-        const [ownerCode, viewCode] = viewName.split('::');
-
-        const owner = project.findOwnerByName(ownerCode);
-        if (!owner) {
-            return;
-        }
-
-        let viewPath: string | undefined;
-
-        for (const ext of ['php', 'htm']) {
-            const candidate = path.join(owner.path, 'views', ...viewCode.split('.')) + '.' + ext;
-            if (FsHelpers.exists(candidate)) {
-                viewPath = candidate;
-            }
-        }
-
+        const viewPath = resolveViewPath(project, link.markedText);
         if (!viewPath) {
             vscode.window.showErrorMessage('View does not exists');
             return;
