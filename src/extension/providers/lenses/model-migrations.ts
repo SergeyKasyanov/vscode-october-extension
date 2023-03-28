@@ -49,6 +49,9 @@ class ModelMigrations implements vscode.CodeLensProvider {
 
 async function showMigrations(model: Model) {
     const table = model.table;
+    if (!table) {
+        return;
+    }
 
     const migrations = model.owner.project.migrations
         .filter(m => m.tables.includes(table))

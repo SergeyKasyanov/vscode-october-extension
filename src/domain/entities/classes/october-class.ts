@@ -31,6 +31,20 @@ export abstract class OctoberClass extends OctoberEntity {
     }
 
     /**
+     * Parent class fqn
+     */
+    get parentClass(): string | undefined {
+        const phpClass = this.phpClass;
+        if (!phpClass?.extends) {
+            return;
+        }
+
+        const uses = PhpHelpers.getUsesList(this.fileContent!, this.name);
+
+        return uses[phpClass.extends.name] || phpClass.extends.name;
+    }
+
+    /**
      * Php class ast
      */
     get phpClass(): phpParser.Class | undefined {

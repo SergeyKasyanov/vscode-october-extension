@@ -49,6 +49,18 @@ export class Model extends OctoberClass {
     }
 
     /**
+     * Is this model a settings model?
+     */
+    get isSettings(): boolean {
+        const hasSettingsBehavior = Object.keys(this.behaviors).includes('System\\Behaviors\\SettingsModel');
+        if (hasSettingsBehavior) {
+            return true;
+        }
+
+        return this.parentClass === 'System\\Models\\SettingModel';
+    }
+
+    /**
      * Path to class's views and configs directory
      */
     get filesDirectory(): string {
@@ -58,7 +70,7 @@ export class Model extends OctoberClass {
     /**
      * Database table used by this model
      */
-    get table(): string {
+    get table(): string | undefined {
         const phpClass = PhpHelpers.getClass(this.fileContent!, this.path);
         if (!phpClass) {
             this._table = '';
@@ -68,8 +80,6 @@ export class Model extends OctoberClass {
         const tableProp = PhpHelpers.getProperties(phpClass).table;
         if (tableProp?.value?.kind === 'string') {
             this._table = (tableProp.value as phpParser.String).value;
-        } else {
-            this._table = Str.plural(PhpHelpers.identifierToString(phpClass.name).toLowerCase());
         }
 
         return this._table;

@@ -1,4 +1,3 @@
-import * as phpParser from "php-parser";
 import { OctoberClass } from "../../../entities/classes/october-class";
 import { Owner } from "../../../entities/owners/owner";
 import { FsHelpers } from '../../../helpers/fs-helpers';
@@ -9,6 +8,7 @@ import path = require('path');
  * Base class for all backend directory indexers
  */
 export abstract class DirectoryIndexer<T extends OctoberClass> {
+
     protected owner: Owner | undefined;
 
     /**
@@ -77,7 +77,7 @@ export abstract class DirectoryIndexer<T extends OctoberClass> {
             ? PhpHelpers.identifierToString(phpClass.name)
             : filePath.split(path.sep).pop()!.split('.').shift();
 
-            // migrations may be without namespaces
+        // migrations may be without namespaces
         const fqn = (ns ? ns.name + '\\' : '') + name;
 
         if (!this.getOctoberClassParentsFqn().includes(parentFqn)) {
