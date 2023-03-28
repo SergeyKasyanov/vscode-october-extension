@@ -33,13 +33,20 @@ export function getPathCompletions(
                 };
             }
 
-            for (const ext of exts) {
-                if (entry.name.endsWith(ext)) {
-                    return {
-                        dir: false,
-                        name: entry.name
-                    };
+            if (exts.length > 0) {
+                for (const ext of exts) {
+                    if (entry.name.endsWith(ext)) {
+                        return {
+                            dir: false,
+                            name: entry.name
+                        };
+                    }
                 }
+            } else {
+                return {
+                    dir: false,
+                    name: entry.name
+                };
             }
         })
         .filter(entry => !!entry)

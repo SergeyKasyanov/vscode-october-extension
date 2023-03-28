@@ -19,6 +19,7 @@ import { MenuContext } from "../providers/completions/php/menu-context";
 import { ModelAttribute as PhpModelAttribute } from "../providers/completions/php/model-attribute";
 import { PageName as PageNamePhp } from "../providers/completions/php/page-name";
 import { PartialName as BackendPartialName } from "../providers/completions/php/partial-name";
+import { PathHelper } from "../providers/completions/php/path-helper";
 import { Permission as PhpPermissions } from "../providers/completions/php/permission";
 import { RelationName as PhpRelationName } from "../providers/completions/php/relation-name";
 import { ValidationRule } from "../providers/completions/php/validation-rule";
@@ -75,6 +76,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new PhpModelAttribute, ...QUOTES);
     register(context, phpSelector, new PhpPermissions, ...QUOTES);
     register(context, phpSelector, new PhpRelationName, ...QUOTES);
+    register(context, phpSelector, new PathHelper, ...QUOTES, '/');
 
     register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ConfigKey, ...QUOTES);

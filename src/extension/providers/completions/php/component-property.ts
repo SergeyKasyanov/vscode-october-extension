@@ -4,7 +4,7 @@ import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
-const PROPERTY_METHOD = /->property\(\s*[\'\"]/g;
+const PROPERTY_METHOD = /->property\s*\(\s*[\'\"]/g;
 const PROPERTY_NAME_PART = /^[\w\-\_]*$/;
 
 /**
