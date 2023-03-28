@@ -8,8 +8,8 @@ import { Store } from "../../../domain/services/store";
 import { yamlSelector } from "../../helpers/file-selectors";
 import { YamlHelpers } from "../../helpers/yaml-helpers";
 
-const DIAGNOSTIC_CHECK_CONFIG_EXISTS = 'diagnostic.checkConfigExists';
-const COMMAND_CREATE_CONFIG = 'command.createConfig';
+const DIAGNOSTIC_CHECK_FILE_EXISTS = 'diagnostic.checkFileExists';
+const COMMAND_CREATE_FILE = 'command.createConfig';
 
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
 
@@ -28,7 +28,7 @@ export function registerFileLinkChecks(context: vscode.ExtensionContext) {
         providedCodeActionKinds: [vscode.CodeActionKind.QuickFix]
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand(COMMAND_CREATE_CONFIG, createFile));
+    context.subscriptions.push(vscode.commands.registerCommand(COMMAND_CREATE_FILE, createFile));
 }
 
 /**
@@ -90,7 +90,7 @@ function provideDiagnostics(
         const line = document.positionAt(match.index!).line;
         const lineText = document.lineAt(line).text;
         const value = YamlHelpers.getKeyAndValue(lineText).value;
-        if (!value) {
+        if (!value || value.includes('::')) {
             continue;
         }
 
@@ -114,7 +114,7 @@ function provideDiagnostics(
         );
 
         const diag = new Diagnostic(range, 'File does not exists', vscode.DiagnosticSeverity.Error);
-        diag.code = DIAGNOSTIC_CHECK_CONFIG_EXISTS;
+        diag.code = DIAGNOSTIC_CHECK_FILE_EXISTS;
         diag.filePath = filePath;
 
         diagnostics.push(diag);
@@ -134,13 +134,13 @@ class CreateConfigFileActionProvider implements vscode.CodeActionProvider {
     ): vscode.ProviderResult<(vscode.CodeAction | vscode.Command)[]> {
 
         return (context.diagnostics as Diagnostic[])
-            .filter(diagnostic => diagnostic.code?.toString() === DIAGNOSTIC_CHECK_CONFIG_EXISTS)
+            .filter(diagnostic => diagnostic.code?.toString() === DIAGNOSTIC_CHECK_FILE_EXISTS)
             .map(diagnostic => {
                 const action = new vscode.CodeAction('Create file', vscode.CodeActionKind.QuickFix);
                 action.diagnostics = [diagnostic];
                 action.isPreferred = true;
                 action.command = {
-                    command: COMMAND_CREATE_CONFIG,
+                    command: COMMAND_CREATE_FILE,
                     title: 'Create file',
                     arguments: [diagnostic]
                 };

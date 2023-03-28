@@ -9,9 +9,8 @@ import { FsHelpers } from "../../domain/helpers/fs-helpers";
  * @param project
  * @param view
  */
-export function resolveViewPath(project: Project, view: string) {
+export function resolveViewPath(project: Project, view: string): string | undefined {
     const projectViews = project.views;
-
     if (!projectViews.includes(view)) {
         return;
     }
