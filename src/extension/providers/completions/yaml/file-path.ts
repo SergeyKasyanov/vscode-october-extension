@@ -22,10 +22,11 @@ const CONFIG_KEY = /\s*(list|form|groups|filter)\:\s*/g;
 const CONFIG_KEY_PLUGIN = /\s*(list|form|groups|filter)\:\s*\$/;
 const CONFIG_KEY_ROOT = /\s*(list|form|groups|filter)\:\s*\~/;
 
-const PATH_PART = /^[\$\~\w\\\/\-\_\.]*$/;
+const VIEW_PART = /^[\$\~\w\\\/\-\_\.:]*$/;
+const CONFIG_PART = /^[\$\~\w\\\/\-\_\.]*$/;
 const PATH = /[\$\~\w\\\/\-\_\.]+/;
-
 const TEMPLATE_NAME = /[\w\_\-\.\:]+/;
+
 
 /**
  * Completions for path keys in yaml configs.
@@ -129,7 +130,7 @@ export class FilePath implements vscode.CompletionItemProvider {
     }
 
     private awaitsControllerPartialsPathCompletions(): boolean {
-        if (!awaitsCompletions(this.document!.getText(), this.document!.offsetAt(this.position!), PATH_KEY, PATH_PART)) {
+        if (!awaitsCompletions(this.document!.getText(), this.document!.offsetAt(this.position!), PATH_KEY, VIEW_PART)) {
             return false;
         }
 
@@ -156,7 +157,7 @@ export class FilePath implements vscode.CompletionItemProvider {
     }
 
     private awaitsControllerConfigPathCompletions() {
-        if (!awaitsCompletions(this.document!.getText(), this.document!.offsetAt(this.position!), CONFIG_KEY, PATH_PART)) {
+        if (!awaitsCompletions(this.document!.getText(), this.document!.offsetAt(this.position!), CONFIG_KEY, CONFIG_PART)) {
             return;
         }
 
