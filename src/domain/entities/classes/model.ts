@@ -235,7 +235,7 @@ export class Model extends OctoberClass {
                         return;
                     }
 
-                    const model = this.owner.models.find(m => m.fqn === fqn);
+                    const model = this.owner.project.models.find(m => m.fqn === fqn);
                     if (!model) {
                         return;
                     }
