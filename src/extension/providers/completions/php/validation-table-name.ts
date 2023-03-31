@@ -19,7 +19,8 @@ export class ValidationTableName implements vscode.CompletionItemProvider {
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
         const entity = Store.instance.findEntity(document.fileName);
-        if (!entity || !this.checkFile(document, position, entity)) {
+        const project = Store.instance.findProject(document.fileName);
+        if (!project || !this.checkFile(document, position, entity)) {
             return;
         }
 
@@ -32,7 +33,7 @@ export class ValidationTableName implements vscode.CompletionItemProvider {
             return;
         }
 
-        const tables = entity.owner.project.models.reduce((acc: string[], model) => {
+        const tables = project.models.reduce((acc: string[], model) => {
             if (!model.isSettings) {
                 const table = model.table;
                 if (table && !acc.includes(table)) {
@@ -51,7 +52,7 @@ export class ValidationTableName implements vscode.CompletionItemProvider {
         });
     }
 
-    private checkFile(document: vscode.TextDocument, position: vscode.Position, entity: OctoberEntity) {
+    private checkFile(document: vscode.TextDocument, position: vscode.Position, entity: OctoberEntity | undefined) {
         if (entity instanceof MarkupFile) {
             return entity.isOffsetInsidePhp(document!.offsetAt(position!));
         }
