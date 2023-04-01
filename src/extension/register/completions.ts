@@ -46,6 +46,7 @@ import { Permission as YamlPermission } from "../providers/completions/yaml/perm
 import { RelationName as YamlRelationName } from "../providers/completions/yaml/relation-name";
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
+import { TabName } from "../providers/completions/yaml/tab-name";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const QUOTES = ['\'', '"'];
@@ -115,6 +116,7 @@ function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlModelAttribute, ' ');
     register(context, yamlSelector, new YamlPermission, ' ');
     register(context, yamlSelector, new YamlRelationName, ' ');
+    register(context, yamlSelector, new TabName, ' ');
 }
 
 function register(
