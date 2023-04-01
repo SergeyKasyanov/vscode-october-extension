@@ -33,3 +33,21 @@ export function resolveViewPath(project: Project, view: string): string | undefi
 
     return viewPath;
 }
+
+/**
+ * Converts view code like "acme.blog::notify.new_post"
+ * to path like "plugins/acme/blog/views/notify/new_post"
+ *
+ * @param project
+ * @param view
+ */
+export function resolveBaseViewPath(project: Project, view: string): string | undefined {
+    const [ownerCode, viewCode] = view.split('::');
+
+    const owner = project.findOwnerByName(ownerCode);
+    if (!owner) {
+        return;
+    }
+
+    return path.join(owner.path, 'views', ...viewCode.split('.'));
+}

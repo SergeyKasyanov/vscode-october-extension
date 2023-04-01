@@ -9,7 +9,7 @@ import { yamlSelector } from "../../helpers/file-selectors";
 import { YamlHelpers } from "../../helpers/yaml-helpers";
 
 const DIAGNOSTIC_CHECK_FILE_EXISTS = 'diagnostic.checkFileExists';
-const COMMAND_CREATE_FILE = 'command.createConfig';
+const COMMAND_CREATE_FILE = 'command.createFile';
 
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
 
@@ -19,7 +19,7 @@ const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\
  * @param context
  */
 export function registerFileLinkChecks(context: vscode.ExtensionContext) {
-    const configLinkDiagnostics = vscode.languages.createDiagnosticCollection('configLinks');
+    const configLinkDiagnostics = vscode.languages.createDiagnosticCollection('fileLinks');
     context.subscriptions.push(configLinkDiagnostics);
 
     subscribeToDocumentChange(context, configLinkDiagnostics);
@@ -108,10 +108,9 @@ function provideDiagnostics(
             continue;
         }
 
-        const range = new vscode.Range(
-            new vscode.Position(line, lineText.indexOf(value)),
-            new vscode.Position(line, lineText.length)
-        );
+        const start = new vscode.Position(line, lineText.indexOf(value));
+        const end = start.translate(0, value.length);
+        const range = new vscode.Range(start, end);
 
         const diag = new Diagnostic(range, 'File does not exists', vscode.DiagnosticSeverity.Error);
         diag.code = DIAGNOSTIC_CHECK_FILE_EXISTS;
