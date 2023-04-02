@@ -38,7 +38,9 @@ For better file associations it is recommended to add following lines to your vs
 ```json
 "files.associations": {
     "**/themes/**/*.htm": "october-tpl",
-    "**/plugins/**/*.htm": "php"
+    "**/plugins/**/components/**/*.htm": "october-tpl",
+    "**/plugins/**/views/**/*.htm": "october-tpl",
+    "**/plugins/**/controllers/**/*.htm": "php"
 },
 ```
 
