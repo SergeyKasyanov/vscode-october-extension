@@ -152,6 +152,11 @@
                 "category": "OctoberCode"
             },
             {
+                "command": "octoberCode.goToVersionYaml",
+                "title": "Go to version.yaml",
+                "category": "OctoberCode"
+            },
+            {
                 "command": "octoberCode.goToController",
                 "title": "Go to controller",
                 "category": "OctoberCode"

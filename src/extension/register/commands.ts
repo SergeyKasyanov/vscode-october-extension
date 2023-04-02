@@ -6,6 +6,7 @@ import { openController } from "../commands/open-controller";
 import { openLogFile } from "../commands/open-log-file";
 import { openModel } from "../commands/open-model";
 import { openPlugin } from "../commands/open-plugin-registration-file";
+import { openVersionYaml } from "../commands/open-plugin-version-file";
 import { openRelatedFile } from "../commands/open-related-file";
 
 export function registerCommands(context: vscode.ExtensionContext) {
@@ -17,6 +18,7 @@ export function registerCommands(context: vscode.ExtensionContext) {
 
 function navigationCommands(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToPlugin', openPlugin));
+    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToVersionYaml', openVersionYaml));
     context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToRelatedFile', openRelatedFile));
     context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToClass', openClass));
     context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToController', openController));
