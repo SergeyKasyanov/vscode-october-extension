@@ -1,5 +1,18 @@
 # Change Log
 
+## 0.12.0
+
+New features:
+
+- New diagnostic for check view existance and quick fix for create it
+- Completinos for `tab` names in `fields.yaml` based on alread defined tabs
+- Command for quick open `version.yaml` of plugins
+
+Fixes:
+
+- model relation now loads all relations, not only for models from same plugin
+- table names for `exists` and `unique` validation rules now in any php file, not only models
+
 ## 0.11.0
 
 The main goal for this release was update version detection and yaml schemas to OctoberCMS v3.3.
