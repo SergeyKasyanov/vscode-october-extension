@@ -5,12 +5,12 @@
 ?>
 <div data-control="toolbar">
 {% if addFormControllerBehavior %}
-	<a href="<?= $this->actionUrl('create') ?>" class="btn btn-primary oc-icon-plus">
-		<?= e(trans('backend::lang.list.create_button', ['name' => '{{ model_pascal }}'])) ?>
-	</a>
+    <a href="<?= $this->actionUrl('create') ?>" class="btn btn-primary oc-icon-plus">
+        <?= e(trans('backend::lang.list.create_button', ['name' => '{{ model_pascal }}'])) ?>
+    </a>
 {% endif %}
 
-	<button class="btn btn-danger oc-icon-trash-o"
+    <button class="btn btn-danger oc-icon-trash-o"
             disabled="disabled"
             onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
             data-request="onDelete"
@@ -20,8 +20,8 @@
             data-trigger-condition="checked"
             data-request-success="$(this).prop('disabled', 'disabled')"
             data-stripe-load-indicator>
-		<?= e(trans('backend::lang.list.delete_selected')) ?>
-	</button>
+        <?= e(trans('backend::lang.list.delete_selected')) ?>
+    </button>
 
 {% if addImportExportControllerBehavior %}
     <a href="<?= $this->actionUrl('import') ?>" class="btn btn-default oc-icon-upload">
