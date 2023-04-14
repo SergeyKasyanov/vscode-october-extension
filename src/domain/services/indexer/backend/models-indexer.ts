@@ -9,14 +9,15 @@ export class ModelsIndexer extends DirectoryIndexer<Model> {
     protected getOctoberClassParentsFqn(): string[] {
         return [
             'Model',
-            'System\\Models\\SettingModel',
-            'October\\Rain\\Database\\Model',
-            'October\\Rain\\Database\\Attach\\File',
-            'October\\Rain\\Auth\\Models\\User',
-            'October\\Rain\\Auth\\Models\\Role',
             'October\\Rain\\Auth\\Models\\Group',
-            'October\\Rain\\Auth\\Models\\Throttle',
             'October\\Rain\\Auth\\Models\\Preferences',
+            'October\\Rain\\Auth\\Models\\Role',
+            'October\\Rain\\Auth\\Models\\Throttle',
+            'October\\Rain\\Auth\\Models\\User',
+            'October\\Rain\\Database\\Attach\\File',
+            'October\\Rain\\Database\\ExpandoModel',
+            'October\\Rain\\Database\\Model',
+            'System\\Models\\SettingModel',
         ];
     }
 
