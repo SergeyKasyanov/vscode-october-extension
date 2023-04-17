@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.12.1
+
+Improvements:
+
+- Add ExpandoModel as base class for models
+
+Fixes:
+
+- Replace tabs with spaces in list_toolbar template
+- Fix list filter yaml schema
+- Add pagefinder property to blueprint schema
+
 ## 0.12.0
 
 New features:
