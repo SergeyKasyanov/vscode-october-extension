@@ -567,7 +567,6 @@
             "required": [
                 "conditions",
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -1341,7 +1340,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -2062,7 +2060,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -2424,7 +2421,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -3058,7 +3054,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -3847,9 +3842,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "label"
-            ],
             "type": "object"
         },
         "NestedFormField": {
@@ -4354,7 +4346,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -6937,7 +6928,6 @@
             "required": [
                 "conditions",
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -7448,7 +7438,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -15337,6 +15326,9 @@
                     "type": "boolean"
                 }
             ]
+        },
+        "pagefinder": {
+            "type": "boolean"
         },
         "parentNavigation": {
             "anyOf": [

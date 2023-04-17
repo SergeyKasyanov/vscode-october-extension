@@ -46,7 +46,6 @@
             "required": [
                 "conditions",
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -82,7 +81,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -182,7 +180,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -248,7 +245,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -323,7 +319,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -393,7 +388,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -446,7 +440,6 @@
             "required": [
                 "conditions",
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
@@ -504,7 +497,6 @@
             },
             "required": [
                 "label",
-                "permissions",
                 "type"
             ],
             "type": "object"
