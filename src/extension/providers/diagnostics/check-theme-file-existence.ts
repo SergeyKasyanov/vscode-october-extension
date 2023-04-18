@@ -271,7 +271,8 @@ $0
             fileContent = `##
 url = "$1"
 layout = "$2"
-description = "\${3:${name!} page}"
+title = "\${3:${name!} page}"
+description = "\${4:${name!} page}"
 ==
 $0
 `;
