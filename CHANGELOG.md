@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.12.2
+
+Fixes:
+
+- Fix containerAttribute property in fields.yaml schema
+- Fix guessing controller name for models
+
 ## 0.12.1
 
 Improvements:
