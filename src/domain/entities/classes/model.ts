@@ -1,7 +1,9 @@
 import * as phpParser from 'php-parser';
 import { Str } from '../../../helpers/str';
 import { MethodsList, PhpHelpers } from "../../helpers/php-helpers";
+import { Module } from '../owners/module';
 import { Owner } from '../owners/owner';
+import { Plugin } from '../owners/plugin';
 import { ModelBehavior } from './behavior';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
 import { OctoberClass } from "./october-class";
@@ -361,8 +363,12 @@ export class Model extends OctoberClass {
         const vendor = fqnParts.shift();
         if (vendor === 'App') {
             fqn = [vendor, 'Controllers', name].join('\\');
-        } else {
+        } else if (this.owner instanceof Module) {
+            fqn = [vendor, 'Controllers', name].join('\\');
+        } else if (this.owner instanceof Plugin) {
             fqn = [vendor, fqnParts.shift(), 'Controllers', name].join('\\');
+        } else {
+            return undefined;
         }
 
         return this.owner.project.controllers.find(c => c.fqn === fqn);

@@ -85,7 +85,6 @@ export abstract class DirectoryIndexer<T extends OctoberClass> {
         }
 
         return this.makeOctoberClass(filePath, fqn);
-
     }
 
     /**
