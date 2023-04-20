@@ -24,17 +24,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -196,17 +196,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -351,17 +351,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -545,17 +545,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -825,17 +825,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -1136,17 +1136,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -1409,17 +1409,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -1712,17 +1712,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -2006,17 +2006,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -2200,17 +2200,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -2473,17 +2473,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -2727,17 +2727,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -3094,17 +3094,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -3260,17 +3260,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -3433,17 +3433,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -3702,17 +3702,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -3870,17 +3870,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -4125,17 +4125,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -4281,17 +4281,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -4459,17 +4459,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -4653,17 +4653,17 @@
                     "type": "string"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -4860,17 +4860,17 @@
                     "type": "string"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -5044,17 +5044,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -5282,17 +5282,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -5448,17 +5448,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -5601,17 +5601,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -5872,17 +5872,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -6245,17 +6245,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -6400,17 +6400,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -6698,17 +6698,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
@@ -6853,17 +6853,17 @@
                     "type": "boolean"
                 },
                 "containerAttributes": {
-                    "allOf": [
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {},
+                            "type": "object"
+                        },
                         {
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        },
-                        {
-                            "additionalProperties": true,
-                            "properties": {},
-                            "type": "object"
                         }
                     ]
                 },
