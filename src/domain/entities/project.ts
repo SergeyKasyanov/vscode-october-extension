@@ -232,6 +232,38 @@ export class Project {
     }
 
     /**
+     * Backend pages urls
+     */
+    get backendUrls(): string[] {
+        const urls: string[] = [];
+
+        this.controllers.forEach(controller => {
+            let url = controller.owner.name.replace('.', '/');
+            if (controller.uqn !== 'Index') {
+                url += '/' + controller.uqn.toLowerCase();
+            }
+
+            Object.keys(controller.pageMethods).forEach(pageMethod => {
+                if (pageMethod !== 'index') {
+                    urls.push(url + '/' + pageMethod);
+                } else {
+                    urls.push(url);
+                }
+            });
+
+            const controllerBehaviors = Object.values(controller.behaviors).map(b => b.behavior);
+
+            for (const beh of controllerBehaviors) {
+                beh.pageMethods.forEach(pageMethod => {
+                    urls.push(url + '/' + pageMethod);
+                });
+            }
+        });
+
+        return urls;
+    }
+
+    /**
      * Finds owner by file path
      *
      * @param filePath

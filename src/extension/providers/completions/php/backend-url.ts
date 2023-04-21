@@ -42,32 +42,7 @@ export class BackendUrl implements vscode.CompletionItemProvider {
             return;
         }
 
-        const urls: string[] = [];
-
-        project.controllers.forEach(controller => {
-            let url = controller.owner.name.replace('.', '/');
-            if (controller.uqn !== 'Index') {
-                url += '/' + controller.uqn.toLowerCase();
-            }
-
-            Object.keys(controller.pageMethods).forEach(pageMethod => {
-                if (pageMethod !== 'index') {
-                    urls.push(url + '/' + pageMethod);
-                } else {
-                    urls.push(url);
-                }
-            });
-
-            const controllerBehaviors = Object.values(controller.behaviors).map(b => b.behavior);
-
-            for (const beh of controllerBehaviors) {
-                beh.pageMethods.forEach(pageMethod => {
-                    urls.push(url + '/' + pageMethod);
-                });
-            }
-        });
-
-        return urls.map(url => {
+        return project.backendUrls.map(url => {
             const item = new vscode.CompletionItem(url);
             item.range = document.getWordRangeAtPosition(position, URL);
 

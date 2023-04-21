@@ -43,6 +43,7 @@ import { MigrationName } from "../providers/completions/yaml/migration-name";
 import { ModelAttribute as YamlModelAttribute } from "../providers/completions/yaml/model-attribute";
 import { ModelFqn } from "../providers/completions/yaml/model-fqn";
 import { Permission as YamlPermission } from "../providers/completions/yaml/permission";
+import { RecordUrl } from "../providers/completions/yaml/record-url";
 import { RelationName as YamlRelationName } from "../providers/completions/yaml/relation-name";
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
@@ -117,6 +118,7 @@ function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlPermission, ' ');
     register(context, yamlSelector, new YamlRelationName, ' ');
     register(context, yamlSelector, new TabName, ' ');
+    register(context, yamlSelector, new RecordUrl, ' ');
 }
 
 function register(
