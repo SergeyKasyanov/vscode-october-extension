@@ -1,5 +1,6 @@
 import { Config } from "../../config";
 import { FsHelpers } from "../helpers/fs-helpers";
+import { page } from "../static/ini-properties";
 import { TwigFiltersList } from "../static/twig-filters";
 import { TwigFunctionsList } from "../static/twig-functions";
 import { ControllerBehavior, ModelBehavior } from "./classes/behavior";
@@ -243,20 +244,28 @@ export class Project {
                 url += '/' + controller.uqn.toLowerCase();
             }
 
-            Object.keys(controller.pageMethods).forEach(pageMethod => {
-                if (pageMethod !== 'index') {
-                    urls.push(url + '/' + pageMethod);
+            const addUrl = function (pageMethod: string) {
+                if (pageMethod === 'index') {
+                    if (!urls.includes(url + '/' + pageMethod)) {
+                        urls.push(url + '/' + pageMethod);
+                    }
+
+                    if (!urls.includes(url)) {
+                        urls.push(url);
+                    }
                 } else {
-                    urls.push(url);
+                    if (!urls.includes(url + '/' + pageMethod)) {
+                        urls.push(url + '/' + pageMethod);
+                    }
                 }
-            });
+            };
+
+            Object.keys(controller.pageMethods).forEach(pageMethod => addUrl(pageMethod));
 
             const controllerBehaviors = Object.values(controller.behaviors).map(b => b.behavior);
 
             for (const beh of controllerBehaviors) {
-                beh.pageMethods.forEach(pageMethod => {
-                    urls.push(url + '/' + pageMethod);
-                });
+                beh.pageMethods.forEach(pageMethod => addUrl(pageMethod));
             }
         });
 
