@@ -1,6 +1,5 @@
 import { Config } from "../../config";
 import { FsHelpers } from "../helpers/fs-helpers";
-import { page } from "../static/ini-properties";
 import { TwigFiltersList } from "../static/twig-filters";
 import { TwigFunctionsList } from "../static/twig-functions";
 import { ControllerBehavior, ModelBehavior } from "./classes/behavior";
@@ -9,7 +8,7 @@ import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
 import { Model } from "./classes/model";
 import { getConfig } from './concerns/project-config';
-import { getTranslations, Translations } from './concerns/project-lang';
+import { Translations, getTranslations } from './concerns/project-lang';
 import { getLocale } from "./concerns/project-locale";
 import { AppDirectory } from "./owners/app-directory";
 import { Module } from "./owners/module";

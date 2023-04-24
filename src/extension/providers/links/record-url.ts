@@ -2,25 +2,27 @@ import * as vscode from "vscode";
 import { Store } from "../../../domain/services/store";
 import { resolveBackendController } from "../../helpers/resolve-backend-controller";
 import { DocumentLink } from "../../types/document-link";
+import { YamlHelpers } from "../../helpers/yaml-helpers";
 
-const BACKEND_URL_CALL = /Backend\s*::\s*(url|redirect|redirectGuest|redirectIntended)\s*\(\s*[\'\"][\w\-\_\/]+[\'\"]/g;
-const URL = /[\'\"][\w\-\_\/]+[\'\"]/;
+const RECORD_URL_KEY = /(recordUrl)\:\s+[\w\-\_\/:]+/g;
 
-/**
- * Document links for Backend::url() calls
- * to corresponding backend controller method
- */
-export class BackendUrl implements vscode.DocumentLinkProvider {
-
-    provideDocumentLinks(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentLink[]> {
+export class RecordUrl implements vscode.DocumentLinkProvider {
+    provideDocumentLinks(
+        document: vscode.TextDocument
+    ): vscode.ProviderResult<vscode.DocumentLink[]> {
         const links: vscode.DocumentLink[] = [];
 
-        const methodsMatches = document.getText().matchAll(BACKEND_URL_CALL);
-        for (const match of methodsMatches) {
-            const urlMatch = match[0].match(URL)!;
-            const url = urlMatch[0].slice(1, -1);
+        const matches = document.getText().matchAll(RECORD_URL_KEY);
+        for (const match of matches) {
+            const line = document.positionAt(match.index!).line;
+            const url = YamlHelpers.getKeyAndValue(document.lineAt(line).text).value;
+            if (!url) {
+                continue;
+            }
 
-            const start = document.positionAt(match.index! + urlMatch.index! + 1);
+            const valueOffset = match[0].indexOf(url);
+
+            const start = document.positionAt(match.index! + valueOffset);
             const end = start.translate(0, url.length);
             const range = new vscode.Range(start, end);
 
@@ -30,7 +32,7 @@ export class BackendUrl implements vscode.DocumentLinkProvider {
         return links;
     }
 
-    resolveDocumentLink(link: DocumentLink): vscode.ProviderResult<vscode.DocumentLink> {
+    resolveDocumentLink?(link: DocumentLink, token: vscode.CancellationToken): vscode.ProviderResult<vscode.DocumentLink> {
         const project = Store.instance.findProject(link.document!.fileName);
         if (!project) {
             return;
@@ -55,4 +57,5 @@ export class BackendUrl implements vscode.DocumentLinkProvider {
 
         return link;
     }
+
 }

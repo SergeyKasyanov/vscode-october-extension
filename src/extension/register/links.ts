@@ -7,6 +7,7 @@ import { IniComponent } from "../providers/links/ini-component";
 import { MakePartialPath } from "../providers/links/make-partial-path";
 import { Migrations } from "../providers/links/migrations";
 import { PathHelpers } from "../providers/links/path-helpers";
+import { RecordUrl } from "../providers/links/record-url";
 import { TwigComponent } from "../providers/links/twig-component";
 import { ViewTemplate } from "../providers/links/view-template";
 import { YamlFiles } from "../providers/links/yaml-files";
@@ -39,6 +40,7 @@ function twig(context: vscode.ExtensionContext) {
 function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlFiles);
     register(context, yamlSelector, new Migrations);
+    register(context, yamlSelector, new RecordUrl);
 }
 
 function register(
