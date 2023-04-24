@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.13.0
+
+New features:
+- Completions for recordUrl yaml property
+- Document links for recordUrl yaml property
+
 ## 0.12.2
 
 Fixes:
