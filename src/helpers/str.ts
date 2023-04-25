@@ -1,6 +1,10 @@
 import * as pluralize from 'pluralize';
 
 export class Str {
+    static replaceAll(str: string, search: string, replace: string) {
+        return str.split(search).join(replace);
+    }
+
     static camelCase(str: string) {
         return str.replace(/[\W_]+(.)/g, (_, chr) => chr.toUpperCase());
     }

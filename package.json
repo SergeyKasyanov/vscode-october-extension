@@ -172,6 +172,11 @@
                 "category": "OctoberCode"
             },
             {
+                "command": "octoberCode.generatePhpstormMeta",
+                "title": "Generate .phpstorm.meta.php file",
+                "category": "OctoberCode"
+            },
+            {
                 "command": "octoberCode.addModelAttributesToConfig",
                 "title": "Add model attributes to config",
                 "category": "OctoberCode",

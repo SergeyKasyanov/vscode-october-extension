@@ -8,20 +8,30 @@ import { openModel } from "../commands/open-model";
 import { openPlugin } from "../commands/open-plugin-registration-file";
 import { openVersionYaml } from "../commands/open-plugin-version-file";
 import { openRelatedFile } from "../commands/open-related-file";
+import { generatePhpStormMeta } from "../commands/generate-phpstorm-meta";
 
-export function registerCommands(context: vscode.ExtensionContext) {
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.generate', runGenerator));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.addModelAttributesToConfig', addModelAttributes));
+export function registerCommands(context: vscode.ExtensionContext): void {
+    register(context, 'octoberCode.generate', runGenerator);
+    register(context, 'octoberCode.addModelAttributesToConfig', addModelAttributes);
+    register(context, 'octoberCode.generatePhpstormMeta', generatePhpStormMeta);
 
     navigationCommands(context);
 }
 
-function navigationCommands(context: vscode.ExtensionContext) {
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToPlugin', openPlugin));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToVersionYaml', openVersionYaml));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToRelatedFile', openRelatedFile));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToClass', openClass));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToController', openController));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToModel', openModel));
-    context.subscriptions.push(vscode.commands.registerCommand('octoberCode.goToLogFile', openLogFile));
+function navigationCommands(context: vscode.ExtensionContext): void {
+    register(context, 'octoberCode.goToPlugin', openPlugin);
+    register(context, 'octoberCode.goToVersionYaml', openVersionYaml);
+    register(context, 'octoberCode.goToRelatedFile', openRelatedFile);
+    register(context, 'octoberCode.goToClass', openClass);
+    register(context, 'octoberCode.goToController', openController);
+    register(context, 'octoberCode.goToModel', openModel);
+    register(context, 'octoberCode.goToLogFile', openLogFile);
+}
+
+function register(
+    context: vscode.ExtensionContext,
+    code: string,
+    handler: (...args: any[]) => any
+): void {
+    context.subscriptions.push(vscode.commands.registerCommand(code, handler));
 }
