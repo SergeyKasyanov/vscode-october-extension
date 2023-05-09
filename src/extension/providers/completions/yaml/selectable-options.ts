@@ -74,7 +74,7 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
 
         const possible = ['selectable', 'dropdown', 'radio', 'balloon-selector', 'checkboxlist', 'taglist'];
 
-        const fieldType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+        const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
         if (!fieldType || !possible.includes(fieldType)) {
             return;
         }
@@ -85,12 +85,12 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
     private getCompletionsForFilters(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         const possible = ['group', 'dropdown'];
 
-        const fieldType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+        const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
         if (!fieldType || !possible.includes(fieldType)) {
             return;
         }
 
-        const modelClass = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'modelClass');
+        const modelClass = YamlHelpers.getSibling(this.document!, this.position!, 'modelClass');
         if (!modelClass) {
             return;
         }

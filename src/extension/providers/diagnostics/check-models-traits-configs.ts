@@ -143,31 +143,27 @@ class AddTraitConfigCodeActionProvider implements vscode.CodeActionProvider {
     }
 }
 
+/**
+ * Add property to class
+ *
+ * @param document
+ * @param diagnostic
+ */
 async function addProperty(document: vscode.TextDocument, diagnostic: Diagnostic) {
-    let indent = vscode.workspace.getConfiguration().get('editor.indentSize');
-    if (indent === 'tabSize') {
-        indent = vscode.workspace.getConfiguration().get('editor.tabSize');
-    }
+    vscode.window.showTextDocument(document.uri).then(editor => {
+        const visibility = diagnostic.property === 'rules' ? 'public' : 'protected';
+        const code = `
 
-    let visibility = 'protected';
-    if (diagnostic.property === 'rules') {
-        visibility = 'public';
-    }
+${visibility} \\\$${diagnostic.property} = [\$0];
+`;
 
-    const eol = document.eol === vscode.EndOfLine.CRLF ? `\r\n` : `\n`;
-    const code = eol + ' '.repeat(indent as number) + visibility + ' $' + diagnostic.property + ' = [];';
+        const snippet = new vscode.SnippetString(code);
 
-    const edit = new vscode.WorkspaceEdit();
-    edit.insert(
-        document.uri,
-        new vscode.Position(
+        editor.insertSnippet(snippet, new vscode.Position(
             diagnostic.traitLocation!.end.line - 1,
             diagnostic.traitLocation!.end.column + 1
-        ),
-        code
-    );
-
-    vscode.workspace.applyEdit(edit);
+        ));
+    });
 }
 
 class Diagnostic extends vscode.Diagnostic {

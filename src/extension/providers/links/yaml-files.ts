@@ -159,7 +159,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
 
             const root = YamlHelpers.getParent(this.document!, parentLine);
             if (root === 'scopes') {
-                modelFqn = YamlHelpers.getSameParentProperty(this.document!, link.range.start, 'modelClass');
+                modelFqn = YamlHelpers.getSibling(this.document!, link.range.start, 'modelClass');
             } else if (root === 'fields') {
                 model = (Store.instance.findOwner(this.document!.fileName) as BackendOwner)
                     ?.findEntityByRelatedName(this.document!.fileName) as Model;
@@ -281,7 +281,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
     }
 
     private getModelForFields(position: vscode.Position): Model | undefined {
-        const type = YamlHelpers.getSameParentProperty(this.document!, position, 'type');
+        const type = YamlHelpers.getSibling(this.document!, position, 'type');
         if (!type) {
             return;
         }
@@ -299,7 +299,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
 
             return model.relations[relationName];
         } else if (type === 'recordfinder') {
-            let modelFqn = YamlHelpers.getSameParentProperty(this.document!, position, 'modelClass');
+            let modelFqn = YamlHelpers.getSibling(this.document!, position, 'modelClass');
             if (!modelFqn) {
                 return;
             }

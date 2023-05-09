@@ -138,7 +138,7 @@ export class FilePath implements vscode.CompletionItemProvider {
     }
 
     private awaitsPartialsPathCompletions(): boolean {
-        const elementType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+        const elementType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
 
         return !!elementType && ['partial', 'hint'].includes(elementType);
     }
@@ -169,7 +169,7 @@ export class FilePath implements vscode.CompletionItemProvider {
 
         if (keyValue.key === 'form') {
             // fields.yaml
-            const fieldType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+            const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
             if (fieldType && ['nestedform', 'repeater'].includes(fieldType)) {
                 return true;
             }
@@ -189,7 +189,7 @@ export class FilePath implements vscode.CompletionItemProvider {
 
         if (keyValue.key === 'list') {
             // fields.yaml
-            const fieldType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+            const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
             if (fieldType && 'recordfinder' === fieldType) {
                 return true;
             }
@@ -223,7 +223,7 @@ export class FilePath implements vscode.CompletionItemProvider {
 
         if (keyValue.key === 'groups') {
             // fields.yaml
-            const fieldType = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+            const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
             if (fieldType && 'repeater' === fieldType) {
                 return true;
             }

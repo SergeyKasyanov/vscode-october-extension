@@ -81,7 +81,10 @@ function subscribeToDocumentChange(context: vscode.ExtensionContext, themeFilesE
  * @param diagnosticsCollection
  * @returns
  */
-function provideDiagnostics(document: vscode.TextDocument, diagnosticsCollection: vscode.DiagnosticCollection) {
+function provideDiagnostics(
+    document: vscode.TextDocument,
+    diagnosticsCollection: vscode.DiagnosticCollection
+): void {
     const entity = Store.instance.findEntity(document.fileName);
     if (!(entity instanceof MarkupFile)) {
         return;

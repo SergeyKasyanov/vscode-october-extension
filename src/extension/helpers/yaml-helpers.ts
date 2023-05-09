@@ -83,7 +83,7 @@ export class YamlHelpers {
      * @param property
      * @returns
      */
-    static getSameParentProperty(document: vscode.TextDocument, position: vscode.Position, property: string): string | undefined {
+    static getSibling(document: vscode.TextDocument, position: vscode.Position, property: string): string | undefined {
         return this._getSameParentProperty(document, position, property, 'up')
             || this._getSameParentProperty(document, position, property, 'down');
     }
