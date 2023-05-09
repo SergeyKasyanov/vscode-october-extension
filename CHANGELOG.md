@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.15.0
+
+New features
+
+- Check if dropdown options method exists in model
+
 ## 0.14.0
 
 New features:
