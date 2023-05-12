@@ -2,9 +2,10 @@
 
 ## 0.15.0
 
-New features
+New features:
 
 - Check if dropdown options method exists in model
+- Actions for add accessor, mutator, getter and setter for model attributes
 
 ## 0.14.0
 
