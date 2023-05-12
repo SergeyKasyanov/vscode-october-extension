@@ -190,15 +190,14 @@ async function addMethod(diagnostic: Diagnostic) {
 
     const line = diagnostic.model.phpClass!.loc!.end.line - 1;
 
-    vscode.window.showTextDocument(vscode.Uri.file(diagnostic.model.path)).then(editor => {
-        const code = `
+    const snippet = new vscode.SnippetString(`
     public function ${diagnostic.method}()
     {
         return \${0:[]};
     }
-`;
+`);
 
-        const snippet = new vscode.SnippetString(code);
+    vscode.window.showTextDocument(vscode.Uri.file(diagnostic.model.path)).then(editor => {
         editor.insertSnippet(snippet, new vscode.Position(line, 0));
     });
 }
