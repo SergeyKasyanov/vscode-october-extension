@@ -34,7 +34,7 @@ function localeFromEnv(project: Project) {
  * @returns
  */
 function localeFromConfig(project: Project): string | null | undefined {
-    const configPath = PathHelpers.rootPath(project.path, path.join('config', 'app.phpF'));
+    const configPath = PathHelpers.rootPath(project.path, path.join('config', 'app.php'));
     const configContent = FsHelpers.readFile(configPath);
     const ast = PhpHelpers.getAst(configContent, configPath);
 
