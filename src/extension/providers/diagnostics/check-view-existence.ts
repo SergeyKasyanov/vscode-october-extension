@@ -18,7 +18,7 @@ const VIEW_FUNC = /view\s*\(\s*[\'\"][\w\-\_\.\/]+::[\w\-\_\.\/]+[\'\"]/g;
 const QUOTED_TEMPLATE_NAME = /[\'\"][\w\-\_\.\/]+::[\w\-\_\.\/]+[\'\"]/;
 
 /**
- * Check if view exists
+ * Register view file diagnostics checks
  *
  * @param context
  */

@@ -14,7 +14,7 @@ const COMMAND_CREATE_FILE = 'command.createFile';
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
 
 /**
- * Check if files mentioned in yaml config exists
+ * Register lined file existence checks
  *
  * @param context
  */

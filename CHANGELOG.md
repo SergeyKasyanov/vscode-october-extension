@@ -1,8 +1,23 @@
 # Change Log
 
+## 0.15.0
+
+New features:
+
+- Check if dropdown options method exists in model
+- Actions for add accessor, mutator, getter and setter for model attributes
+
+## 0.14.0
+
+New features:
+
+- Command for generating .phpstorm.meta.php file for extra autocompletions. *You need extension with support for phpstorm meta installed for this feature to work*
+- Code lens for migrations with version in which this migration used
+
 ## 0.13.0
 
 New features:
+
 - Completions for recordUrl yaml property
 - Document links for recordUrl yaml property
 

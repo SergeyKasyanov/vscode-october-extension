@@ -72,4 +72,11 @@ export class Plugin extends BackendOwner {
     get twigFilters(): TwigFiltersList {
         return this._listsTwigFilters.twigFilters;
     }
+
+    /**
+     * Path to version.yaml file
+     */
+    get versionYamlPath(): string {
+        return path.join(this.path, 'updates', 'version.yaml');
+    }
 }

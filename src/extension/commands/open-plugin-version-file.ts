@@ -15,7 +15,7 @@ export async function openVersionYaml() {
     }
 
     const plugins = project.plugins.reduce((acc: { [name: string]: string }, plugin: Plugin) => {
-        const venrsionYamlPath = path.join(plugin.path, 'updates', 'version.yaml');
+        const venrsionYamlPath = plugin.versionYamlPath;
         if (FsHelpers.exists(venrsionYamlPath)) {
             acc[plugin.name] = venrsionYamlPath;
         }

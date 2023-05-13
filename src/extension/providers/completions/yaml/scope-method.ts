@@ -114,7 +114,7 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
      * @returns
      */
     private getScopesForFields(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        const type = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'type');
+        const type = YamlHelpers.getSibling(this.document!, this.position!, 'type');
         if (!type) {
             return;
         }
@@ -139,7 +139,7 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
         }
 
         if (type === 'recordfinder') {
-            let modelFqn = YamlHelpers.getSameParentProperty(this.document!, this.position!, 'modelClass');
+            let modelFqn = YamlHelpers.getSibling(this.document!, this.position!, 'modelClass');
             if (!modelFqn) {
                 return;
             }
