@@ -1,5 +1,4 @@
 import path = require('path');
-import * as vscode from 'vscode';
 import { Config } from '../../../config';
 import { Theme } from '../../entities/owners/theme';
 import { Content } from '../../entities/theme/content';
@@ -159,16 +158,12 @@ export class ThemesIndexer {
      * @returns
      */
     private listThemes(): Theme[] {
-        const themes: Theme[] = [];
-
-        FsHelpers
+        return FsHelpers
             .listDirectories(PathHelpers.themesPath(this.projectPath!))
             .map(entry => {
-                const themePath = path.join(this.projectPath!, Config.themesDirectory, entry);
-                themes.push(new Theme(entry, themePath));
+                const themePath = PathHelpers.themesPath(this.projectPath!, entry);
+                return new Theme(entry, themePath);
             });
-
-        return themes;
     }
 
     /**
