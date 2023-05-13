@@ -167,6 +167,11 @@
                 "category": "OctoberCode"
             },
             {
+                "command": "octoberCode.goToBlueprint",
+                "title": "Go to blueprint",
+                "category": "OctoberCode"
+            },
+            {
                 "command": "octoberCode.goToLogFile",
                 "title": "Go to log file",
                 "category": "OctoberCode"
