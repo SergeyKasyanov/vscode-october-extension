@@ -1,6 +1,6 @@
-import path = require("path");
-import * as vscode from 'vscode';
+import * as yaml from 'yaml';
 import { Config } from "../../../config";
+import { Blueprint } from "../../entities/blueprint";
 import { Behavior, ControllerBehavior, ModelBehavior } from "../../entities/classes/behavior";
 import { Command } from "../../entities/classes/command";
 import { Component } from "../../entities/classes/component";
@@ -25,7 +25,7 @@ import { DirectoryIndexer } from "./backend/directory-indexer";
 import { MigrationsIndexer } from "./backend/migrations-indexer";
 import { ModelsIndexer } from "./backend/models-indexer";
 import { FilterWidgetsIndexer, FormWidgetsIndexer, ReportWidgetsIndexer, WidgetsIndexer } from "./backend/widgets-indexer";
-
+import path = require("path");
 /**
  * Indexes files in app,modules and plugins directories
  */
@@ -85,6 +85,9 @@ export class BackendIndexer {
                 try {
                     const appOwner = new AppDirectory('app', path.join(projectPath, 'app'));
                     this.indexOwner(appOwner);
+                    if (appOwner.project.platform?.hasTailor) {
+                        appOwner.blueprints = this.indexBlueprints(appOwner);
+                    }
                     this.store.addAppDirectory(projectPath, appOwner);
                     return;
                 } catch (err) {
@@ -262,6 +265,9 @@ export class BackendIndexer {
     private indexAppDirectory(projectPath: string, appOwner: AppDirectory): void {
         try {
             this.indexOwner(appOwner);
+            if (appOwner.project.platform?.hasTailor) {
+                appOwner.blueprints = this.indexBlueprints(appOwner);
+            }
             this.store.addAppDirectory(projectPath, appOwner);
         } catch (err) {
             console.error(err);
@@ -359,9 +365,6 @@ export class BackendIndexer {
         owner.models = this.indexDirectories<Model>(owner, Model.getBaseDirectories(), new ModelsIndexer());
         owner.reportWidgets = this.indexDirectories<ReportWidget>(owner, ReportWidget.getBaseDirectories(), new ReportWidgetsIndexer());
         owner.widgets = this.indexDirectories<Widget>(owner, Widget.getBaseDirectories(), new WidgetsIndexer());
-
-        // configs
-        // langs
     }
 
     /**
@@ -434,5 +437,40 @@ export class BackendIndexer {
 
             return [];
         }
+    }
+
+    /**
+     * Index tailor blueprints
+     *
+     * @param appOwner
+     * @returns
+     */
+    private indexBlueprints(appOwner: AppDirectory): Blueprint[] {
+        const blueprintsPath = path.join(appOwner.path, 'blueprints');
+        if (!FsHelpers.exists(blueprintsPath) || !FsHelpers.isDirectory(blueprintsPath)) {
+            return [];
+        }
+
+        return FsHelpers
+            .listFiles(blueprintsPath, true, ['yaml'])
+            .reduce((acc: Blueprint[], entry: string) => {
+                try {
+                    const filePath = path.join(blueprintsPath, entry);
+                    const fileContent = FsHelpers.readFile(filePath);
+                    const parsed = yaml.parse(fileContent);
+
+                    if (parsed.handle) {
+                        acc.push(new Blueprint(
+                            appOwner,
+                            filePath,
+                            parsed.handle
+                        ));
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+
+                return acc;
+            }, []);
     }
 }

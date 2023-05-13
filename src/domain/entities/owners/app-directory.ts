@@ -4,11 +4,14 @@ import { TwigFunctionsList } from "../../static/twig-functions";
 import { BackendOwner } from "./backend-owner";
 import { ListsTwigFilters } from "./concenrs/lists-twig-filters";
 import { ListsTwigFunctions } from "./concenrs/lists-twig-functions";
+import { Blueprint } from "../blueprint";
 
 /**
  * Represents app ("the project level plugin") of opened project
  */
 export class AppDirectory extends BackendOwner {
+
+    blueprints: Blueprint[] = [];
 
     private _listsTwigFunctions: ListsTwigFunctions;
     private _listsTwigFilters: ListsTwigFilters;

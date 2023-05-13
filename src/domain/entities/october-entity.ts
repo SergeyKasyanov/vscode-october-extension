@@ -35,6 +35,13 @@ export abstract class OctoberEntity {
     }
 
     /**
+     * Path relative to owner
+     */
+    get relativePath(): string {
+        return this._path.replace(this.owner.path, '').substring(1);
+    }
+
+    /**
      * Full name of entity
      */
     get name(): string {
