@@ -20,18 +20,18 @@ export abstract class DirectoryIndexer<T extends OctoberClass> {
     index(owner: Owner, directory: string): T[] {
         this.owner = owner;
 
-        const octoberClasses: T[] = [];
+        return FsHelpers.listFiles(directory).reduce((acc: T[], filename: string) => {
+            if (!filename.endsWith('.php')) {
+                return acc;
+            }
 
-        FsHelpers.listFiles(directory)
-            .filter(filename => filename.endsWith('.php'))
-            .map(filename => {
-                const ocClass = this.loadOctoberClass(path.join(directory, filename));
-                if (ocClass) {
-                    octoberClasses.push(ocClass);
-                }
-            });
+            const ocClass = this.loadOctoberClass(path.join(directory, filename));
+            if (ocClass) {
+                acc.push(ocClass);
+            }
 
-        return octoberClasses;
+            return acc;
+        }, []);
     }
 
     /**
