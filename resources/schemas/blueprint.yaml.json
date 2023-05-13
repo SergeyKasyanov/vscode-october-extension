@@ -15387,6 +15387,7 @@
             "enum": [
                 "entry",
                 "global",
+                "mixin",
                 "single",
                 "stream",
                 "structure"
@@ -15426,7 +15427,6 @@
         }
     },
     "required": [
-        "fields",
         "handle",
         "name"
     ],
