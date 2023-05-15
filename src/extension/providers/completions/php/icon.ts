@@ -81,7 +81,7 @@ export class Icon implements vscode.CompletionItemProvider {
         }
 
         return ocIcons.map(icon => {
-            const item = new vscode.CompletionItem('icon-' + icon, vscode.CompletionItemKind.Enum);
+            const item = new vscode.CompletionItem(icon, vscode.CompletionItemKind.Enum);
             item.range = document.getWordRangeAtPosition(position, ICON_NAME);
 
             return item;

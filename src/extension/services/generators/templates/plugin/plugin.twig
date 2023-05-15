@@ -16,7 +16,7 @@ class Plugin extends PluginBase
             'name'        => '{{ plugin_pascal }}',
             'description' => '{{ description }}',
             'author'      => '{{ author_pascal }}',
-            'icon'        => 'icon-{{ icon }}'
+            'icon'        => '{{ icon }}'
         ];
     }
 
@@ -161,7 +161,7 @@ class Plugin extends PluginBase
         //    '{{ plugin_lower }}' => [
         //         'label'       => '{{ plugin_pascal }}',
         //         'url'         => Backend::url('{{ namespace_slash }}'),
-        //         'icon'        => 'icon-leaf',
+        //         'icon'        => '{{ icon }}',
         //         'permissions' => ['{{ namespace_dot }}.*'],
         //     ],
         ];

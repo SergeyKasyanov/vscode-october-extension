@@ -30,7 +30,7 @@ export class PluginGeneratorUi extends GeneratorUiBase {
 
         const generator = new PluginGenerator(this.project, plugin, {
             description: description || 'Description is not provided...',
-            icon: icon || 'leaf',
+            icon: icon || 'icon-leaf',
             addBootMethod: options.includes(this.options.boot),
             addRegisterMethod: options.includes(this.options.register),
             addRegisterComponentsMethod: options.includes(this.options.registerComponents),
