@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { octoberTplSelector, phpSelector, yamlSelector } from "../helpers/file-selectors";
+import { BlueprintHandle as IniBlueprintHandle } from "../providers/completions/ini/blueprint-handle";
 import { ComponentName } from "../providers/completions/ini/component-name";
 import { ComponentProperty as IniComponentProperty } from "../providers/completions/ini/component-property";
 import { IniProperty } from "../providers/completions/ini/ini-property";
@@ -12,7 +13,7 @@ import { ComponentProperty as PhpComponentProperty } from "../providers/completi
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
 import { EnvVariable } from "../providers/completions/php/env-variable";
-import { Icon } from "../providers/completions/php/icon";
+import { Icon as PhpIcon } from "../providers/completions/php/icon";
 import { LangKey } from "../providers/completions/php/lang-key";
 import { ListName } from "../providers/completions/php/list-name";
 import { MenuContext } from "../providers/completions/php/menu-context";
@@ -38,7 +39,9 @@ import { PlaceholderName } from "../providers/completions/twig/placeholder-name"
 import { TwigFilter } from "../providers/completions/twig/twig-filter";
 import { TwigTag } from "../providers/completions/twig/twig-tag";
 import { TwigTest } from "../providers/completions/twig/twig-test";
+import { BlueprintHandle as YamlBlueprintHandle } from "../providers/completions/yaml/blueprint-handle";
 import { FilePath } from "../providers/completions/yaml/file-path";
+import { Icon as YamlIcon } from "../providers/completions/yaml/icon";
 import { MigrationName } from "../providers/completions/yaml/migration-name";
 import { ModelAttribute as YamlModelAttribute } from "../providers/completions/yaml/model-attribute";
 import { ModelFqn } from "../providers/completions/yaml/model-fqn";
@@ -63,7 +66,8 @@ function ini(context: vscode.ExtensionContext) {
     register(context, octoberTplSelector, new ComponentName, '[');
     register(context, octoberTplSelector, new IniComponentProperty, ...ALPHABET);
     register(context, octoberTplSelector, new IniProperty, ...ALPHABET);
-    register(context, octoberTplSelector, new LayoutName, '=', "'", '"');
+    register(context, octoberTplSelector, new LayoutName, "'", '"');
+    register(context, octoberTplSelector, new IniBlueprintHandle, "'", '"');
 }
 
 function php(context: vscode.ExtensionContext) {
@@ -72,7 +76,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new BehaviorConfigPath, ...QUOTES, '/', '~', '$');
     register(context, phpSelector, new BehaviorName, ...QUOTES);
     register(context, phpSelector, new ControllerAction, ...QUOTES);
-    register(context, phpSelector, new Icon, ...QUOTES);
+    register(context, phpSelector, new PhpIcon, ...QUOTES);
     register(context, phpSelector, new ListName, ...QUOTES);
     register(context, phpSelector, new MenuContext, ...QUOTES);
     register(context, phpSelector, new PhpComponentProperty, ...QUOTES);
@@ -119,6 +123,9 @@ function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlRelationName, ' ');
     register(context, yamlSelector, new TabName, ' ');
     register(context, yamlSelector, new RecordUrl, ' ');
+
+    register(context, yamlSelector, new YamlIcon, ' ');
+    register(context, yamlSelector, new YamlBlueprintHandle, ' ');
 }
 
 function register(
