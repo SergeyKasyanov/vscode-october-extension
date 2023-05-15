@@ -25,7 +25,8 @@ export class LayoutName implements vscode.CompletionItemProvider {
             return;
         }
 
-        if (!document.lineAt(position.line).text.startsWith('layout')) {
+        const beforeCursor = document.lineAt(position.line).text.slice(0, position.character);
+        if (!beforeCursor.match(/layout\s*=\s*[\'\"]/)) {
             return;
         }
 
