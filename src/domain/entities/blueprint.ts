@@ -4,6 +4,14 @@ import { OctoberEntity } from './october-entity';
 export class Blueprint extends OctoberEntity {
 
     /**
+     * Directory containing filter widgets of plugin/module
+     * @returns
+     */
+    static getBaseDirectories(): string[] {
+        return ['blueprints'];
+    }
+
+    /**
      * Blueprint uuid
      */
     get uuid(): string | undefined {

@@ -86,7 +86,7 @@ export class BackendIndexer {
                     const appOwner = new AppDirectory('app', path.join(projectPath, 'app'));
                     this.indexOwner(appOwner);
                     if (appOwner.project.platform?.hasTailor) {
-                        appOwner.blueprints = this.indexBlueprints(appOwner);
+                        this.indexBlueprints(appOwner);
                     }
                     this.store.addAppDirectory(projectPath, appOwner);
                     return;
@@ -216,6 +216,8 @@ export class BackendIndexer {
 
             const ocClass = (new FilterWidgetsIndexer()).indexFile(owner, filePath);
             if (ocClass) { owner.filterWidgets.push(ocClass); }
+        } else if (Blueprint.getBaseDirectories().includes(dir)) {
+            this.indexBlueprints(owner as AppDirectory);
         }
     }
 
@@ -226,8 +228,17 @@ export class BackendIndexer {
      * @returns
      */
     deleteFile(filePath: string) {
-        const entity = Store.instance.findEntity(filePath);
+        let entity;
+
+        entity = Store.instance.findEntity(filePath);
         if (!(entity instanceof OctoberClass)) {
+            const owner = Store.instance.findOwner(filePath);
+            if (owner instanceof AppDirectory) {
+                entity = owner.blueprints.find(b => b.path === filePath);
+            }
+        }
+
+        if (!entity) {
             return;
         }
 
@@ -253,6 +264,9 @@ export class BackendIndexer {
             entity.owner.reportWidgets = entity.owner.reportWidgets.filter(c => c.path !== filePath);
         } else if (entity instanceof FilterWidget) {
             entity.owner.filterWidgets = entity.owner.filterWidgets.filter(c => c.path !== filePath);
+        } else if (entity instanceof Blueprint) {
+            const appDir = (entity.owner as AppDirectory);
+            appDir.blueprints = appDir.blueprints.filter(b => b.path !== filePath);
         }
     }
 
@@ -266,7 +280,7 @@ export class BackendIndexer {
         try {
             this.indexOwner(appOwner);
             if (appOwner.project.platform?.hasTailor) {
-                appOwner.blueprints = this.indexBlueprints(appOwner);
+                this.indexBlueprints(appOwner);
             }
             this.store.addAppDirectory(projectPath, appOwner);
         } catch (err) {
@@ -445,13 +459,13 @@ export class BackendIndexer {
      * @param appOwner
      * @returns
      */
-    private indexBlueprints(appOwner: AppDirectory): Blueprint[] {
+    private indexBlueprints(appOwner: AppDirectory) {
         const blueprintsPath = path.join(appOwner.path, 'blueprints');
         if (!FsHelpers.exists(blueprintsPath) || !FsHelpers.isDirectory(blueprintsPath)) {
             return [];
         }
 
-        return FsHelpers
+        appOwner.blueprints = FsHelpers
             .listFiles(blueprintsPath, true, ['yaml'])
             .reduce((acc: Blueprint[], entry: string) => {
                 try {

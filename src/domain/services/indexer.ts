@@ -126,7 +126,7 @@ export class Indexer {
     private startBackendWatcher(projectPath: string) {
         const backendPattern = new vscode.RelativePattern(
             projectPath,
-            path.join(`{app,modules,${Config.pluginsDirectory}}`, '**', '*.php')
+            path.join(`{app,modules,${Config.pluginsDirectory}}`, '**', '*.{php,yaml}')
         );
 
         const watcher = vscode.workspace.createFileSystemWatcher(backendPattern);
