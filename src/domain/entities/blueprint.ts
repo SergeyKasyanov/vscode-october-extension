@@ -1,6 +1,8 @@
 import * as yaml from 'yaml';
 import { OctoberEntity } from './october-entity';
 
+export type BlueprintType = 'entry' | 'single' | 'structure' | 'stream' | 'global' | 'mixin';
+
 export class Blueprint extends OctoberEntity {
 
     /**
@@ -21,7 +23,7 @@ export class Blueprint extends OctoberEntity {
     /**
      * Blueprint type
      */
-    get type(): string | undefined {
+    get type(): BlueprintType | undefined {
         return this.parse().type;
     }
 
@@ -37,6 +39,13 @@ export class Blueprint extends OctoberEntity {
      */
     get entityName(): string | undefined {
         return this.parse().name;
+    }
+
+    /**
+     * Blueprint provides primary navigation
+     */
+    get hasPrimaryNavigation(): boolean {
+        return typeof this.parse().primaryNavigation === 'object';
     }
 
     /**
