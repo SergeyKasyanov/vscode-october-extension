@@ -35,6 +35,13 @@ export abstract class OctoberEntity {
     }
 
     /**
+     * Uri to file
+     */
+    get uri(): vscode.Uri {
+        return vscode.Uri.file(this.path);
+    }
+
+    /**
      * Path relative to owner
      */
     get relativePath(): string {
