@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
 import { MarkupFile } from '../../../../domain/entities/theme/theme-file';
 
-const HANDLE = /[w\\]+/;
+const HANDLE = /[\w\\]+/;
 
 /**
  * Completions for blueprint handle in theme file ini section
@@ -34,7 +34,7 @@ export class BlueprintHandle implements vscode.CompletionItemProvider {
         }
 
         const beforeCursor = document.lineAt(position.line).text.slice(0, position.character);
-        if (!beforeCursor.match(/handle\s*=\s*[\'\"]/)) {
+        if (!beforeCursor.match(/^handle\s*=\s*[\'\"][\w\\]*$/)) {
             return;
         }
 

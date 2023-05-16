@@ -5,8 +5,8 @@ import { awaitsCompletions } from '../../../helpers/awaits-completions';
 import { YamlHelpers } from '../../../helpers/yaml-helpers';
 
 const HANDLE_LINK_KEY = /(parent|source):\s*/g;
-const HANDLE_PART = /^[w\\]*$/;
-const HANDLE = /[w\\]+/;
+const HANDLE_PART = /^[\w\\]*$/;
+const HANDLE = /[\w\\]+/;
 
 /**
  * Completions for blueprint handle in blueprint yamls
