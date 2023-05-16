@@ -19,7 +19,15 @@ export class YamlHelpers {
         }
 
         const key = lineText.slice(0, div).trim();
-        const value = lineText.slice(div + 1).trim();
+        let value = lineText.slice(div + 1).trim();
+
+        if (value.startsWith('"') || value.startsWith("'")) {
+            value = value.slice(1);
+        }
+
+        if (value.endsWith('"') || value.endsWith("'")) {
+            value = value.slice(0, -1);
+        }
 
         return {
             key,
