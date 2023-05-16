@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { Str } from "../../helpers/str";
 
 /**
  * Helpers for work with yaml files
@@ -20,14 +21,7 @@ export class YamlHelpers {
 
         const key = lineText.slice(0, div).trim();
         let value = lineText.slice(div + 1).trim();
-
-        if (value.startsWith('"') || value.startsWith("'")) {
-            value = value.slice(1);
-        }
-
-        if (value.endsWith('"') || value.endsWith("'")) {
-            value = value.slice(0, -1);
-        }
+        value = Str.unquote(value);
 
         return {
             key,

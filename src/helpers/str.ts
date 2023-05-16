@@ -60,4 +60,16 @@ export class Str {
     static singular(str: string) {
         return pluralize.singular(str);
     }
+
+    static unquote(str: string) {
+        if (str.startsWith('"') || str.startsWith("'")) {
+            str = str.slice(1);
+        }
+
+        if (str.endsWith('"') || str.endsWith("'")) {
+            str = str.slice(0, -1);
+        }
+
+        return str;
+    }
 }
