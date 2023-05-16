@@ -55,8 +55,8 @@ export class BlueprintHandle implements vscode.CompletionItemProvider {
             });
         }
 
-        const sibling = YamlHelpers.getSibling(document, position, 'type');
-        if (sibling === 'mixin') {
+        const type = YamlHelpers.getSibling(document, position, 'type');
+        if (type === 'mixin') {
             return owner.blueprints.filter(b => b.type === 'mixin').map(b => {
                 const item = new vscode.CompletionItem(b.handle, vscode.CompletionItemKind.Class);
                 item.range = document.getWordRangeAtPosition(position, HANDLE);

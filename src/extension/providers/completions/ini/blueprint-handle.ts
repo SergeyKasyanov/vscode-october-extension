@@ -50,12 +50,14 @@ export class BlueprintHandle implements vscode.CompletionItemProvider {
             return;
         }
 
-        return appDir.blueprints.map(b => {
-            const item = new vscode.CompletionItem(b.handle, vscode.CompletionItemKind.Class);
-            item.range = document.getWordRangeAtPosition(position, HANDLE);
+        return appDir.blueprints
+            .filter(b => b.type !== 'mixin')
+            .map(b => {
+                const item = new vscode.CompletionItem(b.handle, vscode.CompletionItemKind.Class);
+                item.range = document.getWordRangeAtPosition(position, HANDLE);
 
-            return item;
-        });
+                return item;
+            });
     }
 
     private findComponentAttachment(position: vscode.Position, document: vscode.TextDocument) {
