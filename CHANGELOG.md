@@ -1,5 +1,24 @@
 # Change Log
 
+## 0.16.0
+
+This release is everything about Tailor. Now OctoberCode knows what is Tailor blueprints and can help you with it.
+
+New features of ths release:
+
+- Completions of handles in navigation section of blueprints and in mixins
+- Completions of icon names in navigation and primary navigation sections of blueprints
+- Completions of handles in `handle` property when you use Tailor components in your themes files
+- Finding references and definitions of Tailor blueprints in theme files and another blueprints
+- Command `octoberCode.goToBlueprint` for quick open blueprint
+- `octo` icon set in icon names completions
+
+Fixes:
+
+- Fixed project locale detector
+- Fixed yaml schema for blueprints
+- Fixed layout name completions
+
 ## 0.15.0
 
 New features:
