@@ -3,6 +3,7 @@ import { FsHelpers } from "../helpers/fs-helpers";
 import { TwigFiltersList } from "../static/twig-filters";
 import { TwigFunctionsList } from "../static/twig-functions";
 import { ControllerBehavior, ModelBehavior } from "./classes/behavior";
+import { Command } from "./classes/command";
 import { Component } from "./classes/component";
 import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
@@ -94,6 +95,17 @@ export class Project {
             ...(this.appDir?.contextOwner ? [this.appDir?.contextOwner] : []),
             ...this.plugins.flatMap(owner => owner.contextOwner),
             ...this.modules.flatMap(owner => owner.contextOwner),
+        ];
+    }
+
+    /**
+     * All artisan commands of project
+     */
+    get commands(): Command[] {
+        return [
+            ...(this.appDir?.commands || []),
+            ...this.plugins.flatMap(owner => owner.commands),
+            ...this.modules.flatMap(owner => owner.commands),
         ];
     }
 

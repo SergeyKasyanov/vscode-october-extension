@@ -2,9 +2,9 @@ import * as vscode from 'vscode';
 import { Store } from '../../../domain/services/store';
 import { DocumentLink } from '../../types/document-link';
 
-const PLUGIN_FILE = /->(registerConsoleCommand|command)\s*\(\s*[\'\"][\w\.\:\-]+[\'\"]/g;
-const ARTISAN_CALL = /Artisan::(call|queue)\s*\(\s*[\'\"][\w\.\:\-]+[\'\"]/g;
-const COMMAND_NAME = /[\'\"][\w\.\:\-]+[\'\"]/;
+const PLUGIN_FILE = /->(registerConsoleCommand|command)\s*\(\s*[\'\"][\w\.\:\-\_]+[\'\"]/g;
+const ARTISAN_CALL = /Artisan::(call|queue)\s*\(\s*[\'\"][\w\.\:\-\_]+[\'\"]/g;
+const COMMAND_NAME = /[\'\"][\w\.\:\-\_]+[\'\"]/;
 
 /**
  * Documents links to commands classes for:

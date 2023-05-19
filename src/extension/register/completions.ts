@@ -9,6 +9,7 @@ import { AttributeCast } from "../providers/completions/php/attribute-cast";
 import { BackendUrl } from "../providers/completions/php/backend-url";
 import { BehaviorConfigPath } from "../providers/completions/php/behavior-config-path";
 import { BehaviorName } from "../providers/completions/php/behavior-name";
+import { CommandCode } from "../providers/completions/php/command-code";
 import { ComponentProperty as PhpComponentProperty } from "../providers/completions/php/component-property";
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
@@ -84,6 +85,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new PhpPermissions, ...QUOTES);
     register(context, phpSelector, new PhpRelationName, ...QUOTES);
     register(context, phpSelector, new PathHelper, ...QUOTES, '/');
+    register(context, phpSelector, new CommandCode, '"', "'");
 
     register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ConfigKey, ...QUOTES);
