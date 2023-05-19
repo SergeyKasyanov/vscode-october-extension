@@ -8,6 +8,7 @@ import { MakePartialPath } from "../providers/links/make-partial-path";
 import { Migrations } from "../providers/links/migrations";
 import { PathHelpers } from "../providers/links/path-helpers";
 import { RecordUrl } from "../providers/links/record-url";
+import { RelationName } from "../providers/links/relation-name";
 import { TwigComponent } from "../providers/links/twig-component";
 import { ViewTemplate } from "../providers/links/view-template";
 import { YamlFiles } from "../providers/links/yaml-files";
@@ -27,6 +28,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new BehaviorConfig);
     register(context, phpSelector, new MakePartialPath);
     register(context, phpSelector, new Asset);
+    register(context, phpSelector, new RelationName);
 
     register(context, [phpSelector, octoberTplSelector], new PathHelpers);
     register(context, [phpSelector, octoberTplSelector], new BackendUrl);

@@ -13,7 +13,7 @@ const URL = /[\'\"][\w\-\_\/]+[\'\"]/;
 export class BackendUrl implements vscode.DocumentLinkProvider {
 
     provideDocumentLinks(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentLink[]> {
-        const links: vscode.DocumentLink[] = [];
+        const links: DocumentLink[] = [];
 
         const methodsMatches = document.getText().matchAll(BACKEND_URL_CALL);
         for (const match of methodsMatches) {
