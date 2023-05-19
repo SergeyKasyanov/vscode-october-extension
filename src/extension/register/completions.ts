@@ -52,6 +52,7 @@ import { RelationName as YamlRelationName } from "../providers/completions/yaml/
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
 import { TabName } from "../providers/completions/yaml/tab-name";
+import { EventHandler } from "../providers/completions/php/event-handler";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const QUOTES = ['\'', '"'];
@@ -86,6 +87,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new PhpRelationName, ...QUOTES);
     register(context, phpSelector, new PathHelper, ...QUOTES, '/');
     register(context, phpSelector, new CommandCode, '"', "'");
+    register(context, phpSelector, new EventHandler, '"', "'");
 
     register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ConfigKey, ...QUOTES);
