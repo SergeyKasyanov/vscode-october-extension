@@ -7,6 +7,7 @@ import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 import path = require("path");
+import { Widget } from "../../../../domain/entities/classes/widget";
 
 const MAKE_PARTIAL_METHOD = /->\s*(makePartial|makeHintPartial)\s*\(\s*[\'\"]/g;
 const PARTIAL_NAME_PART = /^(\$|\~){0,1}[\w\/\-\_\.]*$/;
@@ -76,18 +77,24 @@ export class PartialName implements vscode.CompletionItemProvider {
             });
         }
 
-        const controller = owner.findEntityByPath(document.fileName)
+        let viewsDirectory: string | undefined;
+
+        const entity = owner.findEntityByPath(document.fileName)
             || owner.findEntityByRelatedName(document.fileName);
-        if (!(controller instanceof Controller)) {
-            return;
+        if (entity instanceof Controller) {
+            viewsDirectory = entity.filesDirectory;
         }
 
-        const viewsDirectory = controller.filesDirectory;
-        if (!FsHelpers.exists(viewsDirectory)) {
+        if (entity instanceof Widget) {
+            viewsDirectory = path.join(entity.filesDirectory, 'partials');
+        }
+
+        if (!viewsDirectory || !FsHelpers.exists(viewsDirectory)) {
             return;
         }
 
         return this.getPathCompletions(viewsDirectory, owner.project.platform!.backendViewExtensions);
+
     }
 
     private getPrefixedPathCompletions(rootDir: string, prefixSymbol: string, entered: string, exts: string[]) {
