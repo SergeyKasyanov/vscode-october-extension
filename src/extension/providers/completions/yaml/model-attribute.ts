@@ -42,12 +42,6 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
             return;
         }
 
-        const lineText = document.lineAt(position).text;
-        const prefix = lineText.slice(0, position.character);
-        if (prefix.trim() !== '') {
-            return;
-        }
-
         return this.completions(model, true);
     }
 
