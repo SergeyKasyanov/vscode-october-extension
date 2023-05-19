@@ -3,6 +3,7 @@ import { octoberTplSelector, phpSelector, yamlSelector } from "../helpers/file-s
 import { Asset } from "../providers/links/asset";
 import { BackendUrl } from "../providers/links/backend-url";
 import { BehaviorConfig } from "../providers/links/behavior-config";
+import { CommandCode } from "../providers/links/command-code";
 import { IniComponent } from "../providers/links/ini-component";
 import { MakePartialPath } from "../providers/links/make-partial-path";
 import { Migrations } from "../providers/links/migrations";
@@ -29,6 +30,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new MakePartialPath);
     register(context, phpSelector, new Asset);
     register(context, phpSelector, new RelationName);
+    register(context, phpSelector, new CommandCode);
 
     register(context, [phpSelector, octoberTplSelector], new PathHelpers);
     register(context, [phpSelector, octoberTplSelector], new BackendUrl);
