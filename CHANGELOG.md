@@ -1,5 +1,21 @@
 # Change Log
 
+## 0.17.0
+
+New features:
+
+- Links to list config in `$this-listRender('list_name')` calls
+- Links to relation config in `$this->relationRender('relation_name')` calls
+- Links to command classes in `Artisan::call('command.code')`, `Artisan::queue('command.code')` calls *(for now only for modules and plugins commands)*
+- Completions of command codes in `Artisan::call('command.code')`, `Artisan::queue('command.code')` calls *(for now only for modules and plugins commands)*
+- Completions of partial names in `$this->makePartial('...')` inside widgets
+- Ajax methods completions in `$this->getEventHandler('...')` calls inside widgets
+- Document links to ajax methods in `$this->getEventHandler('...')` calls inside widgets
+
+Improvements:
+
+- Model attributes completions now triggers automatically in form and list configs
+
 ## 0.16.0
 
 This release is everything about Tailor. Now OctoberCode knows what is Tailor blueprints and can help you with it.
