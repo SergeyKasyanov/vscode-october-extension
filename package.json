@@ -130,6 +130,11 @@
         ],
         "commands": [
             {
+                "command": "octoberCode.showVersionName",
+                "title": "Show OctoberCMS version",
+                "category": "OctoberCode"
+            },
+            {
                 "command": "octoberCode.generate",
                 "title": "Generate...",
                 "category": "OctoberCode"

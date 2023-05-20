@@ -1,4 +1,4 @@
-import { Version } from "../enums/october-version";
+import { Version, versionNames } from "../enums/october-version";
 
 /**
  * Represents OctoberCMS platform of opened project.
@@ -14,6 +14,13 @@ export class Platform {
     get version() {
         return this._version;
     };
+
+    /**
+     * Human readable version number
+     */
+    get versionName() {
+        return versionNames[this._version];
+    }
 
     //
     // Platform version specific stuff

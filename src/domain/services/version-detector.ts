@@ -14,8 +14,44 @@ export class VersionDetector {
      * @returns
      */
     detect(projectPath: string): Version | undefined {
-        return this.tryDetectByComposerJson(projectPath)
+        return this.tryDetectByComposerLock(projectPath)
+            || this.tryDetectByComposerJson(projectPath)
             || this.tryDetectByDirectory(projectPath);
+    }
+
+    private tryDetectByComposerLock(projectPath: string): Version | undefined {
+        const composerLockPath = PathHelpers.rootPath(projectPath, 'composer.lock');
+        if (!FsHelpers.exists(composerLockPath)) {
+            return;
+        }
+
+        const composerLockRaw = FsHelpers.readFile(composerLockPath);
+        const composerLock = JSON.parse(composerLockRaw);
+        const packages: Array<{ name: string, version: string }> = composerLock.packages;
+
+        for (const pkg of packages) {
+            if (pkg.name === 'october/system') {
+                if (pkg.version.includes('1.0.')) {
+                    return Version.oc10;
+                } else if (pkg.version.includes('1.1.')) {
+                    return Version.oc11;
+                } else if (pkg.version.includes('2.0.')) {
+                    return Version.oc20;
+                } else if (pkg.version.includes('2.1.')) {
+                    return Version.oc21;
+                } else if (pkg.version.includes('2.2.')) {
+                    return Version.oc22;
+                } else if (pkg.version.includes('3.0.')) {
+                    return Version.oc30;
+                } else if (pkg.version.includes('3.1.')) {
+                    return Version.oc31;
+                } else if (pkg.version.includes('3.2.')) {
+                    return Version.oc32;
+                } else if (pkg.version.includes('3.3.')) {
+                    return Version.oc33;
+                }
+            }
+        }
     }
 
     /**
