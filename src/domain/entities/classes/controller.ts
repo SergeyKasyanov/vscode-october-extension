@@ -1,6 +1,11 @@
+import * as phpParser from 'php-parser';
 import * as vscode from 'vscode';
+import { PathHelpers } from '../../helpers/path-helpers';
+import { AppDirectory } from '../owners/app-directory';
+import { Module } from '../owners/module';
 import { Owner } from '../owners/owner';
-import { Behavior, ControllerBehavior } from './behavior';
+import { Plugin } from '../owners/plugin';
+import { ControllerBehavior } from './behavior';
 import { HasAjaxMethods } from './concerns/has-ajax-methods';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
 import { OctoberClass } from "./october-class";
@@ -102,5 +107,62 @@ export class Controller extends OctoberClass {
         }
 
         return this._pageMethods;
+    }
+
+    /**
+     * Path to behavior config file
+     */
+    getBehaviorConfigPath(behaviorFqn: string): string | undefined {
+        const value = this.hasBehaviors.getConfigsPath(behaviorFqn);
+        if (!value) {
+            return;
+        }
+
+        const properties = this.phpClassProperties;
+        const relationConfig = properties?.relationConfig;
+        if (!relationConfig || relationConfig.value?.kind !== 'string') {
+            return;
+        }
+
+        let configPath = (relationConfig.value as phpParser.String).value;
+        if (configPath.length === 0) {
+            return;
+        }
+
+        if (configPath.startsWith('~')) {
+            // ex: ~/plugins/my/blog/controllers/posts/config_relation.yaml
+
+            configPath = configPath.slice(1);
+            if (configPath.startsWith('/')) {
+                configPath = configPath.slice(1);
+            }
+
+            configPath = configPath.split('/').join(path.sep);
+            configPath = PathHelpers.rootPath(this.owner.project.path, configPath);
+        } else if (configPath.startsWith('$')) {
+            // ex: $/my/blog/controllers/posts/config_relation.yaml
+
+            configPath = configPath.slice(1);
+            if (configPath.startsWith('/')) {
+                configPath = configPath.slice(1);
+            }
+
+            configPath = configPath.split('/').join(path.sep);
+
+            if (this.owner instanceof Plugin) {
+                configPath = PathHelpers.pluginsPath(this.owner.project.path, configPath);
+            } else if (this.owner instanceof AppDirectory) {
+                configPath = PathHelpers.appPath(this.owner.project.path, configPath);
+            } else if (this.owner instanceof Module) {
+                configPath = PathHelpers.modulesPath(this.owner.project.path, configPath);
+            }
+        } else {
+            // ex: config/relation.yaml
+
+            configPath = configPath.split('/').join(path.sep);
+            configPath = path.join(this.owner.path, 'controllers', this.uqn.toLowerCase(), configPath);
+        }
+
+        return configPath;
     }
 }

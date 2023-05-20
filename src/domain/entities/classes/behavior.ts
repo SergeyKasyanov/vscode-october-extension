@@ -102,6 +102,22 @@ export class ControllerBehavior extends Behavior {
 
         return [];
     }
+
+    /**
+     * Name of class property with path to config
+     */
+    get cofigName(): string | undefined {
+        switch (this.fqn) {
+            case 'Backend\\Behaviors\\ListController':
+                return 'listConfig';
+            case 'Backend\\Behaviors\\FormController':
+                return 'formConfig';
+            case 'Backend\\Behaviors\\ImportExportController':
+                return 'importExportConfig';
+            case 'Backend\\Behaviors\\ReorderController':
+                return 'reorderConfig';
+        }
+    }
 }
 
 /**

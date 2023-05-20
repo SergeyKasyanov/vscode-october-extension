@@ -1,6 +1,6 @@
 import * as phpParser from 'php-parser';
 import { PhpHelpers } from "../../../helpers/php-helpers";
-import { Behavior } from "../behavior";
+import { Behavior, ControllerBehavior } from "../behavior";
 import { OctoberClass } from "../october-class";
 
 export type BehaviorsList<T extends Behavior> = {
@@ -79,7 +79,7 @@ export class HasBehaviors {
                         || this.ocClass.owner.project.modelBehaviors.find(mb => mb.fqn === fqn);
 
                     if (behavior instanceof Behavior) {
-                        behaviors[behavior.fqn]  = {
+                        behaviors[behavior.fqn] = {
                             behavior,
                             location: item.loc!
                         };
@@ -95,5 +95,16 @@ export class HasBehaviors {
         }
 
         return this._behaviors;
+    }
+
+    /**
+     * Array of paths to behavior configs
+     */
+    getConfigsPath(behaviorFqn: string): string | undefined {
+        const behavior = this.behaviors[behaviorFqn];
+
+        if (behavior instanceof ControllerBehavior) {
+            return behavior.cofigName;
+        }
     }
 }
