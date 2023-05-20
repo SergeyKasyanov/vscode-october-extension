@@ -15,6 +15,13 @@ export abstract class Owner {
     ) { }
 
     /**
+     * Returns owner type
+     */
+    get ownerType() {
+        return this.constructor.name;
+    }
+
+    /**
      * Workspace folder of this owner
      */
     get project(): Project {

@@ -45,15 +45,15 @@ export class RelationName implements vscode.DocumentLinkProvider {
             return;
         }
 
-        const configPath = controller.getBehaviorConfigPath('Backend\\Behaviors\\RelationController');
-        if (!configPath || !FsHelpers.exists(configPath)) {
+        const configs = controller.getBehaviorConfigPaths('Backend\\Behaviors\\RelationController');
+        if (!configs || !configs.default || !FsHelpers.exists(configs.default)) {
             return;
         }
 
         const regexStr = Str.replaceAll(`${link.markedText}:\s*\r?\n`, '\\', '\\\\');
         const regex = new RegExp(regexStr, 'g');
 
-        const configContent = FsHelpers.readFile(configPath);
+        const configContent = FsHelpers.readFile(configs.default);
         const behaviorConfig = yaml.parse(configContent);
 
         const matches = configContent.matchAll(regex);
@@ -63,7 +63,7 @@ export class RelationName implements vscode.DocumentLinkProvider {
                 continue;
             }
 
-            const uri = vscode.Uri.file(configPath);
+            const uri = vscode.Uri.file(configs.default);
 
             const configDocument = await vscode.workspace.openTextDocument(uri);
             const position = configDocument.positionAt(match.index!);

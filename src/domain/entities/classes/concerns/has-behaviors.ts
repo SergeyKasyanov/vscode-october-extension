@@ -1,6 +1,6 @@
 import * as phpParser from 'php-parser';
 import { PhpHelpers } from "../../../helpers/php-helpers";
-import { Behavior, ControllerBehavior } from "../behavior";
+import { Behavior } from "../behavior";
 import { OctoberClass } from "../october-class";
 
 export type BehaviorsList<T extends Behavior> = {
@@ -95,16 +95,5 @@ export class HasBehaviors {
         }
 
         return this._behaviors;
-    }
-
-    /**
-     * Array of paths to behavior configs
-     */
-    getConfigsPath(behaviorFqn: string): string | undefined {
-        const behavior = this.behaviors[behaviorFqn];
-
-        if (behavior instanceof ControllerBehavior) {
-            return behavior.cofigName;
-        }
     }
 }

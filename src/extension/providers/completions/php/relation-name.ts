@@ -54,56 +54,12 @@ export class RelationName implements vscode.CompletionItemProvider {
             return;
         }
 
-        const properties = controller.phpClassProperties;
-        const relationConfig = properties?.relationConfig;
-        if (!relationConfig || relationConfig.value?.kind !== 'string') {
+        const configs = controller.getBehaviorConfigPaths('Backend\\Behaviors\\RelationController');
+        if (!configs || !configs.default || !FsHelpers.exists(configs.default)) {
             return;
         }
 
-        let configPath = (relationConfig.value as phpParser.String).value;
-        if (configPath.length === 0) {
-            return;
-        }
-
-        if (configPath.startsWith('~')) {
-            // ex: ~/plugins/my/blog/controllers/posts/config_relation.yaml
-
-            configPath = configPath.slice(1);
-            if (configPath.startsWith('/')) {
-                configPath = configPath.slice(1);
-            }
-
-            configPath = configPath.split('/').join(path.sep);
-            configPath = PathHelpers.rootPath(controller.owner.project.path, configPath);
-        } else if (configPath.startsWith('$')) {
-            // ex: $/my/blog/controllers/posts/config_relation.yaml
-
-            configPath = configPath.slice(1);
-            if (configPath.startsWith('/')) {
-                configPath = configPath.slice(1);
-            }
-
-            configPath = configPath.split('/').join(path.sep);
-
-            if (controller.owner instanceof Plugin) {
-                configPath = PathHelpers.pluginsPath(controller.owner.project.path, configPath);
-            } else if (controller.owner instanceof AppDirectory) {
-                configPath = PathHelpers.appPath(controller.owner.project.path, configPath);
-            } else if (controller.owner instanceof Module) {
-                configPath = PathHelpers.modulesPath(controller.owner.project.path, configPath);
-            }
-        } else {
-            // ex: config/relation.yaml
-
-            configPath = configPath.split('/').join(path.sep);
-            configPath = path.join(owner.path, 'controllers', controller.uqn.toLowerCase(), configPath);
-        }
-
-        if (!FsHelpers.exists(configPath)) {
-            return;
-        }
-
-        const configContent = FsHelpers.readFile(configPath);
+        const configContent = FsHelpers.readFile(configs.default);
 
         const behaviorConfig = yaml.parse(configContent);
 

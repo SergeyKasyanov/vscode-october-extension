@@ -116,6 +116,8 @@ export class ControllerBehavior extends Behavior {
                 return 'importExportConfig';
             case 'Backend\\Behaviors\\ReorderController':
                 return 'reorderConfig';
+            case 'Backend\\Behaviors\\RelationController':
+                return 'relationConfig';
         }
     }
 }

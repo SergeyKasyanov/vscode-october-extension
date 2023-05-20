@@ -6,6 +6,7 @@ import { BehaviorConfig } from "../providers/links/behavior-config";
 import { CommandCode } from "../providers/links/command-code";
 import { EventHandler } from "../providers/links/event-handler";
 import { IniComponent } from "../providers/links/ini-component";
+import { ListName } from "../providers/links/list-name";
 import { MakePartialPath } from "../providers/links/make-partial-path";
 import { Migrations } from "../providers/links/migrations";
 import { PathHelpers } from "../providers/links/path-helpers";
@@ -30,6 +31,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new BehaviorConfig);
     register(context, phpSelector, new MakePartialPath);
     register(context, phpSelector, new Asset);
+    register(context, phpSelector, new ListName);
     register(context, phpSelector, new RelationName);
     register(context, phpSelector, new CommandCode);
     register(context, phpSelector, new EventHandler);

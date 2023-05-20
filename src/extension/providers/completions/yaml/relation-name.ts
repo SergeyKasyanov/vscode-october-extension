@@ -13,7 +13,7 @@ const RELATION_NAME_PART = /^\w*$/;
  *     category_name:
  *         label: Category
  *         relation: category
- *         select_name
+ *         select: name
  */
 export class RelationName implements vscode.CompletionItemProvider {
     provideCompletionItems(

@@ -1,10 +1,8 @@
 import * as phpParser from 'php-parser';
 import * as vscode from 'vscode';
 import { PathHelpers } from '../../helpers/path-helpers';
-import { AppDirectory } from '../owners/app-directory';
-import { Module } from '../owners/module';
+import { PhpHelpers } from '../../helpers/php-helpers';
 import { Owner } from '../owners/owner';
-import { Plugin } from '../owners/plugin';
 import { ControllerBehavior } from './behavior';
 import { HasAjaxMethods } from './concerns/has-ajax-methods';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
@@ -110,59 +108,93 @@ export class Controller extends OctoberClass {
     }
 
     /**
-     * Path to behavior config file
+     * Path to behavior config files
      */
-    getBehaviorConfigPath(behaviorFqn: string): string | undefined {
-        const value = this.hasBehaviors.getConfigsPath(behaviorFqn);
-        if (!value) {
+    getBehaviorConfigPaths(
+        behaviorFqn: string
+    ): { [key: string]: string } | undefined {
+
+        const _beh = this.behaviors[behaviorFqn];
+        if (!(_beh?.behavior instanceof ControllerBehavior)) {
+            return;
+        }
+
+        const behavior = _beh.behavior;
+        if (!behavior.cofigName) {
             return;
         }
 
         const properties = this.phpClassProperties;
-        const relationConfig = properties?.relationConfig;
-        if (!relationConfig || relationConfig.value?.kind !== 'string') {
+        if (!properties) {
             return;
         }
 
-        let configPath = (relationConfig.value as phpParser.String).value;
-        if (configPath.length === 0) {
-            return;
+        let definitions: { [key: string]: string } = {};
+
+        const configProperty = properties[behavior.cofigName];
+        if (configProperty?.value?.kind === 'string') {
+            let value = (configProperty.value as phpParser.String).value;
+            if (value.length === 0) {
+                return;
+            }
+
+            definitions['default'] = value;
+        } else if (configProperty?.value?.kind === 'array') {
+            const value = PhpHelpers.phpArrayToObject(configProperty?.value as phpParser.Array);
+            for (const key in value) {
+                if (Object.prototype.hasOwnProperty.call(value, key)) {
+                    const val = value[key];
+                    if (val.length > 0) {
+                        definitions[key] = val;
+                    }
+                }
+            }
         }
 
-        if (configPath.startsWith('~')) {
-            // ex: ~/plugins/my/blog/controllers/posts/config_relation.yaml
+        let configPaths: { [key: string]: string } = {};
 
-            configPath = configPath.slice(1);
-            if (configPath.startsWith('/')) {
-                configPath = configPath.slice(1);
+        for (const key in definitions) {
+            if (Object.prototype.hasOwnProperty.call(definitions, key)) {
+                let configPath = definitions[key];
+
+                if (configPath.startsWith('~')) {
+                    // ex: ~/plugins/my/blog/controllers/posts/config_relation.yaml
+
+                    configPath = configPath.slice(1);
+                    if (configPath.startsWith('/')) {
+                        configPath = configPath.slice(1);
+                    }
+
+                    configPath = configPath.split('/').join(path.sep);
+                    configPath = PathHelpers.rootPath(this.owner.project.path, configPath);
+                } else if (configPath.startsWith('$')) {
+                    // ex: $/my/blog/controllers/posts/config_relation.yaml
+
+                    configPath = configPath.slice(1);
+                    if (configPath.startsWith('/')) {
+                        configPath = configPath.slice(1);
+                    }
+
+                    configPath = configPath.split('/').join(path.sep);
+
+                    if (this.owner.ownerType === 'Plugin') {
+                        configPath = PathHelpers.pluginsPath(this.owner.project.path, configPath);
+                    } else if (this.owner.ownerType === 'AppDirectory') {
+                        configPath = PathHelpers.appPath(this.owner.project.path, configPath);
+                    } else if (this.owner.ownerType === 'Module') {
+                        configPath = PathHelpers.modulesPath(this.owner.project.path, configPath);
+                    }
+                } else {
+                    // ex: config/relation.yaml
+
+                    configPath = configPath.split('/').join(path.sep);
+                    configPath = path.join(this.owner.path, 'controllers', this.uqn.toLowerCase(), configPath);
+                }
+
+                configPaths[key] = configPath;
             }
-
-            configPath = configPath.split('/').join(path.sep);
-            configPath = PathHelpers.rootPath(this.owner.project.path, configPath);
-        } else if (configPath.startsWith('$')) {
-            // ex: $/my/blog/controllers/posts/config_relation.yaml
-
-            configPath = configPath.slice(1);
-            if (configPath.startsWith('/')) {
-                configPath = configPath.slice(1);
-            }
-
-            configPath = configPath.split('/').join(path.sep);
-
-            if (this.owner instanceof Plugin) {
-                configPath = PathHelpers.pluginsPath(this.owner.project.path, configPath);
-            } else if (this.owner instanceof AppDirectory) {
-                configPath = PathHelpers.appPath(this.owner.project.path, configPath);
-            } else if (this.owner instanceof Module) {
-                configPath = PathHelpers.modulesPath(this.owner.project.path, configPath);
-            }
-        } else {
-            // ex: config/relation.yaml
-
-            configPath = configPath.split('/').join(path.sep);
-            configPath = path.join(this.owner.path, 'controllers', this.uqn.toLowerCase(), configPath);
         }
 
-        return configPath;
+        return configPaths;
     }
 }
