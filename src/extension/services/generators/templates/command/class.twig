@@ -8,7 +8,11 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class {{ command_pascal }} extends Command
 {
+{% if useSignature %}
+    protected $signature = '{{ plugin_lower }}:{{ command_dashed }} {exampleArgument} {--exampleOption}';
+{% else %}
     protected $name = '{{ plugin_lower }}:{{ command_dashed }}';
+{% endif %}
 
     protected $description = '{{ description }}';
 {% if hidden %}
@@ -18,23 +22,25 @@ class {{ command_pascal }} extends Command
 
     public function handle()
     {
-        // $argument = $this->argument('example');
-        // $option   = $this->option('example');
+        // $argument = $this->argument('exampleArgument');
+        // $option   = $this->option('exampleOption');
 
         $this->output->writeln('Hello world!');
     }
 
+{% if not useSignature %}
     protected function getArguments()
     {
         return [
-            // ['example', InputArgument::REQUIRED, 'An example argument.'],
+            // ['exampleArgument', InputArgument::REQUIRED, 'An example argument.'],
         ];
     }
 
     protected function getOptions()
     {
         return [
-            // ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+            // ['exampleOption', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
         ];
     }
+{% endif %}
 }

@@ -22,17 +22,17 @@ export class Command extends OctoberClass {
         }
 
         try {
-            const phpClass = PhpHelpers.getClass(this.fileContent!, this.path);
-            if (!phpClass) {
+            const properties = this.phpClassProperties;
+            if (!properties) {
                 return this._commandName;
             }
 
-            const properties = PhpHelpers.getProperties(phpClass);
-            if (properties.name?.value?.kind !== 'string') {
-                return this._commandName;
+            if (properties.name?.value?.kind === 'string') {
+                this._commandName = (properties.name.value as phpParser.String).value;
+            } else if (properties.signature?.value?.kind === 'string') {
+                const propVal = (properties.signature.value as phpParser.String).value;
+                this._commandName = propVal.trim().split(/\r?\n/)[0].split(/\s+/)[0];
             }
-
-            this._commandName = (properties.name.value as phpParser.String).value;
         } catch (err) {
             console.error(err);
         }

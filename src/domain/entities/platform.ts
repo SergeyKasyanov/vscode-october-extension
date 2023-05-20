@@ -81,4 +81,11 @@ export class Platform {
     get usesBootstrap5(): boolean {
         return this._version >= Version.oc30;
     }
+
+    /**
+     * Uses $signature in artisan commands
+     */
+    get usesSignaturesInCommands(): boolean {
+        return this._version >= Version.oc32;
+    }
 }

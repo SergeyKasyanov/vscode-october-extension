@@ -19,7 +19,8 @@ export class CommandGenerator extends GeneratorBase {
         super.setVars({
             command: vars.command,
             description: vars.description || 'No description provided yet...',
-            hidden: !!vars.hidden
+            hidden: !!vars.hidden,
+            useSignature: this.project.platform!.usesSignaturesInCommands,
         });
     }
 }

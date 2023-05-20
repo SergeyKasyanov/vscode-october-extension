@@ -4,7 +4,7 @@
 
 New features:
 
-- Links to list config in `$this-listRender('list_name')` calls
+- Links to list config in `$this->listRender('list_name')` calls
 - Links to relation config in `$this->relationRender('relation_name')` calls
 - Links to command classes in `Artisan::call('command.code')`, `Artisan::queue('command.code')` calls *(for now only for modules and plugins commands)*
 - Completions of command codes in `Artisan::call('command.code')`, `Artisan::queue('command.code')` calls *(for now only for modules and plugins commands)*
