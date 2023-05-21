@@ -33,9 +33,6 @@ export abstract class BackendOwner extends Owner {
     private _permissions: Permission[] = [];
     private _navigation: Navigation = {};
 
-    configKeys: string[] = [];
-    langs: string[] = [];
-
     /**
      * Backend menu context owner
      */

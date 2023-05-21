@@ -14,6 +14,8 @@ import { ComponentProperty as PhpComponentProperty } from "../providers/completi
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
 import { EnvVariable } from "../providers/completions/php/env-variable";
+import { EventHandler } from "../providers/completions/php/event-handler";
+import { EventName } from "../providers/completions/php/event-name";
 import { Icon as PhpIcon } from "../providers/completions/php/icon";
 import { LangKey } from "../providers/completions/php/lang-key";
 import { ListName } from "../providers/completions/php/list-name";
@@ -52,7 +54,6 @@ import { RelationName as YamlRelationName } from "../providers/completions/yaml/
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
 import { TabName } from "../providers/completions/yaml/tab-name";
-import { EventHandler } from "../providers/completions/php/event-handler";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const QUOTES = ['\'', '"'];
@@ -96,6 +97,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, [phpSelector, octoberTplSelector], new ValidationRule, ...QUOTES, '|');
     register(context, [phpSelector, octoberTplSelector], new ValidationTableName, ...QUOTES, ':');
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
+    register(context, [phpSelector, octoberTplSelector], new EventName, ...QUOTES);
 
     register(context, octoberTplSelector, new PageNamePhp, ...QUOTES);
 }
