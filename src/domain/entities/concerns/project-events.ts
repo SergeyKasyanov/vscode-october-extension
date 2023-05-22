@@ -3,11 +3,11 @@ import { FsHelpers } from "../../helpers/fs-helpers";
 import { PathHelpers } from "../../helpers/path-helpers";
 import { Project } from "../project";
 
-const EVENT_FIRE = /(Event::fire|->fireEvent|->fireModelEvent|->fireSystemEvent|->fireViewEvent)\s*\(\s*[\'\"][\w\-\_\.\:]+[\'\"]/g;
+const EVENT_FIRE = /(Event::fire|->fireSystemEvent|->fireViewEvent)\s*\(\s*[\'\"][\w\-\_\.\:]+[\'\"]/g;
 const EVENT_NAME = /[\'\"][\w\-\_\.\:]+[\'\"]/;
 
 /**
- * Get events names from project
+ * Get global event names from project
  */
 export function getEvents(project: Project): string[] {
     const events: string[] = [];
@@ -40,17 +40,8 @@ function listFiredEvents(dir: string) {
             const calling = match[0];
             const event = calling.match(EVENT_NAME)![0].slice(1, -1);
 
-            if (calling.includes('fireModelEvent')) {
-                if (!events.includes('model.' + event)) {
-                    events.push('model.' + event);
-                }
-                if (!events.includes('halcyon.' + event)) {
-                    events.push('halcyon.' + event);
-                }
-            } else {
-                if (!events.includes(event)) {
-                    events.push(event);
-                }
+            if (!events.includes(event)) {
+                events.push(event);
             }
         }
     });
