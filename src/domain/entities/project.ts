@@ -1,5 +1,4 @@
 import { Config } from "../../config";
-import { FsHelpers } from "../helpers/fs-helpers";
 import { TwigFiltersList } from "../static/twig-filters";
 import { TwigFunctionsList } from "../static/twig-functions";
 import { ControllerBehavior, ModelBehavior } from "./classes/behavior";
@@ -9,6 +8,8 @@ import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
 import { Model } from "./classes/model";
 import { getConfig } from './concerns/project-config';
+import { EnvKeysCollection, getEnv } from "./concerns/project-env";
+import { getEvents } from "./concerns/project-events";
 import { Translations, getTranslations } from './concerns/project-lang';
 import { getLocale } from "./concerns/project-locale";
 import { AppDirectory } from "./owners/app-directory";
@@ -44,26 +45,8 @@ export class Project {
     /**
      * List of keys from .env file
      */
-    get envVariables(): { [key: string]: string | null } {
-        const envPath = path.join(this.path, '.env');
-        if (!FsHelpers.exists(envPath)) {
-            return {};
-        }
-
-        const envKeys: { [key: string]: string | null } = {};
-        const envContent = FsHelpers.readFile(envPath);
-        const lines = envContent.split(/\r?\n/);
-
-        for (const line of lines) {
-            if (line.trim().length === 0) {
-                continue;
-            }
-
-            const parts = line.trim().split('=');
-            envKeys[parts[0].trim()] = parts[1].trim();
-        }
-
-        return envKeys;
+    get envVariables(): EnvKeysCollection {
+        return getEnv(this);
     }
 
     /**
@@ -85,6 +68,13 @@ export class Project {
      */
     get translations(): Translations {
         return getTranslations(this);
+    }
+
+    /**
+     * List global events of project
+     */
+    get events():string[] {
+        return getEvents(this);
     }
 
     /**

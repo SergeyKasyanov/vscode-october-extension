@@ -11,7 +11,7 @@ import path = require("path");
  * @param project
  * @returns
  */
-export function getLocale(project: Project) {
+export function getLocale(project: Project): string {
     return localeFromEnv(project)
         || localeFromConfig(project)
         || 'en';
@@ -24,7 +24,7 @@ export function getLocale(project: Project) {
  * @returns
  */
 function localeFromEnv(project: Project) {
-    return project.envVariables.APP_LOCALE;
+    return project.envVariables.APP_LOCALE?.value;
 }
 
 /**

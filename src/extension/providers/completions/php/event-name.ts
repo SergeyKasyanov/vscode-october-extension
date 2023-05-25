@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
 import { awaitsCompletions } from '../../../helpers/awaits-completions';
-import { getEvents } from '../../../../domain/entities/concerns/project-events';
 
 const EVENT_LISTEN = /Event::listen\s*\(\s*[\'\"]/g;
 const EVENT_NAME_PART = /^[\w\-\_\.\:]*$/;
@@ -30,7 +29,7 @@ export class EventName implements vscode.CompletionItemProvider {
             return;
         }
 
-        return getEvents(project).map(e => {
+        return project.events.map(e => {
             const item = new vscode.CompletionItem(e, vscode.CompletionItemKind.EnumMember);
             item.range = document.getWordRangeAtPosition(position, EVENT_NAME);
 

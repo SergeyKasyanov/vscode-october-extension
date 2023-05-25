@@ -4,6 +4,7 @@ import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
 const ENV_FUNCTION = /env\([\'\"]/g;
 const ENV_KEY_PART = /^[\w\_]*$/;
+const ENV_KEY = /[\w\_]+/;
 
 /**
  * Completions for keys in .env file
@@ -31,8 +32,24 @@ export class EnvVariable implements vscode.CompletionItemProvider {
             return;
         }
 
-        return Object.keys(project.envVariables).map(
-            key => new vscode.CompletionItem(key, vscode.CompletionItemKind.EnumMember)
-        );
+        const items: vscode.CompletionItem[] = [];
+
+        const envVars = project.envVariables;
+        for (const key in envVars) {
+            if (Object.prototype.hasOwnProperty.call(envVars, key)) {
+                const value = envVars[key];
+
+                const item = new vscode.CompletionItem(key, vscode.CompletionItemKind.EnumMember);
+                item.range = document.getWordRangeAtPosition(position, ENV_KEY);
+
+                if (value.value) {
+                    item.detail = value.value;
+                }
+
+                items.push(item);
+            }
+        }
+
+        return items;
     }
 }
