@@ -1,5 +1,18 @@
 # Change Log
 
+## 0.18.0
+
+New features:
+
+- Completions of global event names
+
+Improvements:
+
+- Commands indexer now knows what is signature
+- Use `$singnature` in artisan command generator for OctoberCMS >= 3.2
+- Detect OctoberCMS version by `composer.lock` instead of `composer.json`. This makes version detection more accurate
+- `icon:` completions now works in any `yaml`, not only Tailor blueprints
+
 ## 0.17.0
 
 New features:
