@@ -25,13 +25,8 @@ export class Icon implements vscode.CompletionItemProvider {
         position: vscode.Position
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
-        const owner = Store.instance.findOwner(document.fileName) as AppDirectory;
-        if (!(owner instanceof AppDirectory)) {
-            return;
-        }
-
-        const bluprint = owner.blueprints.find(b => b.path === document.fileName);
-        if (!bluprint) {
+        const project = Store.instance.findProject(document.fileName);
+        if (!project) {
             return;
         }
 
@@ -41,11 +36,6 @@ export class Icon implements vscode.CompletionItemProvider {
             ICON_KEY,
             ICON_PART
         )) {
-            return;
-        }
-
-        const parent = YamlHelpers.getParent(document, position.line);
-        if (!parent || !['primaryNavigation', 'navigation'].includes(parent)) {
             return;
         }
 
