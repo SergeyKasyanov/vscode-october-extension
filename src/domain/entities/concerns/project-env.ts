@@ -1,63 +1,73 @@
 import * as vscode from 'vscode';
 import { FsHelpers } from "../../helpers/fs-helpers";
+import { PathHelpers } from '../../helpers/path-helpers';
 import { Project } from "../project";
+import { EnvVariable } from '../types';
 import path = require("path");
 
-export type EnvKeysCollection = {
-    [key: string]: {
-        value: string | undefined | null,
-        uri: vscode.Uri
-    }
-};
-
 /**
- * List of keys from .env file
+ * Find env key usage locations
  */
-export function getEnv(project: Project): EnvKeysCollection {
-    const envPath = path.join(project.path, '.env');
-    if (!FsHelpers.exists(envPath)) {
-        return {};
+export async function findEnvUsages(
+    project: Project,
+    envVar: EnvVariable,
+    includeSelf: boolean = false
+): Promise<vscode.Location[]> {
+    const directoriesForSearch: string[] = [
+        PathHelpers.rootPath(project.path, 'config')
+    ];
+
+    if (project.appDir) {
+        directoriesForSearch.push(project.appDir.path);
     }
 
-    const uri = vscode.Uri.file(envPath);
+    directoriesForSearch.push(
+        ...project.modules.map(m => m.path),
+        ...project.plugins.map(p => p.path),
+        ...project.themes.map(t => t.path),
+    );
 
-    const envKeys: EnvKeysCollection = {};
+    const envCallRegex = new RegExp(`env\\s*\\(\\s*[\\'\\"]${envVar.key}[\\'\\"]`, 'g');
+    const quotedKeyRegex = new RegExp(`[\\'\\"]${envVar.key}[\\'\\"]`);
 
-    const envContent = FsHelpers.readFile(envPath);
-    const lines = envContent.split(/\r?\n/);
+    const locations = [];
+    const processedFiles: string[] = [];
+    for (const dir of directoriesForSearch) {
+        const files = FsHelpers.listFiles(dir, true, ['php', 'htm']);
+        for (const file of files) {
+            const filePath = path.join(dir, file);
 
-    for (const line of lines) {
-        if (line.trim().length === 0) {
-            continue;
+            if (processedFiles.includes(filePath)) {
+                continue;
+            }
+
+            const fileContent = FsHelpers.readFile(filePath);
+
+            const callMatches = [...fileContent.matchAll(envCallRegex)];
+            if (callMatches.length === 0) {
+                continue;
+            }
+
+            const uri = vscode.Uri.file(filePath);
+            const document = await vscode.workspace.openTextDocument(uri);
+
+            for (const match of callMatches) {
+                const qKeyMatch = match[0]!.match(quotedKeyRegex)!;
+
+                const start = document.positionAt(match.index! + qKeyMatch.index! + 1);
+                const end = start.translate(0, envVar.key.length);
+                const range = new vscode.Range(start, end);
+
+                locations.push(new vscode.Location(uri, range));
+            }
+
+            processedFiles.push(filePath);
         }
-
-        const parts = line.trim().split('=');
-        const key = parts[0].trim();
-        const value = parseValue(parts[1]);
-
-        envKeys[key] = {
-            value,
-            uri: uri.with({ fragment: `L${line},0` })
-        };
     }
 
-    return envKeys;
-}
-
-function parseValue(value: string | null | undefined) {
-    if (!value) {
-        return undefined;
+    if (includeSelf) {
+        locations.push(envVar.location);
     }
 
-    value = value.trim();
-
-    if (value === 'null') {
-        return undefined;
-    }
-
-    if (value.length === 0) {
-        return undefined;
-    }
-
-    return value;
+    return locations;
 }

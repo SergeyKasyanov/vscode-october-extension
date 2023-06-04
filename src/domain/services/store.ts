@@ -7,6 +7,7 @@ import { Plugin } from "../entities/owners/plugin";
 import { Theme } from "../entities/owners/theme";
 import { Platform } from "../entities/platform";
 import { Project } from "../entities/project";
+import { EnvVariable } from '../entities/types';
 
 /**
  * Store for indexed workspaces data.
@@ -81,6 +82,17 @@ export class Store {
     addTheme(projectPath: string, theme: Theme): void {
         this.ensureProjectAdded(projectPath);
         this.data[projectPath].themes.push(theme);
+    }
+
+    /**
+     * Add env variable to project index
+     *
+     * @param projectPath
+     * @param envVariable
+     */
+    addEnvVariable(projectPath: string, envVariable: EnvVariable) {
+        this.ensureProjectAdded(projectPath);
+        this.data[projectPath].envVariables.push(envVariable);
     }
 
     /**

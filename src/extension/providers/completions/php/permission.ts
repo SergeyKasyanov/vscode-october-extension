@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import { Controller } from "../../../../domain/entities/classes/controller";
 import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";

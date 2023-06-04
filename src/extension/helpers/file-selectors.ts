@@ -32,3 +32,11 @@ export const yamlSelector: DocumentFilter = {
     scheme: 'file',
     language: 'yaml'
 };
+
+/**
+ * Selector for yaml files
+ */
+export const envSelector: DocumentFilter = {
+    scheme: 'file',
+    pattern: '**/.env*'
+};

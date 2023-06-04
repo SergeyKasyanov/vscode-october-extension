@@ -42,7 +42,7 @@ export class ThemesIndexer {
      * @returns
      */
     indexFile(projectPath: string, filePath: string) {
-        const project = Store.instance.findProject(filePath);
+        const project = this.store.findProject(filePath);
         if (!project) {
             return;
         }
@@ -136,7 +136,7 @@ export class ThemesIndexer {
      * @param filePath
      */
     deleteFile(projectPath: string, filePath: string) {
-        const themeFile = Store.instance.findEntity(filePath);
+        const themeFile = this.store.findEntity(filePath);
         if (!(themeFile instanceof ThemeFile)) {
             return;
         }

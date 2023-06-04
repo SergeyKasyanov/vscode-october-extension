@@ -159,6 +159,10 @@ export class Blueprint extends OctoberEntity {
                     continue;
                 }
 
+                if (processedFiles.includes(filePath)) {
+                    continue;
+                }
+
                 const position = document.positionAt(match.index!);
                 const start = new vscode.Position(position.line, document.lineAt(position.line).text.indexOf(this.handle));
                 const end = start.translate(0, this.handle.length);

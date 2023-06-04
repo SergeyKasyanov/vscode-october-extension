@@ -6,6 +6,8 @@ import { ThemesIndexer } from './indexer/themes-indexer';
 import { Store } from './store';
 import { VersionDetector } from './version-detector';
 import path = require('path');
+import { watch } from 'fs';
+import { EnvIndexer } from './indexer/env-indexer';
 
 /**
  * Indexes workspaces
@@ -27,6 +29,7 @@ export class Indexer {
         this.versionDetector = new VersionDetector();
         this.backendIndexer = new BackendIndexer(this.store);
         this.themesIndexer = new ThemesIndexer(this.store);
+        this.envIndexer = new EnvIndexer(this.store);
     }
     //#endregion
 
@@ -34,6 +37,7 @@ export class Indexer {
     private versionDetector: VersionDetector;
     private backendIndexer: BackendIndexer;
     private themesIndexer: ThemesIndexer;
+    private envIndexer: EnvIndexer;
     private watchers: { [path: string]: vscode.FileSystemWatcher[] } = {};
 
     /**
@@ -106,6 +110,7 @@ export class Indexer {
 
         this.backendIndexer.index(platform, projectPath);
         this.themesIndexer.index(projectPath);
+        this.envIndexer.index(projectPath);
     }
 
     /**
@@ -116,6 +121,7 @@ export class Indexer {
     private startWatchers(projectPath: string): void {
         this.startBackendWatcher(projectPath);
         this.startThemesWatcher(projectPath);
+        this.startEnvWatcher(projectPath);
     }
 
     /**
@@ -158,6 +164,25 @@ export class Indexer {
         watcher.onDidCreate(uri => this.themesIndexer.indexFile(projectPath, uri.path));
         watcher.onDidChange(uri => this.themesIndexer.indexFile(projectPath, uri.path));
         watcher.onDidDelete(uri => this.themesIndexer.deleteFile(projectPath, uri.path));
+
+        if (!this.watchers[projectPath]) {
+            this.watchers[projectPath] = [];
+        }
+
+        this.watchers[projectPath].push(watcher);
+    }
+
+    private startEnvWatcher(projectPath: string) {
+        const envPattern = new vscode.RelativePattern(
+            projectPath,
+            '.env*'
+        );
+
+        const watcher = vscode.workspace.createFileSystemWatcher(envPattern);
+
+        watcher.onDidCreate(uri => this.envIndexer.indexFile(projectPath, uri.path));
+        watcher.onDidChange(uri => this.envIndexer.indexFile(projectPath, uri.path));
+        watcher.onDidDelete(uri => this.envIndexer.deleteFile(projectPath, uri.path));
 
         if (!this.watchers[projectPath]) {
             this.watchers[projectPath] = [];

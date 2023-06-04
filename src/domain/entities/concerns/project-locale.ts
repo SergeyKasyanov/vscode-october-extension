@@ -24,7 +24,7 @@ export function getLocale(project: Project): string {
  * @returns
  */
 function localeFromEnv(project: Project) {
-    return project.envVariables.APP_LOCALE?.value;
+    return project.envVariables.find(ev => ev.key === 'APP_LOCALE')?.value;
 }
 
 /**

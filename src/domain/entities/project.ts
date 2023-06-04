@@ -8,7 +8,6 @@ import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
 import { Model } from "./classes/model";
 import { getConfig } from './concerns/project-config';
-import { EnvKeysCollection, getEnv } from "./concerns/project-env";
 import { getEvents } from "./concerns/project-events";
 import { Translations, getTranslations } from './concerns/project-lang';
 import { getLocale } from "./concerns/project-locale";
@@ -18,7 +17,7 @@ import { Owner } from './owners/owner';
 import { Plugin } from "./owners/plugin";
 import { Theme } from "./owners/theme";
 import { Platform } from "./platform";
-import { Permission } from "./types";
+import { EnvVariable, Permission } from "./types";
 import path = require("path");
 
 /**
@@ -30,6 +29,7 @@ export class Project {
     modules: Module[] = [];
     plugins: Plugin[] = [];
     themes: Theme[] = [];
+    envVariables: EnvVariable[] = [];
 
     constructor(
         private _path: string,
@@ -40,13 +40,6 @@ export class Project {
      */
     get path(): string {
         return this._path;
-    }
-
-    /**
-     * List of keys from .env file
-     */
-    get envVariables(): EnvKeysCollection {
-        return getEnv(this);
     }
 
     /**

@@ -32,24 +32,15 @@ export class EnvVariable implements vscode.CompletionItemProvider {
             return;
         }
 
-        const items: vscode.CompletionItem[] = [];
+        return project.envVariables.map(envVariable => {
+            const item = new vscode.CompletionItem(envVariable.key, vscode.CompletionItemKind.EnumMember);
+            item.range = document.getWordRangeAtPosition(position, ENV_KEY);
 
-        const envVars = project.envVariables;
-        for (const key in envVars) {
-            if (Object.prototype.hasOwnProperty.call(envVars, key)) {
-                const value = envVars[key];
-
-                const item = new vscode.CompletionItem(key, vscode.CompletionItemKind.EnumMember);
-                item.range = document.getWordRangeAtPosition(position, ENV_KEY);
-
-                if (value.value) {
-                    item.detail = value.value;
-                }
-
-                items.push(item);
+            if (envVariable.value) {
+                item.detail = envVariable.value;
             }
-        }
 
-        return items;
+            return item;
+        });
     }
 }
