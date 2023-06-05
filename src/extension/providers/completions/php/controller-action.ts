@@ -5,7 +5,8 @@ import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
 const ACTION_METHOD_CALL = /->actionUrl\(\s*[\'\"]\w*/g;
-const ACTION_NAME_PART = /\w*/;
+const ACTION_NAME_PART = /^[\w\-\_]*$/;
+const ACTION_NAME = /[\w\-\_]+/;
 
 /**
  * Completions for controller's action name
@@ -47,8 +48,11 @@ export class ControllerAction implements vscode.CompletionItemProvider {
             pages.push(...beh.pageMethods);
         }
 
-        return pages.map(
-            page => new vscode.CompletionItem(page, vscode.CompletionItemKind.Method)
-        );
+        return pages.map(page => {
+            const item = new vscode.CompletionItem(page, vscode.CompletionItemKind.Method);
+            item.range = document.getWordRangeAtPosition(position, ACTION_NAME);
+
+            return item;
+        });
     }
 }
