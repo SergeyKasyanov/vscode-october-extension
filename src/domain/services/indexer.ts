@@ -2,12 +2,12 @@ import * as vscode from 'vscode';
 import { Config } from '../../config';
 import { Platform } from '../entities/platform';
 import { BackendIndexer } from './indexer/backend-indexer';
+import { EnvIndexer } from './indexer/env-indexer';
+import { EventIndexer } from './indexer/events-indexer';
 import { ThemesIndexer } from './indexer/themes-indexer';
 import { Store } from './store';
 import { VersionDetector } from './version-detector';
 import path = require('path');
-import { watch } from 'fs';
-import { EnvIndexer } from './indexer/env-indexer';
 
 /**
  * Indexes workspaces
@@ -30,6 +30,7 @@ export class Indexer {
         this.backendIndexer = new BackendIndexer(this.store);
         this.themesIndexer = new ThemesIndexer(this.store);
         this.envIndexer = new EnvIndexer(this.store);
+        this.eventsIndexer = new EventIndexer(this.store);
     }
     //#endregion
 
@@ -38,6 +39,7 @@ export class Indexer {
     private backendIndexer: BackendIndexer;
     private themesIndexer: ThemesIndexer;
     private envIndexer: EnvIndexer;
+    private eventsIndexer: EventIndexer;
     private watchers: { [path: string]: vscode.FileSystemWatcher[] } = {};
 
     /**
@@ -111,6 +113,7 @@ export class Indexer {
         this.backendIndexer.index(platform, projectPath);
         this.themesIndexer.index(projectPath);
         this.envIndexer.index(projectPath);
+        this.eventsIndexer.index(projectPath);
     }
 
     /**
@@ -122,6 +125,7 @@ export class Indexer {
         this.startBackendWatcher(projectPath);
         this.startThemesWatcher(projectPath);
         this.startEnvWatcher(projectPath);
+        this.startEventsWatcher(projectPath);
     }
 
     /**
@@ -183,6 +187,25 @@ export class Indexer {
         watcher.onDidCreate(uri => this.envIndexer.indexFile(projectPath, uri.path));
         watcher.onDidChange(uri => this.envIndexer.indexFile(projectPath, uri.path));
         watcher.onDidDelete(uri => this.envIndexer.deleteFile(projectPath, uri.path));
+
+        if (!this.watchers[projectPath]) {
+            this.watchers[projectPath] = [];
+        }
+
+        this.watchers[projectPath].push(watcher);
+    }
+
+    private startEventsWatcher(projectPath:string) {
+        const eventsPattern = new vscode.RelativePattern(
+            projectPath,
+            path.join('**', '*.{php,htm}')
+        );
+
+        const watcher = vscode.workspace.createFileSystemWatcher(eventsPattern);
+
+        watcher.onDidCreate(uri => this.eventsIndexer.indexFile(projectPath, uri.path));
+        watcher.onDidChange(uri => this.eventsIndexer.indexFile(projectPath, uri.path));
+        watcher.onDidDelete(uri => this.eventsIndexer.deleteFile(projectPath, uri.path));
 
         if (!this.watchers[projectPath]) {
             this.watchers[projectPath] = [];

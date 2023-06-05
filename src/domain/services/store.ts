@@ -7,7 +7,7 @@ import { Plugin } from "../entities/owners/plugin";
 import { Theme } from "../entities/owners/theme";
 import { Platform } from "../entities/platform";
 import { Project } from "../entities/project";
-import { EnvVariable } from '../entities/types';
+import { EnvVariable, Event } from '../entities/types';
 
 /**
  * Store for indexed workspaces data.
@@ -93,6 +93,17 @@ export class Store {
     addEnvVariable(projectPath: string, envVariable: EnvVariable) {
         this.ensureProjectAdded(projectPath);
         this.data[projectPath].envVariables.push(envVariable);
+    }
+
+    /**
+     * Add event to project index
+     *
+     * @param projectPath
+     * @param envVariable
+     */
+    addEvent(projectPath: string, event: Event) {
+        this.ensureProjectAdded(projectPath);
+        this.data[projectPath].events.push(event);
     }
 
     /**

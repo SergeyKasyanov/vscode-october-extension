@@ -18,5 +18,6 @@ export interface EnvVariable {
 
 export interface Event {
     name: string,
-    location: vscode.Location
+    filePath: string,
+    offset: number
 };

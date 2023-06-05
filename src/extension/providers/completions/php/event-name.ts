@@ -30,7 +30,7 @@ export class EventName implements vscode.CompletionItemProvider {
         }
 
         return project.events.map(e => {
-            const item = new vscode.CompletionItem(e, vscode.CompletionItemKind.EnumMember);
+            const item = new vscode.CompletionItem(e.name, vscode.CompletionItemKind.EnumMember);
             item.range = document.getWordRangeAtPosition(position, EVENT_NAME);
 
             return item;

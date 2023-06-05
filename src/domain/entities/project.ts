@@ -8,7 +8,6 @@ import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
 import { Model } from "./classes/model";
 import { getConfig } from './concerns/project-config';
-import { getEvents } from "./concerns/project-events";
 import { Translations, getTranslations } from './concerns/project-lang';
 import { getLocale } from "./concerns/project-locale";
 import { AppDirectory } from "./owners/app-directory";
@@ -17,7 +16,7 @@ import { Owner } from './owners/owner';
 import { Plugin } from "./owners/plugin";
 import { Theme } from "./owners/theme";
 import { Platform } from "./platform";
-import { EnvVariable, Permission } from "./types";
+import { EnvVariable, Event, Permission } from "./types";
 import path = require("path");
 
 /**
@@ -30,6 +29,7 @@ export class Project {
     plugins: Plugin[] = [];
     themes: Theme[] = [];
     envVariables: EnvVariable[] = [];
+    events: Event[] = [];
 
     constructor(
         private _path: string,
@@ -61,13 +61,6 @@ export class Project {
      */
     get translations(): Translations {
         return getTranslations(this);
-    }
-
-    /**
-     * List global events of project
-     */
-    get events():string[] {
-        return getEvents(this);
     }
 
     /**
