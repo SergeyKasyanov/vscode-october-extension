@@ -4,7 +4,7 @@ import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
-const ACTION_METHOD_CALL = /->actionUrl\(\s*[\'\"]\w*/g;
+const ACTION_METHOD_CALL = /->actionUrl\s*\(\s*[\'\"]/g;
 const ACTION_NAME_PART = /^[\w\-\_]*$/;
 const ACTION_NAME = /[\w\-\_]+/;
 

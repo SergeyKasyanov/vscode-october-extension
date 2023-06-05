@@ -4,6 +4,7 @@ import { Asset } from "../providers/links/asset";
 import { BackendUrl } from "../providers/links/backend-url";
 import { BehaviorConfig } from "../providers/links/behavior-config";
 import { CommandCode } from "../providers/links/command-code";
+import { ControllerAction } from "../providers/links/controller-action";
 import { EventHandler } from "../providers/links/event-handler";
 import { IniComponent } from "../providers/links/ini-component";
 import { ListName } from "../providers/links/list-name";
@@ -38,6 +39,7 @@ function php(context: vscode.ExtensionContext) {
 
     register(context, [phpSelector, octoberTplSelector], new PathHelpers);
     register(context, [phpSelector, octoberTplSelector], new BackendUrl);
+    register(context, [phpSelector, octoberTplSelector], new ControllerAction);
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate);
 }
 
