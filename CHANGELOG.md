@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.19.0
+
+New features:
+
+- Definitions and references of events
+- Definitions and references of env variables
+- Document link for controller method in `$this->actionUrl('...')`
+
+Improvements:
+
+- Permision completions now works for `BackendAuth::userHasAccess` and `BackednAuth::userHasPermission`
+
 ## 0.18.0
 
 New features:
