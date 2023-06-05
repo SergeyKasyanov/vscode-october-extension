@@ -10,9 +10,11 @@ import { openModel } from "../commands/open-model";
 import { openPlugin } from "../commands/open-plugin-registration-file";
 import { openVersionYaml } from "../commands/open-plugin-version-file";
 import { openRelatedFile } from "../commands/open-related-file";
+import { reindexWorkspace } from "../commands/reindex-workspace";
 import { showOctoberVersion } from "../commands/show-october-version";
 
 export function registerCommands(context: vscode.ExtensionContext): void {
+    register(context, 'octoberCode.reindexWorkspace', reindexWorkspace);
     register(context, 'octoberCode.showVersionName', showOctoberVersion);
     register(context, 'octoberCode.generate', runGenerator);
     register(context, 'octoberCode.addModelAttributesToConfig', addModelAttributes);

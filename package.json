@@ -3,7 +3,7 @@
     "displayName": "October Code",
     "description": "October CMS tools for VSCode",
     "publisher": "SergeyKasyanov",
-    "version": "0.19.0",
+    "version": "0.19.1",
     "preview": true,
     "icon": "resources/images/icon.png",
     "sponsor": {
@@ -132,6 +132,11 @@
             {
                 "command": "octoberCode.showVersionName",
                 "title": "Show OctoberCMS version",
+                "category": "OctoberCode"
+            },
+            {
+                "command": "octoberCode.reindexWorkspace",
+                "title": "Reindex workspace",
                 "category": "OctoberCode"
             },
             {

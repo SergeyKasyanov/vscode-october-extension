@@ -56,6 +56,7 @@ export class Indexer {
      */
     stop(): void {
         for (const ws of vscode.workspace.workspaceFolders || []) {
+            this.store.removeWorkspaceFolder(ws.uri.path);
             this.stopWatchers(ws.uri.path);
         }
     }
