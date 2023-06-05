@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { findEnvUsages } from '../../../domain/entities/concerns/project-env';
-import { Store } from '../../../domain/services/store';
 import { EnvVariable } from '../../../domain/entities/types';
+import { Store } from '../../../domain/services/store';
 
 const ENV_KEY = /[\w\_]+/;
 
@@ -21,16 +21,12 @@ export class EnvVariableReference implements vscode.ReferenceProvider, vscode.De
             return;
         }
 
-        const envVariable = this.getEnvVariables(document, position);
-        if (!envVariable) {
+        const envVariables = this.getEnvVariables(document, position);
+        if (!envVariables) {
             return;
         }
 
-        try {
-            return await findEnvUsages(project, envVariable[0], context.includeDeclaration);
-        } catch (err) {
-            console.error(err);
-        }
+        return await findEnvUsages(project, envVariables[0], context.includeDeclaration);
     }
 
     provideDefinition(
