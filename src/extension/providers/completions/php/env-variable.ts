@@ -32,7 +32,14 @@ export class EnvVariable implements vscode.CompletionItemProvider {
             return;
         }
 
-        return project.envVariables.map(envVariable => {
+        const addedKeys: string[] = [];
+        const items: vscode.CompletionItem[] = [];
+
+        for (const envVariable of project.envVariables) {
+            if (addedKeys.includes(envVariable.key)) {
+                continue;
+            }
+
             const item = new vscode.CompletionItem(envVariable.key, vscode.CompletionItemKind.EnumMember);
             item.range = document.getWordRangeAtPosition(position, ENV_KEY);
 
@@ -40,7 +47,10 @@ export class EnvVariable implements vscode.CompletionItemProvider {
                 item.detail = envVariable.value;
             }
 
-            return item;
-        });
+            items.push(item);
+            addedKeys.push(envVariable.key);
+        }
+
+        return items;
     }
 }
