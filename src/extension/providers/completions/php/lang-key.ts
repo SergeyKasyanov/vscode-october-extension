@@ -20,8 +20,8 @@ export class LangKey implements vscode.CompletionItemProvider {
         position: vscode.Position
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
 
-        const file = Store.instance.findEntity(document.fileName);
-        if (!file) {
+        const project = Store.instance.findProject(document.fileName);
+        if (!project) {
             return;
         }
 
@@ -34,7 +34,7 @@ export class LangKey implements vscode.CompletionItemProvider {
             return;
         }
 
-        const projectTranslations = file.owner.project.translations;
+        const projectTranslations = project.translations;
 
         const completions = [];
 
