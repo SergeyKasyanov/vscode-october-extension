@@ -62,4 +62,33 @@ export class Partial extends MarkupFile {
 
         return variables;
     }
+
+    /**
+     * Snippet properties declared in this partial
+     */
+    get snippetProperties(): string[] {
+        const snippetProprties: string[] = [];
+
+        const components = this.components;
+        for (const alias in components) {
+            if (Object.prototype.hasOwnProperty.call(components, alias)) {
+                const comp = components[alias];
+                if (comp.fqn === 'Cms\\Components\\ViewBag') {
+                    const snippetPropertiesMatches = this.sections.ini?.text.matchAll(/snippetProperties\[\w+\]/g) || [];
+
+                    for (const match of snippetPropertiesMatches) {
+                        const property = match[0].split('[')[1].slice(0, -1);
+
+                        if (!snippetProprties.includes(property)) {
+                            snippetProprties.push(property);
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        return snippetProprties;
+    }
 }

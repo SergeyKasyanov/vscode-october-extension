@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { Page } from "../../../../domain/entities/theme/page";
+import { Partial } from "../../../../domain/entities/theme/partial";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { twigFunctions } from "../../../../domain/static/twig-functions";
@@ -99,6 +100,10 @@ export class EchoStatement implements vscode.CompletionItemProvider {
         completions.push(...Object.values(themeFile.owner.project.twigFunctions).map(
             func => CompletionItem.fromTwigFunction(func)
         ));
+
+        if (themeFile instanceof Partial) {
+            completions.push(...themeFile.snippetProperties.map(p => new vscode.CompletionItem(p)));
+        }
 
         return completions;
     }
