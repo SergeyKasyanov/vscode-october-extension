@@ -11,7 +11,7 @@ const DIAGNOSTIC_SELECTABLE_OPTIONS_EXISTENCE = 'diagnostic.selectableOptionsExi
 const COMMAND_ADD_OPTIONS_METHOD = 'command.addOptionsMethod';
 
 const OPTIONS_KEY = /options\:\s*/g;
-const SELECTABLE = /type:\s*(dropdown|radio|checkbox|checkboxlist|selectable)/g;
+const SELECTABLE = /type:\s*(dropdown|radio|checkboxlist|selectable)/g;
 
 /**
  * Register selectable options existence check
