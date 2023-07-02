@@ -1,5 +1,27 @@
 # Change Log
 
+## 0.20.0
+
+New features:
+
+- Detect OctoberCMS v3.4
+- New command for show OctoberCMS version
+- New command for reindex workspace
+- `content` twig filter for render page snippets introduced in octoberCMS v3.4
+- Add `renderPageSnippets` option for plugin generator
+- Completions of snippets properties in `viewBag` component in theme partials
+- Completions of snippets properties in twig section of partials as variables
+
+Improvements:
+
+- Add `App` facade to phpstorm meta file generator
+- Translation autocomplete show translations in details using current project locale
+
+Fixes:
+
+- Fixed showing env variables multiple times in `env()` completions
+- Translation keys autocomplete now works in any file of project
+
 ## 0.19.0
 
 New features:
