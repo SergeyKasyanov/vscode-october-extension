@@ -3,7 +3,7 @@ import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
 
-const COMPONENT_NAME = /\[[\\\w\s]+\]/g;
+const COMPONENT_NAME = /((\r?\n)|^)\[[\\\w\s]+\]/g;
 
 /**
  * Completions for component properties in INI section of theme file.
@@ -29,7 +29,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
         }
 
         const firstComponentIndex = themeFile.sections.ini!.text.indexOf('[');
-        if (!firstComponentIndex || offset < firstComponentIndex) {
+        if (firstComponentIndex === -1 || offset < firstComponentIndex) {
             return;
         }
 
@@ -54,6 +54,29 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
         }
 
         const component = themeFile.owner.project.components.find(c => c.alias === componentAlias);
+
+        if (component?.fqn === 'Cms\\Components\\ViewBag') {
+            const items = [
+                'snippetCode',
+                'snippetName',
+                'snippetDescription',
+            ].map(p => {
+                const item = new vscode.CompletionItem(p);
+                item.insertText = new vscode.SnippetString(p + ' = ');
+
+                return item;
+            });
+
+            const snippetProperties = new vscode.CompletionItem('snippetProperties');
+            snippetProperties.insertText = new vscode.SnippetString(`snippetProperties[$1][title] = "$2"
+snippetProperties[$1][type] = "\$\{3|string,dropdown,checkbox|}"
+snippetProperties[$1][default] = "$4"
+snippetProperties[$1][options][$5] = "$6"$0`);
+
+            items.push(snippetProperties);
+
+            return items;
+        }
 
         return component?.properties.map(
             property => CompletionItem.fromComponentProperty(property, ' = ')
