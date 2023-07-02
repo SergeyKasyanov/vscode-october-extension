@@ -44,6 +44,7 @@ export class LangKey implements vscode.CompletionItemProvider {
 
                 const item = new vscode.CompletionItem(key);
                 item.range = document.getWordRangeAtPosition(position, TRANS_KEY);
+                item.detail = value;
 
                 completions.push(item);
             }
