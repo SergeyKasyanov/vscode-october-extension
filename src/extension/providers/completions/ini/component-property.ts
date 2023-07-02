@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
+import { Partial } from "../../../../domain/entities/theme/partial";
 
 const COMPONENT_NAME = /((\r?\n)|^)\[[\\\w\s]+\]/g;
 
@@ -55,7 +56,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
 
         const component = themeFile.owner.project.components.find(c => c.alias === componentAlias);
 
-        if (component?.fqn === 'Cms\\Components\\ViewBag') {
+        if (component?.fqn === 'Cms\\Components\\ViewBag' && themeFile instanceof Partial) {
             const items = [
                 'snippetCode',
                 'snippetName',
