@@ -651,6 +651,11 @@ The image can be either a file model, absolute path, or URL.)`
         snippet: 'theme',
         doc: new vscode.MarkdownString(`Returns an address relative to the active theme path of the website.`)
     },
+    content: {
+        name: 'content',
+        snippet: 'content',
+        doc: new vscode.MarkdownString(`Renders content with snippets`)
+    },
     html_entities: {
         name: 'html_entities',
         snippet: 'html_entities()',
