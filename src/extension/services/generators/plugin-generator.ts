@@ -24,6 +24,7 @@ export class PluginGenerator extends GeneratorBase {
             addBootMethod: !!vars.addBootMethod,
             addRegisterMethod: !!vars.addRegisterMethod,
             addRegisterComponentsMethod: !!vars.addRegisterComponentsMethod,
+            addRegisterPageSnippetsMethod: !!vars.addRegisterPageSnippetsMethod,
             addRegisterPermissionsMethod: !!vars.addRegisterPermissionsMethod,
             addRegisterSettingsMethod: !!vars.addRegisterSettingsMethod,
             addRegisterMailTemplatesMethod: !!vars.addRegisterMailTemplatesMethod,

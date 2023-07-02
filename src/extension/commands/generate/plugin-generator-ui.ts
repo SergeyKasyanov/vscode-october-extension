@@ -10,6 +10,7 @@ export class PluginGeneratorUi extends GeneratorUiBase {
         boot: 'Add boot() method',
         register: 'Add register() method',
         registerComponents: 'Add registerComponents() method',
+        registerPageSnippets: 'Add registerPageSnippets() method',
         registerPermissions: 'Add registerPermissions() method',
         registerSettings: 'Add registerSettings() method',
         registerMailTemplates: 'Add registerMailTemplates() method',
@@ -34,6 +35,7 @@ export class PluginGeneratorUi extends GeneratorUiBase {
             addBootMethod: options.includes(this.options.boot),
             addRegisterMethod: options.includes(this.options.register),
             addRegisterComponentsMethod: options.includes(this.options.registerComponents),
+            addRegisterPageSnippetsMethod: options.includes(this.options.registerPageSnippets),
             addRegisterPermissionsMethod: options.includes(this.options.registerPermissions),
             addRegisterSettingsMethod: options.includes(this.options.registerSettings),
             addRegisterMailTemplatesMethod: options.includes(this.options.registerMailTemplates),
@@ -74,6 +76,10 @@ export class PluginGeneratorUi extends GeneratorUiBase {
 
         if (this.project.platform!.hasTailor) {
             items.push({ label: this.options.registerContentFields });
+        }
+
+        if (this.project.platform!.hasPageSnippetsSupport) {
+            items.push({ label: this.options.registerPageSnippets });
         }
 
         const options = await vscode.window.showQuickPick(items, { canPickMany: true });

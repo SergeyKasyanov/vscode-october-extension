@@ -41,6 +41,15 @@ class Plugin extends PluginBase
     }
 
 {% endif %}
+{% if addRegisterPageSnippetsMethod %}
+    public function registerPageSnippets()
+    {
+        return [
+            // \{{ namespace }}\Components\MyComponent::class => 'myComponentSnippet',
+        ];
+    }
+
+{% endif %}
 {% if addRegisterPermissionsMethod %}
     public function registerPermissions()
     {

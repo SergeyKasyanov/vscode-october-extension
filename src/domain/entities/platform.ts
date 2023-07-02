@@ -95,4 +95,11 @@ export class Platform {
     get usesSignaturesInCommands(): boolean {
         return this._version >= Version.oc32;
     }
+
+    /**
+     * Has page snippets support
+     */
+    get hasPageSnippetsSupport(): boolean {
+        return this._version >= Version.oc34;
+    }
 }
