@@ -49,6 +49,8 @@ export class VersionDetector {
                     return Version.oc32;
                 } else if (pkg.version.includes('3.3.')) {
                     return Version.oc33;
+                } else if (pkg.version.includes('3.4.')) {
+                    return Version.oc34;
                 }
             }
         }
@@ -98,6 +100,8 @@ export class VersionDetector {
             return Version.oc32;
         } else if (version.includes('3.3')) {
             return Version.oc33;
+        } else if (version.includes('3.4')) {
+            return Version.oc34;
         }
 
         return undefined;
