@@ -17,6 +17,7 @@ export class ModelsIndexer extends DirectoryIndexer<Model> {
             'October\\Rain\\Database\\Attach\\File',
             'October\\Rain\\Database\\ExpandoModel',
             'October\\Rain\\Database\\Model',
+            'October\\Rain\\Database\\Pivot',
             'System\\Models\\SettingModel',
         ];
     }
