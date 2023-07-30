@@ -5,6 +5,8 @@ import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
+import { Controller } from "../../../../domain/entities/classes/controller";
+import { Str } from "../../../../helpers/str";
 
 const OPTIONS_KEY = /\s*options\:\s*/g;
 const METHOD_NAME_PART = /^w*$/;
@@ -90,12 +92,19 @@ export class SelectableOptions implements vscode.CompletionItemProvider {
             return;
         }
 
+        let model: Model | undefined;
+
         const modelClass = YamlHelpers.getSibling(this.document!, this.position!, 'modelClass');
-        if (!modelClass) {
-            return;
+        if (modelClass) {
+            model = this.owner!.project.models.find(m => m.fqn === modelClass);
+        } else {
+            const controller = this.owner!.findEntityByRelatedName(this.document!.fileName);
+            if (controller instanceof Controller) {
+                const modelUqn = Str.singular(controller.uqn);
+                model = this.owner!.models.find(m => m.uqn === modelUqn);
+            }
         }
 
-        const model = this.owner!.project.models.find(m => m.fqn === modelClass);
         if (!(model instanceof Model)) {
             return;
         }
