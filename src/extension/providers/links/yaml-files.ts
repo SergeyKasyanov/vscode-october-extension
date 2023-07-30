@@ -160,6 +160,14 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
             const root = YamlHelpers.getParent(this.document!, parentLine);
             if (root === 'scopes') {
                 modelFqn = YamlHelpers.getSibling(this.document!, link.range.start, 'modelClass');
+
+                if (!modelFqn) {
+                    const controller = this.owner!.findEntityByRelatedName(this.document!.fileName);
+                    if (controller instanceof Controller) {
+                        const modelUqn = Str.singular(controller.uqn);
+                        model = this.owner!.models.find(m => m.uqn === modelUqn);
+                    }
+                }
             } else if (root === 'fields') {
                 model = (Store.instance.findOwner(this.document!.fileName) as BackendOwner)
                     ?.findEntityByRelatedName(this.document!.fileName) as Model;
@@ -329,15 +337,19 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
         }
 
         let modelFqn = yaml.parse(this.document!.getText())['modelClass'];
-        if (!modelFqn) {
-            return;
+        if (modelFqn) {
+            if (modelFqn.startsWith('\\')) {
+                modelFqn = modelFqn.substring(1);
+            }
+
+            return this.owner!.models.find(m => m.fqn === modelFqn);
         }
 
-        if (modelFqn.startsWith('\\')) {
-            modelFqn = modelFqn.substring(1);
+        const controller = this.owner!.findEntityByRelatedName(this.document!.fileName);
+        if (controller instanceof Controller) {
+            const modelUqn = Str.singular(controller.uqn);
+            return this.owner!.models.find(m => m.uqn === modelUqn);
         }
-
-        return this.owner!.models.find(m => m.fqn === modelFqn);
     }
 }
 
