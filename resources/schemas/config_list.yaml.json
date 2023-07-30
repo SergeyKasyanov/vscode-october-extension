@@ -367,8 +367,7 @@
                 }
             },
             "required": [
-                "label",
-                "type"
+                "label"
             ],
             "type": "object"
         },
