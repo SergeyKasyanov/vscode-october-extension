@@ -92,9 +92,11 @@ function provideDiagnostics(
 
     const diagnostics: Diagnostic[] = [];
 
-    const layoutMatches = document.getText().matchAll(LAYOUT_PROPERTY);
-    for (const match of layoutMatches) {
-        const position = document.positionAt(match.index!);
+    const layoutMatches = [...document.getText().matchAll(LAYOUT_PROPERTY)];
+    if (layoutMatches.length) {
+        const layoutMatch = layoutMatches[0];
+
+        const position = document.positionAt(layoutMatch.index!);
         const lineText = document.lineAt(position.line).text;
         const layoutName = lineText.split('=')[1].trim().slice(1, -1);
 
