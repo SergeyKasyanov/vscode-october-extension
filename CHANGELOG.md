@@ -1,5 +1,23 @@
 # Change Log
 
+## 0.21.0
+
+New features:
+
+- Options methods completions in list filters
+
+Improvements:
+
+- Extension now works with pivot models like with normal models
+- Updated npm dependencies
+
+Fixes:
+
+- Options methods existance check in yaml configs
+- Fixed yaml schemas for list filters
+- Fixed document links to options and scopes methods in list filters
+- Fixed check layout existence diagnostic
+
 ## 0.20.0
 
 New features:
