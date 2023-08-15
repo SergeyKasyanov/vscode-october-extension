@@ -117,7 +117,7 @@ class {{ model_pascal }} extends Model
 
     public $table = '{{ table }}';
 
-    protected $guarded = ['*'];
+    protected $fillable = [];
 {% if not addTimestamps %}
 
     public $timestamps = false;
