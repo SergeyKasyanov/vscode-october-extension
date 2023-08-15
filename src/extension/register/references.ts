@@ -17,13 +17,7 @@ export function registerReferences(context: vscode.ExtensionContext) {
 
     register(context, [envSelector, phpSelector, octoberTplSelector], new EnvVariableReference());
     register(context, [phpSelector], new EventReference());
-
-    context.subscriptions.push(
-        vscode.languages.registerDefinitionProvider(
-            phpSelector,
-            new AjaxHandler()
-        )
-    );
+    register(context, [phpSelector], new AjaxHandler());
 
     register(context, [octoberTplSelector, yamlSelector], new BlueprintReference());
 }
