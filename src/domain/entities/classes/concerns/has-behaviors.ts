@@ -48,6 +48,10 @@ export class HasBehaviors {
                 const uses = PhpHelpers.getUsesList(this.ocClass.fileContent!, this.ocClass.path);
 
                 (implement.value as phpParser.Array).items.forEach(_item => {
+                    if (!_item) {
+                        return;
+                    }
+
                     const item = _item as phpParser.Entry;
 
                     let fqn: string | undefined;

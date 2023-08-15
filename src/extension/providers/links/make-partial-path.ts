@@ -26,11 +26,11 @@ export class MakePartialPath implements vscode.DocumentLinkProvider {
         this.entity = Store.instance.findEntity(document.fileName) as Controller | Widget;
 
         if (this.entity) {
-            this.project = this.entity!.owner.project;
+            this.project = this.entity.owner.project;
         } else {
             const owner = Store.instance.findOwner(document.fileName) as BackendOwner;
             this.entity = owner.findEntityByRelatedName(document.fileName) as Controller | Widget;
-            this.project = this.entity!.owner.project || Store.instance.findProject(document.fileName);
+            this.project = this.entity?.owner.project || Store.instance.findProject(document.fileName);
         }
 
         if (!this.project) {
