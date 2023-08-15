@@ -201,23 +201,28 @@ export class Model extends OctoberClass {
                             const what = ((item.value as phpParser.StaticLookup).what as phpParser.Name);
 
                             fqn = PhpHelpers.lookupNameToFqn(what, uses);
+
                             if (!fqn && what.resolution === 'uqn' && !uses[what.name]) {
                                 fqn = ns.name + '\\' + what.name;
                             }
+
                             break;
                         case 'string':
                             const modelName = (item.value as phpParser.String).value;
+
                             if (modelName.includes('\\')) {
                                 fqn = modelName;
                             } else {
                                 fqn = ns.name + '\\' + modelName;
                             }
+
                             break;
                         case 'array':
                             const firstEntry = (item.value as phpParser.Array).items[0] as phpParser.Entry;
 
                             if (firstEntry.value.kind === 'string') {
                                 const modelName = (firstEntry.value as phpParser.String).value;
+
                                 if (modelName.includes('\\')) {
                                     fqn = modelName;
                                 } else {
@@ -225,11 +230,18 @@ export class Model extends OctoberClass {
                                 }
                             } else if (firstEntry.value.kind === 'staticlookup') {
                                 const what = (firstEntry.value as phpParser.StaticLookup).what as phpParser.Name;
-                                fqn = PhpHelpers.lookupNameToFqn(what, uses);
+
+                                if (what.kind === 'selfreference' || what.kind === 'staticreference') {
+                                    fqn = this.fqn;
+                                } else {
+                                    fqn = PhpHelpers.lookupNameToFqn(what, uses);
+                                }
+
                                 if (!fqn && what.resolution === 'uqn' && !uses[what.name]) {
                                     fqn = ns.name + '\\' + what.name;
                                 }
                             }
+
                             break;
                     }
 
