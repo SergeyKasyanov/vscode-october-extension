@@ -38,6 +38,9 @@ export class MigrationGenerator extends GeneratorBase {
             throw new PropertyIsRequired('Property "action" is required');
         }
 
+        const anonymousClass = this.project.platform?.supportAnonymousMigrations
+            || this.plugin instanceof AppDirectory;
+
         super.setVars({
             migration: vars.migration,
             table: vars.table,
@@ -50,7 +53,7 @@ export class MigrationGenerator extends GeneratorBase {
             addSoftDelete: !!vars.addSoftDelete,
             addMultisite: !!vars.addMultisite,
             usesTableId: !!this.project.platform!.usesIdMethodInMigrations,
-            anonymousClass: this.plugin instanceof AppDirectory,
+            anonymousClass,
             withTimezones: !!vars.withTimezones,
         });
     }

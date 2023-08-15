@@ -97,6 +97,13 @@ export class Platform {
     }
 
     /**
+     * Uses anonymous migrations in plugins
+     */
+    get supportAnonymousMigrations(): boolean {
+        return this._version >= Version.oc33;
+    }
+
+    /**
      * Has page snippets support
      */
     get hasPageSnippetsSupport(): boolean {
