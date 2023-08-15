@@ -80,7 +80,7 @@ export class ControllerBehavior extends Behavior {
     /**
      * Ajax methods of this behavior
      */
-    get ajaxMethods() {
+    get ajaxMethods(): string[] {
         return this.hasAjaxMethods.ajaxMethods;
     }
 

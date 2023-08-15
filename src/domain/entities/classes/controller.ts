@@ -42,7 +42,7 @@ export class Controller extends OctoberClass {
     /**
      * Ajax methods of this controller
      */
-    get ajaxMethods() {
+    get ajaxMethods(): string[] {
         return this.hasAjaxMethods.ajaxMethods;
     }
 

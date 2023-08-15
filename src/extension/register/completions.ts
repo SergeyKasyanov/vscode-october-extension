@@ -87,8 +87,8 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new PhpPermissions, ...QUOTES);
     register(context, phpSelector, new PhpRelationName, ...QUOTES);
     register(context, phpSelector, new PathHelper, ...QUOTES, '/');
-    register(context, phpSelector, new CommandCode, '"', "'");
-    register(context, phpSelector, new EventHandler, '"', "'");
+    register(context, phpSelector, new CommandCode, ...QUOTES);
+    register(context, phpSelector, new EventHandler, ...QUOTES);
 
     register(context, [phpSelector, octoberTplSelector], new BackendUrl, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ConfigKey, ...QUOTES);

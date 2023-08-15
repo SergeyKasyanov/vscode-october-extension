@@ -43,19 +43,21 @@ export class HasAjaxMethods {
                 if (Object.prototype.hasOwnProperty.call(classMethods, methodName)) {
                     const method = classMethods[methodName];
 
-                    if (method.visibility !== 'public') {
-                        continue;
-                    }
-
-                    if (!methodName.startsWith('on')) {
-                        continue;
-                    }
-
                     if (SKIP_METHODS.includes(methodName)) {
                         continue;
                     }
 
-                    ajaxMethods.push(methodName);
+                    if (method.visibility !== 'public') {
+                        continue;
+                    }
+
+                    if (methodName.startsWith('on')) {
+                        ajaxMethods.push(methodName);
+                    }
+
+                    if (methodName.includes('_on')) {
+                        ajaxMethods.push('on' + methodName.split('_on', 2)[1]);
+                    }
                 }
             }
 

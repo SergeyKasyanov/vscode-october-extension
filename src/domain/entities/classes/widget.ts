@@ -31,7 +31,7 @@ export class Widget extends OctoberClass {
     /**
      * Ajax methods of this widget
      */
-    get ajaxMethods() {
+    get ajaxMethods(): string[] {
         return this.hasAjaxMethods.ajaxMethods;
     }
 

@@ -47,7 +47,7 @@ export class Component extends OctoberClass {
     /**
      * Ajax methods of this component
      */
-    get ajaxMethods() {
+    get ajaxMethods(): string[] {
         return this.hasAjaxMethods.ajaxMethods;
     }
 
