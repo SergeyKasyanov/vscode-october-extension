@@ -11,7 +11,10 @@ const HANDLER_NAME_PART = /^[\w\_]*$/;
 const HANDLER_NAME = /[\w\_]+/;
 
 /**
- * Completions for $this->getEventHandler('...') in widgets
+ * Completions for:
+ * - $this->getEventHandler('...') in widgets
+ * - data-request="..." in controllers views
+ * - data-handler="..." in controllers views
  */
 export class EventHandler implements vscode.CompletionItemProvider {
 

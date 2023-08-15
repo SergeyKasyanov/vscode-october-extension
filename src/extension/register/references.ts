@@ -7,6 +7,7 @@ import { EventReference } from '../providers/references/event-reference';
 import { LayoutReference } from '../providers/references/layout-reference';
 import { PageReference } from '../providers/references/page-reference';
 import { PartialReference } from '../providers/references/partial-reference';
+import { AjaxHandler } from '../providers/references/ajax-handler';
 
 export function registerReferences(context: vscode.ExtensionContext) {
     register(context, [octoberTplSelector], new LayoutReference());
@@ -16,6 +17,13 @@ export function registerReferences(context: vscode.ExtensionContext) {
 
     register(context, [envSelector, phpSelector, octoberTplSelector], new EnvVariableReference());
     register(context, [phpSelector], new EventReference());
+
+    context.subscriptions.push(
+        vscode.languages.registerDefinitionProvider(
+            phpSelector,
+            new AjaxHandler()
+        )
+    );
 
     register(context, [octoberTplSelector, yamlSelector], new BlueprintReference());
 }
