@@ -27,7 +27,7 @@ import { PathHelper } from "../providers/completions/php/path-helper";
 import { Permission as PhpPermissions } from "../providers/completions/php/permission";
 import { RelationName as PhpRelationName } from "../providers/completions/php/relation-name";
 import { ValidationRule } from "../providers/completions/php/validation-rule";
-import { ValidationTableName } from "../providers/completions/php/validation-table-name";
+import { TableName } from "../providers/completions/php/table-name";
 import { ViewTemplate } from "../providers/completions/php/view-template";
 import { AjaxMethod } from "../providers/completions/twig/ajax-method";
 import { ComponentArgument } from "../providers/completions/twig/component-argument";
@@ -95,7 +95,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, [phpSelector, octoberTplSelector], new EnvVariable, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new LangKey, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new ValidationRule, ...QUOTES, '|');
-    register(context, [phpSelector, octoberTplSelector], new ValidationTableName, ...QUOTES, ':');
+    register(context, [phpSelector, octoberTplSelector], new TableName, ...QUOTES, ':');
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new EventName, ...QUOTES);
 
