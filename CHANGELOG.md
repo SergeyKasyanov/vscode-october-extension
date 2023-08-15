@@ -1,5 +1,26 @@
 # Change Log
 
+## 0.22.0
+
+New features:
+
+- Table names completions for migrations
+- Ajax handlers completions in `data-request="..."` in controllers views
+- Ajax handlers completions in `$this->getEventHandler('...')` in widgets views
+- References and definitions for ajax handlers in controllers and widgets views
+
+Improvements:
+
+- Now migrations generator uses anonymous migrations for projects with October 3.3 or newer
+
+Fixes:
+
+- Fixed a bug that could hang entire VSCode autocompletion
+- Fixed loading model relations
+- Removed duplicates from controller action autocompletion
+
+Also model generator uses `$fillable` instead of `$guarded`
+
 ## 0.21.0
 
 New features:
