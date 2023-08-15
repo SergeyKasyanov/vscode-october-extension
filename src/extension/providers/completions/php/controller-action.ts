@@ -48,7 +48,7 @@ export class ControllerAction implements vscode.CompletionItemProvider {
             pages.push(...beh.pageMethods);
         }
 
-        return pages.map(page => {
+        return [...new Set(pages)].map(page => {
             const item = new vscode.CompletionItem(page, vscode.CompletionItemKind.Method);
             item.range = document.getWordRangeAtPosition(position, ACTION_NAME);
 
