@@ -44,7 +44,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
         const attachComponentMatches = themeFile.sections.ini!.text.matchAll(COMPONENT_NAME);
         for (const match of attachComponentMatches) {
             if (offset > match.index! + match[0].length) {
-                componentAlias = match[0].slice(1, -1).split(/\s+/)[0];
+                componentAlias = match[0].trim().slice(1, -1).split(/\s+/)[0];
             } else {
                 break;
             }
