@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { OctoberEntity } from "../../../../domain/entities/october-entity";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { Migration } from "../../../../domain/entities/classes/migration";
 
 const TABLE_RULE = /\s*(\s*[\'\"][\w\*\-\.]*[\'\"]\s*=>\s*[\'\"].*[\'\"],\s*)*[\'\"][\w\*\-\.]*[\'\"]\s*=>\s*[\'\"]([\w:,=\/]*\|)*(exists|unique):/g;

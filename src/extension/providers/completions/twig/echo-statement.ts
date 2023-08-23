@@ -5,7 +5,7 @@ import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { twigFunctions } from "../../../../domain/static/twig-functions";
 import { CompletionItem } from "../../../factories/completion-item";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const TWIG_ECHO_STATEMENT_START = /\{\{\s*/g;
 const FUNC_ARG_START = /\{\{.+\w+\([\w*\'\"\-\.\(\),]*\s*/g;

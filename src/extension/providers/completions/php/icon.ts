@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { PhpHelpers } from "../../../../domain/helpers/php-helpers";
 import { ocIcons } from "../../../../domain/static/oc-icons";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const ICON_KEY = /icon[\'\"]\s*=>\s*[\'\"]/g;
 const ICON_PART = /^[\w\-]*$/;

@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const CONFIG_GET_FUNC = /(config|Config::get)\s*\(\s*\[{0,1}\s*([\'\"][\w\-\_\.\:]*[\'\"]\s*,\s*)*[\'\"]/g;
 const CONFIG_SET_FUNC = /((Config::set\s*\(\s*)|(config\s*\(\s*\[\s*(['\"][\w\-\_\.\:]*[\'\"]\s*=>\s*.*,\s*)*))[\'\"]/g;

@@ -4,7 +4,7 @@ import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 import path = require("path");
 import { Widget } from "../../../../domain/entities/classes/widget";

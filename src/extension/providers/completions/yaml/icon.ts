@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 import { AppDirectory } from '../../../../domain/entities/owners/app-directory';
 import { YamlHelpers } from '../../../helpers/yaml-helpers';
 import { ocIcons } from '../../../../domain/static/oc-icons';

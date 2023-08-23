@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const COMPONENT_TAG = /\{\%\s*component\s+[\'\"][\w\/\-.]+[\'\"]\s*/g;
 const COMPONENT_TAG_ARGS = /^(\s*\w+\s*=\s*([\'\"]{0,1}[а-я\w\-\.\,\:\;\!\?\s\'\"\(\)\\\[\]\{\}]*[\'\"]{0,1}))*$/;

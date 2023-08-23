@@ -10,7 +10,7 @@ import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import path = require("path");
 import pluralize = require("pluralize");
 

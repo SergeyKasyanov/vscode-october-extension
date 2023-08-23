@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { Widget } from '../../../../domain/entities/classes/widget';
 import { Store } from '../../../../domain/services/store';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 import { BackendOwner } from '../../../../domain/entities/owners/backend-owner';
 import { Controller } from '../../../../domain/entities/classes/controller';
 

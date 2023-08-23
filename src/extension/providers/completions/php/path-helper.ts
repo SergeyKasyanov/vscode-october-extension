@@ -4,7 +4,7 @@ import { OctoberEntity } from "../../../../domain/entities/october-entity";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 import path = require("path");
 

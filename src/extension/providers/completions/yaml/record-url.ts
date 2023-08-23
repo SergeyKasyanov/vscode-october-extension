@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const RECORD_URL_KEY = /recordUrl:\s*/g;
 const URL_PART = /^[\w\-\_\/]*$/;

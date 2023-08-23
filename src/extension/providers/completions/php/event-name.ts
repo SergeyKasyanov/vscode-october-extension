@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 
 const EVENT_LISTEN = /Event::listen\s*\(\s*[\'\"]/g;
 const EVENT_NAME_PART = /^[\w\-\_\.\:]*$/;

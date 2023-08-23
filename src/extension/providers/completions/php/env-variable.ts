@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const ENV_FUNCTION = /env\([\'\"]/g;
 const ENV_KEY_PART = /^[\w\_]*$/;

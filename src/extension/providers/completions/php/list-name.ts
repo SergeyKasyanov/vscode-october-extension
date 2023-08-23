@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { Controller } from "../../../../domain/entities/classes/controller";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const LIST_RENDER_METHOD = /->listRender\s*\(\s*[\'\"]/g;
 const LIST_NAME_PART = /^\w*$/;

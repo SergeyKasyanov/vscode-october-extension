@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const MODEL_CLASS_KEY = /modelClass:\s*/g;
 const MODEL_CLASS_VALUE_PART = /^[\w\\]*$/;

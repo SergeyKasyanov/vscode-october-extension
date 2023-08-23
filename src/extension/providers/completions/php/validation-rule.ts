@@ -4,7 +4,7 @@ import { OctoberEntity } from "../../../../domain/entities/october-entity";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { rules } from "../../../../domain/static/validation-rules";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const ARRAY_VALUE = /=>\s*[\'\"]/g;
 const RULES_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$rules\s*=\s*(\[|array\()/g;

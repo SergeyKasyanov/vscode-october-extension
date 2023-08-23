@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const BACKEND_URL_CALL = /Backend\s*::\s*(url|redirect|redirectGuest|redirectIntended)\s*\(\s*[\'\"]/g;
 const URL_PART = /^[\w\-\_\/]*$/;

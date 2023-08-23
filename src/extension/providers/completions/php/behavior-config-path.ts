@@ -4,10 +4,9 @@ import { Model } from "../../../../domain/entities/classes/model";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { insideAssociativeArrayEntryValue, insideClassProperty, insideStringPropertyValue } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 
-const CONFIG_PATH_PART = /^[\$\~\w\\\/\-\_\.]*$/;
 const CONFIG_PATH = /[\$\~\w\\\/\-\_\.]+/;
 
 /**
@@ -36,17 +35,18 @@ export class BehaviorConfigPath implements vscode.CompletionItemProvider {
 
         const requiredProperties = behaviors.flatMap(beh => beh.requiredProperties);
 
-        const regExpStr = 'public\\s+\\$(' + requiredProperties.join('|') + ')\\s*=\\s*'
-            + '[\\\'\\\"]|((\\\[|(array\\\())\\\s*[\\\'\\\"][\\\w\\\-\\\_]+[\\\'\\\"]\\\s*=>\\\s*[\\\'\\\"]([\\\w\\\-\\\_\\\.\\\$\\\~\\\/]+[\\\'\\\"]\\\s*,\\\s*[\\\'\\\"][\\\w\\\-\\\_]+[\\\'\\\"]\\\s*=>\\\s*[\\\'\\\"])*)';
-
-        const PROPERTY_NAME = new RegExp(regExpStr, 'g');
-
-        if (!awaitsCompletions(
-            document.getText(),
+        const propRange = insideClassProperty(
+            entity.phpClass!,
             document.offsetAt(position),
-            PROPERTY_NAME,
-            CONFIG_PATH_PART
-        )) {
+            requiredProperties);
+        if (!propRange) {
+            return;
+        }
+
+        if (!(
+            insideAssociativeArrayEntryValue(document, position, propRange)
+            || insideStringPropertyValue(document, position, propRange))
+        ) {
             return;
         }
 

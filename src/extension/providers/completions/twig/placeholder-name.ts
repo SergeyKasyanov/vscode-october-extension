@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { Page } from "../../../../domain/entities/theme/page";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const PUT_TAG = /\{\%\s*put\s+/g;
 const PLACEHOLDER_NAME_PART = /^\w*$/;

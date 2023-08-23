@@ -3,7 +3,7 @@ import * as yaml from 'yaml';
 import { Model } from "../../../../domain/entities/classes/model";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
 import { Controller } from "../../../../domain/entities/classes/controller";
 import { Str } from "../../../../helpers/str";

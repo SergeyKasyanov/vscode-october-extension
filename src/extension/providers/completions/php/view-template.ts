@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { OctoberClass } from "../../../../domain/entities/classes/october-class";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const MAIL_SEND = /::send\s*\(\s*[\'\"]/g;
 const MAIL_SEND_TO = /::sendTo\s*\(\s*.*,\s*[\'\"]/g;

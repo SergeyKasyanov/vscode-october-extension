@@ -2,17 +2,30 @@ import * as phpParser from "php-parser";
 import * as vscode from "vscode";
 import { Model } from "../../../../domain/entities/classes/model";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { insideAssociativeArrayEntryKey, insideClassProperty } from "../../../helpers/completions";
 
-const MODEL_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(guarded|fillable|dates|jsonable|visible|hidden|nullable|hashable|purgeable|encryptable|revisionable|propagatable)\s*=\s*(\[|array\()/g;
-const BELONGS_TO = /public\s+(array\s+){0,1}\$belongsTo\s*=\s*(\[|array\()/g;
-const MODEL_PROPERTY_SPACER = /^\s*[\'\"](\w*[\'\"],\s*[\'\"])*$/;
+const LISTS = [
+    'guarded',
+    'fillable',
+    'dates',
+    'jsonable',
+    'visible',
+    'hidden',
+    'nullable',
+    'hashable',
+    'purgeable',
+    'encryptable',
+    'revisionable',
+    'propagatable',
+];
 
-const MODEL_ASSOCIATIVE_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(slugs|rules|casts|attributeNames)\s*=\s*(\[|array\()/g;
-const MODEL_ASSOCIATIVE_PROPERTY_SPACER = /^\s*(\s*[\'\"][\w\*\-\_\.]+[\'\"]\s*=>\s*(([\'\"].*[\'\"])|[\w:]+),\s*)*[\'\"]$/;
+const ARRAY_KEYS = [
+    'slugs',
+    'rules',
+    'casts',
+    'attributeNames',
+];
 
-const CUSTOM_MESSAGES_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$customMessages\s*=\s*(\[|array\()/g;
-const CUSTOM_MESSAGES_PROPERTY_SPACER = /^\s*(\s*[\'\"][\w\*\-\_\.]+[\'\"]\s*=>\s*[\'\"].*[\'\"],\s*)*[\'\"][а-я\w\*\-\_\.]*$/;
 const CUSTOM_MESSAGES_KEY = /[\w\*\-\_\.]+/;
 
 /**
@@ -41,31 +54,33 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
         this.document = document;
         this.position = position;
 
-        const content = document.getText();
         const offset = document.offsetAt(position);
 
-        if (awaitsCompletions(content, offset, MODEL_PROPERTY, MODEL_PROPERTY_SPACER)
-            || awaitsCompletions(content, offset, MODEL_ASSOCIATIVE_PROPERTY, MODEL_ASSOCIATIVE_PROPERTY_SPACER)
-        ) {
-            return this.model.attributes.map(
-                attr => new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property)
-            );
+        const listPropRange = insideClassProperty(this.model.phpClass!, offset, LISTS.concat(ARRAY_KEYS));
+        if (listPropRange && insideAssociativeArrayEntryKey(document, position, listPropRange)) {
+            return this.attributesCompletions();
         }
 
-        if (awaitsCompletions(content, offset, CUSTOM_MESSAGES_PROPERTY, CUSTOM_MESSAGES_PROPERTY_SPACER)) {
-            return this.buildCustomMessagesCompletions();
+        const arrayValuePropRange = insideClassProperty(this.model.phpClass!, offset, ['customMessages']);
+        if (arrayValuePropRange && insideAssociativeArrayEntryKey(document, position, arrayValuePropRange)) {
+            return this.customMessagesCompletions();
         }
 
-        if (awaitsCompletions(content, offset, BELONGS_TO, MODEL_ASSOCIATIVE_PROPERTY_SPACER)) {
-            return this.model.attributes.filter(attr => attr.endsWith('_id')).map(
-                attr => new vscode.CompletionItem(attr.slice(0, -3), vscode.CompletionItemKind.Property)
-            );
+        const belongsToPropRange = insideClassProperty(this.model.phpClass!, offset, ['belongsTo']);
+        if (belongsToPropRange && insideAssociativeArrayEntryKey(document, position, belongsToPropRange)) {
+            return this.guessedRelationsCompletions();
         }
 
         return;
     }
 
-    private buildCustomMessagesCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+    private attributesCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+        return this.model?.attributes.map(
+            attr => new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property)
+        );
+    }
+
+    private customMessagesCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
         const rules = this.model?.phpClassProperties?.rules;
         if (!rules) {
             return;
@@ -100,5 +115,11 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
 
             return item;
         });
+    }
+
+    private guessedRelationsCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+        return this.model!.attributes.filter(attr => attr.endsWith('_id')).map(
+            attr => new vscode.CompletionItem(attr.slice(0, -3), vscode.CompletionItemKind.Property)
+        );
     }
 }

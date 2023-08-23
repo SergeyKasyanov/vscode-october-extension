@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { Page } from "../../../../domain/entities/theme/page";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const AJAX_REQUEST = /((data\-request=)|(\$\.request\s*\(\s*)|(oc\s*\.ajax\s*\(\s*)|(oc\.request\s*\(\s*[\'\"].*[\'\"]\s*,\s*)|(ajaxHandler\s*\(\s*)|(request:\s*)|(form_ajax\s*\(\s*))[\'\"]/g;
 const AJAX_REQUEST_NAME = /^[\w\:]*$/;

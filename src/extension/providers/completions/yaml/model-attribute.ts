@@ -3,7 +3,7 @@ import { Model } from "../../../../domain/entities/classes/model";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
 import { Str } from "../../../../helpers/str";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
 
 const DISPLAY_FROM_KEY = /displayFrom:\s*/g;

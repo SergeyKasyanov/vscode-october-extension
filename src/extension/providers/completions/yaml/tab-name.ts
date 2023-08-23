@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as yaml from 'yaml';
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const TAB_KEY = /\s*tab:\s*/g;
 const TAB_NAME_PART = /^\w*$/;

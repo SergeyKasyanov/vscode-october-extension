@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Project } from "../../../../domain/entities/project";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const SET_CONTEXT_FIRST = /::setContext\s*\(\s*[\'\"]/g;
 const SET_CONTEXT_SECOND = /::setContext\s*\(\s*[\'\"][\w\.]*[\'\"]\s*,\s*[\'\"]/g;

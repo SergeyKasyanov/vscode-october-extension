@@ -3,7 +3,7 @@ import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
 import { twigTests } from "../../../../domain/static/twig-tests";
 import { CompletionItem } from "../../../factories/completion-item";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const TWIG_STMT_TESTED = /\{[\{\%].*\s*is\s*/g;
 const TWIG_TEST_NAME = /^\w*$/;

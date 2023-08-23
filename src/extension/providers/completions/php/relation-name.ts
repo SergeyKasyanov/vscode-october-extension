@@ -10,7 +10,7 @@ import { Plugin } from "../../../../domain/entities/owners/plugin";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const RELATION_RENDER = /->relationRender\s*\(\s*[\'\"]/g;
 const RELATION_NAME_PART = /^\w*$/;

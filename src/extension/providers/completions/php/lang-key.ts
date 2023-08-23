@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 
 const TRANS_FUNCTION = /(\_|\_\_|trans)\([\'\"]/g;
 const TRANS_KEY_PART = /^[\w\_\-\:\.]*$/;

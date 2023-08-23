@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { Page } from "../../../../domain/entities/theme/page";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const CONTENT_TAG = /\{\%\s*content\s+[\'\"][\w\/\-.]+[\'\"]\s*/g;
 const CONTENT_TAG_ARGS = /^(\s*\w+\s*=\s*([\'\"]{0,1}[а-я\w\-\.\,\:\;\!\?\s\'\"\(\)\\\[\]\{\}]*[\'\"]{0,1}))*$/;

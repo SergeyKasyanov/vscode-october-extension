@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
 import { AppDirectory } from '../../../../domain/entities/owners/app-directory';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 import { YamlHelpers } from '../../../helpers/yaml-helpers';
 
 const HANDLE_LINK_KEY = /(parent|source):\s*/g;

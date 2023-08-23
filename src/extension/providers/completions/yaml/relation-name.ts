@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { Model } from "../../../../domain/entities/classes/model";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 
 const RELATION_KEY = /\s*relation:\s*/g;
 const RELATION_NAME_PART = /^\w*$/;

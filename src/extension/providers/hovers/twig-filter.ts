@@ -3,7 +3,7 @@ import { MarkupFile } from "../../../domain/entities/theme/theme-file";
 import { Store } from "../../../domain/services/store";
 import { twigFilters } from "../../../domain/static/twig-filters";
 import { Hover } from "../../factories/hover-factory";
-import { awaitsCompletions } from "../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../helpers/completions";
 
 const TWIG_STMT_FILTERED = /\{[\{\%].*\|\s*/g;
 const TWIG_FILTER_NAME = /^\w*$/;

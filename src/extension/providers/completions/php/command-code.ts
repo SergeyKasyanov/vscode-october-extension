@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Store } from '../../../../domain/services/store';
-import { awaitsCompletions } from '../../../helpers/awaits-completions';
+import { awaitsCompletions } from '../../../helpers/completions';
 
 const PLUGIN_FILE = /->(registerConsoleCommand|command)\s*\(\s*[\'\"]/g;
 const ARTISAN_CALL = /Artisan::(call|queue)\s*\(\s*[\'\"]/g;

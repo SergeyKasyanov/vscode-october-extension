@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
 import path = require("path");
 

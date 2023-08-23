@@ -6,7 +6,7 @@ import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { Project } from "../../../../domain/entities/project";
 import { Store } from "../../../../domain/services/store";
 import { Str } from "../../../../helpers/str";
-import { awaitsCompletions } from "../../../helpers/awaits-completions";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
 
 const SCOPE = /\s*scope\:\s*/g;
