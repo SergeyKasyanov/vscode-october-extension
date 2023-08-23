@@ -55,6 +55,16 @@ export abstract class OctoberClass extends OctoberEntity {
     }
 
     /**
+     * Php class ast for anonymous classes
+     */
+    get anonymousPhpClass(): phpParser.Class | undefined {
+        const fileContent = this.fileContent;
+        if (fileContent) {
+            return PhpHelpers.getReturnNewClass(fileContent, this.path);
+        }
+    }
+
+    /**
      * List oh php class properties
      */
     get phpClassProperties(): PropertiesList | undefined {

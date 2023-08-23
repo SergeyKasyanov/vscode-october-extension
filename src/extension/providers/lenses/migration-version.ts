@@ -26,7 +26,7 @@ class MigrationVersion implements vscode.CodeLensProvider {
             return;
         }
 
-        const migrationClass = migration.phpClass;
+        const migrationClass = migration.phpClass || migration.anonymousPhpClass;
         if (!migrationClass) {
             return;
         }
