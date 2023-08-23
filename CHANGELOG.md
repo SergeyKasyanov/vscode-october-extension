@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.22.1
+
+Improvements:
+
+- Guessing belongs to relations by attributes with *_id name
+
+Fixes:
+
+- Fixed migration version lens for anonymous migrations
+
 ## 0.22.0
 
 New features:

@@ -5,6 +5,7 @@ import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/awaits-completions";
 
 const MODEL_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(guarded|fillable|dates|jsonable|visible|hidden|nullable|hashable|purgeable|encryptable|revisionable|propagatable)\s*=\s*(\[|array\()/g;
+const BELONGS_TO = /public\s+(array\s+){0,1}\$belongsTo\s*=\s*(\[|array\()/g;
 const MODEL_PROPERTY_SPACER = /^\s*[\'\"](\w*[\'\"],\s*[\'\"])*$/;
 
 const MODEL_ASSOCIATIVE_PROPERTY = /(protected|public)\s+(array\s+){0,1}\$(slugs|rules|casts|attributeNames)\s*=\s*(\[|array\()/g;
@@ -53,6 +54,12 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
 
         if (awaitsCompletions(content, offset, CUSTOM_MESSAGES_PROPERTY, CUSTOM_MESSAGES_PROPERTY_SPACER)) {
             return this.buildCustomMessagesCompletions();
+        }
+
+        if (awaitsCompletions(content, offset, BELONGS_TO, MODEL_ASSOCIATIVE_PROPERTY_SPACER)) {
+            return this.model.attributes.filter(attr => attr.endsWith('_id')).map(
+                attr => new vscode.CompletionItem(attr.slice(0, -3), vscode.CompletionItemKind.Property)
+            );
         }
 
         return;
