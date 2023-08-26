@@ -191,6 +191,10 @@ export class Model extends OctoberClass {
                 }
 
                 (definition.value as phpParser.Array).items.forEach(_item => {
+                    if (!_item) {
+                        return;
+                    }
+
                     const item = (_item as phpParser.Entry);
                     const name = (item.key as phpParser.String).value;
 

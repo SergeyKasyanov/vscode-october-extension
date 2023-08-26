@@ -4,9 +4,12 @@ import { Model } from "../../../../domain/entities/classes/model";
 import { Store } from "../../../../domain/services/store";
 import { insideAssociativeArrayEntryKey, insideClassProperty } from "../../../helpers/completions";
 
-const LISTS = [
+const ATTRIBUTES_LISTINGS = [
     'guarded',
     'fillable',
+];
+
+const LISTS = [
     'dates',
     'jsonable',
     'visible',
@@ -56,31 +59,67 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
 
         const offset = document.offsetAt(position);
 
-        const listPropRange = insideClassProperty(this.model.phpClass!, offset, LISTS.concat(ARRAY_KEYS));
-        if (listPropRange && insideAssociativeArrayEntryKey(document, position, listPropRange)) {
+        let range;
+
+        const phpClass = this.model.phpClass;
+        if (!phpClass) {
+            return;
+        }
+
+        range = insideClassProperty(phpClass, offset, ATTRIBUTES_LISTINGS);
+        if (range && insideAssociativeArrayEntryKey(document, position, range)) {
+            return this.docBlockedAttributesCompletions();
+        }
+
+        range = insideClassProperty(phpClass, offset, LISTS.concat(ARRAY_KEYS));
+        if (range && insideAssociativeArrayEntryKey(document, position, range)) {
             return this.attributesCompletions();
         }
 
-        const arrayValuePropRange = insideClassProperty(this.model.phpClass!, offset, ['customMessages']);
-        if (arrayValuePropRange && insideAssociativeArrayEntryKey(document, position, arrayValuePropRange)) {
-            return this.customMessagesCompletions();
+        range = insideClassProperty(phpClass, offset, ['belongsTo']);
+        if (range && insideAssociativeArrayEntryKey(document, position, range)) {
+            return this.guessedRelationsCompletions();
         }
 
-        const belongsToPropRange = insideClassProperty(this.model.phpClass!, offset, ['belongsTo']);
-        if (belongsToPropRange && insideAssociativeArrayEntryKey(document, position, belongsToPropRange)) {
-            return this.guessedRelationsCompletions();
+        range = insideClassProperty(phpClass, offset, ['customMessages']);
+        if (range && insideAssociativeArrayEntryKey(document, position, range)) {
+            return this.customMessagesCompletions();
         }
 
         return;
     }
 
-    private attributesCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        return this.model?.attributes.map(
+    private docBlockedAttributesCompletions(): vscode.CompletionItem[] {
+        return this.model!.attributes.map(
             attr => new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property)
         );
     }
 
-    private customMessagesCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
+    private attributesCompletions(): vscode.CompletionItem[] {
+        const attributes = [...new Set(
+            this.model!
+                .attributes
+                .concat(this.model!.guessAttributes)
+        )];
+
+        return attributes.map(
+            attr => new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property)
+        );
+    }
+
+    private guessedRelationsCompletions(): vscode.CompletionItem[] {
+        const attributes = [...new Set(
+            this.model!
+                .attributes
+                .concat(this.model!.guessAttributes)
+        )];
+
+        return attributes
+            .filter(attr => attr.endsWith('_id'))
+            .map(attr => new vscode.CompletionItem(attr.slice(0, -3), vscode.CompletionItemKind.Property));
+    }
+
+    private customMessagesCompletions(): vscode.CompletionItem[] | undefined {
         const rules = this.model?.phpClassProperties?.rules;
         if (!rules) {
             return;
@@ -115,11 +154,5 @@ export class ModelAttribute implements vscode.CompletionItemProvider {
 
             return item;
         });
-    }
-
-    private guessedRelationsCompletions(): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList<vscode.CompletionItem>> {
-        return this.model!.attributes.filter(attr => attr.endsWith('_id')).map(
-            attr => new vscode.CompletionItem(attr.slice(0, -3), vscode.CompletionItemKind.Property)
-        );
     }
 }
