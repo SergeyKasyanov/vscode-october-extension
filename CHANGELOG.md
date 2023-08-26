@@ -1,13 +1,21 @@
 # Change Log
 
-## 0.22.1
+## 0.23.1
 
 Improvements:
 
-- Guessing belongs to relations by attributes with *_id name
+- Guessing belongs to relations now includes attributes from model's docblock, $fillable and $guarded
+
+## 0.23.0
+
+Features:
+
+- Guessing belongs to relations by attribute names ending with _id
+- More accurate auto completions
 
 Fixes:
 
+- Fixed component property completions in theme files
 - Fixed migration version lens for anonymous migrations
 
 ## 0.22.0
