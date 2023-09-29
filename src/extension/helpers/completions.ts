@@ -96,7 +96,7 @@ export function insideStringPropertyValue(
     }
 
     const ast = PhpHelpers.getAst(fragment, 'fragment.php');
-    const exprStmt = ast.children[0];
+    const exprStmt = ast?.children[0];
     if (exprStmt?.kind !== 'expressionstatement') {
         return false;
     }
@@ -138,7 +138,7 @@ export function insideAssociativeArrayEntryKey(
     }
 
     const ast = PhpHelpers.getAst(fragment, 'fragment.php');
-    const exprStmt = ast.children[0];
+    const exprStmt = ast?.children[0];
     if (exprStmt?.kind !== 'expressionstatement') {
         return false;
     }
@@ -198,7 +198,7 @@ export function insideAssociativeArrayEntryValue(
     }
 
     const ast = PhpHelpers.getAst(fragment, 'fragment.php');
-    const exprStmt = ast.children[0];
+    const exprStmt = ast?.children[0];
     if (exprStmt?.kind !== 'expressionstatement') {
         return false;
     }

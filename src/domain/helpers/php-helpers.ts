@@ -24,7 +24,7 @@ export class PhpHelpers {
      * @param fileName
      * @returns
      */
-    static getAst(code: string, fileName: string): phpParser.Program {
+    static getAst(code: string, fileName: string): phpParser.Program | null {
         const engine = new phpParser.Engine({
             parser: {
                 extractDoc: true,
@@ -35,7 +35,11 @@ export class PhpHelpers {
             },
         });
 
-        return engine.parseCode(code, fileName);
+        try {
+            return engine.parseCode(code, fileName);
+        } catch (err) {
+            return null;
+        }
     }
 
     /**
@@ -47,11 +51,11 @@ export class PhpHelpers {
      */
     static getUsesList(code: string, fileName: string): UsesList {
         const ast = this.getAst(code, fileName);
-        const ns = ast.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
+        const ns = ast?.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
 
         const uses: UsesList = {};
 
-        (ns || ast).children.forEach(el => {
+        (ns || ast)?.children.forEach(el => {
             if (el.kind === 'usegroup') {
                 const items: phpParser.UseItem[] = (el as any).items;
 
@@ -84,7 +88,7 @@ export class PhpHelpers {
      */
     static getNamespace(code: string, fileName: string) {
         const ast = this.getAst(code, fileName);
-        return ast.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
+        return ast?.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
     }
 
     /**
@@ -96,9 +100,9 @@ export class PhpHelpers {
      */
     static getClass(code: string, fileName: string): phpParser.Class | undefined {
         const ast = this.getAst(code, fileName);
-        const ns = ast.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
+        const ns = ast?.children.find(el => el.kind === 'namespace') as phpParser.Namespace;
 
-        return (ns || ast).children.find(el => el.kind === 'class') as phpParser.Class;
+        return (ns || ast)?.children.find(el => el.kind === 'class') as phpParser.Class;
     }
 
     /**

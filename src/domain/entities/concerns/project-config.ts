@@ -39,7 +39,7 @@ function indexConfigDir(configDir: string, prefix: string = ''): string[] {
         const content = FsHelpers.readFile(filePath);
         const ast = PhpHelpers.getAst(content, fileName);
 
-        const returnExpr = ast.children.find(el => el.kind === 'return') as phpParser.Return;
+        const returnExpr = ast?.children.find(el => el.kind === 'return') as phpParser.Return;
         if (returnExpr.expr?.kind !== 'array') {
             return;
         }

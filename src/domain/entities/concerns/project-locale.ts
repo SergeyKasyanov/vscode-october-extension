@@ -38,7 +38,7 @@ function localeFromConfig(project: Project): string | null | undefined {
     const configContent = FsHelpers.readFile(configPath);
     const ast = PhpHelpers.getAst(configContent, configPath);
 
-    const returnExpr = ast.children.find(el => el.kind === 'return') as phpParser.Return;
+    const returnExpr = ast?.children.find(el => el.kind === 'return') as phpParser.Return;
     if (returnExpr.expr?.kind !== 'array') {
         return;
     }

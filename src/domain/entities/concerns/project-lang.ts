@@ -119,7 +119,7 @@ function getPhpFileTranslations(filePath: string, prefix: string): Translations 
     const content = FsHelpers.readFile(filePath);
     const ast = PhpHelpers.getAst(content, 'lang.php');
 
-    const returnExpr = ast.children.find(el => el.kind === 'return') as phpParser.Return;
+    const returnExpr = ast?.children.find(el => el.kind === 'return') as phpParser.Return;
     if (returnExpr.expr?.kind !== 'array') {
         return {};
     }
