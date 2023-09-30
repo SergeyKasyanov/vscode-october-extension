@@ -1,5 +1,19 @@
 # Change Log
 
+## 0.24.0
+
+Features:
+
+- Detect OctoberCMS 3.5
+- Completions of table names in `$belongsToMany` definitions
+- Completions for itemType inside `registerNavigation()` method
+- Check if behavior config exists and quick fix to create it
+
+Fixes:
+
+- Fixed model attributes completions
+- Fixed link to `RelationController` config
+
 ## 0.23.1
 
 Improvements:
