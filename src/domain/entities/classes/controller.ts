@@ -120,7 +120,7 @@ export class Controller extends OctoberClass {
         }
 
         const behavior = _beh.behavior;
-        if (!behavior.cofigName) {
+        if (!behavior.configName) {
             return;
         }
 
@@ -131,7 +131,7 @@ export class Controller extends OctoberClass {
 
         let definitions: { [key: string]: string } = {};
 
-        const configProperty = properties[behavior.cofigName];
+        const configProperty = properties[behavior.configName];
         if (configProperty?.value?.kind === 'string') {
             let value = (configProperty.value as phpParser.String).value;
             if (value.length === 0) {

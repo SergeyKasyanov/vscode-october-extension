@@ -106,7 +106,7 @@ export class ControllerBehavior extends Behavior {
     /**
      * Name of class property with path to config
      */
-    get cofigName(): string | undefined {
+    get configName(): string | undefined {
         switch (this.fqn) {
             case 'Backend\\Behaviors\\ListController':
                 return 'listConfig';
@@ -119,6 +119,17 @@ export class ControllerBehavior extends Behavior {
             case 'Backend\\Behaviors\\RelationController':
                 return 'relationConfig';
         }
+    }
+
+    /**
+     * Class properties required for this behavior
+     */
+    get requiredProperties(): string[] {
+        if (this.fqn === 'Backend\\Behaviors\\RelationController') {
+            return ['relationConfig'];
+        }
+
+        return super.requiredProperties;
     }
 }
 
