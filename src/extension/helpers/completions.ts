@@ -75,6 +75,34 @@ export function insideClassProperty(
 }
 
 /**
+ * Is offset inside php class method
+ * Returns range of method statement
+ */
+export function insideClassMethod(
+    phpClass: phpParser.Class,
+    offset: number,
+    methods: string[]
+): vscode.Range | undefined {
+    for (const el of phpClass.body) {
+        if (el.kind === 'method' && el.loc) {
+            const method = el as unknown as phpParser.Method;
+
+            if (!offsetInsideLocation(offset, method.loc!)) {
+                continue;
+            }
+
+            const name = PhpHelpers.identifierToString(method.name);
+
+            if (methods.includes(name)) {
+                return locationToRange(method.loc!);
+            }
+        }
+    }
+
+    return;
+}
+
+/**
  * Is offset inside php class property
  * Returns range of property statement
  */

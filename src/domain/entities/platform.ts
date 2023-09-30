@@ -109,4 +109,11 @@ export class Platform {
     get hasPageSnippetsSupport(): boolean {
         return this._version >= Version.oc34;
     }
+
+    /**
+     * Has support for side menu item types
+     */
+    get hasMenuItemType(): boolean {
+        return this._version >= Version.oc35;
+    }
 }
