@@ -2,12 +2,16 @@ import * as vscode from "vscode";
 import { OctoberEntity } from "../../../../domain/entities/october-entity";
 import { MarkupFile } from "../../../../domain/entities/theme/theme-file";
 import { Store } from "../../../../domain/services/store";
-import { awaitsCompletions } from "../../../helpers/completions";
-import { Migration } from "../../../../domain/entities/classes/migration";
+import { awaitsCompletions, insideClassProperty } from "../../../helpers/completions";
+import { Model } from "../../../../domain/entities/classes/model";
+import { Project } from "../../../../domain/entities/project";
+import { OctoberTplDocumentFormatting } from "../../formatting/october-tpl";
 
 const TABLE_RULE = /\s*(\s*[\'\"][\w\*\-\.]*[\'\"]\s*=>\s*[\'\"].*[\'\"],\s*)*[\'\"][\w\*\-\.]*[\'\"]\s*=>\s*[\'\"]([\w:,=\/]*\|)*(exists|unique):/g;
 const TABLE_NAME_PART = /^[\w_]*$/;
 const TABLE_NAME = /[\w_]+/;
+
+const BELONGS_TO_MANY_TABLE = /table[\'\"]\s*=>\s*[\'\"]/g;
 
 const SCHEMA_METHOD = /(::|->)(hasTable|hasColumn|hasColumns|whenTableHasColumn|whenTableDoesntHaveColumn|getColumnType|getColumnListing|table|create|drop|dropIfExists|dropColumns)\s*\(\s*[\'\"]/g;
 const CONSTRAIN = /->(constrained|on)\s*\(\s*[\'\"]/g;
@@ -28,15 +32,30 @@ export class TableName implements vscode.CompletionItemProvider {
             return;
         }
 
-        if (!awaitsCompletions(
-            document.getText(),
-            document.offsetAt(position),
-            [CONSTRAIN, SCHEMA_METHOD, TABLE_RULE],
-            TABLE_NAME_PART
-        )) {
-            return;
+        const content = document.getText();
+        const offset = document.offsetAt(position);
+
+        const forBelongsToMany = entity instanceof Model
+            && insideClassProperty(entity.phpClass!, offset, ['belongsToMany'])
+            && awaitsCompletions(content, offset, BELONGS_TO_MANY_TABLE, TABLE_NAME_PART);
+
+        if (forBelongsToMany) {
+            return this.buildCompletions(document, position, project);
         }
 
+        const forOther = awaitsCompletions(
+            content,
+            offset,
+            [CONSTRAIN, SCHEMA_METHOD, TABLE_RULE],
+            TABLE_NAME_PART
+        );
+
+        if (forOther) {
+            return this.buildCompletions(document, position, project);
+        }
+    }
+
+    private buildCompletions(document: vscode.TextDocument, position: vscode.Position, project: Project) {
         const tables = project.migrations.reduce((acc: string[], migration) => {
             migration.tables.forEach(table => {
                 if (!acc.includes(table)) {
