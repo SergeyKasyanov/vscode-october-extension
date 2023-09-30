@@ -5,10 +5,12 @@ import { registerModelTraitConfigsCheck } from "../providers/diagnostics/check-m
 import { registerSelectableOptionsExistenceChecks } from "../providers/diagnostics/check-selectable-options-existence";
 import { registerThemeFileExistenceChecks } from "../providers/diagnostics/check-theme-file-existence";
 import { registerViewChecks } from "../providers/diagnostics/check-view-existence";
+import { registerBehaviorConfigFileCheck } from "../providers/diagnostics/check-behavior-config-file";
 
 export function registerDiagnostics(context: vscode.ExtensionContext): void {
     registerModelTraitConfigsCheck(context);
     registerBehaviorsConfigsCheck(context);
+    registerBehaviorConfigFileCheck(context);
     registerThemeFileExistenceChecks(context);
     registerFileLinkChecks(context);
     registerViewChecks(context);

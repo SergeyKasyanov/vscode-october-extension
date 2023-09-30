@@ -74,7 +74,11 @@ export class PathHelpers {
      * @param controller
      * @returns
      */
-    static relativePath(projectPath: string, relativePath: string, controller: Controller | undefined): string | undefined {
+    static relativePath(
+        projectPath: string,
+        relativePath: string,
+        controller: Controller | undefined | null
+    ): string | undefined {
         let filePath: string | undefined;
 
         if (relativePath.startsWith('~')) {

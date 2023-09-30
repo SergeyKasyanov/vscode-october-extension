@@ -69,15 +69,18 @@ function provideDiagnostics(document: vscode.TextDocument, diagnosticsCollection
         return;
     }
 
+    const entityProperties = entity.phpClassProperties;
+    if (!entityProperties) {
+        return;
+    }
 
-    const diagnostics: Diagnostic[] = [];
-
-    const entityBehaviors = entity.behaviors;
-    const entityProperties = entity.phpClassProperties || {};
     const implementsLoc = entityProperties.implement?.loc;
     if (!implementsLoc) {
         return;
     }
+
+    const entityBehaviors = entity.behaviors;
+    const diagnostics: Diagnostic[] = [];
 
     for (const fqn in entityBehaviors) {
         if (Object.prototype.hasOwnProperty.call(entityBehaviors, fqn)) {
