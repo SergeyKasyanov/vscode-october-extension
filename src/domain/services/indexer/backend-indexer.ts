@@ -79,6 +79,7 @@ export class BackendIndexer {
 
         const ownerType = nameParts.shift();
         let owner: BackendOwner | undefined;
+        let dir: string | undefined;
 
         if (project.platform?.hasAppDirectory && ownerType === 'app') {
             owner = project.appDir;
@@ -95,6 +96,14 @@ export class BackendIndexer {
                     console.error(err);
                 }
             }
+
+            dir = nameParts.shift();
+            if (dir === 'database') {
+                const nextPart = nameParts.shift();
+                if (nextPart) {
+                    dir = path.join(dir, nextPart);
+                }
+            }
         } else if (ownerType === 'modules') {
             const ownerName = nameParts.shift();
             if (!ownerName) {
@@ -109,6 +118,7 @@ export class BackendIndexer {
                 return;
             }
 
+            dir = nameParts.shift();
         } else if (ownerType === Config.pluginsDirectory) {
             const pluginVendor = nameParts.shift();
             const pluginName = nameParts.shift();
@@ -125,13 +135,14 @@ export class BackendIndexer {
                 this.store.addPlugin(projectPath, plugin);
                 return;
             }
+
+            dir = nameParts.shift();
         }
 
         if (!owner) {
             return;
         }
 
-        const dir = nameParts.shift();
         if (!dir) {
             return;
         }
