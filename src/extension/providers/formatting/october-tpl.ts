@@ -1,4 +1,4 @@
-import * as prettierPhp from "@prettier/plugin-php/standalone";
+import * as prettierPhp from "@prettier/plugin-php";
 import * as prettierDjango from 'prettier-plugin-django';
 import * as prettierIni from 'prettier-plugin-ini';
 import * as prettier from 'prettier/standalone';
@@ -17,10 +17,10 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
     private options?: vscode.FormattingOptions;
     private eol?: string;
 
-    provideDocumentFormattingEdits(
+    async provideDocumentFormattingEdits(
         document: vscode.TextDocument,
         options: vscode.FormattingOptions
-    ): vscode.ProviderResult<vscode.TextEdit[]> {
+    ): Promise<vscode.TextEdit[]> {
 
         this.options = options;
         this.eol = (document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n');
@@ -33,17 +33,17 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
         let onlyTwig = true;
 
         if (sections.ini?.text.length) {
-            result += this.formatIni(sections.ini.text.trim());
+            result += await this.formatIni(sections.ini.text.trim());
             onlyTwig = false;
         }
 
         if (sections.php?.text.length) {
-            result += this.formatPhp(sections.php.text.trim());
+            result += await this.formatPhp(sections.php.text.trim());
             onlyTwig = false;
         }
 
         if (sections.twig) {
-            result += this.formatTwig(sections.twig.text.trim(), onlyTwig);
+            result += await this.formatTwig(sections.twig.text.trim(), onlyTwig);
         }
 
         return new Promise(resolve => {
@@ -65,9 +65,9 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
      * @param iniCode
      * @returns
      */
-    private formatIni(iniCode: string) {
+    private async formatIni(iniCode: string) {
         try {
-            return prettier.format(iniCode, {
+            return await prettier.format(iniCode, {
                 plugins: [prettierIni],
                 parser: 'ini',
                 printWidth: 120,
@@ -86,16 +86,19 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
      * @param phpCode
      * @returns
      */
-    private formatPhp(phpCode: string) {
+    private async formatPhp(phpCode: string) {
         phpCode = this.cleanPhpCode(phpCode);
 
         try {
-            const phpFormatted = prettier.format(phpCode, {
+            const phpFormatted = await prettier.format(phpCode, {
                 plugins: [prettierPhp],
                 parser: 'php',
+                // @ts-ignore
+                phpVersion: '7.2',
                 printWidth: 120,
                 tabWidth: this.options!.tabSize,
-                useTabs: !this.options!.insertSpaces
+                useTabs: !this.options!.insertSpaces,
+                singleQuote: true
             });
 
             return '==' + this.eol + phpFormatted;
@@ -132,6 +135,10 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
             result.push(line);
         }
 
+        if (result[0] === '<?') {
+            result[0] = '<?php';
+        }
+
         if (result[0] !== '<?php') {
             result.unshift('<?php');
         }
@@ -150,9 +157,9 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
      * @param onlyTwig
      * @returns
      */
-    private formatTwig(twigCode: string, onlyTwig: boolean) {
+    private async formatTwig(twigCode: string, onlyTwig: boolean) {
         try {
-            let twigFormatted = prettier.format(twigCode, {
+            let twigFormatted = await prettier.format(twigCode, {
                 plugins: [prettierDjango],
                 parser: 'melody',
                 // @ts-ignore
@@ -162,8 +169,8 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
                 useTabs: !this.options!.insertSpaces
             });
 
-            twigFormatted = this.formatStyles(twigFormatted);
-            twigFormatted = this.formatScripts(twigFormatted);
+            twigFormatted = await this.formatStyles(twigFormatted);
+            twigFormatted = await this.formatScripts(twigFormatted);
 
             let result = (onlyTwig ? '' : '==' + this.eol) + twigFormatted;
 
@@ -191,7 +198,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
      * @param twigCode
      * @returns
      */
-    private formatStyles(twigCode: string) {
+    private async formatStyles(twigCode: string) {
         const styleMatches = twigCode.matchAll(STYLE_TAG);
 
         for (const match of styleMatches) {
@@ -199,7 +206,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
                 const size = match[0].length;
                 const css = match[0].slice('<style>'.length, -1 * '</style>'.length);
 
-                const formatted = prettier.format(css, {
+                const formatted = await prettier.format(css, {
                     plugins: [require('prettier/parser-postcss')],
                     parser: 'css',
                     tabWidth: this.options!.tabSize,
@@ -224,7 +231,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
      * @param twigCode
      * @returns
      */
-    private formatScripts(twigCode: string) {
+    private async formatScripts(twigCode: string) {
         const scriptMatches = twigCode.matchAll(SCRIPT_TAG);
 
         for (const match of scriptMatches) {
@@ -232,7 +239,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
                 const size = match[0].length;
                 const script = match[0].slice('<script>'.length, -1 * '</script>'.length);
 
-                const formatted = prettier.format(script, {
+                const formatted = await prettier.format(script, {
                     plugins: [require('prettier/parser-babel')],
                     parser: 'babel',
                     tabWidth: this.options!.tabSize,
