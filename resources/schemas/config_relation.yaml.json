@@ -5422,13 +5422,22 @@
                         "buttonDelete": {
                             "type": "string"
                         },
+                        "buttonDeleteMany": {
+                            "type": "string"
+                        },
                         "buttonLink": {
                             "type": "string"
                         },
                         "buttonRemove": {
                             "type": "string"
                         },
+                        "buttonRemoveMany": {
+                            "type": "string"
+                        },
                         "buttonUnlink": {
+                            "type": "string"
+                        },
+                        "buttonUnlinkMany": {
                             "type": "string"
                         },
                         "buttonUpdate": {
