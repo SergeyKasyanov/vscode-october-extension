@@ -35,8 +35,13 @@ export class BehaviorConfigPath implements vscode.CompletionItemProvider {
 
         const requiredProperties = behaviors.flatMap(beh => beh.requiredProperties);
 
+        const entityPhpClass = entity.phpClass;
+        if (!entityPhpClass) {
+            return;
+        }
+
         const propRange = insideClassProperty(
-            entity.phpClass!,
+            entityPhpClass,
             document.offsetAt(position),
             requiredProperties);
         if (!propRange) {

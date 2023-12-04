@@ -35,12 +35,16 @@ export class TableName implements vscode.CompletionItemProvider {
         const content = document.getText();
         const offset = document.offsetAt(position);
 
-        const forBelongsToMany = entity instanceof Model
-            && insideClassProperty(entity.phpClass!, offset, ['belongsToMany'])
-            && awaitsCompletions(content, offset, BELONGS_TO_MANY_TABLE, TABLE_NAME_PART);
+        if (entity instanceof Model) {
+            const entityPhpClass = entity.phpClass;
+            if (entityPhpClass) {
+                const forBelongsToMany = insideClassProperty(entityPhpClass, offset, ['belongsToMany'])
+                    && awaitsCompletions(content, offset, BELONGS_TO_MANY_TABLE, TABLE_NAME_PART);
 
-        if (forBelongsToMany) {
-            return this.buildCompletions(document, position, project);
+                if (forBelongsToMany) {
+                    return this.buildCompletions(document, position, project);
+                }
+            }
         }
 
         const forOther = awaitsCompletions(

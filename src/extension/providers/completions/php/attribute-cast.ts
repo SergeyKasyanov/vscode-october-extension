@@ -35,8 +35,13 @@ export class AttributeCast implements vscode.CompletionItemProvider {
             return;
         }
 
+        const modelPhpClass = model.phpClass;
+        if (!modelPhpClass) {
+            return;
+        }
+
         const castsRange = insideClassProperty(
-            model.phpClass!,
+            modelPhpClass,
             document.offsetAt(position),
             ['casts']
         );

@@ -74,37 +74,42 @@ export class ScopeMethod implements vscode.CompletionItemProvider {
         const isSearchScope = awaitsCompletions(content, offset, SEARCH_SCOPE, METHOD_NAME_PART);
         const isModelScope = awaitsCompletions(content, offset, MODEL_SCOPE, METHOD_NAME_PART);
 
-        const config = yaml.parse(this.document!.getText());
-        const rootKeys = Object.keys(config);
-        const firstRootKey = rootKeys[0];
+        try {
+            const config = yaml.parse(this.document!.getText());
+            const rootKeys = Object.keys(config);
+            const firstRootKey = rootKeys[0];
 
-        const isFieldsConfig = ['fields', 'tabs', 'secondaryTabs'].includes(firstRootKey);
-        const isFilterConfig = firstRootKey === 'scopes';
-        const isListConfig = rootKeys.includes('list');
+            const isFieldsConfig = ['fields', 'tabs', 'secondaryTabs'].includes(firstRootKey);
+            const isFilterConfig = firstRootKey === 'scopes';
+            const isListConfig = rootKeys.includes('list');
 
-        // fields.yaml, scope (type: relation, recordfinder)
-        if (isScopeAttr && isFieldsConfig) {
-            return this.getScopesForFields();
-        }
+            // fields.yaml, scope (type: relation, recordfinder)
+            if (isScopeAttr && isFieldsConfig) {
+                return this.getScopesForFields();
+            }
 
-        // fields.yaml, searchScope (type: recordfinder)
-        if (isSearchScope && isFieldsConfig) {
-            return this.getScopesForFields();
-        }
+            // fields.yaml, searchScope (type: recordfinder)
+            if (isSearchScope && isFieldsConfig) {
+                return this.getScopesForFields();
+            }
 
-        // config_filter.yaml, modelScope
-        if (isModelScope && isFilterConfig) {
-            return this.getScopesForFilterConfig();
-        }
+            // config_filter.yaml, modelScope
+            if (isModelScope && isFilterConfig) {
+                return this.getScopesForFilterConfig();
+            }
 
-        // config_filter.yaml, scope
-        if (isScopeAttr && isFilterConfig) {
-            return this.getScopesForFilterConfig();
-        }
+            // config_filter.yaml, scope
+            if (isScopeAttr && isFilterConfig) {
+                return this.getScopesForFilterConfig();
+            }
 
-        // config_list.yaml, scope
-        if (isScopeAttr && isListConfig) {
-            return this.getScopesForListConfig();
+            // config_list.yaml, scope
+            if (isScopeAttr && isListConfig) {
+                return this.getScopesForListConfig();
+            }
+        } catch (err) {
+            console.error(err);
+            return;
         }
     }
 

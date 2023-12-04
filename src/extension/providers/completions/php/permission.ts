@@ -39,7 +39,11 @@ export class Permission implements vscode.CompletionItemProvider {
 
         const controller = Store.instance.findEntity(document.fileName) as Controller;
         if (controller instanceof Controller) {
-            const requiredPermissionsRange = insideClassProperty(controller.phpClass!, document.offsetAt(position), ['requiredPermissions']);
+            const controllerPhpClass = controller.phpClass;
+            if (!controllerPhpClass) {
+                return;
+            }
+            const requiredPermissionsRange = insideClassProperty(controllerPhpClass, document.offsetAt(position), ['requiredPermissions']);
             if (requiredPermissionsRange && insideAssociativeArrayEntryKey(document, position, requiredPermissionsRange)) {
                 return this.completions(project, document, position);
             }
