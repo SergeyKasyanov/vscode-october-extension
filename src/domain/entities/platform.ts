@@ -90,6 +90,20 @@ export class Platform {
     }
 
     /**
+     * Has support for multisite
+     */
+    get supportMultisite(): boolean {
+        return this._version >= Version.oc31;
+    }
+
+    /**
+     * Uses SettingModel base class instead of SettingsModel trait for settings
+     */
+    get usesSettingModel():boolean {
+        return this._version >= Version.oc31;
+    }
+
+    /**
      * Uses $signature in artisan commands
      */
     get usesSignaturesInCommands(): boolean {
