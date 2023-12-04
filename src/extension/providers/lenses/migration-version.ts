@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
+import * as yaml from 'yaml';
 import { Migration } from '../../../domain/entities/classes/migration';
-import { Store } from '../../../domain/services/store';
-import { phpSelector } from '../../helpers/file-selectors';
+import { AppDirectory } from '../../../domain/entities/owners/app-directory';
 import { Plugin } from '../../../domain/entities/owners/plugin';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
-import * as yaml from 'yaml';
+import { Store } from '../../../domain/services/store';
+import { phpSelector } from '../../helpers/file-selectors';
 import path = require('path');
 
 const COMMAND_SHOW_MIGRATION_VERSION_FILE = 'command.showMigrationVersionFile';
@@ -28,6 +29,10 @@ class MigrationVersion implements vscode.CodeLensProvider {
 
         const migrationClass = migration.phpClass || migration.anonymousPhpClass;
         if (!migrationClass) {
+            return;
+        }
+
+        if (migration.owner instanceof AppDirectory) {
             return;
         }
 
