@@ -15,6 +15,7 @@ import { RelationName } from "../providers/links/relation-name";
 import { TwigComponent } from "../providers/links/twig-component";
 import { ViewTemplate } from "../providers/links/view-template";
 import { YamlFiles } from "../providers/links/yaml-files";
+import { CustomRelationToolbarButton } from "../providers/links/custom-relation-toolbar-button";
 
 export function registerDocumentLinks(context: vscode.ExtensionContext) {
     ini(context);
@@ -49,6 +50,7 @@ function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlFiles);
     register(context, yamlSelector, new Migrations);
     register(context, yamlSelector, new RecordUrl);
+    register(context, yamlSelector, new CustomRelationToolbarButton)
 }
 
 function register(
