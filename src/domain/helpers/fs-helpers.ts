@@ -12,7 +12,12 @@ export class FsHelpers {
      * @param _subdirectory
      * @returns
      */
-    static listFiles(root: string, recursively: boolean = false, exts: string[] = [], _subdirectory: string = ''): string[] {
+    static listFiles(
+        root: string,
+        recursively: boolean = false,
+        exts: string[] = [],
+        _subdirectory: string = ''
+    ): string[] {
         let files: string[] = [];
 
         const excludes = Config.excludeFromIndex;
@@ -59,7 +64,11 @@ export class FsHelpers {
      * @param subdirectory
      * @returns
      */
-    static listDirectories(root: string, recursively: boolean = false, subdirectory: string = ''): string[] {
+    static listDirectories(
+        root: string,
+        recursively: boolean = false,
+        subdirectory: string = ''
+    ): string[] {
         const directories: string[] = [];
 
         fs.readdirSync(path.join(root, subdirectory), { withFileTypes: true })
