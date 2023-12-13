@@ -1,6 +1,55 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "AnyColumn": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/TextColumn"
+                },
+                {
+                    "$ref": "#/definitions/NumberColumn"
+                },
+                {
+                    "$ref": "#/definitions/ImageColumn"
+                },
+                {
+                    "$ref": "#/definitions/SwitchColumn"
+                },
+                {
+                    "$ref": "#/definitions/SummaryColumn"
+                },
+                {
+                    "$ref": "#/definitions/DateTimeColumn"
+                },
+                {
+                    "$ref": "#/definitions/DateColumn"
+                },
+                {
+                    "$ref": "#/definitions/TimeColumn"
+                },
+                {
+                    "$ref": "#/definitions/TimeSinceColumn"
+                },
+                {
+                    "$ref": "#/definitions/TimeTenseColumn"
+                },
+                {
+                    "$ref": "#/definitions/SelectableColumn"
+                },
+                {
+                    "$ref": "#/definitions/LinkageColumn"
+                },
+                {
+                    "$ref": "#/definitions/PartialColumn"
+                },
+                {
+                    "$ref": "#/definitions/ColorPickerColumn"
+                },
+                {
+                    "$ref": "#/definitions/CustomColumn"
+                }
+            ]
+        },
         "ColorPickerColumn": {
             "properties": {
                 "align": {
@@ -77,9 +126,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "colorpicker"
-                    ],
+                    "const": "colorpicker",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -264,9 +311,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "date"
-                    ],
+                    "const": "date",
                     "type": "string"
                 },
                 "useTimezone": {
@@ -366,9 +411,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "datetime"
-                    ],
+                    "const": "datetime",
                     "type": "string"
                 },
                 "useTimezone": {
@@ -471,9 +514,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "image"
-                    ],
+                    "const": "image",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -570,9 +611,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "linkage"
-                    ],
+                    "const": "linkage",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -669,9 +708,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "number"
-                    ],
+                    "const": "number",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -768,9 +805,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "partial"
-                    ],
+                    "const": "partial",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -883,9 +918,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "selectable"
-                    ],
+                    "const": "selectable",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -988,9 +1021,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "summary"
-                    ],
+                    "const": "summary",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -1090,9 +1121,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "switch"
-                    ],
+                    "const": "switch",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -1186,9 +1215,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "text"
-                    ],
+                    "const": "text",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -1310,9 +1337,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "time"
-                    ],
+                    "const": "time",
                     "type": "string"
                 },
                 "useTimezone": {
@@ -1409,9 +1434,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "timesince"
-                    ],
+                    "const": "timesince",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -1505,9 +1528,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "timetense"
-                    ],
+                    "const": "timetense",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -1529,53 +1550,7 @@
     "properties": {
         "columns": {
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/definitions/TextColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/NumberColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/ImageColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/SwitchColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/SummaryColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/DateTimeColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/DateColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/TimeColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/TimeSinceColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/TimeTenseColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/SelectableColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/LinkageColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/PartialColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/ColorPickerColumn"
-                    },
-                    {
-                        "$ref": "#/definitions/CustomColumn"
-                    }
-                ]
+                "$ref": "#/definitions/AnyColumn"
             },
             "type": "object"
         }

@@ -1,6 +1,34 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "AnyScope": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/CheckboxScope"
+                },
+                {
+                    "$ref": "#/definitions/SwitchScope"
+                },
+                {
+                    "$ref": "#/definitions/TextScope"
+                },
+                {
+                    "$ref": "#/definitions/NumberScope"
+                },
+                {
+                    "$ref": "#/definitions/DropdownScope"
+                },
+                {
+                    "$ref": "#/definitions/GroupScope"
+                },
+                {
+                    "$ref": "#/definitions/DateScope"
+                },
+                {
+                    "$ref": "#/definitions/CustomScope"
+                }
+            ]
+        },
         "CheckboxScope": {
             "properties": {
                 "conditions": {
@@ -37,9 +65,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "checkbox"
-                    ],
+                    "const": "checkbox",
                     "type": "string"
                 }
             },
@@ -168,9 +194,7 @@
                     "type": "boolean"
                 },
                 "type": {
-                    "enum": [
-                        "date"
-                    ],
+                    "const": "date",
                     "type": "string"
                 },
                 "useTimezone": {
@@ -236,9 +260,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "dropdown"
-                    ],
+                    "const": "dropdown",
                     "type": "string"
                 }
             },
@@ -307,9 +329,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "group"
-                    ],
+                    "const": "group",
                     "type": "string"
                 },
                 "valueFrom": {
@@ -379,9 +399,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "number"
-                    ],
+                    "const": "number",
                     "type": "string"
                 }
             },
@@ -430,9 +448,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "switch"
-                    ],
+                    "const": "switch",
                     "type": "string"
                 }
             },
@@ -488,9 +504,7 @@
                     "type": "string"
                 },
                 "type": {
-                    "enum": [
-                        "text"
-                    ],
+                    "const": "text",
                     "type": "string"
                 }
             },
@@ -504,32 +518,7 @@
     "properties": {
         "scopes": {
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/definitions/CheckboxScope"
-                    },
-                    {
-                        "$ref": "#/definitions/SwitchScope"
-                    },
-                    {
-                        "$ref": "#/definitions/TextScope"
-                    },
-                    {
-                        "$ref": "#/definitions/NumberScope"
-                    },
-                    {
-                        "$ref": "#/definitions/DropdownScope"
-                    },
-                    {
-                        "$ref": "#/definitions/GroupScope"
-                    },
-                    {
-                        "$ref": "#/definitions/DateScope"
-                    },
-                    {
-                        "$ref": "#/definitions/CustomScope"
-                    }
-                ]
+                "$ref": "#/definitions/AnyScope"
             },
             "type": "object"
         }
