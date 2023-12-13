@@ -26,7 +26,8 @@ export class SettingsModelGenerator extends GeneratorBase {
         super.setVars({
             model: vars.model,
             code: vars.code,
-            placeFieldsInArray: !!vars.placeFieldsInArray
+            placeFieldsInArray: !!vars.placeFieldsInArray,
+            usesSettingModel: !!this.project.platform?.usesSettingModel,
         });
     }
 
