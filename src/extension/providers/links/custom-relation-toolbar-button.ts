@@ -58,6 +58,7 @@ export class CustomRelationToolbarButton implements vscode.DocumentLinkProvider 
 
                 const link = new vscode.DocumentLink(range);
                 link.target = vscode.Uri.file(filePath);
+                link.tooltip = filePath.replace(owner.project.path, '');
 
                 links.push(link);
 
