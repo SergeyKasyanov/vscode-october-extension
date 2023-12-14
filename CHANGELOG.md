@@ -1,5 +1,26 @@
 # Change Log
 
+## 0.25.0
+
+Features:
+
+- Find model usages in yaml configs
+- Document links to custom buttons in `RelationController` config files
+- Code action for creating custom buttons in `RelationController` config files
+
+Improvements:
+
+- Updated extension npm dependencies
+- Updated yaml config schemas
+- Now theme files formatting uses new prettier
+- Auto completion performance improvements
+- Settings model generator now uses `SettingModel` base class instead of `Model` with `SettingsModel` behavior for projects based on new versions of OctoberCMS
+
+Fixes:
+
+- Fixed indexing of database migrations placed in `app/database` directory
+- Migrations placed in `app/database` don't showing `version.yaml` notice
+
 ## 0.24.0
 
 Features:
