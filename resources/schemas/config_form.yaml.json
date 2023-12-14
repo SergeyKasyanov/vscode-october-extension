@@ -7429,9 +7429,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "title"
-            ],
             "type": "object"
         },
         "customMessages": {
@@ -7551,9 +7548,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "title"
-            ],
             "type": "object"
         },
         "update": {
@@ -7592,9 +7586,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "title"
-            ],
             "type": "object"
         }
     },
