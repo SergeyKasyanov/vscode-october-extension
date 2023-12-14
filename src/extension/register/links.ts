@@ -50,7 +50,7 @@ function yaml(context: vscode.ExtensionContext) {
     register(context, yamlSelector, new YamlFiles);
     register(context, yamlSelector, new Migrations);
     register(context, yamlSelector, new RecordUrl);
-    register(context, yamlSelector, new CustomRelationToolbarButton)
+    register(context, yamlSelector, new CustomRelationToolbarButton);
 }
 
 function register(

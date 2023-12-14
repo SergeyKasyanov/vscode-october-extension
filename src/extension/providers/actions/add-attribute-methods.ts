@@ -11,7 +11,7 @@ const COMMAND_ADD_ATTRIBUTE_METHOD = 'command.addAttributeMethod';
 
 export function registerAddAttributeMethods(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(phpSelector, new AddAttributeMethods));
-    context.subscriptions.push(vscode.commands.registerCommand(COMMAND_ADD_ATTRIBUTE_METHOD, addAttrbuteMethod));
+    context.subscriptions.push(vscode.commands.registerCommand(COMMAND_ADD_ATTRIBUTE_METHOD, addAttributeMethod));
 }
 
 /**
@@ -215,7 +215,7 @@ class CodeAction extends vscode.CodeAction {
     methodType?: 'accessor' | 'mutator' | 'getter' | 'setter';
 }
 
-function addAttrbuteMethod(
+function addAttributeMethod(
     document:vscode.TextDocument,
     attribute: string,
     methodName: string,

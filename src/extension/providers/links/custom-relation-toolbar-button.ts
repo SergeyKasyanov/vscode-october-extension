@@ -60,14 +60,11 @@ export class CustomRelationToolbarButton implements vscode.DocumentLinkProvider 
                 link.target = vscode.Uri.file(filePath);
 
                 links.push(link);
+
+                matchOffset += btn.length + 1;
             }
         }
 
         return links;
     }
-
-    resolveDocumentLink?(link: vscode.DocumentLink): vscode.ProviderResult<vscode.DocumentLink> {
-        throw new Error('Method not implemented.');
-    }
-
 }
