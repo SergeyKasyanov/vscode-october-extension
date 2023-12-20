@@ -5,31 +5,17 @@ import { FsHelpers } from '../../helpers/fs-helpers';
 import path = require('path');
 
 /**
- * Find all model usages in config files
+ * Find all model usages in yaml config files
  */
-export async function findModelUsagesInYamlFiles(model: Model) {
+export async function findModelUsagesInYamlFiles(model: Model): Promise<vscode.Location[]> {
     const project = model.owner.project;
-
-    const directoriesForSearch: string[] = [
-        PathHelpers.rootPath(project.path, 'config')
-    ];
-
-    if (project.appDir) {
-        directoriesForSearch.push(project.appDir.path);
-    }
-
-    directoriesForSearch.push(
-        ...project.modules.map(m => m.path),
-        ...project.plugins.map(p => p.path),
-        ...project.themes.map(t => t.path),
-    );
 
     const escaped = model.fqn.split('\\').join('\\\\');
     const fqnRegex = new RegExp(`${escaped}(\\s+|$)`, 'g');
 
     const locations = [];
     const processedFiles: string[] = [];
-    for (const dir of directoriesForSearch) {
+    for (const dir of project.backendOwnersPaths) {
         const files = FsHelpers.listFiles(dir, true, ['yaml']);
         for (const file of files) {
             const filePath = path.join(dir, file);

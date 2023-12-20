@@ -122,4 +122,27 @@ export class PathHelpers {
 
         return filePath;
     }
+
+    /**
+     * Generate relative path variants
+     * - $/me/blog/controllers/posts/partials/_title.htm
+     * - ~/plugins/me/blog/controllers/posts/partials/_title.htm
+     * - partials/title
+     *
+     * from full path
+     */
+    static pathVariants(projectPath: string, filePath: string): string[] {
+        const results: string[] = [];
+
+        filePath = filePath.replace(projectPath, '');
+        filePath = filePath.split(path.sep).join('/');
+
+        results.push('~' + filePath);
+
+        if (filePath.startsWith('/' + Config.pluginsDirectory)) {
+            results.push('$' + filePath.replace('/' + Config.pluginsDirectory, ''));
+        }
+
+        return results;
+    }
 }

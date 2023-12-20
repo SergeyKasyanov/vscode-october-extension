@@ -260,6 +260,24 @@ export class Project {
     }
 
     /**
+     * Paths to app directory, all modules and all plugins.
+     */
+    get backendOwnersPaths(): string[] {
+        const paths = [];
+
+        if (this.appDir) {
+            paths.push(this.appDir.path);
+        }
+
+        paths.push(
+            ...this.modules.map(m => m.path),
+            ...this.plugins.map(p => p.path),
+        );
+
+        return paths;
+    }
+
+    /**
      * Finds owner by file path
      *
      * @param filePath
