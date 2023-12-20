@@ -92,7 +92,7 @@ function createButton(filePath: string, word: string) {
     FsHelpers.writeFile(filePath, '');
 
     const snippet = new vscode.SnippetString(`<button
-    data-required="onAjax"
+    data-request="onAjax"
     class="btn btn-sm btn-secondary relation-button-create"
 >
     <i class="octo-icon-create"></i> ${word}
