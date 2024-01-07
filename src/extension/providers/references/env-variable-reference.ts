@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { findEnvUsages } from '../../../domain/entities/concerns/project-env';
+import { findEnvUsages } from '../../../domain/actions/find-env-usages';
 import { EnvVariable } from '../../../domain/entities/types';
 import { Store } from '../../../domain/services/store';
 

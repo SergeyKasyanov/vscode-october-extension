@@ -1,8 +1,8 @@
 import * as phpParser from 'php-parser';
-import { FsHelpers } from "../../helpers/fs-helpers";
-import { PathHelpers } from "../../helpers/path-helpers";
-import { PhpHelpers } from "../../helpers/php-helpers";
-import { Project } from "../project";
+import { FsHelpers } from "../helpers/fs-helpers";
+import { PathHelpers } from "../helpers/path-helpers";
+import { PhpHelpers } from "../helpers/php-helpers";
+import { Project } from "../entities/project";
 import path = require("path");
 
 export type Translations = { [key: string]: string };

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { findEventUsages } from '../../../domain/entities/concerns/project-events';
+import { findEventUsages } from '../../../domain/actions/find-event-usages';
 import { Event } from '../../../domain/entities/types';
 import { Store } from '../../../domain/services/store';
 

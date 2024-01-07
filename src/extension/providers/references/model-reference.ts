@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Model } from '../../../domain/entities/classes/model';
-import { findModelUsagesInYamlFiles } from '../../../domain/entities/concerns/find-model-usages-in-yaml-files';
+import { findModelUsagesInYamlFiles } from '../../../domain/actions/find-model-usages-in-yaml-files';
 import { Store } from '../../../domain/services/store';
 
 /**

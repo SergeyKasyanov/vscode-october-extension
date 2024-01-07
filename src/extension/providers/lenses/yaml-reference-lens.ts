@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { findYamlReferences } from '../../../domain/entities/concerns/find-yaml-references';
+import { findYamlReferences } from '../../../domain/actions/find-yaml-references';
 import { Store } from '../../../domain/services/store';
 
 /**

@@ -1,4 +1,7 @@
 import { Config } from "../../config";
+import { getConfig } from '../actions/get-config';
+import { getLocale } from "../actions/get-locale";
+import { Translations, getTranslations } from '../actions/get-translations';
 import { TwigFiltersList } from "../static/twig-filters";
 import { TwigFunctionsList } from "../static/twig-functions";
 import { ControllerBehavior, ModelBehavior } from "./classes/behavior";
@@ -7,9 +10,6 @@ import { Component } from "./classes/component";
 import { Controller } from './classes/controller';
 import { Migration } from './classes/migration';
 import { Model } from "./classes/model";
-import { getConfig } from './concerns/project-config';
-import { Translations, getTranslations } from './concerns/project-lang';
-import { getLocale } from "./concerns/project-locale";
 import { AppDirectory } from "./owners/app-directory";
 import { Module } from "./owners/module";
 import { Owner } from './owners/owner';

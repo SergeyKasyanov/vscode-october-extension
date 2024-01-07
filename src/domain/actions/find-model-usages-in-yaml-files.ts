@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { PathHelpers } from "../../helpers/path-helpers";
-import { Model } from "../classes/model";
-import { FsHelpers } from '../../helpers/fs-helpers';
+import { PathHelpers } from "../helpers/path-helpers";
+import { Model } from "../entities/classes/model";
+import { FsHelpers } from '../helpers/fs-helpers';
 import path = require('path');
 
 /**

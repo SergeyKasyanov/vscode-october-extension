@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
-import { FsHelpers } from '../../helpers/fs-helpers';
-import { PathHelpers } from '../../helpers/path-helpers';
-import { Store } from '../../services/store';
-import { Behavior } from '../classes/behavior';
-import { Controller } from '../classes/controller';
-import { Widget } from '../classes/widget';
-import { Project } from '../project';
+import { FsHelpers } from '../helpers/fs-helpers';
+import { PathHelpers } from '../helpers/path-helpers';
+import { Store } from '../services/store';
+import { Behavior } from '../entities/classes/behavior';
+import { Controller } from '../entities/classes/controller';
+import { Widget } from '../entities/classes/widget';
+import { BackendOwner } from '../entities/owners/backend-owner';
+import { Project } from '../entities/project';
 import path = require('path');
-import { BackendOwner } from '../owners/backend-owner';
 
 /**
  * Find yaml config references in another yaml configs
