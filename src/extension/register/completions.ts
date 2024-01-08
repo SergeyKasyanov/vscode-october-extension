@@ -13,6 +13,7 @@ import { CommandCode } from "../providers/completions/php/command-code";
 import { ComponentProperty as PhpComponentProperty } from "../providers/completions/php/component-property";
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
+import { DatabaseConnection } from "../providers/completions/php/dabase-connection";
 import { EnvVariable } from "../providers/completions/php/env-variable";
 import { EventHandler } from "../providers/completions/php/event-handler";
 import { EventName } from "../providers/completions/php/event-name";
@@ -100,6 +101,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, [phpSelector, octoberTplSelector], new TableName, ...QUOTES, ':');
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new EventName, ...QUOTES);
+    register(context, [phpSelector, octoberTplSelector], new DatabaseConnection, ...QUOTES);
 
     register(context, octoberTplSelector, new PageNamePhp, ...QUOTES);
 }
