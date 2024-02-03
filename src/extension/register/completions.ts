@@ -20,6 +20,7 @@ import { EventName } from "../providers/completions/php/event-name";
 import { Icon as PhpIcon } from "../providers/completions/php/icon";
 import { LangKey } from "../providers/completions/php/lang-key";
 import { ListName } from "../providers/completions/php/list-name";
+import { LogChannel } from "../providers/completions/php/log-channel";
 import { MenuContext } from "../providers/completions/php/menu-context";
 import { MenuItemType } from "../providers/completions/php/menu-item-type";
 import { ModelAttribute as PhpModelAttribute } from "../providers/completions/php/model-attribute";
@@ -102,6 +103,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new EventName, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new DatabaseConnection, ...QUOTES);
+    register(context, [phpSelector, octoberTplSelector], new LogChannel, ...QUOTES);
 
     register(context, octoberTplSelector, new PageNamePhp, ...QUOTES);
 }
