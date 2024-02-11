@@ -13,14 +13,12 @@ import { CommandCode } from "../providers/completions/php/command-code";
 import { ComponentProperty as PhpComponentProperty } from "../providers/completions/php/component-property";
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
-import { DatabaseConnection } from "../providers/completions/php/dabase-connection";
 import { EnvVariable } from "../providers/completions/php/env-variable";
 import { EventHandler } from "../providers/completions/php/event-handler";
 import { EventName } from "../providers/completions/php/event-name";
 import { Icon as PhpIcon } from "../providers/completions/php/icon";
 import { LangKey } from "../providers/completions/php/lang-key";
 import { ListName } from "../providers/completions/php/list-name";
-import { LogChannel } from "../providers/completions/php/log-channel";
 import { MenuContext } from "../providers/completions/php/menu-context";
 import { MenuItemType } from "../providers/completions/php/menu-item-type";
 import { ModelAttribute as PhpModelAttribute } from "../providers/completions/php/model-attribute";
@@ -57,6 +55,7 @@ import { RelationName as YamlRelationName } from "../providers/completions/yaml/
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
 import { TabName } from "../providers/completions/yaml/tab-name";
+import { ConfigEnum } from "../providers/completions/php/config-enum";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const QUOTES = ['\'', '"'];
@@ -102,8 +101,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, [phpSelector, octoberTplSelector], new TableName, ...QUOTES, ':');
     register(context, [phpSelector, octoberTplSelector], new ViewTemplate, ...QUOTES);
     register(context, [phpSelector, octoberTplSelector], new EventName, ...QUOTES);
-    register(context, [phpSelector, octoberTplSelector], new DatabaseConnection, ...QUOTES);
-    register(context, [phpSelector, octoberTplSelector], new LogChannel, ...QUOTES);
+    register(context, [phpSelector, octoberTplSelector], new ConfigEnum, ...QUOTES);
 
     register(context, octoberTplSelector, new PageNamePhp, ...QUOTES);
 }
