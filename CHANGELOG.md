@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.26.0
+
+Features:
+- Lens with reference for yaml configs
+- Completion of db connection names, log channels, queue names, storage disk names, mailers
+
+Fixes:
+- Some fixes to yaml schemas
+- Fixed custom relation toolbar button template
+
 ## 0.25.0
 
 Features:
