@@ -13,6 +13,7 @@ export enum Version {
     oc33,
     oc34,
     oc35,
+    oc36,
 };
 
 /**
@@ -30,4 +31,5 @@ export const versionNames = {
     [Version.oc33]: 'v3.3',
     [Version.oc34]: 'v3.4',
     [Version.oc35]: 'v3.5',
+    [Version.oc36]: 'v3.6',
 };
