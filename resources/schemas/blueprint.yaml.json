@@ -846,6 +846,12 @@
         },
         "CheckboxScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -862,6 +868,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1056,12 +1065,18 @@
         },
         "ColorPickerColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1090,6 +1105,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1341,12 +1359,18 @@
         "CustomColumn": {
             "additionalProperties": {},
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1375,6 +1399,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1580,11 +1607,20 @@
         "CustomScope": {
             "additionalProperties": {},
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "dependsOn": {
                     "type": "string"
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1937,12 +1973,18 @@
         },
         "DateColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1971,6 +2013,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -2224,6 +2269,12 @@
         },
         "DateScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "after": {
@@ -2286,6 +2337,9 @@
                 "minDate": {
                     "type": "string"
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -2321,12 +2375,18 @@
         },
         "DateTimeColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -2358,6 +2418,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -2613,6 +2676,12 @@
         },
         "DropdownScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -2646,6 +2715,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -2836,8 +2908,56 @@
                 "conditions": {
                     "type": "string"
                 },
+                "customMessages": {
+                    "properties": {
+                        "buttonAdd": {
+                            "type": "string"
+                        },
+                        "buttonCreate": {
+                            "type": "string"
+                        },
+                        "buttonDelete": {
+                            "type": "string"
+                        },
+                        "buttonDeleteMany": {
+                            "type": "string"
+                        },
+                        "buttonRemove": {
+                            "type": "string"
+                        },
+                        "buttonRemoveMany": {
+                            "type": "string"
+                        },
+                        "confirmDelete": {
+                            "type": "string"
+                        },
+                        "flashAdd": {
+                            "type": "string"
+                        },
+                        "flashCreate": {
+                            "type": "string"
+                        },
+                        "flashDelete": {
+                            "type": "string"
+                        },
+                        "flashUpdate": {
+                            "type": "string"
+                        },
+                        "titleAddForm": {
+                            "type": "string"
+                        },
+                        "titleCreateForm": {
+                            "type": "string"
+                        },
+                        "titleUpdateForm": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "displayMode": {
                     "enum": [
+                        "controller",
                         "recordfinder",
                         "relation",
                         "taglist"
@@ -2855,6 +2975,30 @@
                 },
                 "source": {
                     "type": "string"
+                },
+                "toolbarButtons": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "enum": [
+                                    "add",
+                                    "create",
+                                    "delete",
+                                    "remove",
+                                    "update"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "const": false,
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "type": {
                     "const": "entries",
@@ -3135,6 +3279,12 @@
         },
         "GroupScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -3174,6 +3324,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -3377,12 +3530,18 @@
         },
         "ImageColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -3417,6 +3576,9 @@
                 },
                 "options": {
                     "$ref": "#/definitions/ThumbsOptions"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -3474,6 +3636,9 @@
         },
         "LinkageColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
@@ -3487,6 +3652,9 @@
                         "type": "string"
                     },
                     "type": "object"
+                },
+                "before": {
+                    "type": "string"
                 },
                 "clickable": {
                     "type": "boolean"
@@ -3514,6 +3682,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -4147,14 +4318,78 @@
             ],
             "type": "object"
         },
+        "NestedItemsField": {
+            "properties": {
+                "customMessages": {
+                    "properties": {
+                        "buttonCreate": {
+                            "type": "string"
+                        },
+                        "buttonDelete": {
+                            "type": "string"
+                        },
+                        "buttonDeleteMany": {
+                            "type": "string"
+                        },
+                        "confirmDelete": {
+                            "type": "string"
+                        },
+                        "flashCreate": {
+                            "type": "string"
+                        },
+                        "flashDelete": {
+                            "type": "string"
+                        },
+                        "flashUpdate": {
+                            "type": "string"
+                        },
+                        "titleCreateForm": {
+                            "type": "string"
+                        },
+                        "titleUpdateForm": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "form": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/FieldsRoot"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "maxDepth": {
+                    "type": "number"
+                },
+                "type": {
+                    "const": "nesteditems",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "form",
+                "type"
+            ],
+            "type": "object"
+        },
         "NumberColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -4186,6 +4421,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -4412,6 +4650,12 @@
         },
         "NumberScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "between": {
@@ -4450,6 +4694,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -4475,6 +4722,20 @@
                 "label",
                 "type"
             ],
+            "type": "object"
+        },
+        "PageFinder": {
+            "properties": {
+                "context": {
+                    "type": "string"
+                },
+                "replacements": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                }
+            },
             "type": "object"
         },
         "PageFinderField": {
@@ -4633,12 +4894,18 @@
         },
         "PartialColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -4667,6 +4934,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "path": {
                     "type": "string"
@@ -6341,12 +6611,18 @@
         },
         "SelectableColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6394,6 +6670,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -6621,12 +6900,18 @@
         },
         "SummaryColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6663,6 +6948,9 @@
                     "type": "number"
                 },
                 "limitWords": {
+                    "type": "number"
+                },
+                "order": {
                     "type": "number"
                 },
                 "permissions": {
@@ -6724,12 +7012,18 @@
         },
         "SwitchColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6764,6 +7058,9 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -6977,6 +7274,12 @@
         },
         "SwitchScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "items": {
                         "type": "string"
@@ -6996,6 +7299,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -7230,6 +7536,9 @@
                 },
                 {
                     "$ref": "#/definitions/EntriesField"
+                },
+                {
+                    "$ref": "#/definitions/NestedItemsField"
                 },
                 {
                     "allOf": [
@@ -10915,12 +11224,18 @@
         },
         "TextColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -10949,6 +11264,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -11162,6 +11480,12 @@
         },
         "TextScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "contains": {
@@ -11187,6 +11511,9 @@
                 },
                 "modelScope": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -11406,12 +11733,18 @@
         },
         "TimeColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -11440,6 +11773,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -11503,12 +11839,18 @@
         },
         "TimeSinceColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -11537,6 +11879,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -11597,12 +11942,18 @@
         },
         "TimeTenseColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -11631,6 +11982,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -11757,7 +12111,9 @@
         },
         "multisite": {
             "enum": [
+                "all",
                 false,
+                "locale",
                 "sync",
                 true
             ]
@@ -11777,7 +12133,19 @@
             ]
         },
         "pagefinder": {
-            "type": "boolean"
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/PageFinder"
+                },
+                {
+                    "enum": [
+                        false,
+                        "item",
+                        "list",
+                        true
+                    ]
+                }
+            ]
         },
         "parentNavigation": {
             "anyOf": [

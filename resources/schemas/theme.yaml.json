@@ -981,12 +981,18 @@
         },
         "ColorPickerColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1015,6 +1021,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1266,12 +1275,18 @@
         "CustomColumn": {
             "additionalProperties": {},
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1300,6 +1315,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -1828,12 +1846,18 @@
         },
         "DateColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -1862,6 +1886,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -2115,12 +2142,18 @@
         },
         "DateTimeColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -2152,6 +2185,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -3000,12 +3036,18 @@
         },
         "ImageColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -3040,6 +3082,9 @@
                 },
                 "options": {
                     "$ref": "#/definitions/ThumbsOptions"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -3097,6 +3142,9 @@
         },
         "LinkageColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
@@ -3110,6 +3158,9 @@
                         "type": "string"
                     },
                     "type": "object"
+                },
+                "before": {
+                    "type": "string"
                 },
                 "clickable": {
                     "type": "boolean"
@@ -3137,6 +3188,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -3700,12 +3754,18 @@
         },
         "NumberColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -3737,6 +3797,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -4117,12 +4180,18 @@
         },
         "PartialColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -4151,6 +4220,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "path": {
                     "type": "string"
@@ -5825,12 +5897,18 @@
         },
         "SelectableColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -5878,6 +5956,9 @@
                             "type": "string"
                         }
                     ]
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -6105,12 +6186,18 @@
         },
         "SummaryColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6147,6 +6234,9 @@
                     "type": "number"
                 },
                 "limitWords": {
+                    "type": "number"
+                },
+                "order": {
                     "type": "number"
                 },
                 "permissions": {
@@ -6208,12 +6298,18 @@
         },
         "SwitchColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6248,6 +6344,9 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -6659,12 +6758,18 @@
         },
         "TextColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -6693,6 +6798,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -7095,12 +7203,18 @@
         },
         "TimeColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -7129,6 +7243,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -7192,12 +7309,18 @@
         },
         "TimeSinceColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -7226,6 +7349,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -7286,12 +7412,18 @@
         },
         "TimeTenseColumn": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
                 "align": {
                     "enum": [
                         "center",
                         "left",
                         "right"
                     ],
+                    "type": "string"
+                },
+                "before": {
                     "type": "string"
                 },
                 "clickable": {
@@ -7320,6 +7452,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [

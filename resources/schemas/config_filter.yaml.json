@@ -31,6 +31,12 @@
         },
         "CheckboxScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -47,6 +53,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -79,11 +88,20 @@
         "CustomScope": {
             "additionalProperties": {},
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "dependsOn": {
                     "type": "string"
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -112,6 +130,12 @@
         },
         "DateScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "after": {
@@ -174,6 +198,9 @@
                 "minDate": {
                     "type": "string"
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -209,6 +236,12 @@
         },
         "DropdownScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -243,6 +276,9 @@
                         }
                     ]
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -272,6 +308,12 @@
         },
         "GroupScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "type": "string"
                 },
@@ -312,6 +354,9 @@
                         }
                     ]
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -344,6 +389,12 @@
         },
         "NumberScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "between": {
@@ -382,6 +433,9 @@
                 "modelScope": {
                     "type": "string"
                 },
+                "order": {
+                    "type": "number"
+                },
                 "permissions": {
                     "anyOf": [
                         {
@@ -411,6 +465,12 @@
         },
         "SwitchScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "items": {
                         "type": "string"
@@ -430,6 +490,9 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
@@ -461,6 +524,12 @@
         },
         "TextScope": {
             "properties": {
+                "after": {
+                    "type": "string"
+                },
+                "before": {
+                    "type": "string"
+                },
                 "conditions": {
                     "properties": {
                         "contains": {
@@ -486,6 +555,9 @@
                 },
                 "modelScope": {
                     "type": "string"
+                },
+                "order": {
+                    "type": "number"
                 },
                 "permissions": {
                     "anyOf": [
