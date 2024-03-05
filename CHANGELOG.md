@@ -1,5 +1,14 @@
 # Change Log
 
+## 0.27.0
+
+Features:
+- Support for October 3.6
+- "Add to version" lens for migrations
+
+Improvements:
+- Yaml schemas updated for October 3.6 (Thanks to @daftspunk for contribution)
+
 ## 0.26.0
 
 Features:
