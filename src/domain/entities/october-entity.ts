@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { MethodCalledFromBaseClass } from "../errors/method-called-from-base-class";
 import { FsHelpers } from "../helpers/fs-helpers";
 import { Owner } from "./owners/owner";
+import path = require('path');
 
 /**
  * Base class for all project's classes and theme objects
@@ -32,6 +33,13 @@ export abstract class OctoberEntity {
      */
     get path(): string {
         return this._path;
+    }
+
+    /**
+     * Filename without path
+     */
+    get filename(): string {
+        return this._path.split(path.sep).pop()!;
     }
 
     /**

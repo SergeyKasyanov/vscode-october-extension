@@ -43,6 +43,17 @@ export class Migration extends OctoberClass {
     }
 
     /**
+     * Path to migration related to updates directory
+     */
+    get pathInsideUpdates(): string {
+        const migrationPath = path.join(this.owner.path, 'updates');
+
+        return this.path
+            .replace(migrationPath + path.sep, '')
+            .replace(path.sep, '/');
+    }
+
+    /**
      * Does migration do something with table?
      *
      * @param table

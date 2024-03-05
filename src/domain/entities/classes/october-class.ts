@@ -1,4 +1,3 @@
-import path = require("path");
 import * as phpParser from "php-parser";
 import { MethodsList, PhpHelpers, PropertiesList } from "../../helpers/php-helpers";
 import { OctoberEntity } from "../october-entity";

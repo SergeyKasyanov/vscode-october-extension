@@ -1,12 +1,10 @@
 import * as vscode from 'vscode';
-import * as yaml from 'yaml';
+import { getMigrationVersion } from '../../../domain/actions/get-migration-version';
 import { Migration } from '../../../domain/entities/classes/migration';
-import { AppDirectory } from '../../../domain/entities/owners/app-directory';
 import { Plugin } from '../../../domain/entities/owners/plugin';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Store } from '../../../domain/services/store';
 import { phpSelector } from '../../helpers/file-selectors';
-import path = require('path');
 
 const COMMAND_SHOW_MIGRATION_VERSION_FILE = 'command.showMigrationVersionFile';
 
@@ -32,7 +30,7 @@ class MigrationVersion implements vscode.CodeLensProvider {
             return;
         }
 
-        if (migration.owner instanceof AppDirectory) {
+        if (!(migration.owner instanceof Plugin)) {
             return;
         }
 
@@ -50,8 +48,6 @@ class MigrationVersion implements vscode.CodeLensProvider {
     }
 
     resolveCodeLens(codeLens: CodeLens): vscode.ProviderResult<vscode.CodeLens> {
-        const versionYamlPath = (codeLens.migration!.owner as Plugin).versionYamlPath;
-
         const command: vscode.Command = {
             title: '',
             command: COMMAND_SHOW_MIGRATION_VERSION_FILE,
@@ -59,25 +55,10 @@ class MigrationVersion implements vscode.CodeLensProvider {
             tooltip: 'Open version.yaml',
         };
 
+        const versionYamlPath = (codeLens.migration!.owner as Plugin).versionYamlPath;
+
         if (FsHelpers.exists(versionYamlPath)) {
-            const versionYaml = yaml.parse(FsHelpers.readFile(versionYamlPath));
-            const migrationPath = getRelationMigrationPath(codeLens.migration!);
-
-            let migrationVersion: string | undefined;
-
-            for (const version in versionYaml) {
-                if (Object.prototype.hasOwnProperty.call(versionYaml, version)) {
-                    const elements = versionYaml[version];
-                    if (elements instanceof Array) {
-                        for (const el of elements) {
-                            if (el === migrationPath) {
-                                migrationVersion = version;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
+            const migrationVersion = getMigrationVersion(codeLens.migration!);
 
             command.title = migrationVersion
                 ? `Version ${migrationVersion}`
@@ -92,17 +73,6 @@ class MigrationVersion implements vscode.CodeLensProvider {
     }
 }
 
-/**
- * Returns path to migration relative to updates forlder of migration's plugin
- */
-function getRelationMigrationPath(migration: Migration): string {
-    const updatesPath = path.join(migration.owner.path, 'updates');
-
-    return migration.path
-        .replace(updatesPath + path.sep, '')
-        .replace(path.sep, '/');
-}
-
 async function openVersionYamlFile(migration: Migration) {
     const versionYamlPath = (migration.owner as Plugin).versionYamlPath;
 
@@ -113,7 +83,7 @@ async function openVersionYamlFile(migration: Migration) {
     const uri = vscode.Uri.file(versionYamlPath);
 
     const document = await vscode.workspace.openTextDocument(uri);
-    const migrationPath = getRelationMigrationPath(migration);
+    const migrationPath = migration.pathInsideUpdates
     const offset = document.getText().indexOf(migrationPath);
     const position = document.positionAt(offset);
 
