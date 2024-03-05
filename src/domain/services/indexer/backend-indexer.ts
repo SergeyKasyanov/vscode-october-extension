@@ -485,7 +485,7 @@ export class BackendIndexer {
                     const fileContent = FsHelpers.readFile(filePath);
                     const parsed = yaml.parse(fileContent);
 
-                    if (parsed.handle) {
+                    if (parsed && parsed.handle) {
                         acc.push(new Blueprint(
                             appOwner,
                             filePath,
