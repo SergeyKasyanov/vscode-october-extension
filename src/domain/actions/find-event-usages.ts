@@ -23,7 +23,7 @@ export async function findEventUsages(
         directoriesForSearch.push(project.appDir.path);
     }
 
-    const listenEventRegex = new RegExp(`listen\\s*\\(\\[{0,1}[\\'\\"]${event.name}[\\'\\"]`, 'g');
+    const listenEventRegex = new RegExp(`listen\\s*\\(\\s*\\[{0,1}[\\'\\"]${event.name}[\\'\\"]`, 'g');
     const quotedEventRegex = new RegExp(`[\\'\\"]${event.name}[\\'\\"]`);
 
     const locations = [];
