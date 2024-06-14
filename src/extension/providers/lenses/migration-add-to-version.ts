@@ -6,6 +6,7 @@ import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Store } from '../../../domain/services/store';
 import { phpSelector } from '../../helpers/file-selectors';
 import { getMigrationVersion } from '../../../domain/actions/get-migration-version';
+import { Str } from '../../../helpers/str';
 
 const COMMAND_ADD_TO_VERSION = 'command.addToVersion';
 
@@ -99,7 +100,7 @@ function createNewVersion(migration: Migration) {
         newVersion = '1.0.1';
     }
 
-    const label = migration.filename.split('_').join(' ').replace('.php', '');
+    const label = Str.ucFirst(migration.filename.split('_').join(' ').replace('.php', ''));
 
     versionYaml[newVersion] = [
         label,
