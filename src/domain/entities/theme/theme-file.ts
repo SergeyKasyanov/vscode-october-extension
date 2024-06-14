@@ -53,7 +53,7 @@ export type ThemeFileType = 'layout' | 'page' | 'partial' | 'content';
 /**
  * Contains theme file sections as strings
  */
-export interface ThemFileSections {
+export interface ThemeFileSections {
     ini?: {
         text: string,
         offset: number
@@ -383,7 +383,7 @@ export abstract class MarkupFile extends ThemeFile {
     /**
      * Theme file sections (ini, php, twig)
      */
-    get sections(): ThemFileSections {
+    get sections(): ThemeFileSections {
         const splitted = this.fileContent?.split(SECTIONS_DIVIDER);
         if (!splitted) {
             return {
