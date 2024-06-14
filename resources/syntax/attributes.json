@@ -71,6 +71,16 @@
             ]
         },
         {
+            "name": "data-request-query",
+            "description": "Specifies additional GET parameters to be sent to the server and added to the current URL query string.",
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
             "name": "data-request-before-update",
             "description": "Specifies JavaScript code to execute directly before the page contents are updated.",
             "references": [
@@ -103,6 +113,16 @@
         {
             "name": "data-request-complete",
             "description": "Specifies JavaScript code to execute if the request is successfully completed or encounters an error.",
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
+            "name": "data-request-cancel",
+            "description": "Specifies JavaScript code to execute if the user aborts the request or cancels it via a confirmation dialog.",
             "references": [
                 {
                     "name": "Data Attributes API",
@@ -161,7 +181,23 @@
         },
         {
             "name": "data-request-files",
-            "description": "When specified the request will accept file uploads using the FormData interface.",
+            "description": {
+                "kind": "markdown",
+                "value": "When specified the request will accept file uploads using the `FormData` interface."
+            },
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
+            "name": "data-request-download",
+            "description": {
+                "kind": "markdown",
+                "value": "When specified file downloads are accepted with a `Content-Disposition` response. This attribute can be added anonymously or set to the downloaded filename."
+            },
             "references": [
                 {
                     "name": "Data Attributes API",
@@ -180,8 +216,44 @@
             ]
         },
         {
+            "name": "data-browser-target",
+            "description": {
+                "kind": "markdown",
+                "value": "When specified with `data-request-download` the output will target this window, for example `_blank`."
+            },
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
+            "name": "data-request-message",
+            "description": "Displays a progress message with the specified text, shown while the request is running. This option is used by the flash messages features.",
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
             "name": "data-browser-validate",
             "description": "When specified browser-based client side validation will run on the request before it submits.",
+            "references": [
+                {
+                    "name": "Data Attributes API",
+                    "url": "https://docs.octobercms.com/3.x/cms/ajax/attributes-api.html"
+                }
+            ]
+        },
+        {
+            "name": "data-auto-submit",
+            "description": {
+                "kind": "markdown",
+                "value": "Automatically triggers an AJAX request on elements that also have the `data-request` attribute. The request submits when the browser window is active using the Page Visibility API. The optional attribute value can define the interval, in milliseconds, the framework waits before it sends the request.",
+            },
             "references": [
                 {
                     "name": "Data Attributes API",
@@ -203,7 +275,7 @@
             ]
         },
         {
-            "name": "data-attach-loading",
+            "name": "data-request-loading",
             "description": {
                 "kind": "markdown",
                 "value": "When any element contains the `data-attach-loading` attribute, the CSS class `oc-attach-loader` will be added to it during the AJAX request. This class will spawn a loading spinner on button and anchor elements using the `:after` CSS selector."
