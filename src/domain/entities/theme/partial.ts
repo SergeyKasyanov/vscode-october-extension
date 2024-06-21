@@ -67,7 +67,7 @@ export class Partial extends MarkupFile {
      * Snippet properties declared in this partial
      */
     get snippetProperties(): string[] {
-        const snippetProprties: string[] = [];
+        const snippetProperties: string[] = [];
 
         const components = this.components;
         for (const alias in components) {
@@ -79,8 +79,8 @@ export class Partial extends MarkupFile {
                     for (const match of snippetPropertiesMatches) {
                         const property = match[0].split('[')[1].slice(0, -1);
 
-                        if (!snippetProprties.includes(property)) {
-                            snippetProprties.push(property);
+                        if (!snippetProperties.includes(property)) {
+                            snippetProperties.push(property);
                         }
                     }
 
@@ -89,6 +89,6 @@ export class Partial extends MarkupFile {
             }
         }
 
-        return snippetProprties;
+        return snippetProperties;
     }
 }
