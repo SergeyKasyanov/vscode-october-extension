@@ -14,6 +14,7 @@ const SCRIPT_TAG = /\<script\>(.|\r?\n)*\<\/script\>/g;
  */
 export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEditProvider {
 
+    private document?: vscode.TextDocument;
     private options?: vscode.FormattingOptions;
     private eol?: string;
 
@@ -22,6 +23,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
         options: vscode.FormattingOptions
     ): Promise<vscode.TextEdit[]> {
 
+        this.document = document;
         this.options = options;
         this.eol = (document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n');
 
@@ -43,7 +45,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
         }
 
         if (sections.twig) {
-            result += await this.formatTwig(sections.twig.text.trim(), onlyTwig);
+            result += await this.formatTwig(sections.twig.text.trim(), sections.twig.offset, onlyTwig);
         }
 
         return new Promise(resolve => {
@@ -61,14 +63,11 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Formats ini section of file
-     *
-     * @param iniCode
-     * @returns
      */
     private async formatIni(iniCode: string) {
         try {
             return await prettier.format(iniCode, {
-                plugins: [prettierIni],
+                plugins: [prettierIni.default],
                 parser: 'ini',
                 printWidth: 120,
                 // @ts-ignore
@@ -82,9 +81,6 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Formats php section of file
-     *
-     * @param phpCode
-     * @returns
      */
     private async formatPhp(phpCode: string) {
         phpCode = this.cleanPhpCode(phpCode);
@@ -93,12 +89,12 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
             const phpFormatted = await prettier.format(phpCode, {
                 plugins: [prettierPhp],
                 parser: 'php',
-                // @ts-ignore
-                phpVersion: '7.2',
                 printWidth: 120,
                 tabWidth: this.options!.tabSize,
                 useTabs: !this.options!.insertSpaces,
-                singleQuote: true
+                singleQuote: true,
+                // @ts-ignore
+                phpVersion: '7.2',
             });
 
             return '==' + this.eol + phpFormatted;
@@ -110,11 +106,8 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Clean up php code.
-     * Removes plugin, protected and private keywords.
+     * Removes public, protected and private keywords.
      * Makes sure php code has <?php and ?>
-     *
-     * @param phpCode
-     * @returns
      */
     private cleanPhpCode(phpCode: string) {
         const lines = phpCode.split(/\r?\n/);
@@ -152,25 +145,22 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Format twig section of file
-     *
-     * @param twigCode
-     * @param onlyTwig
-     * @returns
      */
-    private async formatTwig(twigCode: string, onlyTwig: boolean) {
+    private async formatTwig(twigCode: string, twigOffset: number, onlyTwig: boolean) {
         try {
             let twigFormatted = await prettier.format(twigCode, {
                 plugins: [prettierDjango],
                 parser: 'melody',
-                // @ts-ignore
-                twigPrintWidth: 5000,
                 printWidth: 5000,
                 tabWidth: this.options!.tabSize,
-                useTabs: !this.options!.insertSpaces
+                useTabs: !this.options!.insertSpaces,
+                embeddedLanguageFormatting: 'auto',
+                // @ts-ignore
+                twigPrintWidth: 5000,
             });
 
-            twigFormatted = await this.formatStyles(twigFormatted);
-            twigFormatted = await this.formatScripts(twigFormatted);
+            twigFormatted = await this.formatStyles(twigFormatted, twigOffset);
+            twigFormatted = await this.formatScripts(twigFormatted, twigOffset);
 
             let result = (onlyTwig ? '' : '==' + this.eol) + twigFormatted;
 
@@ -194,29 +184,36 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Format css code inside style tags
-     *
-     * @param twigCode
-     * @returns
      */
-    private async formatStyles(twigCode: string) {
+    private async formatStyles(twigCode: string, twigOffset: number) {
         const styleMatches = twigCode.matchAll(STYLE_TAG);
 
         for (const match of styleMatches) {
             try {
+                const line = this.document!.positionAt(twigOffset + match.index).line;
+                const lineText = this.document!.lineAt(line).text;
+                const indentMatch = lineText.match(/^\s*/);
+                const indent = indentMatch ? indentMatch[0] : '';
+
                 const size = match[0].length;
                 const css = match[0].slice('<style>'.length, -1 * '</style>'.length);
 
-                const formatted = await prettier.format(css, {
+                let formatted = await prettier.format(css, {
                     plugins: [require('prettier/parser-postcss')],
                     parser: 'css',
                     tabWidth: this.options!.tabSize,
                     useTabs: !this.options!.insertSpaces
                 });
 
+                formatted = formatted
+                    .split(/\r?\n/)
+                    .map(line => line.length > 0 ? indent + line : line)
+                    .join(this.eol);
+
                 const begin = twigCode.slice(0, match.index!);
                 const end = twigCode.slice(match.index! + size);
 
-                twigCode = begin + '<style>' + this.eol + formatted + '</style>' + end;
+                twigCode = begin + '<style>' + this.eol + formatted + indent + '</style>' + end;
             } catch (err) {
                 console.error(err);
             }
@@ -227,29 +224,36 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
     /**
      * Format javascript code inside script tags
-     *
-     * @param twigCode
-     * @returns
      */
-    private async formatScripts(twigCode: string) {
+    private async formatScripts(twigCode: string, twigOffset: number) {
         const scriptMatches = twigCode.matchAll(SCRIPT_TAG);
 
         for (const match of scriptMatches) {
             try {
+                const line = this.document!.positionAt(twigOffset + match.index).line;
+                const lineText = this.document!.lineAt(line).text;
+                const indentMatch = lineText.match(/^\s*/);
+                const indent = indentMatch ? indentMatch[0] : '';
+
                 const size = match[0].length;
                 const script = match[0].slice('<script>'.length, -1 * '</script>'.length);
 
-                const formatted = await prettier.format(script, {
+                let formatted = await prettier.format(script, {
                     plugins: [require('prettier/parser-babel')],
                     parser: 'babel',
                     tabWidth: this.options!.tabSize,
                     useTabs: !this.options!.insertSpaces
                 });
 
+                formatted = formatted
+                    .split(/\r?\n/)
+                    .map(line => line.length > 0 ? indent + line : line)
+                    .join(this.eol);
+
                 const begin = twigCode.slice(0, match.index!);
                 const end = twigCode.slice(match.index! + size);
 
-                twigCode = begin + '<script>' + this.eol + formatted + '</script>' + end;
+                twigCode = begin + '<script>' + this.eol + formatted + indent + '</script>' + end;
             } catch (err) {
                 console.error(err);
             }
