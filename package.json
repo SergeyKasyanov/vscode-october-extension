@@ -3,7 +3,7 @@
     "displayName": "October Code",
     "description": "October CMS tools for VSCode",
     "publisher": "SergeyKasyanov",
-    "version": "0.27.0",
+    "version": "0.27.1",
     "preview": true,
     "icon": "resources/images/icon.png",
     "sponsor": {
@@ -80,7 +80,7 @@
         ],
         "yamlValidation": [
             {
-                "fileMatch": "app/blueprints/**/*.yaml",
+                "fileMatch": "**/blueprints/**/*.yaml",
                 "url": "./resources/schemas/blueprint.yaml.json"
             },
             {
@@ -276,35 +276,35 @@
     },
     "devDependencies": {
         "@types/glob": "^8.1.0",
-        "@types/ini": "^1.3.32",
-        "@types/mocha": "^10.0.3",
+        "@types/ini": "^4.1.1",
+        "@types/mocha": "^10.0.6",
         "@types/node": "20.x",
-        "@types/pluralize": "^0.0.32",
+        "@types/pluralize": "^0.0.33",
         "@types/prettier": "^2.7.3",
-        "@types/twig": "^1.12.14",
-        "@types/vscode": "^1.83.1",
-        "@typescript-eslint/eslint-plugin": "^6.9.0",
-        "@typescript-eslint/parser": "^6.9.0",
-        "@vscode/test-electron": "^2.3.6",
-        "eslint": "^8.52.0",
-        "glob": "^10.3.10",
-        "mocha": "^10.2.0",
-        "ts-loader": "^9.5.0",
-        "typescript": "^5.2.2",
-        "webpack": "^5.89.0",
+        "@types/twig": "^1.12.16",
+        "@types/vscode": "^1.90.0",
+        "@typescript-eslint/eslint-plugin": "^7.13.1",
+        "@typescript-eslint/parser": "^7.13.1",
+        "@vscode/test-electron": "^2.4.0",
+        "eslint": "^9.5.0",
+        "glob": "^10.4.2",
+        "mocha": "^10.4.0",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.5.2",
+        "webpack": "^5.92.1",
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "@prettier/plugin-php": "^0.19.0",
-        "ini": "^4.1.1",
+        "@prettier/plugin-php": "^0.22.2",
+        "ini": "^4.1.3",
         "php-parser": "^3.1.5",
         "pluralize": "^8.0.0",
-        "prettier": "^2.8.0",
-        "prettier-plugin-django": "^0.5.9",
-        "prettier-plugin-ini": "^1.1.0",
-        "twig": "^1.16.0",
+        "prettier": "^3.3.2",
+        "prettier-plugin-django": "^0.5.18",
+        "prettier-plugin-ini": "^1.2.0",
+        "twig": "^1.17.1",
         "twigjs-loader": "^1.0.3",
-        "yaml": "^2.3.3"
+        "yaml": "^2.4.5"
     },
     "extensionDependencies": [
         "redhat.vscode-yaml"
