@@ -51,21 +51,20 @@ export type UsedFilesList = {
 export type ThemeFileType = 'layout' | 'page' | 'partial' | 'content';
 
 /**
+ * Theme file section
+ */
+export type Section = {
+    text: string,
+    offset: number
+};
+
+/**
  * Contains theme file sections as strings
  */
 export interface ThemeFileSections {
-    ini?: {
-        text: string,
-        offset: number
-    },
-    php?: {
-        text: string,
-        offset: number
-    },
-    twig: {
-        text: string,
-        offset: number
-    }
+    ini?: Section,
+    php?: Section,
+    twig: Section
 }
 
 /**
