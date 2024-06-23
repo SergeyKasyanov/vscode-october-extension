@@ -1,3 +1,4 @@
+import * as vscode from 'vscode';
 import * as phpParser from "php-parser";
 
 export interface PropertiesList {
@@ -286,5 +287,15 @@ export class PhpHelpers {
         }
 
         return properties;
+    }
+
+    /**
+     * Php elem location to vscode Range convertor
+     */
+    static locationToRange(loc: phpParser.Location): vscode.Range {
+        const start = new vscode.Position(loc.start.line - 1, loc.start.column);
+        const end = new vscode.Position(loc.end.line - 1, loc.end.column);
+
+        return new vscode.Range(start, end);
     }
 }

@@ -16,6 +16,7 @@ import { TwigComponent } from "../providers/links/twig-component";
 import { ViewTemplate } from "../providers/links/view-template";
 import { YamlFiles } from "../providers/links/yaml-files";
 import { CustomRelationToolbarButton } from "../providers/links/custom-relation-toolbar-button";
+import { SettingsFields } from "../providers/links/settings-fields";
 
 export function registerDocumentLinks(context: vscode.ExtensionContext) {
     ini(context);
@@ -35,6 +36,7 @@ function php(context: vscode.ExtensionContext) {
     register(context, phpSelector, new ListName);
     register(context, phpSelector, new RelationName);
     register(context, phpSelector, new CommandCode);
+    register(context, phpSelector, new SettingsFields);
 
     register(context, [phpSelector, octoberTplSelector], new PathHelpers);
     register(context, [phpSelector, octoberTplSelector], new BackendUrl);
