@@ -1,21 +1,42 @@
 # Change Log
 
+## 0.28.00
+
+Features:
+
+- Link to fields.yaml file in SettingModel
+- Check partial existence in $this->makePartial('partial_name') call with quick fix
+
+Improvements:
+
+- New html data-attributes for ajax framework
+- Small improvement for formatting twig section of theme files
+
+Fixes:
+
+- Fixed find event usage
+- Indexing Tailor models
+
 ## 0.27.0
 
 Features:
+
 - Support for October 3.6
 - "Add to version" lens for migrations
 
 Improvements:
+
 - Yaml schemas updated for October 3.6 (Thanks to @daftspunk for contribution)
 
 ## 0.26.0
 
 Features:
+
 - Lens with reference for yaml configs
 - Completion of db connection names, log channels, queue names, storage disk names, mailers
 
 Fixes:
+
 - Some fixes to yaml schemas
 - Fixed custom relation toolbar button template
 
