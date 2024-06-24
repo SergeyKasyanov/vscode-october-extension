@@ -14,7 +14,7 @@ const COMMAND_CREATE_FILE = 'command.createFile';
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
 
 /**
- * Register lined file existence checks
+ * Register linked file existence checks
  *
  * @param context
  */
@@ -63,7 +63,7 @@ function provideDiagnostics(
     document: vscode.TextDocument,
     diagnosticsCollection: vscode.DiagnosticCollection
 ) {
-    if (!document.fileName.endsWith('.yaml')) {
+    if (document.languageId !== 'yaml') {
         return;
     }
 

@@ -6,13 +6,15 @@ import { registerSelectableOptionsExistenceChecks } from "../providers/diagnosti
 import { registerThemeFileExistenceChecks } from "../providers/diagnostics/check-theme-file-existence";
 import { registerViewChecks } from "../providers/diagnostics/check-view-existence";
 import { registerBehaviorConfigFileCheck } from "../providers/diagnostics/check-behavior-config-file";
+import { registerMakePartialPathChecks } from "../providers/diagnostics/check-make-partial-path";
 
 export function registerDiagnostics(context: vscode.ExtensionContext): void {
-    registerModelTraitConfigsCheck(context);
-    registerBehaviorsConfigsCheck(context);
     registerBehaviorConfigFileCheck(context);
-    registerThemeFileExistenceChecks(context);
+    registerBehaviorsConfigsCheck(context);
     registerFileLinkChecks(context);
-    registerViewChecks(context);
+    registerMakePartialPathChecks(context);
+    registerModelTraitConfigsCheck(context);
     registerSelectableOptionsExistenceChecks(context);
+    registerThemeFileExistenceChecks(context);
+    registerViewChecks(context);
 }

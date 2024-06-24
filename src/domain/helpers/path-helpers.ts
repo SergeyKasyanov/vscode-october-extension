@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { Config } from '../../config';
 import { Controller } from '../entities/classes/controller';
-import { Store } from '../services/store';
+import { Widget } from '../entities/classes/widget';
 import { FsHelpers } from './fs-helpers';
 
 /**
@@ -77,7 +77,7 @@ export class PathHelpers {
     static relativePath(
         projectPath: string,
         relativePath: string,
-        controller: Controller | undefined | null
+        controller: Controller | Widget | undefined | null = undefined
     ): string | undefined {
         let filePath: string | undefined;
 
@@ -98,11 +98,24 @@ export class PathHelpers {
         } else if (controller) {
             let nameParts = relativePath.split('/');
 
+            if (controller instanceof Widget) {
+                nameParts = ['partials', ...nameParts];
+            }
+
             const fileName = nameParts.pop();
 
-            const isPartial = !fileName!.includes('.');
+            // controller/widgets partials does not have extension
+            // e.g. $this->makePartial('partials/hello_world')
+            let isLocalPartial = true;
+            const knownExtensions = ['yaml', 'php', 'htm'];
+            for (const ext of knownExtensions) {
+                if (fileName!.endsWith(ext)) {
+                    isLocalPartial = false;
+                    break;
+                }
+            }
 
-            if (isPartial) {
+            if (isLocalPartial) {
                 const project = controller.owner.project;
                 for (const ext of project!.platform!.backendViewExtensions) {
                     const candidate = path.join(controller.filesDirectory, ...nameParts, '_' + fileName + '.' + ext);
