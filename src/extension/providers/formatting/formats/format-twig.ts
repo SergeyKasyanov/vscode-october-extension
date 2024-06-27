@@ -1,4 +1,4 @@
-import * as prettierDjango from 'prettier-plugin-django';
+import * as prettierTwig from 'prettier-plugin-django';
 import * as prettier from 'prettier/standalone';
 import * as vscode from "vscode";
 import { Section } from "../../../../domain/entities/theme/theme-file";
@@ -23,9 +23,9 @@ export async function formatTwig(
 
     try {
         let formatted = await prettier.format(twigCode, {
-            plugins: [prettierDjango],
+            plugins: [prettierTwig],
             parser: 'melody',
-            printWidth: 5000,
+            printWidth: 120,
             tabWidth: options!.tabSize,
             useTabs: !options!.insertSpaces,
             embeddedLanguageFormatting: 'auto',

@@ -295,13 +295,13 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "@prettier/plugin-php": "^0.22.2",
         "ini": "^4.1.3",
         "php-parser": "^3.1.5",
         "pluralize": "^8.0.0",
-        "prettier": "^3.3.2",
-        "prettier-plugin-django": "^0.5.18",
-        "prettier-plugin-ini": "^1.2.0",
+        "@prettier/plugin-php": "^0.19.0",
+        "prettier": "^2.8.0",
+        "prettier-plugin-django": "^0.5.9",
+        "prettier-plugin-ini": "^1.1.0",
         "twig": "^1.17.1",
         "twigjs-loader": "^1.0.3",
         "yaml": "^2.4.5"
