@@ -46,6 +46,10 @@
                 "extensions": [
                     ".htm"
                 ],
+                "icon": {
+                    "dark": "./resources/images/october-file.png",
+                    "light": "./resources/images/october-file.png"
+                },
                 "configuration": "./resources/syntax/octoberTemplate.language-configuration.json"
             },
             {
