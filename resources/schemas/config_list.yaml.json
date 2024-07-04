@@ -2494,5 +2494,6 @@
         "modelClass",
         "title"
     ],
+    "title": "OctoberCMS List Controller",
     "type": "object"
 }

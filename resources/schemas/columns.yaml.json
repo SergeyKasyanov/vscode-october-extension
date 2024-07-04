@@ -1693,5 +1693,6 @@
     "required": [
         "columns"
     ],
+    "title": "OctoberCMS List Columns",
     "type": "object"
 }

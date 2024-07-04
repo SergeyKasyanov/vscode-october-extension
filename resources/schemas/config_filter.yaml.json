@@ -598,5 +598,6 @@
     "required": [
         "scopes"
     ],
+    "title": "OctoberCMS Filter Scopes",
     "type": "object"
 }

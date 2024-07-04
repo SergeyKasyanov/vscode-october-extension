@@ -118,5 +118,6 @@
             "type": "object"
         }
     },
+    "title": "OctoberCMS Import Export Controller",
     "type": "object"
 }

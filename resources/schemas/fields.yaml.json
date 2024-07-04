@@ -7533,5 +7533,6 @@
             ],
             "type": "object"
         }
-    }
+    },
+    "title": "OctoberCMS Form Fields"
 }

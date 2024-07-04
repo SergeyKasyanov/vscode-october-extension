@@ -8581,5 +8581,6 @@
             "type": "object"
         }
     },
+    "title": "OctoberCMS Relation Controller",
     "type": "object"
 }

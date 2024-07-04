@@ -7581,5 +7581,6 @@
         "homepage",
         "name"
     ],
+    "title": "OctoberCMS Theme Settings",
     "type": "object"
 }

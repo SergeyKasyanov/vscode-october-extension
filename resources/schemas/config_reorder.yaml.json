@@ -27,5 +27,6 @@
         "nameFrom",
         "title"
     ],
+    "title": "OctoberCMS Reorder Controller",
     "type": "object"
 }

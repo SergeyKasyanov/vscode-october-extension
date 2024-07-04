@@ -7783,5 +7783,6 @@
             ],
             "type": "object"
         }
-    }
+    },
+    "title": "GromIT Popup Plugin for OctoberCMS"
 }
