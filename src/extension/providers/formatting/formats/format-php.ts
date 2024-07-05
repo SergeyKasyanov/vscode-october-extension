@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-import * as prettierPhp from "@prettier/plugin-php";
-import * as prettier from 'prettier/standalone';
+import prettier = require('prettier');
 
 export interface PhpFormattingOptions extends vscode.FormattingOptions {
     eol: string,
@@ -13,8 +12,8 @@ export async function formatPhp(phpCode: string, options: PhpFormattingOptions) 
     phpCode = cleanPhpCode(phpCode, options.eol);
 
     try {
-        const phpFormatted = await prettier.format(phpCode, {
-            plugins: [prettierPhp],
+        const formatted = await prettier.format(phpCode, {
+            plugins: [require('@prettier/plugin-php/standalone')],
             parser: 'php',
             printWidth: 120,
             tabWidth: options!.tabSize,
@@ -24,7 +23,7 @@ export async function formatPhp(phpCode: string, options: PhpFormattingOptions) 
             phpVersion: '7.2',
         });
 
-        return '==' + options.eol + phpFormatted;
+        return '==' + options.eol + formatted;
     } catch (err) {
         console.error(err);
         return '==' + options.eol + phpCode + options.eol;
@@ -48,8 +47,6 @@ function cleanPhpCode(phpCode: string, eol: string) {
             line = line.slice(9);
         } else if (line.startsWith('private')) {
             line = line.slice(7);
-        } else if (line.length === 0) {
-            continue;
         }
 
         result.push(line);

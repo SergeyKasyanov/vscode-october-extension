@@ -1,7 +1,6 @@
-import * as prettierTwig from 'prettier-plugin-django';
-import * as prettier from 'prettier/standalone';
 import * as vscode from "vscode";
 import { Section } from "../../../../domain/entities/theme/theme-file";
+import prettier = require('prettier');
 
 const STYLE_TAG = /\<style\>(.|\r?\n)*\<\/style\>/g;
 const SCRIPT_TAG = /\<script\>(.|\r?\n)*\<\/script\>/g;
@@ -23,14 +22,11 @@ export async function formatTwig(
 
     try {
         let formatted = await prettier.format(twigCode, {
-            plugins: [prettierTwig],
-            parser: 'melody',
+            plugins: [require('prettier-plugin-jinja-template')],
+            parser: 'jinja-template',
             printWidth: 120,
             tabWidth: options!.tabSize,
             useTabs: !options!.insertSpaces,
-            embeddedLanguageFormatting: 'auto',
-            // @ts-ignore
-            twigPrintWidth: 5000,
         });
 
         formatted = await formatStyles(formatted, code.offset, options, document);
@@ -72,7 +68,7 @@ async function formatStyles(twigCode: string, twigOffset: number, options: TwigF
             const size = match[0].length;
             const css = match[0].slice('<style>'.length, -1 * '</style>'.length);
 
-            let formatted = await prettier.format(css, {
+            let formatted: string = await prettier.format(css, {
                 plugins: [require('prettier/parser-postcss')],
                 parser: 'css',
                 tabWidth: options!.tabSize,
@@ -112,7 +108,7 @@ async function formatScripts(twigCode: string, twigOffset: number, options: Twig
             const size = match[0].length;
             const script = match[0].slice('<script>'.length, -1 * '</script>'.length);
 
-            let formatted = await prettier.format(script, {
+            let formatted: string = await prettier.format(script, {
                 plugins: [require('prettier/parser-babel')],
                 parser: 'babel',
                 tabWidth: options!.tabSize,
