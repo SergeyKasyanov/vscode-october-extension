@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { Indexer } from "./domain/services/indexer";
+import { disposeWatchers } from './extension/providers/formatting/config/config-watcher';
 import { registerCodeActions } from "./extension/register/actions";
 import { registerCommands } from "./extension/register/commands";
 import { registerCompletions } from "./extension/register/completions";
@@ -31,4 +32,5 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {
     Indexer.instance.stop();
+    disposeWatchers();
 }

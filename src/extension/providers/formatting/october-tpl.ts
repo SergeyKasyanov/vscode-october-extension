@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
 import { Store } from "../../../domain/services/store";
 import { splitMarkup } from "../../helpers/split-markup";
+import { loadPrettierConfig } from "./config/load-prettier-config";
 import { formatIni, IniFormattingOptions } from "./formats/format-ini";
 import { formatPhp, PhpFormattingOptions } from "./formats/format-php";
 import { formatTwig, TwigFormattingOptions } from "./formats/format-twig";
-import { loadPrettierConfig } from "./load-prettier-config";
 
 /**
  * Provides document formatting support for OctoberCMS theme templates

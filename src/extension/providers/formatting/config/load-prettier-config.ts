@@ -1,15 +1,19 @@
 import * as vscode from "vscode";
-import { FsHelpers } from "../../../domain/helpers/fs-helpers";
-import { PathHelpers } from "../../../domain/helpers/path-helpers";
+import { Config } from "../../../../config";
+import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
+import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import prettier = require('prettier');
 
+/**
+ * Get prettier config based on .prettierrc config file and default values
+ */
 export async function loadPrettierConfig(
     projectRoot: string,
     options: vscode.FormattingOptions
 ): Promise<prettier.Options> {
     let config: prettier.Options = {};
 
-    const configPath = PathHelpers.rootPath(projectRoot, '.prettierrc');
+    const configPath = PathHelpers.rootPath(projectRoot, Config.prettierrcPath);
 
     if (FsHelpers.exists(configPath)) {
         try {

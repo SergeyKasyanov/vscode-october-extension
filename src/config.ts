@@ -33,6 +33,10 @@ export class Config {
         return this.extensionConfig.get<boolean>('showModulesEntitiesInGoToCommands') || false;
     }
 
+    static get prettierrcPath(): string {
+        return this.extensionConfig.get<string>('prettierrcPath') || '.prettierrc';
+    }
+
     private static get extensionConfig(): vscode.WorkspaceConfiguration {
         return vscode.workspace.getConfiguration('octoberCode');
     }

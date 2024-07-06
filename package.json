@@ -212,43 +212,36 @@
                 "octoberCode.pluginsPath": {
                     "type": "string",
                     "default": "plugins",
-                    "title": "Plugins directory",
                     "description": "Path to plugins directory of OctoberCMS project. By default uses \"plugins\"."
                 },
                 "octoberCode.themesPath": {
                     "type": "string",
                     "default": "themes",
-                    "title": "Themes directory",
                     "description": "Path to themes directory of OctoberCMS project. By default uses \"themes\"."
                 },
                 "octoberCode.structuredControllers": {
                     "type": "boolean",
                     "default": false,
-                    "title": "Generator: Structured controller directory.",
                     "description": "Place config files and partials of controller in separated directories (e.g. controllers/posts/config/list.yaml, controllers/posts/partials/_list_toolbar.htm, etc...)"
                 },
                 "octoberCode.adjacentModelTraits": {
                     "type": "boolean",
                     "default": false,
-                    "title": "Generator: Adjacent models traits and their configs.",
                     "description": "Place \"use TraitName;\" and \"protected $traitConfig = [];\" on adjacent lines."
                 },
                 "octoberCode.hideTailorPermissions": {
                     "type": "boolean",
                     "default": true,
-                    "title": "Autocomplete: Hide tailor permissions.",
                     "description": "Hide tailor permissions from permissions autocomplete."
                 },
                 "octoberCode.useSpacer": {
                     "type": "boolean",
                     "default": false,
-                    "title": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}",
                     "description": "Automatically add spacing in twig brackets {{ | }}, {% | %}, {# | #}"
                 },
                 "octoberCode.showModulesEntitiesInGoToCommands": {
                     "type": "boolean",
                     "default": false,
-                    "title": "Show models and controllers in goToModel and goToController commands",
                     "description": "Show models and controllers in goToModel and goToController commands"
                 },
                 "octoberCode.excludeFromIndex": {
@@ -261,8 +254,12 @@
                         "vendor",
                         ".DS_Store"
                     ],
-                    "title": "List of directories and files for exclude from index",
                     "description": "List of directories and files for exclude from index"
+                },
+                "octoberCode.prettierrcPath": {
+                    "type": "string",
+                    "default": ".prettierrc",
+                    "description": "Relative path to Prettier config file"
                 }
             }
         }
