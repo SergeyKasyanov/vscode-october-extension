@@ -1,5 +1,6 @@
 import * as ini from 'ini';
 import * as vscode from 'vscode';
+import { splitMarkup, ThemeFileSections } from '../../../extension/helpers/split-markup';
 import { MethodCalledFromBaseClass } from '../../errors/method-called-from-base-class';
 import { Component } from '../classes/component';
 import { OctoberEntity } from "../october-entity";
@@ -16,9 +17,6 @@ const PARTIAL_NAME = /[\'\"][\w\_\-\/\.]+[\'\"]/;
 const CONTENT_TAGS = /\{\%\s*content\s+[\'\"][\w\_\-\/\.]+[\'\"]/g;
 const CONTENT_FUNC_CALLS = /content\s*\([\'\"][\w\_\-\/\.]+[\'\"]/g;
 const CONTENT_NAME = /[\'\"][\w\_\-\/\.]+[\'\"]/;
-
-const SECTIONS_DIVIDER = /\r?\n==\r?\n/;
-const SECTIONS_DIVIDER_LENGTH = 4; // "\n==\n"
 
 const PHP_FUNCTIONS = /function\s+\w+\s*\(/g;
 const PHP_VARS = /\$this\[[\'\"]\w+[\'\"]\]\s*=/g;
@@ -49,23 +47,6 @@ export type UsedFilesList = {
  * Theme file type
  */
 export type ThemeFileType = 'layout' | 'page' | 'partial' | 'content';
-
-/**
- * Theme file section
- */
-export type Section = {
-    text: string,
-    offset: number
-};
-
-/**
- * Contains theme file sections as strings
- */
-export interface ThemeFileSections {
-    ini?: Section,
-    php?: Section,
-    twig: Section
-}
 
 /**
  * Base class for theme files (layouts, pages, partials, content)
@@ -383,8 +364,7 @@ export abstract class MarkupFile extends ThemeFile {
      * Theme file sections (ini, php, twig)
      */
     get sections(): ThemeFileSections {
-        const splitted = this.fileContent?.split(SECTIONS_DIVIDER);
-        if (!splitted) {
+        if (!this.fileContent) {
             return {
                 twig: {
                     text: '',
@@ -393,43 +373,7 @@ export abstract class MarkupFile extends ThemeFile {
             };
         }
 
-        if (splitted.length === 1) {
-            return {
-                twig: {
-                    text: splitted[0],
-                    offset: 0
-                }
-            };
-        } else if (splitted.length === 2) {
-            return {
-                ini: {
-                    text: splitted[0],
-                    offset: 0
-                },
-                twig: {
-                    text: splitted[1],
-                    offset: splitted[0].length + SECTIONS_DIVIDER_LENGTH
-                }
-            };
-        }
-
-        return {
-            ini: {
-                text: splitted[0],
-                offset: 0
-            },
-            php: {
-                text: splitted[1],
-                offset: splitted[0].length + SECTIONS_DIVIDER_LENGTH
-            },
-            twig: {
-                text: splitted[2],
-                offset: splitted[0].length
-                    + SECTIONS_DIVIDER_LENGTH
-                    + splitted[1].length
-                    + SECTIONS_DIVIDER_LENGTH
-            }
-        };
+        return splitMarkup(this.fileContent);
     }
 
     /**

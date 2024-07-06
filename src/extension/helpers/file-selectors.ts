@@ -34,7 +34,7 @@ export const yamlSelector: DocumentFilter = {
 };
 
 /**
- * Selector for yaml files
+ * Selector for env files
  */
 export const envSelector: DocumentFilter = {
     scheme: 'file',

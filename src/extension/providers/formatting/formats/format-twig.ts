@@ -1,5 +1,5 @@
-import { Section } from "../../../../domain/entities/theme/theme-file";
 import prettier = require('prettier');
+import { Section } from '../../../helpers/split-markup';
 
 export interface TwigFormattingOptions extends prettier.Options {
     quoteAttributes: boolean
