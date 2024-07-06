@@ -31,6 +31,21 @@
 
 October Code requires **redhat.vscode-yaml** extension to be installed for validate and autocomplete yaml configs based on provided json schemas.
 
+## Prettier
+
+OctoberCode uses Prettier under the hood for format markup files. OctoberCode have support for `.prettierrc` config files.
+
+In addition to the [basic Prettier settings](https://prettier.io/docs/en/configuration), the following are supported
+
+| Lang | Option               | Default  | Description                                                                                                                                                                                                                                                                            |
+| ---- | -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ini  | iniSpaceAroundEquals | true     | Adds a space around the equals sign when specifying params.                                                                                                                                                                                                                            |
+| php  | phpVersion           | "7.2"    | Allows specifying the PHP version you're using. If you're using PHP 7.1 or later, setting this option will make use of modern language features in the printed output. If you're using PHP lower than 7.0, you'll have to set this option or Prettier will generate incompatible code. |
+| php  | trailingCommaPHP     | true     | If set to `true`, trailing commas will be added wherever possible. If set to `false`, no trailing commas are printed.                                                                                                                                                                  |
+| php  | singleQuote          | true     | If set to `true`, strings that use double quotes but do not rely on the features they add, will be reformatted. Example: "foo" -> 'foo', "foo $bar" -> "foo $bar".                                                                                                                     |
+| php  | braceStyle           | "per-cs" | If set to `"per-cs"`, prettier will move open brace for code blocks (classes, functions and methods) onto new line. If set to "1tbs", prettier will move open brace for code blocks (classes, functions and methods) onto same line.                                                     |
+
+
 ## Configuring VS Code
 
 For better file associations it is recommended to add following lines to your vscode config file:
