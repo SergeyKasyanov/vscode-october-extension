@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.29.1
+
+Fixed custom html attributes file
+
 ## 0.29.0
 
 Features:
