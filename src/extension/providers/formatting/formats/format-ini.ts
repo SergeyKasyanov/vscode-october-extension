@@ -1,21 +1,21 @@
-import * as vscode from 'vscode';
 import prettier = require('prettier');
 
-export interface IniFormattingOptions extends vscode.FormattingOptions {
-    eol: string
+export interface IniFormattingOptions extends prettier.Options {
+    iniSpaceAroundEquals: boolean;
 }
 
-export async function formatIni(code: string, option: IniFormattingOptions): Promise<string> {
+export async function formatIni(
+    code: string,
+    options: IniFormattingOptions,
+    eol: string
+): Promise<string> {
+    options.plugins = [require('prettier-plugin-ini').default];
+    options.parser = 'ini';
+
     try {
-        return await prettier.format(code, {
-            plugins: [require('prettier-plugin-ini').default],
-            parser: 'ini',
-            printWidth: 120,
-            // @ts-ignore
-            iniSpaceAroundEquals: true
-        });
+        return await prettier.format(code, options);
     } catch (err) {
         console.error(err);
-        return code + option.eol;
+        return code + eol;
     }
 }

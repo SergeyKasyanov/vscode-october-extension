@@ -1,32 +1,32 @@
-import * as vscode from 'vscode';
 import prettier = require('prettier');
 
-export interface PhpFormattingOptions extends vscode.FormattingOptions {
-    eol: string,
+export interface PhpFormattingOptions extends prettier.Options {
+    phpVersion: '5.0' | '5.1' | '5.2' | '5.3' | '5.4' | '5.5' | '5.6' | '7.0' | '7.1' | '7.2' | '7.3' | '7.4' | '8.0' | '8.1' | '8.2';
+    trailingCommaPHP: boolean;
+    braceStyle: 'psr-2' | 'per-cs' | '1tbs';
+    singleQuote: boolean;
 }
 
 /**
  * Formats php section of file
  */
-export async function formatPhp(phpCode: string, options: PhpFormattingOptions) {
-    phpCode = cleanPhpCode(phpCode, options.eol);
+export async function formatPhp(
+    phpCode: string,
+    options: PhpFormattingOptions,
+    eol: string
+) {
+    options.plugins = [require('@prettier/plugin-php/standalone')];
+    options.parser = 'php';
+
+    phpCode = cleanPhpCode(phpCode, eol);
 
     try {
-        const formatted = await prettier.format(phpCode, {
-            plugins: [require('@prettier/plugin-php/standalone')],
-            parser: 'php',
-            printWidth: 120,
-            tabWidth: options!.tabSize,
-            useTabs: !options!.insertSpaces,
-            singleQuote: true,
-            // @ts-ignore
-            phpVersion: '7.2',
-        });
+        const formatted = await prettier.format(phpCode, options);
 
-        return '==' + options.eol + formatted;
+        return '==' + eol + formatted;
     } catch (err) {
         console.error(err);
-        return '==' + options.eol + phpCode + options.eol;
+        return '==' + eol + phpCode + eol;
     }
 }
 

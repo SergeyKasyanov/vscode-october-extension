@@ -1,9 +1,12 @@
 import * as vscode from "vscode";
 import { MarkupFile } from "../../../domain/entities/theme/theme-file";
+import { FsHelpers } from "../../../domain/helpers/fs-helpers";
+import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
-import { formatIni } from "./formats/format-ini";
-import { formatPhp } from "./formats/format-php";
-import { formatTwig } from "./formats/format-twig";
+import { formatIni, IniFormattingOptions } from "./formats/format-ini";
+import { formatPhp, PhpFormattingOptions } from "./formats/format-php";
+import { formatTwig, TwigFormattingOptions } from "./formats/format-twig";
+import prettier = require('prettier');
 
 /**
  * Provides document formatting support for OctoberCMS theme templates
@@ -24,18 +27,43 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
 
         let onlyTwig = true;
 
+        const config = await this.loadPrettierConfig(entity.owner.project.path, options);
+
         if (sections.ini?.text.length) {
-            result += await formatIni(sections.ini.text.trim(), { ...options, eol });
+            if (!('iniSpaceAroundEquals' in config)) {
+                config.iniSpaceAroundEquals = true;
+            }
+
+            result += await formatIni(sections.ini.text.trim(), config as IniFormattingOptions, eol);
             onlyTwig = false;
         }
 
         if (sections.php?.text.length) {
-            result += await formatPhp(sections.php.text.trim(), { ...options, eol });
+            if (!('phpVersion' in config)) {
+                config.phpVersion = '7.2';
+            }
+
+            if (!('trailingCommaPHP' in config)) {
+                config.trailingCommaPHP = true;
+            }
+
+            if (!('braceStyle' in config)) {
+                config.braceStyle = 'per-cs';
+            }
+
+            if (!('singleQuote' in config)) {
+                config.singleQuote = true;
+            }
+
+            result += await formatPhp(sections.php.text.trim(), config as PhpFormattingOptions, eol);
             onlyTwig = false;
         }
 
         if (sections.twig) {
-            result += await formatTwig(sections.twig, document, { ...options, eol, onlyTwig });
+            // always true because of OctoberCMS data attributes
+            config.quoteAttributes = true;
+
+            result += await formatTwig(sections.twig, config as TwigFormattingOptions, eol, onlyTwig);
         }
 
         return new Promise(resolve => {
@@ -49,5 +77,33 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
                 )
             ]);
         });
+    }
+
+    private async loadPrettierConfig(projectRoot: string, options: vscode.FormattingOptions) {
+        let config: prettier.Options = {};
+
+        const configPath = PathHelpers.rootPath(projectRoot, '.prettierrc');
+
+        if (FsHelpers.exists(configPath)) {
+            try {
+                config = await prettier.resolveConfig(configPath) || {};
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        if (!('printWidth' in config)) {
+            config.printWidth = 120;
+        }
+
+        if (!('tabWidth' in config)) {
+            config.tabWidth = options.tabSize;
+        }
+
+        if (!('useTabs' in config)) {
+            config.useTabs = !options.insertSpaces;
+        }
+
+        return config;
     }
 }
