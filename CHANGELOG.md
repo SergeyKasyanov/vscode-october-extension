@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.29.0
+
+Features:
+
+- Support for .prettierrc config file
+- Formatting for non theme markup file e.g. in components or mail templates
+
+Improvements:
+
+- Icon for october-tpl type in syntax mode switcher
+- Human readable title for yaml schemas
+
 ## 0.28.1
 
 Fix formatting
