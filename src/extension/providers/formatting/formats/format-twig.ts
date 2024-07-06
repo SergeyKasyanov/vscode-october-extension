@@ -9,15 +9,13 @@ export interface TwigFormattingOptions extends prettier.Options {
  * Format twig section of file
  */
 export async function formatTwig(
-    code: Section,
+    twigCode: string,
     options: TwigFormattingOptions,
     eol: string,
     onlyTwig: boolean,
 ) {
     options.plugins = [require('prettier-plugin-jinja-template')];
     options.parser = 'jinja-template';
-
-    const twigCode = code.text.trim();
 
     try {
         let formatted = await prettier.format(twigCode, options);

@@ -5,7 +5,7 @@ export interface IniFormattingOptions extends prettier.Options {
 }
 
 export async function formatIni(
-    code: string,
+    iniCode: string,
     options: IniFormattingOptions,
     eol: string
 ): Promise<string> {
@@ -13,9 +13,9 @@ export async function formatIni(
     options.parser = 'ini';
 
     try {
-        return await prettier.format(code, options);
+        return await prettier.format(iniCode, options);
     } catch (err) {
         console.error(err);
-        return code + eol;
+        return iniCode + eol;
     }
 }

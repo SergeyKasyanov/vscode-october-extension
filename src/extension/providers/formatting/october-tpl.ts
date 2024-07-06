@@ -1,12 +1,10 @@
 import * as vscode from "vscode";
-import { FsHelpers } from "../../../domain/helpers/fs-helpers";
-import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
 import { splitMarkup } from "../../helpers/split-markup";
 import { formatIni, IniFormattingOptions } from "./formats/format-ini";
 import { formatPhp, PhpFormattingOptions } from "./formats/format-php";
 import { formatTwig, TwigFormattingOptions } from "./formats/format-twig";
-import prettier = require('prettier');
+import { loadPrettierConfig } from "./load-prettier-config";
 
 /**
  * Provides document formatting support for OctoberCMS theme templates
@@ -22,7 +20,7 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
             return [];
         }
 
-        const config = await this.loadPrettierConfig(project!.path, options);
+        const config = await loadPrettierConfig(project!.path, options);
         const eol = (document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n');
         const sections = splitMarkup(document.getText());
         let onlyTwig = true;
@@ -30,17 +28,30 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
         let result: string = '';
 
         if (sections.ini?.text.length) {
-            result += await formatIni(sections.ini.text.trim(), config as IniFormattingOptions, eol);
+            result += await formatIni(
+                sections.ini.text.trim(),
+                config as IniFormattingOptions,
+                eol
+            );
             onlyTwig = false;
         }
 
         if (sections.php?.text.length) {
-            result += await formatPhp(sections.php.text.trim(), config as PhpFormattingOptions, eol);
+            result += await formatPhp(
+                sections.php.text.trim(),
+                config as PhpFormattingOptions,
+                eol
+            );
             onlyTwig = false;
         }
 
         if (sections.twig) {
-            result += await formatTwig(sections.twig, config as TwigFormattingOptions, eol, onlyTwig);
+            result += await formatTwig(
+                sections.twig.text.trim(),
+                config as TwigFormattingOptions,
+                eol,
+                onlyTwig
+            );
         }
 
         return new Promise(resolve => {
@@ -54,71 +65,5 @@ export class OctoberTplDocumentFormatting implements vscode.DocumentFormattingEd
                 )
             ]);
         });
-    }
-
-    private async loadPrettierConfig(projectRoot: string, options: vscode.FormattingOptions) {
-        let config: prettier.Options = {};
-
-        const configPath = PathHelpers.rootPath(projectRoot, '.prettierrc');
-
-        if (FsHelpers.exists(configPath)) {
-            try {
-                config = await prettier.resolveConfig(configPath) || {};
-            } catch (err) {
-                console.error(err);
-            }
-        }
-
-        //
-        // common
-        //
-
-        if (!('printWidth' in config)) {
-            config.printWidth = 120;
-        }
-
-        if (!('tabWidth' in config)) {
-            config.tabWidth = options.tabSize;
-        }
-
-        if (!('useTabs' in config)) {
-            config.useTabs = !options.insertSpaces;
-        }
-
-        //
-        // ini
-        //
-
-        if (!('iniSpaceAroundEquals' in config)) {
-            config.iniSpaceAroundEquals = true;
-        }
-
-        //
-        // php
-        //
-
-        if (!('phpVersion' in config)) {
-            config.phpVersion = '7.2';
-        }
-
-        if (!('trailingCommaPHP' in config)) {
-            config.trailingCommaPHP = true;
-        }
-
-        if (!('braceStyle' in config)) {
-            config.braceStyle = 'per-cs';
-        }
-
-        if (!('singleQuote' in config)) {
-            config.singleQuote = true;
-        }
-
-        //
-        // twig
-        //
-
-        config.quoteAttributes = true; // always true because OctoberCMS data attributes should be quoted
-
-        return config;
     }
 }
