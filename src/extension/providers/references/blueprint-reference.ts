@@ -52,10 +52,8 @@ export class BlueprintReference implements vscode.ReferenceProvider, vscode.Defi
             return;
         }
 
-        const handlePosition = await blueprint.handlePosition();
-        if (!handlePosition) {
-            return;
-        }
+        const handlePosition = await blueprint.handlePosition()
+            || new vscode.Position(0, 0);
 
         return new vscode.Location(
             vscode.Uri.file(blueprint.path),

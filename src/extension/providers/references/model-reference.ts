@@ -45,6 +45,4 @@ export class ModelReference implements vscode.ReferenceProvider {
 
         return model;
     }
-
-
 }
