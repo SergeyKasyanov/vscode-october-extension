@@ -87,9 +87,9 @@ export class Blueprint extends OctoberEntity {
     private async findReferencesInBlueprints() {
         const locations: vscode.Location[] = [];
 
-        const lokingForMixinUsages = this.type === 'mixin';
+        const lookingForMixinUsages = this.type === 'mixin';
 
-        const regexStr = lokingForMixinUsages
+        const regexStr = lookingForMixinUsages
             ? `source:\\s*${Str.replaceAll(this.handle, '\\', '\\\\')}\r?\n`
             : `(parent|handle):\\s*${Str.replaceAll(this.handle, '\\', '\\\\')}\r?\n`;
 
@@ -110,7 +110,7 @@ export class Blueprint extends OctoberEntity {
             for (const match of matches) {
                 const position = document.positionAt(match.index!);
 
-                if (lokingForMixinUsages) {
+                if (lookingForMixinUsages) {
                     const isMixin = YamlHelpers.getSibling(document, position, 'type') === 'mixin';
                     if (!isMixin) {
                         continue;
