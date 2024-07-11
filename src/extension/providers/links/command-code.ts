@@ -59,7 +59,7 @@ export class CommandCode implements vscode.DocumentLinkProvider {
         }
 
         link.target = vscode.Uri.file(command.path).with({
-            fragment: command.classPosition
+            fragment: command.classPositionForLinks
         });
 
         return link;

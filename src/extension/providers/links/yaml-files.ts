@@ -139,7 +139,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
         }
 
         link.target = vscode.Uri.file(model.path)
-            .with({ fragment: model.classPosition });
+            .with({ fragment: model.classPositionForLinks });
 
         return link;
     }

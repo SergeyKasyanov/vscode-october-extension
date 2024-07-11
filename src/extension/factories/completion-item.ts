@@ -18,7 +18,7 @@ export class CompletionItem {
      * @returns
      */
     static fromComponent(component: Component, alias?: string): vscode.CompletionItem {
-        const item = new vscode.CompletionItem(alias || component.alias!);
+        const item = new vscode.CompletionItem(alias || component.defaultAlias!);
         item.detail = component.details.name;
 
         let docString = '';
@@ -35,7 +35,7 @@ export class CompletionItem {
 `;
 
         item.documentation = new vscode.MarkdownString(docString);
-        item.insertText = alias || component.alias;
+        item.insertText = alias || component.defaultAlias;
 
         return item;
     }

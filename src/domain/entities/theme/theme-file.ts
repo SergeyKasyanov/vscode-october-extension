@@ -180,7 +180,10 @@ export abstract class MarkupFile extends ThemeFile {
                     continue;
                 }
 
-                const component = this.owner.project.components.find(c => c.alias === name);
+                const component = this.owner.project.components.find(
+                    c => c.defaultAlias === name || c.fqn === name
+                );
+
                 if (component) {
                     attachedComponents[alias] = component;
                 }

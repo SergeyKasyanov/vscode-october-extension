@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
-import { themeFileSelector, yamlSelector } from "../helpers/file-selectors";
+import { phpSelector, themeFileSelector, yamlSelector } from "../helpers/file-selectors";
+import { ComponentUsages } from "../providers/lenses/component-usages";
 import { registerControllerViewLensProvider } from "../providers/lenses/controller-view";
 import { registerMigrationAddToVersionLensProvider } from "../providers/lenses/migration-add-to-version";
 import { registerMigrationModelLensProvider } from "../providers/lenses/migration-models";
@@ -17,4 +18,5 @@ export function registerCodeLenses(context: vscode.ExtensionContext) {
 
     vscode.languages.registerCodeLensProvider(themeFileSelector, new ThemeFileReferencesLens());
     vscode.languages.registerCodeLensProvider(yamlSelector, new YamlReferenceLens());
+    vscode.languages.registerCodeLensProvider(phpSelector, new ComponentUsages());
 }

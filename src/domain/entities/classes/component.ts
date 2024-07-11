@@ -1,8 +1,8 @@
-import { PhpHelpers } from "../../helpers/php-helpers";
-import { OctoberClass } from "./october-class";
 import * as phpParser from 'php-parser';
-import { HasAjaxMethods } from "./concerns/has-ajax-methods";
+import { PhpHelpers } from "../../helpers/php-helpers";
 import { Owner } from "../owners/owner";
+import { HasAjaxMethods } from "./concerns/has-ajax-methods";
+import { OctoberClass } from "./october-class";
 import path = require("path");
 
 export interface ComponentDetails {
@@ -61,7 +61,7 @@ export class Component extends OctoberClass {
     /**
      * Component registration alias
      */
-    get alias(): string | undefined {
+    get defaultAlias(): string | undefined {
         if (!this.owner.registrationFileExists) {
             return this._alias;
         }

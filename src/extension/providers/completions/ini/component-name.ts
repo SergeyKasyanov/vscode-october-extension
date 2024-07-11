@@ -31,7 +31,7 @@ export class ComponentName implements vscode.CompletionItemProvider {
         const result: vscode.CompletionItem[] = [];
 
         for (const component of themeFile.owner.project.components) {
-            const alias = component.alias;
+            const alias = component.defaultAlias;
             if (!alias) {
                 continue;
             }

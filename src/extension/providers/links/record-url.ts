@@ -52,7 +52,7 @@ export class RecordUrl implements vscode.DocumentLinkProvider {
             const fragment = 'L' + range.start.line + ',' + range.start.character;
             link.target = link.target.with({ fragment });
         } else {
-            link.target = link.target.with({ fragment: controller.classPosition });
+            link.target = link.target.with({ fragment: controller.classPositionForLinks });
         }
 
         return link;

@@ -38,6 +38,8 @@ export class ModelReference implements vscode.ReferenceProvider {
             return;
         }
 
+        // 5 - length of word "class"
+        // 7 - length of word "extends"
         const clickedUqn = document.getText(clickedRange).slice(5, -7).trim();
         if (clickedUqn !== model.uqn) {
             return;

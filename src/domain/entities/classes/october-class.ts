@@ -2,13 +2,14 @@ import * as phpParser from "php-parser";
 import { MethodsList, PhpHelpers, PropertiesList } from "../../helpers/php-helpers";
 import { OctoberEntity } from "../october-entity";
 import { BackendOwner } from "../owners/backend-owner";
+import * as vscode from 'vscode';
 
 /**
  * Base class for plugin classes like controllers, models, widgets, etc...
  */
 export abstract class OctoberClass extends OctoberEntity {
     /**
-     * Class owner (appRir/module/plugin)
+     * Class owner (appDir/module/plugin)
      */
     get owner(): BackendOwner {
         return this._owner as BackendOwner;
@@ -84,12 +85,27 @@ export abstract class OctoberClass extends OctoberEntity {
     }
 
     /**
+     * Class position
+     */
+    get classPosition(): vscode.Position | undefined {
+        const phpClass = this.phpClass;
+        if (!phpClass) {
+            return undefined;
+        }
+
+        return new vscode.Position(
+            phpClass.loc!.start.line - 1,
+            phpClass.loc!.start.column
+        );
+    }
+
+    /**
      * Returns line and character of class in file
      * for use in document links.
      *
      * Example: L10,5
      */
-    get classPosition(): string {
+    get classPositionForLinks(): string {
         const phpClass = this.phpClass;
         if (!phpClass) {
             return 'L1,1';

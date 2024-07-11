@@ -54,7 +54,7 @@ export class ComponentProperty implements vscode.CompletionItemProvider {
             return;
         }
 
-        const component = themeFile.owner.project.components.find(c => c.alias === componentAlias);
+        const component = themeFile.owner.project.components.find(c => c.defaultAlias === componentAlias || c.fqn === componentAlias);
 
         if (component?.fqn === 'Cms\\Components\\ViewBag' && themeFile instanceof Partial) {
             const items = [

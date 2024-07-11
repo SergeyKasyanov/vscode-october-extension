@@ -50,7 +50,7 @@ export class IniComponent implements vscode.DocumentLinkProvider {
             );
 
             const url = vscode.Uri.file(component.path)
-                .with({ fragment: component.classPosition });
+                .with({ fragment: component.classPositionForLinks });
 
             links.push(new vscode.DocumentLink(range, url));
 

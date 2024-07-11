@@ -59,7 +59,7 @@ export class ControllerAction implements vscode.DocumentLinkProvider {
 
         link.target = actionRange
             ? uri.with({fragment: `L${actionRange.start.line},${actionRange.start.character}`})
-            : uri.with({fragment: link.controller.classPosition});
+            : uri.with({fragment: link.controller.classPositionForLinks});
 
         return link;
     }
