@@ -15,18 +15,17 @@ const QUOTED_NAME = /[\'\"][\w\_]+[\'\"]/;
 /**
  * Definitions of ajax handlers:
  * - $this->getEventHandler('...') in widgets
- * - data-request="..." in controllers views
- * - data-handler="..." in controllers views
+ * - data-request="..." in controllers or behaviors views
+ * - data-handler="..." in controllers or behaviors views
  */
-export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionProvider {
+export class BackendAjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionProvider {
 
     async provideReferences(
         document: vscode.TextDocument,
-        position: vscode.Position,
-        context: vscode.ReferenceContext
+        position: vscode.Position
     ): Promise<vscode.Location[] | undefined> {
 
-        const entity = Store.instance.findEntity(document.fileName) as Widget | Controller;
+        const entity = Store.instance.findEntity(document.fileName);
 
         if (entity instanceof Widget) {
             const ajaxMethod = this.getAjaxMethodName(document, position, entity);
@@ -44,7 +43,7 @@ export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionP
             const usageRegex = new RegExp(`->getEventHandler\\s*\\(\\s*[\\'\\"]${ajaxMethod}[\\'\\"]`, 'g');
 
             return this.findUsages(files, ajaxMethod, usageRegex);
-        } else if (entity instanceof Controller) {
+        } else if (entity instanceof Controller || entity instanceof ControllerBehavior) {
             const ajaxMethod = this.getAjaxMethodName(document, position, entity);
             if (!ajaxMethod) {
                 return;
@@ -63,7 +62,7 @@ export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionP
     private getAjaxMethodName(
         document: vscode.TextDocument,
         position: vscode.Position,
-        entity: Widget | Controller
+        entity: Widget | Controller | ControllerBehavior
     ): string | undefined {
         const ajaxMethodRange = document.getWordRangeAtPosition(position);
         if (!ajaxMethodRange) {
@@ -123,7 +122,7 @@ export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionP
             return;
         }
 
-        const entity = owner.findEntityByRelatedName(document.fileName) as Widget | Controller;
+        const entity = owner.findEntityByRelatedName(document.fileName);
         const result: vscode.DefinitionLink[] = [];
 
         if (entity instanceof Widget) {
@@ -133,7 +132,7 @@ export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionP
             }
 
             result.push(...this.getTargets(document, entity, ajaxMethodRange));
-        } else if (entity instanceof Controller) {
+        } else if (entity instanceof Controller || entity instanceof ControllerBehavior) {
             const ajaxMethodRange = document.getWordRangeAtPosition(position, ATTRIBUTE_HANDLER);
             if (!ajaxMethodRange) {
                 return;
@@ -141,9 +140,11 @@ export class AjaxHandler implements vscode.ReferenceProvider, vscode.DefinitionP
 
             result.push(...this.getTargets(document, entity, ajaxMethodRange));
 
-            const behaviors = Object.values(entity.behaviors).map(b => b.behavior);
-            for (const beh of behaviors) {
-                result.push(...this.getTargets(document, beh, ajaxMethodRange));
+            if (entity instanceof Controller) {
+                const behaviors = Object.values(entity.behaviors).map(b => b.behavior);
+                for (const beh of behaviors) {
+                    result.push(...this.getTargets(document, beh, ajaxMethodRange));
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { envSelector, octoberTplSelector, phpSelector, yamlSelector } from '../helpers/file-selectors';
-import { AjaxHandler } from '../providers/references/ajax-handler';
+import { BackendAjaxHandler } from '../providers/references/backend-ajax-handler';
 import { BlueprintReference } from '../providers/references/blueprint-reference';
 import { ComponentReference } from '../providers/references/component-reference';
 import { ContentReference } from '../providers/references/content-reference';
@@ -20,7 +20,7 @@ export function registerReferences(context: vscode.ExtensionContext) {
 
     register(context, [envSelector, phpSelector, octoberTplSelector], new EnvVariableReference());
     register(context, [phpSelector], new EventReference());
-    register(context, [phpSelector], new AjaxHandler());
+    register(context, [phpSelector], new BackendAjaxHandler());
 
     register(context, [octoberTplSelector, yamlSelector], new BlueprintReference());
 
