@@ -4,7 +4,7 @@ import { Store } from "../../../../domain/services/store";
 import { CompletionItem } from "../../../factories/completion-item";
 import { awaitsCompletions } from "../../../helpers/completions";
 
-const PARTIAL_TAG = /\{\%\s*partial\s+[\'\"]/g;
+const PARTIAL_TAG = /\{\%\s*(partial|ajaxPartial)\s+[\'\"]/g;
 const PARTIAL_FUNC = /((\{\{)|=)\s*partial\s*\([\'\"]/g;
 const PARTIAL_NAME_PART = /^[\w\-\_\/]*$/;
 const PARTIAL_NAME = /[\w\-\_\/]+/;
@@ -13,6 +13,7 @@ const PARTIAL_NAME = /[\w\-\_\/]+/;
  * Completions for partials names in twig partial tag or functions
  *
  * {% partial '...' %}
+ * {% ajaxPartial '...' %}
  * {{ partial('...') }}
  * {% set partialAsString = partial('...') %}
  */
