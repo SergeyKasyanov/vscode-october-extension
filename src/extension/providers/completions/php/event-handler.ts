@@ -4,6 +4,7 @@ import { Store } from '../../../../domain/services/store';
 import { awaitsCompletions } from '../../../helpers/completions';
 import { BackendOwner } from '../../../../domain/entities/owners/backend-owner';
 import { Controller } from '../../../../domain/entities/classes/controller';
+import { ControllerBehavior } from '../../../../domain/entities/classes/behavior';
 
 const ATTRIBUTE_HANDLER = /data-(request|handler)=[\'\"]/g;
 const GET_EVENT_HANDLER_CALL = /->getEventHandler\s*\(\s*[\'\"]/g;
@@ -30,7 +31,7 @@ export class EventHandler implements vscode.CompletionItemProvider {
 
         let ajaxMethods;
 
-        const entity = owner.findEntityByRelatedName(document.fileName) as Widget | Controller;
+        const entity = owner.findEntityByRelatedName(document.fileName) as Widget | Controller | ControllerBehavior;
         if (entity instanceof Widget) {
             if (!awaitsCompletions(
                 document.getText(),
@@ -42,7 +43,7 @@ export class EventHandler implements vscode.CompletionItemProvider {
             }
 
             ajaxMethods = entity.ajaxMethods;
-        } else if (entity instanceof Controller) {
+        } else if (entity instanceof Controller || entity instanceof ControllerBehavior) {
             if (!awaitsCompletions(
                 document.getText(),
                 document.offsetAt(position),
@@ -54,9 +55,11 @@ export class EventHandler implements vscode.CompletionItemProvider {
 
             ajaxMethods = entity.ajaxMethods;
 
-            const controllerBehaviors = Object.values(entity.behaviors).map(b => b.behavior);
-            for (const behavior of controllerBehaviors) {
-                ajaxMethods.push(...behavior.ajaxMethods);
+            if (entity instanceof Controller) {
+                const controllerBehaviors = Object.values(entity.behaviors).map(b => b.behavior);
+                for (const behavior of controllerBehaviors) {
+                    ajaxMethods.push(...behavior.ajaxMethods);
+                }
             }
 
         } else {

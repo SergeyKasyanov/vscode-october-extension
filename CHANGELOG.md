@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.30.0
+
+Features:
+
+- Definition and references for components
+- Completions for ajaxPartial names
+-
+
 ## 0.29.1
 
 Fixed custom html attributes file
