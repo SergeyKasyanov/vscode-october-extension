@@ -855,7 +855,7 @@
             "name": "meta.hash.twig"
         },
         "twig-keywords": {
-            "match": "(?<=\\s)((?:end)?(?:apply|autoescape|block|cache|component|content|embed|filter|flash|for|framework|if|macro|page|partial|placeholder|put|raw|sandbox|scripts|set|spaceless|styles|trans|verbatim)|as|do|else|elseif|extends|flush|from|ignore missing|import|include|only|use|with)(?=\\s)",
+            "match": "(?<=\\s)((?:end)?(?:apply|autoescape|block|cache|component|content|embed|filter|flash|for|framework|if|macro|page|partial|ajaxPartial|placeholder|put|raw|sandbox|scripts|set|spaceless|styles|trans|verbatim)|as|do|else|elseif|extends|flush|from|ignore missing|import|include|only|use|with)(?=\\s)",
             "name": "keyword.control.twig"
         },
         "twig-functions-warg": {
