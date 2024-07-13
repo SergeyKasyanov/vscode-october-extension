@@ -78,7 +78,7 @@ export class BackendAjaxHandler implements vscode.ReferenceProvider, vscode.Defi
             return ajaxMethod;
         }
 
-        if (entity instanceof Controller && ajaxMethod.includes('_on')) {
+        if ((entity instanceof Controller || entity instanceof ControllerBehavior) && ajaxMethod.includes('_on')) {
             return 'on' + ajaxMethod.split('_on', 2)[1];
         }
     }
