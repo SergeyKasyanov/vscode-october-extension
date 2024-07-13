@@ -4,9 +4,9 @@
 
 Features:
 
-- Definition and references for components
-- Completions for ajaxPartial names
--
+- Definitions and references for components
+- Completions, definitions and references for ajaxPartials
+- Completions, definitions and references for ajax handlers of controller behaviors
 
 ## 0.29.1
 
