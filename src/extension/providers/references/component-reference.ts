@@ -11,7 +11,8 @@ export class ComponentReference implements vscode.ReferenceProvider {
 
     async provideReferences(
         document: vscode.TextDocument,
-        position: vscode.Position
+        position: vscode.Position,
+        context: vscode.ReferenceContext
     ): Promise<vscode.Location[] | undefined> {
         let component;
 
@@ -25,7 +26,13 @@ export class ComponentReference implements vscode.ReferenceProvider {
             return;
         }
 
-        return findComponentUsages(component);
+        const references = await findComponentUsages(component);
+
+        if (context.includeDeclaration) {
+            references.push(new vscode.Location(component.uri, component.classPosition!));
+        }
+
+        return references;
     }
 
     private findComponentInPhpFile(document: vscode.TextDocument, position: vscode.Position) {
