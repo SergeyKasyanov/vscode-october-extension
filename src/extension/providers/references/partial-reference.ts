@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { MarkupFile } from "../../../domain/entities/theme/theme-file";
 import { Store } from "../../../domain/services/store";
 
-const PARTIAL_TAG = /\{\%\s*partial\s+[\'\"][\w\-\_\/\.]+[\'\"]/g;
+const PARTIAL_TAG = /\{\%\s*(ajaxPartial|partial)\s+[\'\"][\w\-\_\/\.]+[\'\"]/g;
 const PARTIAL_FUNC = /((\{\{)|=)\s*partial\s*\(\s*[\'\"][\w\-\_\/\.]+[\'\"]/g;
 
 const FILE_NAME = /[\'\"][\w\-\_\/\.]+[\'\"]/;
