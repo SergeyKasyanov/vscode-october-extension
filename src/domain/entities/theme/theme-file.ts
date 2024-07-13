@@ -10,7 +10,7 @@ const PAGE_URL = /->\s*pageUrl\s*\(\s*[\'\"][\w\_\-\/\.]+[\'\"]/g;
 const PAGE_STR = /[\'\"][\w\_\-\/\.]+[\'\"]\s*\|\s*page/g;
 const PAGE_NAME = /[\'\"][\w\_\-\/\.]+[\'\"]/;
 
-const PARTIAL_TAGS = /\{\%\s*partial\s+[\'\"][\w\_\-\/\.]+[\'\"]/g;
+const PARTIAL_TAGS = /\{\%\s*(ajaxPartial|partial)\s+[\'\"][\w\_\-\/\.]+[\'\"]/g;
 const PARTIAL_FUNC_CALLS = /partial\s*\([\'\"][\w\_\-\/\.]+[\'\"]/g;
 const PARTIAL_NAME = /[\'\"][\w\_\-\/\.]+[\'\"]/;
 
