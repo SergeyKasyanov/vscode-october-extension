@@ -204,7 +204,7 @@ export class Model extends OctoberClass {
                         case 'staticlookup':
                             const what = ((item.value as phpParser.StaticLookup).what as phpParser.Name);
 
-                            fqn = PhpHelpers.lookupNameToFqn(what, uses);
+                            fqn = PhpHelpers.lookupNameToFqn(what, uses, ns.name);
 
                             if (!fqn && what.resolution === 'uqn' && !uses[what.name]) {
                                 fqn = ns.name + '\\' + what.name;
@@ -238,7 +238,7 @@ export class Model extends OctoberClass {
                                 if (what.kind === 'selfreference' || what.kind === 'staticreference') {
                                     fqn = this.fqn;
                                 } else {
-                                    fqn = PhpHelpers.lookupNameToFqn(what, uses);
+                                    fqn = PhpHelpers.lookupNameToFqn(what, uses, ns.name);
                                 }
 
                                 if (!fqn && what.resolution === 'uqn' && !uses[what.name]) {
@@ -287,6 +287,7 @@ export class Model extends OctoberClass {
             return [];
         }
 
+        const currentNs = PhpHelpers.getNamespace(fileContent, this.path);
         const uses = PhpHelpers.getUsesList(fileContent, this.path);
 
         for (const el of phpClass.body) {
@@ -296,7 +297,7 @@ export class Model extends OctoberClass {
 
             const usedTraits = (el as unknown as phpParser.TraitUse).traits as phpParser.Name[];
             for (const trait of usedTraits) {
-                const traitFqn = PhpHelpers.lookupNameToFqn(trait, uses);
+                const traitFqn = PhpHelpers.lookupNameToFqn(trait, uses, currentNs?.name);
                 if (!traitFqn) {
                     continue;
                 }

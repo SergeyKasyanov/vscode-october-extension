@@ -60,7 +60,7 @@ export class HasBehaviors {
                         case 'staticlookup':
                             const what = ((item.value as phpParser.StaticLookup).what as phpParser.Name);
 
-                            fqn = PhpHelpers.lookupNameToFqn(what, uses);
+                            fqn = PhpHelpers.lookupNameToFqn(what, uses, ns.name);
                             if (!fqn && what.resolution === 'uqn' && !uses[what.name]) {
                                 fqn = ns.name + '\\' + what.name;
                             }

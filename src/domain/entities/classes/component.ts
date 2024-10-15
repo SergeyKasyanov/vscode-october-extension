@@ -87,6 +87,8 @@ export class Component extends OctoberClass {
                 return this._alias;
             }
 
+            const currentNs = PhpHelpers.getNamespace(registrationFileContent, this.owner.registrationFilePath);
+
             const uses = PhpHelpers.getUsesList(registrationFileContent, this.owner.registrationFilePath);
 
             for (const _entry of (returnExpr.expr as phpParser.Array).items) {
@@ -97,7 +99,7 @@ export class Component extends OctoberClass {
                 }
 
                 const what = ((entry.key as phpParser.StaticLookup).what as phpParser.Name);
-                let _fqn: string | undefined = PhpHelpers.lookupNameToFqn(what, uses);
+                let _fqn: string | undefined = PhpHelpers.lookupNameToFqn(what, uses, currentNs?.name);
 
                 if (_fqn === this.fqn) {
                     this._alias = (entry.value as phpParser.String).value;

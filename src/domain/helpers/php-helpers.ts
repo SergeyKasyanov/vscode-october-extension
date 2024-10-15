@@ -198,7 +198,7 @@ export class PhpHelpers {
      * @param uses
      * @returns
      */
-    static lookupNameToFqn(name: phpParser.Name, uses: UsesList): string | undefined {
+    static lookupNameToFqn(name: phpParser.Name, uses: UsesList, currentNs: string = ''): string | undefined {
         switch (name.resolution) {
             case 'fqn':
                 return name.name.startsWith('\\')
@@ -209,7 +209,11 @@ export class PhpHelpers {
             case 'qn':
                 const nameParts = name.name.split('\\');
                 const nsAlias = nameParts.shift();
-                return uses[nsAlias!] + '\\' + nameParts.join('\\');
+                if (uses[nsAlias!]) {
+                    return uses[nsAlias!] + '\\' + nameParts.join('\\');
+                } else {
+                    return currentNs + '\\' + name.name;
+                }
         }
     }
 
