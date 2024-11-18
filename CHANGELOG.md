@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.31.0
+
+- Updated yaml schemas
+- Fixed some bugs
+
 ## 0.30.0
 
 Features:
