@@ -2367,6 +2367,19 @@
                         }
                     ]
                 },
+                "optionsMethod": {
+                    "type": "string"
+                },
+                "optionsPreset": {
+                    "enum": [
+                        "flags",
+                        "icons",
+                        "locales",
+                        "phosphorIcons",
+                        "timezones"
+                    ],
+                    "type": "string"
+                },
                 "order": {
                     "type": "number"
                 },
@@ -5061,6 +5074,25 @@
                             "type": "string"
                         }
                     ]
+                },
+                "controller": {
+                    "properties": {
+                        "form": {
+                            "type": "string"
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "list": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "form",
+                        "label",
+                        "list"
+                    ],
+                    "type": "object"
                 },
                 "cssClass": {
                     "type": "string"
