@@ -15,8 +15,8 @@ export interface ThemeFileSections {
     twig: Section
 }
 
-const SECTIONS_DIVIDER = /\r?\n==\r?\n/;
-const SECTIONS_DIVIDER_LENGTH = 4; // "\n==\n"
+const SECTIONS_DIVIDER = /\r?\n==/;
+const SECTIONS_DIVIDER_LENGTH = 3; // "\n==\n"
 
 /**
  * Split OctoberCMS markup to sections (ini, php, twig)

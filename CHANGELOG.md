@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.31.1
+
+- Fix formatting
+
 ## 0.31.0
 
 - Updated yaml schemas
