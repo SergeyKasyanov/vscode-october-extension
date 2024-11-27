@@ -3,10 +3,19 @@ import * as vscode from "vscode";
 import { Config } from "../config";
 
 const TRIGGERS = ['{', '%', '#'];
-const BRACES: { [name: string]: string } = {
-    '{{': '{{ $0 }}${TM_SELECTED_TEXT/\{\{(\}\}){0,1}//g}',
-    '{%': '{% $0 %}${TM_SELECTED_TEXT/\{\%(\%\}){0,1}//g}',
-    '{#': '{# $0 #}${TM_SELECTED_TEXT/\{\#(\#\}){0,1}//g}',
+const BRACES: { [name: string]: { closed: string, snippet: string } } = {
+    '{{': {
+        closed: '{{}}',
+        snippet: '{{ $0 }}${TM_SELECTED_TEXT/\{\{(\}\}){0,1}//g}'
+    },
+    '{%': {
+        closed: '{%%}',
+        snippet: '{% $0 %}${TM_SELECTED_TEXT/\{\%(\%\}){0,1}//g}'
+    },
+    '{#': {
+        closed: '{##}',
+        snippet: '{# $0 #}${TM_SELECTED_TEXT/\{\#(\#\}){0,1}//g}'
+    },
 };
 
 export async function spacer(event: vscode.TextDocumentChangeEvent) {
@@ -41,10 +50,11 @@ export async function spacer(event: vscode.TextDocumentChangeEvent) {
         return;
     }
 
-    const snippet = new vscode.SnippetString(BRACES[brace]);
+    const isClosed = lineText.slice(character - 1, character + 3) === BRACES[brace].closed;
+    const snippet = new vscode.SnippetString(BRACES[brace].snippet);
 
     const start = lastChange.range.start.translate(0, -1);
-    const end = lastChange.range.start.translate(0, 3);
+    const end = lastChange.range.start.translate(0, isClosed ? 3 : 1);
 
     const range = new vscode.Range(start, end);
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.31.2
+
+- Fix braces spacing inside html tags
+
 ## 0.31.1
 
 - Fix formatting
