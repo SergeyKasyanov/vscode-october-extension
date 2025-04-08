@@ -35,6 +35,7 @@ export class Migrations implements vscode.DocumentLinkProvider {
             if (trimmed.startsWith('-') && trimmed.endsWith('.php')) {
                 const fileName = trimmed.slice(1).trim();
                 if (!migrations.includes(fileName)) {
+                    line++
                     continue;
                 }
 
