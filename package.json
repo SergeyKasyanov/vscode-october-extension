@@ -3,7 +3,7 @@
     "displayName": "October Code",
     "description": "October CMS tools for VSCode",
     "publisher": "SergeyKasyanov",
-    "version": "0.31.2",
+    "version": "0.31.3",
     "preview": true,
     "icon": "resources/images/icon.png",
     "sponsor": {

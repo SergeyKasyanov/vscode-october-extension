@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.31.3
+
+- Fix parsing version.yaml
+- Detect 3.7 and 4.0
+
 ## 0.31.2
 
 - Fix braces spacing inside html tags
