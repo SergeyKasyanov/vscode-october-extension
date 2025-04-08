@@ -55,6 +55,10 @@ export class VersionDetector {
                     return Version.oc35;
                 } else if (pkg.version.includes('3.6.')) {
                     return Version.oc36;
+                } else if (pkg.version.includes('3.7.')) {
+                    return Version.oc37;
+                } else if (pkg.version.includes('4.0.')) {
+                    return Version.oc40;
                 }
             }
         }
@@ -110,6 +114,10 @@ export class VersionDetector {
             return Version.oc35;
         } else if (version.includes('3.6')) {
             return Version.oc36;
+        } else if (version.includes('3.7')) {
+            return Version.oc37;
+        } else if (version.includes('4.0')) {
+            return Version.oc40;
         }
 
         return undefined;
