@@ -1,12 +1,15 @@
 import * as vscode from 'vscode';
-import { FsHelpers } from '../helpers/fs-helpers';
-import { PathHelpers } from '../helpers/path-helpers';
-import { Store } from '../services/store';
+import { Blueprint } from '../entities/blueprint';
 import { Behavior } from '../entities/classes/behavior';
 import { Controller } from '../entities/classes/controller';
 import { Widget } from '../entities/classes/widget';
+import { AppDirectory } from '../entities/owners/app-directory';
 import { BackendOwner } from '../entities/owners/backend-owner';
+import { Theme } from '../entities/owners/theme';
 import { Project } from '../entities/project';
+import { FsHelpers } from '../helpers/fs-helpers';
+import { PathHelpers } from '../helpers/path-helpers';
+import { Store } from '../services/store';
 import path = require('path');
 
 /**
@@ -16,10 +19,26 @@ export async function findYamlReferences(
     project: Project,
     filePath: string
 ): Promise<vscode.Location[]> {
+
+    const blueprint = findBlueprint(project, filePath);
+    if (blueprint) {
+        return await blueprint.findReferences();
+    }
+
     return [
         ...await findByGlobalPaths(project, filePath),
         ...await findByLocalPath(filePath)
     ];
+}
+
+function findBlueprint(project: Project, filePath: string): Blueprint | undefined {
+    const owner = project.findOwner(filePath);
+    if (owner instanceof AppDirectory || owner instanceof Theme) {
+        const entity = owner.findEntityByPath(filePath);
+        if (entity instanceof Blueprint) {
+            return entity;
+        }
+    }
 }
 
 async function findByGlobalPaths(

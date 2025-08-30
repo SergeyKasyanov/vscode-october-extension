@@ -1,10 +1,10 @@
 import path = require("path");
 import { TwigFiltersList } from "../../static/twig-filters";
 import { TwigFunctionsList } from "../../static/twig-functions";
+import { Blueprint } from "../blueprint";
 import { BackendOwner } from "./backend-owner";
 import { ListsTwigFilters } from "./concenrs/lists-twig-filters";
 import { ListsTwigFunctions } from "./concenrs/lists-twig-functions";
-import { Blueprint } from "../blueprint";
 
 /**
  * Represents app ("the project level plugin") of opened project

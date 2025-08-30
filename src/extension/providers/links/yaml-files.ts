@@ -12,6 +12,8 @@ import { Str } from '../../../helpers/str';
 import { resolveViewPath } from "../../helpers/view-path-resolver";
 import { YamlHelpers } from "../../helpers/yaml-helpers";
 import { DocumentLink as _DocumentLInk } from '../../types/document-link';
+import { Theme } from "../../../domain/entities/owners/theme";
+import { Blueprint } from "../../../domain/entities/blueprint";
 
 const PATH_PAIR = /(path|toolbarPartial|buttons|form|list|groups|filter):\s*[\$\~]{0,1}[\'\"]{0,1}[\w\-\_\.\/]+[\'\"]{0,1}/g;
 const VIEW_PAIR = /path:\s*[\'\"]{0,1}[\w\-\_\.\/]+::[\w\-\_\.\/]+[\'\"]{0,1}/g;
@@ -27,7 +29,7 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
     private document?: vscode.TextDocument;
     private project?: Project;
     private owner?: BackendOwner;
-    private entity?: OctoberClass;
+    private entity?: OctoberClass | Blueprint;
 
     provideDocumentLinks(
         document: vscode.TextDocument
@@ -40,17 +42,20 @@ export class YamlFiles implements vscode.DocumentLinkProvider {
         }
 
         const owner = this.project.findOwner(document.fileName) as BackendOwner;
-        this.entity = owner!.findEntityByRelatedName(document.fileName) as OctoberClass;
 
-        const content = this.document!.getText();
+        if (owner instanceof BackendOwner) {
+            this.entity = owner.findEntityByRelatedName(document.fileName) as OctoberClass;
 
-        return [
-            ...this.processMatches(document, content.matchAll(PATH_PAIR), 'file'),
-            ...this.processMatches(document, content.matchAll(VIEW_PAIR), 'view'),
-            ...this.processMatches(document, content.matchAll(MODEL_CLASS_PAIR), 'model'),
-            ...this.processMatches(document, content.matchAll(OPTIONS_PAIR), 'options'),
-            ...this.processMatches(document, content.matchAll(SCOPE_PAIR), 'scope'),
-        ];
+            const content = this.document!.getText();
+
+            return [
+                ...this.processMatches(document, content.matchAll(PATH_PAIR), 'file'),
+                ...this.processMatches(document, content.matchAll(VIEW_PAIR), 'view'),
+                ...this.processMatches(document, content.matchAll(MODEL_CLASS_PAIR), 'model'),
+                ...this.processMatches(document, content.matchAll(OPTIONS_PAIR), 'options'),
+                ...this.processMatches(document, content.matchAll(SCOPE_PAIR), 'scope'),
+            ];
+        }
     }
 
     private processMatches(

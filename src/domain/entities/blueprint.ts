@@ -2,9 +2,10 @@ import * as vscode from 'vscode';
 import * as yaml from 'yaml';
 import { YamlHelpers } from '../../extension/helpers/yaml-helpers';
 import { Str } from '../../helpers/str';
+import { Store } from '../services/store';
 import { OctoberEntity } from './october-entity';
 import { AppDirectory } from './owners/app-directory';
-import { Store } from '../services/store';
+import { Theme } from './owners/theme';
 import { MarkupFile } from './theme/theme-file';
 
 export type BlueprintType = 'entry' | 'single' | 'structure' | 'stream' | 'global' | 'mixin';
@@ -12,7 +13,7 @@ export type BlueprintType = 'entry' | 'single' | 'structure' | 'stream' | 'globa
 export class Blueprint extends OctoberEntity {
 
     constructor(
-        protected _owner: AppDirectory,
+        protected _owner: AppDirectory | Theme,
         protected _path: string,
         protected _name: string,
     ) {
@@ -45,7 +46,7 @@ export class Blueprint extends OctoberEntity {
      * Blueprint handle
      */
     get handle(): string {
-        return this._name;
+        return this.parse().handle || this._name;
     }
 
     /**
@@ -84,7 +85,7 @@ export class Blueprint extends OctoberEntity {
         ];
     }
 
-    private async findReferencesInBlueprints() {
+    private async findReferencesInBlueprints(): Promise<vscode.Location[]> {
         const locations: vscode.Location[] = [];
 
         const lookingForMixinUsages = this.type === 'mixin';
@@ -130,7 +131,7 @@ export class Blueprint extends OctoberEntity {
         return locations;
     }
 
-    private async findReferencesInThemes() {
+    private async findReferencesInThemes(): Promise<vscode.Location[]> {
         const locations: vscode.Location[] = [];
 
         if (this.type === 'mixin') {
@@ -146,6 +147,7 @@ export class Blueprint extends OctoberEntity {
             theme.layouts.forEach(l => themeFiles.push(l.path));
             theme.pages.forEach(l => themeFiles.push(l.path));
             theme.partials.forEach(l => themeFiles.push(l.path));
+            theme.blueprints.forEach(l => themeFiles.push(l.path));
         });
 
         const processedFiles: string[] = [];

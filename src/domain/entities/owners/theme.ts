@@ -1,3 +1,4 @@
+import { Blueprint } from "../blueprint";
 import { Content } from "../theme/content";
 import { Layout } from "../theme/layout";
 import { Page } from "../theme/page";
@@ -11,10 +12,12 @@ import yaml = require("yaml");
  * Represents theme of opened project
  */
 export class Theme extends Owner {
+
     private _layouts: Layout[] = [];
     private _pages: Page[] = [];
     private _partials: Partial[] = [];
     private _contents: Content[] = [];
+    private _blueprints: Blueprint[] = [];
 
     /**
      * Path to theme.yaml of this theme
@@ -116,6 +119,19 @@ export class Theme extends Owner {
         }
 
         return this._contents;
+    }
+
+    get blueprints(): Blueprint[] {
+        const parentTheme = this.parentTheme;
+
+        if (parentTheme) {
+            return [
+                ...this._blueprints,
+                ...parentTheme.blueprints
+            ];
+        }
+
+        return this._blueprints;
     }
 
     //
@@ -282,15 +298,61 @@ export class Theme extends Owner {
         return this._contents.find(p => p.path === filePath);
     }
 
+    //
+    // Blueprints
+    //
+
+    /**
+     * Add blueprint to index
+     *
+     * @param blueprint
+     */
+    addBlueprint(blueprint: Blueprint) {
+        this._blueprints.push(blueprint);
+    }
+
+    /**
+     * Delete blueprint from index
+     *
+     * @param blueprint
+     */
+    deleteBlueprint(blueprint: Blueprint) {
+        this._blueprints = this._blueprints.filter(tf => tf.path !== blueprint.path);
+    }
+
+    /**
+     * Replace loaded blueprints
+     *
+     * @param blueprints
+     */
+    replaceBlueprints(blueprints: Blueprint[]) {
+        this._blueprints = blueprints;
+    }
+
+    /**
+     * Determine if theme has blueprint by file path
+     *
+     * @param filePath
+     * @returns
+     */
+    hasOwnBlueprint(filePath: string) {
+        return this._blueprints.find(p => p.path === filePath);
+    }
+
+    //
+    // Blueprints
+    //
+
     /**
      * File theme file by it's path
      *
      * @param filePath
      */
-    findEntityByPath(filePath: string): ThemeFile | undefined {
+    findEntityByPath(filePath: string): ThemeFile | Blueprint | undefined {
         return this.layouts.find(e => e.path === filePath)
             || this.pages.find(e => e.path === filePath)
             || this.partials.find(e => e.path === filePath)
-            || this.contents.find(e => e.path === filePath);
+            || this.contents.find(e => e.path === filePath)
+            || this.blueprints.find(e => e.path === filePath);
     }
 }

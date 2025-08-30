@@ -1,5 +1,7 @@
 import path = require('path');
+import * as yaml from 'yaml';
 import { Config } from '../../../config';
+import { Blueprint } from '../../entities/blueprint';
 import { Theme } from '../../entities/owners/theme';
 import { Content } from '../../entities/theme/content';
 import { Layout } from '../../entities/theme/layout';
@@ -126,6 +128,22 @@ export class ThemesIndexer {
 
             const themeFile = new Content(theme, filePath, themeFileName);
             theme.addContent(themeFile);
+        } else if (Blueprint.getBaseDirectories().includes(dir)) {
+            const exists = theme.hasOwnBlueprint(filePath);
+            if (exists) { return; }
+
+            const fileContent = FsHelpers.readFile(filePath);
+            const parsed = yaml.parse(fileContent);
+            if (!parsed) {
+                return;
+            }
+            const blueprintName = parsed.handle;
+            if (!blueprintName) {
+                return;
+            }
+
+            const themeFile = new Blueprint(theme, filePath, blueprintName);
+            theme.addBlueprint(themeFile);
         }
     }
 
@@ -137,18 +155,21 @@ export class ThemesIndexer {
      */
     deleteFile(projectPath: string, filePath: string) {
         const themeFile = this.store.findEntity(filePath);
-        if (!(themeFile instanceof ThemeFile)) {
-            return;
+
+        if (themeFile instanceof ThemeFile) {
+            if (themeFile instanceof Layout) {
+                themeFile.owner.deleteLayout(themeFile);
+            } else if (themeFile instanceof Page) {
+                themeFile.owner.deletePage(themeFile);
+            } else if (themeFile instanceof Partial) {
+                themeFile.owner.deletePartial(themeFile);
+            } else if (themeFile instanceof Content) {
+                themeFile.owner.deleteContent(themeFile);
+            }
         }
 
-        if (themeFile instanceof Layout) {
-            themeFile.owner.deleteLayout(themeFile);
-        } else if (themeFile instanceof Page) {
-            themeFile.owner.deletePage(themeFile);
-        } else if (themeFile instanceof Partial) {
-            themeFile.owner.deletePartial(themeFile);
-        } else if (themeFile instanceof Content) {
-            themeFile.owner.deleteContent(themeFile);
+        if (themeFile instanceof Blueprint && themeFile.owner instanceof Theme) {
+            themeFile.owner.deleteBlueprint(themeFile);
         }
     }
 
@@ -176,6 +197,7 @@ export class ThemesIndexer {
         try { this.loadPages(theme); } catch (err) { console.debug(err); }
         try { this.loadPartials(theme); } catch (err) { console.debug(err); }
         try { this.loadContents(theme); } catch (err) { console.debug(err); }
+        try { this.loadBlueprints(theme); } catch (err) { console.debug(err); }
     }
 
     /**
@@ -272,5 +294,44 @@ export class ThemesIndexer {
         }
 
         theme.replaceContents(contents);
+    }
+
+    /**
+     * Load blueprints of theme
+     *
+     * @param theme
+     */
+    private loadBlueprints(theme: Theme) {
+        const blueprints: Blueprint[] = [];
+
+        for (const dir of Blueprint.getBaseDirectories()) {
+            const directory = path.join(theme.path, dir);
+            if (FsHelpers.exists(directory)) {
+                FsHelpers
+                    .listFiles(directory, true)
+                    .map(filepath => {
+
+                        const fileContent = FsHelpers.readFile(path.join(directory, filepath));
+
+                        let parsed: any = {};
+
+                        try {
+                            parsed = yaml.parse(fileContent);
+                        } catch (err) {
+                            console.debug(err);
+                            return;
+                        }
+
+
+                        return blueprints.push(new Blueprint(
+                            theme,
+                            path.join(theme.path, dir, filepath),
+                            parsed.handle
+                        ));
+                    });
+            }
+        }
+
+        theme.replaceBlueprints(blueprints);
     }
 }

@@ -11,6 +11,7 @@ import { BehaviorConfigPath } from "../providers/completions/php/behavior-config
 import { BehaviorName } from "../providers/completions/php/behavior-name";
 import { CommandCode } from "../providers/completions/php/command-code";
 import { ComponentProperty as PhpComponentProperty } from "../providers/completions/php/component-property";
+import { ConfigEnum } from "../providers/completions/php/config-enum";
 import { ConfigKey } from "../providers/completions/php/config-key";
 import { ControllerAction } from "../providers/completions/php/controller-action";
 import { EnvVariable } from "../providers/completions/php/env-variable";
@@ -55,7 +56,6 @@ import { RelationName as YamlRelationName } from "../providers/completions/yaml/
 import { ScopeMethod } from "../providers/completions/yaml/scope-method";
 import { SelectableOptions } from "../providers/completions/yaml/selectable-options";
 import { TabName } from "../providers/completions/yaml/tab-name";
-import { ConfigEnum } from "../providers/completions/php/config-enum";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const QUOTES = ['\'', '"'];

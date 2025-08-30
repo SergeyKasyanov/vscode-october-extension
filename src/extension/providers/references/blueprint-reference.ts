@@ -5,6 +5,7 @@ import { Store } from '../../../domain/services/store';
 import { YamlHelpers } from '../../helpers/yaml-helpers';
 import path = require('path');
 import { Str } from '../../../helpers/str';
+import { Theme } from '../../../domain/entities/owners/theme';
 
 const HANDLE_INI = /[\'\"][\w\\]+[\'\"]/g;
 const HANDLE_YAML = /[\'\"]?[\w\\]+[\'\"]?/g;
@@ -77,6 +78,16 @@ export class BlueprintReference implements vscode.ReferenceProvider, vscode.Defi
             return;
         }
 
+        if (document.fileName.includes('themes')) {
+            const theme = Store.instance.findOwner(document.fileName) as Theme;
+            if (theme instanceof Theme) {
+                const blueprint = theme.blueprints.find(b => b.handle === handle);
+                if (blueprint) {
+                    return blueprint;
+                }
+            }
+        }
+
         return Store.instance
             .findProject(document.fileName)
             ?.appDir
@@ -123,7 +134,7 @@ export class BlueprintReference implements vscode.ReferenceProvider, vscode.Defi
         document: vscode.TextDocument,
         position: vscode.Position
     ): string | undefined {
-        if (!document.fileName.includes(path.join('app', 'blueprints'))) {
+        if (!document.fileName.includes('blueprints')) {
             return;
         }
 
