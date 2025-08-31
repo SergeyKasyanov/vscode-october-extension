@@ -150,34 +150,6 @@
                 }
             ]
         },
-        "AnyScope": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/CheckboxScope"
-                },
-                {
-                    "$ref": "#/definitions/SwitchScope"
-                },
-                {
-                    "$ref": "#/definitions/TextScope"
-                },
-                {
-                    "$ref": "#/definitions/NumberScope"
-                },
-                {
-                    "$ref": "#/definitions/DropdownScope"
-                },
-                {
-                    "$ref": "#/definitions/GroupScope"
-                },
-                {
-                    "$ref": "#/definitions/DateScope"
-                },
-                {
-                    "$ref": "#/definitions/CustomScope"
-                }
-            ]
-        },
         "BalloonSelectorField": {
             "properties": {
                 "attributes": {
@@ -7627,8 +7599,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -7661,7 +7635,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -7742,8 +7715,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -7776,7 +7751,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -7857,8 +7831,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -7891,7 +7867,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -7972,8 +7947,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8006,7 +7983,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8087,8 +8063,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8121,7 +8099,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8202,8 +8179,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8236,7 +8215,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8317,8 +8295,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8351,7 +8331,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8432,8 +8411,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8466,7 +8447,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8547,8 +8527,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8581,7 +8563,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8662,8 +8643,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8696,7 +8679,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8777,8 +8759,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8811,7 +8795,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -8892,8 +8875,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -8926,7 +8911,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9007,8 +8991,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9041,7 +9027,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9122,8 +9107,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9156,7 +9143,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9237,8 +9223,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9271,7 +9259,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9352,8 +9339,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9386,7 +9375,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9467,8 +9455,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9501,7 +9491,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9582,8 +9571,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9616,7 +9607,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9697,8 +9687,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9731,7 +9723,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9812,8 +9803,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9846,7 +9839,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -9927,8 +9919,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -9961,7 +9955,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10042,8 +10035,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10076,7 +10071,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10157,8 +10151,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10191,7 +10187,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10272,8 +10267,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10306,7 +10303,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10387,8 +10383,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10421,7 +10419,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10502,8 +10499,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10536,7 +10535,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10617,8 +10615,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10651,7 +10651,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10732,8 +10731,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10766,7 +10767,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10847,8 +10847,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10881,7 +10883,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -10962,8 +10963,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -10996,7 +10999,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -11077,8 +11079,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -11111,7 +11115,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -11192,8 +11195,10 @@
                                             "$ref": "#/definitions/CustomColumn"
                                         },
                                         {
+                                            "type": "boolean"
+                                        },
+                                        {
                                             "enum": [
-                                                false,
                                                 "invisible"
                                             ]
                                         }
@@ -11226,7 +11231,6 @@
                                             "$ref": "#/definitions/CustomScope"
                                         },
                                         {
-                                            "const": false,
                                             "type": "boolean"
                                         }
                                     ]
@@ -12098,7 +12102,59 @@
     "properties": {
         "columns": {
             "additionalProperties": {
-                "$ref": "#/definitions/AnyColumn"
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/TextColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/NumberColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/ImageColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/SwitchColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/SummaryColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/DateTimeColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/DateColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/TimeColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/TimeSinceColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/TimeTenseColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/SelectableColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/LinkageColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/PartialColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/ColorPickerColumn"
+                    },
+                    {
+                        "$ref": "#/definitions/CustomColumn"
+                    },
+                    {
+                        "type": [
+                            "string",
+                            "boolean"
+                        ]
+                    }
+                ]
             },
             "type": "object"
         },
@@ -12170,11 +12226,12 @@
                     "$ref": "#/definitions/PageFinder"
                 },
                 {
+                    "type": "boolean"
+                },
+                {
                     "enum": [
-                        false,
                         "item",
-                        "list",
-                        true
+                        "list"
                     ]
                 }
             ]
@@ -12192,7 +12249,38 @@
         },
         "scopes": {
             "additionalProperties": {
-                "$ref": "#/definitions/AnyScope"
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/CheckboxScope"
+                    },
+                    {
+                        "$ref": "#/definitions/SwitchScope"
+                    },
+                    {
+                        "$ref": "#/definitions/TextScope"
+                    },
+                    {
+                        "$ref": "#/definitions/NumberScope"
+                    },
+                    {
+                        "$ref": "#/definitions/DropdownScope"
+                    },
+                    {
+                        "$ref": "#/definitions/GroupScope"
+                    },
+                    {
+                        "$ref": "#/definitions/DateScope"
+                    },
+                    {
+                        "$ref": "#/definitions/CustomScope"
+                    },
+                    {
+                        "type": [
+                            "string",
+                            "boolean"
+                        ]
+                    }
+                ]
             },
             "type": "object"
         },
