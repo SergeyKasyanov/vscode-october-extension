@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.32.0
+
+- Work with Tailor blueprints inside themes
+- Fix Tailor blueprint yaml schema
+
 ## 0.31.3
 
 - Fix parsing version.yaml
