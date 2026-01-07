@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.33.0
+
+- October 4.1 support
+- Add tooltip tag to yaml schemas
+
 ## 0.32.0
 
 - Work with Tailor blueprints inside themes

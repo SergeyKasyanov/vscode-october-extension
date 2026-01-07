@@ -314,6 +314,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -464,6 +491,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -617,6 +671,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -810,6 +891,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -969,6 +1077,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -1252,6 +1387,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -1517,6 +1679,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -1837,6 +2026,33 @@
                     },
                     "type": "array"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -2126,6 +2342,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -2448,6 +2691,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -2598,6 +2868,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -2821,6 +3118,33 @@
                 "thumbOptions": {
                     "$ref": "#/definitions/ThumbsOptions"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -3040,6 +3364,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -3420,6 +3771,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -3591,6 +3969,33 @@
                 "thumbOptions": {
                     "$ref": "#/definitions/ThumbsOptions"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -3757,6 +4162,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -4025,6 +4457,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -4184,6 +4643,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -4445,6 +4931,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -4595,6 +5108,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -5050,6 +5590,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -5250,6 +5817,33 @@
                 },
                 "title": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -5456,6 +6050,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -5661,6 +6282,33 @@
                 "titleFrom": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -5859,6 +6507,33 @@
                 "toolbarButtons": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -6010,6 +6685,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -6160,6 +6862,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -6449,6 +7178,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -6824,6 +7580,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -7018,6 +7801,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
@@ -7278,6 +8088,33 @@
                 "tab": {
                     "type": "string"
                 },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 },
@@ -7438,6 +8275,33 @@
                 },
                 "tab": {
                     "type": "string"
+                },
+                "tooltip": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "icon": {
+                                    "type": "string"
+                                },
+                                "isHtml": {
+                                    "type": "boolean"
+                                },
+                                "placement": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "title"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
                 },
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
