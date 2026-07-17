@@ -1,0 +1,45 @@
+{
+  "$id": "octobercms://theme_seed.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "class": {
+        "type": "string"
+      },
+      "file": {
+        "type": "string"
+      },
+      "attributes": {
+        "type": "object",
+        "properties": {
+          "file_format": {
+            "type": "string",
+            "const": "json"
+          },
+          "blueprint_uuid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_format",
+          "blueprint_uuid"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "name",
+      "class",
+      "file",
+      "attributes"
+    ],
+    "additionalProperties": false
+  },
+  "definitions": {},
+  "title": "OctoberCMS Theme Seed"
+}

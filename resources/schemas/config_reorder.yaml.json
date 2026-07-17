@@ -1,32 +1,36 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "properties": {
-        "modelClass": {
-            "type": "string"
-        },
-        "nameFrom": {
-            "type": "string"
-        },
-        "title": {
-            "type": "string"
-        },
-        "toolbar": {
-            "properties": {
-                "buttons": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "buttons"
-            ],
-            "type": "object"
-        }
+  "$id": "octobercms://config_reorder.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
     },
-    "required": [
-        "modelClass",
-        "nameFrom",
-        "title"
-    ],
-    "title": "OctoberCMS Reorder Controller",
-    "type": "object"
+    "nameFrom": {
+      "type": "string"
+    },
+    "modelClass": {
+      "type": "string"
+    },
+    "toolbar": {
+      "type": "object",
+      "properties": {
+        "buttons": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "buttons"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "title",
+    "nameFrom",
+    "modelClass"
+  ],
+  "additionalProperties": false,
+  "definitions": {},
+  "title": "OctoberCMS Reorder Controller"
 }

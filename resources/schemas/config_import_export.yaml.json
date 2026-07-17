@@ -1,123 +1,130 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "properties": {
-        "defaultFormatOptions": {
-            "properties": {
-                "customJson": {
-                    "type": "boolean"
-                },
-                "delimiter": {
-                    "type": "string"
-                },
-                "enclosure": {
-                    "type": "string"
-                },
-                "encoding": {
-                    "type": "string"
-                },
-                "escape": {
-                    "type": "string"
-                },
-                "fileFormat": {
-                    "enum": [
-                        "csv",
-                        "csv_custom",
-                        "json"
-                    ],
-                    "type": "string"
-                },
-                "firstRowTitles": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object"
-        },
-        "defaultRedirect": {
-            "type": "string"
-        },
-        "export": {
-            "properties": {
-                "fileName": {
-                    "type": "string"
-                },
-                "form": {
-                    "type": "string"
-                },
-                "list": {
-                    "type": "string"
-                },
-                "modelClass": {
-                    "type": "string"
-                },
-                "redirect": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "useList": {
-                    "anyOf": [
-                        {
-                            "properties": {
-                                "definition": {
-                                    "type": "string"
-                                },
-                                "raw": {
-                                    "type": "boolean"
-                                }
-                            },
-                            "type": "object"
-                        },
-                        {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        }
-                    ]
-                }
-            },
-            "type": "object"
-        },
-        "import": {
-            "properties": {
-                "form": {
-                    "type": "string"
-                },
-                "list": {
-                    "type": "string"
-                },
-                "modelClass": {
-                    "type": "string"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "redirect": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "list",
-                "modelClass",
-                "title"
-            ],
-            "type": "object"
-        }
+  "$id": "octobercms://config_import_export.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "defaultRedirect": {
+      "type": "string"
     },
-    "title": "OctoberCMS Import Export Controller",
-    "type": "object"
+    "defaultFormatOptions": {
+      "type": "object",
+      "properties": {
+        "fileFormat": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "csv_custom"
+          ]
+        },
+        "customJson": {
+          "type": "boolean"
+        },
+        "firstRowTitles": {
+          "type": "boolean"
+        },
+        "delimiter": {
+          "type": "string"
+        },
+        "enclosure": {
+          "type": "string"
+        },
+        "escape": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "import": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "modelClass": {
+          "type": "string"
+        },
+        "list": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "redirect": {
+          "type": "string"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "modelClass",
+        "list"
+      ],
+      "additionalProperties": false
+    },
+    "export": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "modelClass": {
+          "type": "string"
+        },
+        "list": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "fileName": {
+          "type": "string"
+        },
+        "redirect": {
+          "type": "string"
+        },
+        "useList": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "definition": {
+                  "type": "string"
+                },
+                "raw": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {},
+  "title": "OctoberCMS Import Export Controller"
 }

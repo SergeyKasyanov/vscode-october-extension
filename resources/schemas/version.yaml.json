@@ -1,18 +1,20 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "additionalProperties": {
-        "anyOf": [
-            {
-                "items": {
-                    "type": "string"
-                },
-                "type": "array"
-            },
-            {
-                "type": "string"
-            }
-        ]
-    },
-    "title": "OctoberCMS Version File",
-    "type": "object"
+  "$id": "octobercms://version.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": {
+    "anyOf": [
+      {
+        "type": "string"
+      },
+      {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    ]
+  },
+  "definitions": {},
+  "title": "OctoberCMS Version File"
 }

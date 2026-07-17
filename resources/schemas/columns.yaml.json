@@ -1,1698 +1,1714 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "AnyColumn": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/TextColumn"
-                },
-                {
-                    "$ref": "#/definitions/NumberColumn"
-                },
-                {
-                    "$ref": "#/definitions/ImageColumn"
-                },
-                {
-                    "$ref": "#/definitions/SwitchColumn"
-                },
-                {
-                    "$ref": "#/definitions/SummaryColumn"
-                },
-                {
-                    "$ref": "#/definitions/DateTimeColumn"
-                },
-                {
-                    "$ref": "#/definitions/DateColumn"
-                },
-                {
-                    "$ref": "#/definitions/TimeColumn"
-                },
-                {
-                    "$ref": "#/definitions/TimeSinceColumn"
-                },
-                {
-                    "$ref": "#/definitions/TimeTenseColumn"
-                },
-                {
-                    "$ref": "#/definitions/SelectableColumn"
-                },
-                {
-                    "$ref": "#/definitions/LinkageColumn"
-                },
-                {
-                    "$ref": "#/definitions/PartialColumn"
-                },
-                {
-                    "$ref": "#/definitions/ColorPickerColumn"
-                },
-                {
-                    "$ref": "#/definitions/CustomColumn"
-                }
-            ]
+  "$id": "octobercms://columns.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "columns": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/AnyColumn"
+      }
+    }
+  },
+  "required": [
+    "columns"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "AnyColumn": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/TextColumn"
         },
-        "ColorPickerColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "colorpicker",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/NumberColumn"
         },
-        "CustomColumn": {
-            "additionalProperties": {},
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "type": "object"
+        {
+          "$ref": "#/definitions/ImageColumn"
         },
-        "DateColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "date",
-                    "type": "string"
-                },
-                "useTimezone": {
-                    "type": "boolean"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/SwitchColumn"
         },
-        "DateTimeColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "format": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "datetime",
-                    "type": "string"
-                },
-                "useTimezone": {
-                    "type": "boolean"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/SummaryColumn"
         },
-        "ImageColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "height": {
-                    "type": "number"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "options": {
-                    "$ref": "#/definitions/ThumbsOptions"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "image",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/DateTimeColumn"
         },
-        "LinkageColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "attributes": {
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "type": "object"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "linkage",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/DateColumn"
         },
-        "NumberColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "format": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "number",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/TimeColumn"
         },
-        "PartialColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "partial",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/TimeSinceColumn"
         },
-        "SelectableColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "options": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "type": "object"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "selectable",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/TimeTenseColumn"
         },
-        "SummaryColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "endChars": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "limitChars": {
-                    "type": "number"
-                },
-                "limitWords": {
-                    "type": "number"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "summary",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/SelectableColumn"
         },
-        "SwitchColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "options": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "switch",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/LinkageColumn"
         },
-        "TextColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "text",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/PartialColumn"
         },
-        "ThumbsOptions": {
-            "properties": {
-                "mode": {
-                    "enum": [
-                        "auto",
-                        "crop",
-                        "exact",
-                        "fit",
-                        "landscape",
-                        "portrait"
-                    ],
-                    "type": "string"
-                },
-                "offset": {
-                    "items": {
-                        "type": "number"
-                    },
-                    "type": "array"
-                },
-                "quality": {
-                    "type": "number"
-                },
-                "sharpen": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
+        {
+          "$ref": "#/definitions/ColorPickerColumn"
         },
-        "TimeColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "time",
-                    "type": "string"
-                },
-                "useTimezone": {
-                    "type": "boolean"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
-        },
-        "TimeSinceColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "timesince",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
-        },
-        "TimeTenseColumn": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "align": {
-                    "enum": [
-                        "center",
-                        "left",
-                        "right"
-                    ],
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "clickable": {
-                    "type": "boolean"
-                },
-                "cssClass": {
-                    "type": "string"
-                },
-                "default": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                },
-                "displayFrom": {
-                    "type": "string"
-                },
-                "headCssClass": {
-                    "type": "string"
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "invisible": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "relation": {
-                    "type": "string"
-                },
-                "relationCount": {
-                    "type": "boolean"
-                },
-                "searchable": {
-                    "type": "boolean"
-                },
-                "select": {
-                    "type": "string"
-                },
-                "shortLabel": {
-                    "type": "string"
-                },
-                "sortable": {
-                    "type": "boolean"
-                },
-                "sortableDefault": {
-                    "enum": [
-                        "asc",
-                        "desc"
-                    ],
-                    "type": "string"
-                },
-                "type": {
-                    "const": "timetense",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                },
-                "width": {
-                    "type": [
-                        "string",
-                        "number"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/CustomColumn"
         }
+      ]
     },
-    "properties": {
-        "columns": {
-            "additionalProperties": {
-                "$ref": "#/definitions/AnyColumn"
+    "TextColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "text"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
             },
-            "type": "object"
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
         }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
     },
-    "required": [
-        "columns"
-    ],
-    "title": "OctoberCMS List Columns",
-    "type": "object"
+    "NumberColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "number"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "ImageColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "image"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "height": {
+          "type": "number"
+        },
+        "options": {
+          "$ref": "#/definitions/ThumbsOptions"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "ThumbsOptions": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "portrait",
+            "landscape",
+            "auto",
+            "fit",
+            "crop"
+          ]
+        },
+        "offset": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "quality": {
+          "type": "number"
+        },
+        "sharpen": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SwitchColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "switch"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "SummaryColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "summary"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "limitChars": {
+          "type": "number"
+        },
+        "limitWords": {
+          "type": "number"
+        },
+        "endChars": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "DateTimeColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "datetime"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "useTimezone": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "DateColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "date"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "useTimezone": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TimeColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "time"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "useTimezone": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TimeSinceColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "timesince"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TimeTenseColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "timetense"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "SelectableColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "selectable"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "options": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "LinkageColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "linkage"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "PartialColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "partial"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "ColorPickerColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "colorpicker"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "CustomColumn": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "default": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "invisible": {
+          "type": "boolean"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sortableDefault": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "clickable": {
+          "type": "boolean"
+        },
+        "select": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "displayFrom": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "relationCount": {
+          "type": "boolean"
+        },
+        "cssClass": {
+          "type": "string"
+        },
+        "headCssClass": {
+          "type": "string"
+        },
+        "width": {
+          "type": [
+            "string",
+            "number"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "center"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "shortLabel": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "title": "OctoberCMS List Columns"
 }

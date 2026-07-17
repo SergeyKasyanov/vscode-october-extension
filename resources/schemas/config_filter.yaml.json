@@ -1,603 +1,628 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "AnyScope": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/CheckboxScope"
-                },
-                {
-                    "$ref": "#/definitions/SwitchScope"
-                },
-                {
-                    "$ref": "#/definitions/TextScope"
-                },
-                {
-                    "$ref": "#/definitions/NumberScope"
-                },
-                {
-                    "$ref": "#/definitions/DropdownScope"
-                },
-                {
-                    "$ref": "#/definitions/GroupScope"
-                },
-                {
-                    "$ref": "#/definitions/DateScope"
-                },
-                {
-                    "$ref": "#/definitions/CustomScope"
-                }
-            ]
+  "$id": "octobercms://config_filter.yaml",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "scopes": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/AnyScope"
+      }
+    }
+  },
+  "required": [
+    "scopes"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "AnyScope": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/CheckboxScope"
         },
-        "CheckboxScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "type": "string"
-                },
-                "default": {
-                    "enum": [
-                        0,
-                        1,
-                        false,
-                        true
-                    ]
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "checkbox",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "conditions",
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/SwitchScope"
         },
-        "CustomScope": {
-            "additionalProperties": {},
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/TextScope"
         },
-        "DateScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "properties": {
-                        "after": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "before": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "between": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "equals": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "notEquals": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        }
-                    },
-                    "type": "object"
-                },
-                "default": {
-                    "type": "string"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "firstDay": {
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                    ],
-                    "type": "number"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "maxDate": {
-                    "type": "string"
-                },
-                "minDate": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "showWeekNumber": {
-                    "type": "boolean"
-                },
-                "type": {
-                    "const": "date",
-                    "type": "string"
-                },
-                "useTimezone": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/NumberScope"
         },
-        "DropdownScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "type": "string"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "emptyOption": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "modelClass": {
-                    "type": "string"
-                },
-                "options": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "type": "object"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "dropdown",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/DropdownScope"
         },
-        "GroupScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "type": "string"
-                },
-                "default": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "modelClass": {
-                    "type": "string"
-                },
-                "nameFrom": {
-                    "type": "string"
-                },
-                "options": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "type": "object"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "group",
-                    "type": "string"
-                },
-                "valueFrom": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/GroupScope"
         },
-        "NumberScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "properties": {
-                        "between": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "exact": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "greater": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "lesser": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        }
-                    },
-                    "type": "object"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "modelScope": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "number",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/DateScope"
         },
-        "SwitchScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "default": {
-                    "enum": [
-                        0,
-                        1,
-                        false,
-                        true
-                    ]
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "switch",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "conditions",
-                "label",
-                "type"
-            ],
-            "type": "object"
-        },
-        "TextScope": {
-            "properties": {
-                "after": {
-                    "type": "string"
-                },
-                "before": {
-                    "type": "string"
-                },
-                "conditions": {
-                    "properties": {
-                        "contains": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        },
-                        "exact": {
-                            "type": [
-                                "string",
-                                "boolean"
-                            ]
-                        }
-                    },
-                    "type": "object"
-                },
-                "dependsOn": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "modelScope": {
-                    "type": "string"
-                },
-                "order": {
-                    "type": "number"
-                },
-                "permissions": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "type": {
-                    "const": "text",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label",
-                "type"
-            ],
-            "type": "object"
+        {
+          "$ref": "#/definitions/CustomScope"
         }
+      ]
     },
-    "properties": {
-        "scopes": {
-            "additionalProperties": {
-                "$ref": "#/definitions/AnyScope"
+    "CheckboxScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "checkbox"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
             },
-            "type": "object"
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "default": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number",
+              "const": 1
+            },
+            {
+              "type": "number",
+              "const": 0
+            }
+          ]
+        },
+        "conditions": {
+          "type": "string"
         }
+      },
+      "required": [
+        "conditions",
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
     },
-    "required": [
-        "scopes"
-    ],
-    "title": "OctoberCMS Filter Scopes",
-    "type": "object"
+    "SwitchScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "switch"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "default": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number",
+              "const": 0
+            },
+            {
+              "type": "number",
+              "const": 1
+            }
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "conditions",
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TextScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "text"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "modelScope": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "object",
+          "properties": {
+            "exact": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "contains": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "NumberScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "number"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "modelScope": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "object",
+          "properties": {
+            "exact": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "greater": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "between": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "lesser": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "DropdownScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "dropdown"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "modelClass": {
+          "type": "string"
+        },
+        "options": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "conditions": {
+          "type": "string"
+        },
+        "emptyOption": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "GroupScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "group"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "nameFrom": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "modelClass": {
+          "type": "string"
+        },
+        "options": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "conditions": {
+          "type": "string"
+        },
+        "default": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "DateScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "const": "date"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        },
+        "default": {
+          "type": "string"
+        },
+        "minDate": {
+          "type": "string"
+        },
+        "maxDate": {
+          "type": "string"
+        },
+        "firstDay": {
+          "type": "number",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "showWeekNumber": {
+          "type": "boolean"
+        },
+        "useTimezone": {
+          "type": "boolean"
+        },
+        "conditions": {
+          "type": "object",
+          "properties": {
+            "equals": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "notEquals": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "between": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "before": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            "after": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "CustomScope": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "before": {
+          "type": "string"
+        },
+        "after": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label"
+      ]
+    }
+  },
+  "title": "OctoberCMS Filter Scopes"
 }
