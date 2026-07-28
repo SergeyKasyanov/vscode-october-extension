@@ -2067,5 +2067,20 @@ returns the number, otherwise returns 0
 @return void
 
 @see \\Illuminate\\Support\\Str::flushCache`)
+    },
+    trans: {
+        name: 'trans',
+        snippet: 'trans(\'$0\')',
+        doc: new vscode.MarkdownString('Translate the given message.')
+    },
+    trans_choice: {
+        name: 'trans_choice',
+        snippet: 'trans_choice(\'$1\', $0)',
+        doc: new vscode.MarkdownString('Translates the given message based on a count.')
+    },
+    __: {
+        name: '__',
+        snippet: '__(\'$0\')',
+        doc: new vscode.MarkdownString('Translate the given message.')
     }
 };
