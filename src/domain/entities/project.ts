@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { Config } from "../../config";
 import { getConfig } from '../actions/get-config';
 import { getLocale } from "../actions/get-locale";
@@ -17,7 +18,6 @@ import { Plugin } from "./owners/plugin";
 import { Theme } from "./owners/theme";
 import { Platform } from "./platform";
 import { EnvVariable, Event, Permission } from "./types";
-import path = require("path");
 
 /**
  * Represents opened project

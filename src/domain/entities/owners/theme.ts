@@ -1,3 +1,5 @@
+import * as path from 'path';
+import * as yaml from 'yaml';
 import { Blueprint } from "../blueprint";
 import { Content } from "../theme/content";
 import { Layout } from "../theme/layout";
@@ -5,8 +7,6 @@ import { Page } from "../theme/page";
 import { Partial } from "../theme/partial";
 import { ThemeFile } from "../theme/theme-file";
 import { Owner } from "./owner";
-import path = require("path");
-import yaml = require("yaml");
 
 /**
  * Represents theme of opened project

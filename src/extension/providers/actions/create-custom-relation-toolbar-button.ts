@@ -1,10 +1,10 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Controller } from '../../../domain/entities/classes/controller';
 import { BackendOwner } from '../../../domain/entities/owners/backend-owner';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Store } from '../../../domain/services/store';
 import { yamlSelector } from '../../helpers/file-selectors';
-import path = require('path');
 
 const COMMAND_CREATE_CUSTOM_RELATION_TOOLBAR_BUTTON = 'command.createCustomRelationToolbarButton';
 

@@ -1,8 +1,8 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { MethodCalledFromBaseClass } from "../errors/method-called-from-base-class";
 import { FsHelpers } from "../helpers/fs-helpers";
 import { Owner } from "./owners/owner";
-import path = require('path');
 
 /**
  * Base class for all project's classes and theme objects

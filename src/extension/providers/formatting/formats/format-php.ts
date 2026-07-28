@@ -1,4 +1,5 @@
-import prettier = require('prettier');
+import * as prettier from "prettier";
+import phpPlugin from '@prettier/plugin-php/standalone';
 
 export interface PhpFormattingOptions extends prettier.Options {
     phpVersion: '5.0' | '5.1' | '5.2' | '5.3' | '5.4' | '5.5' | '5.6' | '7.0' | '7.1' | '7.2' | '7.3' | '7.4' | '8.0' | '8.1' | '8.2';
@@ -15,7 +16,7 @@ export async function formatPhp(
     options: PhpFormattingOptions,
     eol: string
 ) {
-    options.plugins = [require('@prettier/plugin-php/standalone')];
+    options.plugins = [phpPlugin];
     options.parser = 'php';
 
     phpCode = cleanPhpCode(phpCode, eol);

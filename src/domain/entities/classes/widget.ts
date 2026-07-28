@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from 'path';
 import { Owner } from "../owners/owner";
 import { HasAjaxMethods } from "./concerns/has-ajax-methods";
 import { OctoberClass } from "./october-class";

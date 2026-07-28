@@ -1,8 +1,7 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
-import { PathHelpers } from "../helpers/path-helpers";
 import { Model } from "../entities/classes/model";
 import { FsHelpers } from '../helpers/fs-helpers';
-import path = require('path');
 
 /**
  * Find all model usages in yaml config files

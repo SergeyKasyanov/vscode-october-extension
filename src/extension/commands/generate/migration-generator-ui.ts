@@ -1,12 +1,12 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
+import { AppDirectory } from '../../../domain/entities/owners/app-directory';
 import { Plugin } from '../../../domain/entities/owners/plugin';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Str } from '../../../helpers/str';
 import { Canceled } from '../../services/generators/errors/canceled';
 import { MigrationGenerator } from '../../services/generators/migration-generator';
 import { GeneratorUiBase, InputValidators } from "./generator-ui-base";
-import path = require('path');
-import { AppDirectory } from '../../../domain/entities/owners/app-directory';
 
 
 export class MigrationGeneratorUi extends GeneratorUiBase {

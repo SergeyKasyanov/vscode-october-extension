@@ -1,4 +1,4 @@
-import path = require('path');
+import * as path from 'path';
 import * as yaml from 'yaml';
 import { Config } from '../../../config';
 import { Blueprint } from '../../entities/blueprint';

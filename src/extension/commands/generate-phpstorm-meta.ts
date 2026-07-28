@@ -1,3 +1,4 @@
+import * as path from 'path';
 import Twig from 'twig';
 import * as vscode from 'vscode';
 import { FsHelpers } from "../../domain/helpers/fs-helpers";
@@ -22,8 +23,6 @@ export async function generatePhpStormMeta() {
         vscode.window.showErrorMessage(`File ${filePath} already exists`);
         return;
     }
-
-    const template = require('./templates/phpstorm.meta.php.twig');
 
     const behaviors = [
         ...project.controllerBehaviors,

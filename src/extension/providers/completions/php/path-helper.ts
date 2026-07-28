@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Config } from "../../../../config";
 import { OctoberEntity } from "../../../../domain/entities/october-entity";
@@ -6,7 +7,6 @@ import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
-import path = require("path");
 
 const PLUGINS = /plugins_path\s*\(\s*[\'\"]/g;
 const THEMES = /themes_path\s*\(\s*[\'\"]/g;

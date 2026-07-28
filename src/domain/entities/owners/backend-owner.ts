@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import { FsHelpers } from "../../helpers/fs-helpers";
 import { PhpHelpers } from "../../helpers/php-helpers";
@@ -11,7 +12,6 @@ import { OctoberClass } from "../classes/october-class";
 import { FilterWidget, FormWidget, ReportWidget, Widget } from "../classes/widget";
 import { Navigation, Permission } from "../types";
 import { Owner } from "./owner";
-import path = require("path");
 
 /**
  * Base class for backend owners (app/module/plugin)

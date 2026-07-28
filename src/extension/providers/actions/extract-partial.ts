@@ -1,10 +1,10 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Theme } from '../../../domain/entities/owners/theme';
 import { MarkupFile } from '../../../domain/entities/theme/theme-file';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Store } from '../../../domain/services/store';
 import { octoberTplSelector } from '../../helpers/file-selectors';
-import path = require('path');
 
 const COMMAND_EXTRACT_PARTIAL = 'command.extractPartial';
 

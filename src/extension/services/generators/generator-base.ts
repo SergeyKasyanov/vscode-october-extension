@@ -1,4 +1,5 @@
-import { twig } from "twig";
+import * as path from 'path';
+import * as Twig from 'twig';
 import * as vscode from "vscode";
 import { AppDirectory } from "../../../domain/entities/owners/app-directory";
 import { Plugin } from "../../../domain/entities/owners/plugin";
@@ -7,12 +8,11 @@ import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Str } from "../../../helpers/str";
 import { SomeFilesAlreadyExists } from "./errors/some-files-already-exists";
-import path = require("path");
 
 export interface Stubs {
     [name: string]: {
         destination: string,
-        template: (variables?: object) => string,
+        template: string,
     }
 }
 
@@ -152,7 +152,7 @@ export abstract class GeneratorBase {
     }
 
     protected parseTwig(template: string, data: Object): string {
-        return twig({ data: template }).render(data);
+        return Twig.twig({ data: template }).render(data);
     }
 
     protected buildStubs() {
@@ -163,7 +163,9 @@ export abstract class GeneratorBase {
                 const stub = this.stubs[stubName];
 
                 if (this.needToMakeStub(stubName)) {
-                    const content = stub.template(this.templateVars);
+                    const content = Twig
+                        .twig({ data: stub.template })
+                        .render(this.templateVars);
 
                     FsHelpers.writeFile(this.destinations[stubName], content);
 

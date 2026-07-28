@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Behavior } from "../../../domain/entities/classes/behavior";
 import { Widget } from "../../../domain/entities/classes/widget";
@@ -5,7 +6,6 @@ import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
 import { DocumentLink } from "../../types/document-link";
-import path = require("path");
 
 const ADD_ASSET_METHOD = /->\s*(addCss|addCssBundle|addJs|adJsBundle|addRss)\s*\(\s*[\'\"].*?[\'\"]/g;
 const URI = /[\'\"].*?[\'\"]/;

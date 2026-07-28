@@ -1,8 +1,8 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { FsHelpers } from "../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../domain/helpers/path-helpers";
 import { chooseProject } from "./concerns/choose-project";
-import path = require("path");
 
 /**
  * Command for open log file

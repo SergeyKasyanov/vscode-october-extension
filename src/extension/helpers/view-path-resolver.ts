@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from 'path';
 import { Project } from "../../domain/entities/project";
 import { FsHelpers } from "../../domain/helpers/fs-helpers";
 

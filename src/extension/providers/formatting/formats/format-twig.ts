@@ -1,5 +1,5 @@
-import prettier = require('prettier');
-import { Section } from '../../../helpers/split-markup';
+import * as prettier from "prettier";
+import * as jinjaPlugin from 'prettier-plugin-jinja-template';
 
 export interface TwigFormattingOptions extends prettier.Options {
     quoteAttributes: boolean
@@ -14,7 +14,7 @@ export async function formatTwig(
     eol: string,
     onlyTwig: boolean,
 ) {
-    options.plugins = [require('prettier-plugin-jinja-template')];
+    options.plugins = [jinjaPlugin];
     options.parser = 'jinja-template';
 
     try {

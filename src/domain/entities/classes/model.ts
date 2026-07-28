@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import { Str } from '../../../helpers/str';
 import { MethodsList, PhpHelpers } from "../../helpers/php-helpers";
@@ -7,7 +8,6 @@ import { Plugin } from '../owners/plugin';
 import { ModelBehavior } from './behavior';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
 import { OctoberClass } from "./october-class";
-import path = require('path');
 
 export type TraitsList = {
     traitFqn: string;

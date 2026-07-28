@@ -1,4 +1,4 @@
-import path = require('path');
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Canceled } from '../../services/generators/errors/canceled';
 import { MailTemplateGenerator } from '../../services/generators/mail-template-generator';

@@ -1,8 +1,8 @@
+import * as path from 'path';
 import { OctoberClass } from "../../../entities/classes/october-class";
 import { Owner } from "../../../entities/owners/owner";
 import { FsHelpers } from '../../../helpers/fs-helpers';
 import { PhpHelpers } from '../../../helpers/php-helpers';
-import path = require('path');
 
 /**
  * Base class for all backend directory indexers

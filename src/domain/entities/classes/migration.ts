@@ -1,5 +1,5 @@
+import * as path from 'path';
 import { OctoberClass } from "./october-class";
-import path = require("path");
 
 const SEARCH_TABLES = /Schema\s*::\s*(create|table|drop|dropIfExists)\s*\(\s*[\'\"][\w\_]+[\'\"]/g;
 const TABLE_NAME = /[\'\"][\w\_]+[\'\"]/;

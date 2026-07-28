@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Config } from "../../../config";
 import { FsHelpers } from "../../../domain/helpers/fs-helpers";

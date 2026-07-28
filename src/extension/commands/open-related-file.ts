@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Behavior } from '../../domain/entities/classes/behavior';
 import { Component } from '../../domain/entities/classes/component';
@@ -7,7 +8,6 @@ import { Widget } from '../../domain/entities/classes/widget';
 import { BackendOwner } from '../../domain/entities/owners/backend-owner';
 import { FsHelpers } from '../../domain/helpers/fs-helpers';
 import { Store } from '../../domain/services/store';
-import path = require('path');
 
 type EntityWithViews = Behavior | Component | Controller | Model | Widget;
 

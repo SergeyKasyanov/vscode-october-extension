@@ -1,12 +1,16 @@
 import * as phpParser from 'php-parser';
 import Twig from 'twig';
 import * as vscode from 'vscode';
+import { Config } from '../../../config';
 import { Behavior } from '../../../domain/entities/classes/behavior';
 import { Controller } from '../../../domain/entities/classes/controller';
 import { Model } from '../../../domain/entities/classes/model';
+import { AppDirectory } from '../../../domain/entities/owners/app-directory';
+import { Plugin } from '../../../domain/entities/owners/plugin';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { PathHelpers } from '../../../domain/helpers/path-helpers';
 import { Store } from '../../../domain/services/store';
+import { Str } from '../../../helpers/str';
 import { phpSelector } from '../../helpers/file-selectors';
 import configFormTwig from '../../services/generators/templates/controller/config/form.twig';
 import configImportExportTwig from '../../services/generators/templates/controller/config/import_export.twig';

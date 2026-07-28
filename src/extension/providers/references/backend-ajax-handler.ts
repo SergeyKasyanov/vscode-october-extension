@@ -1,12 +1,12 @@
+import * as path from 'path';
 import { Method } from 'php-parser';
 import * as vscode from 'vscode';
 import { ControllerBehavior } from '../../../domain/entities/classes/behavior';
 import { Controller } from '../../../domain/entities/classes/controller';
 import { Widget } from '../../../domain/entities/classes/widget';
 import { BackendOwner } from '../../../domain/entities/owners/backend-owner';
-import { Store } from '../../../domain/services/store';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
-import path = require('path');
+import { Store } from '../../../domain/services/store';
 
 const GET_EVENT_HANDLER_CALL = /->getEventHandler\s*\(\s*[\'\"][\w\_]+[\'\"]/g;
 const ATTRIBUTE_HANDLER = /data-(request|handler)=[\'\"][\w\_]+[\'\"]/g;

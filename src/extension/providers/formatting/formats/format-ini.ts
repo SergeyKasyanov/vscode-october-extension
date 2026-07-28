@@ -1,4 +1,4 @@
-import prettier = require('prettier');
+import * as prettier from "prettier";
 
 export interface IniFormattingOptions extends prettier.Options {
     iniSpaceAroundEquals: boolean;

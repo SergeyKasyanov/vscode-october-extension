@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as phpParser from "php-parser";
 import * as vscode from "vscode";
 import { Controller } from "../../../domain/entities/classes/controller";
@@ -5,7 +6,6 @@ import { Model } from "../../../domain/entities/classes/model";
 import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
-import path = require("path");
 
 /**
  * Document links for controller behaviors configs

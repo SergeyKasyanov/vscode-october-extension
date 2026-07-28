@@ -1,8 +1,8 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
+import { Project } from "../entities/project";
 import { FsHelpers } from "../helpers/fs-helpers";
 import { PhpHelpers } from "../helpers/php-helpers";
-import { Project } from "../entities/project";
-import path = require("path");
 
 /**
  * Get config keys from project

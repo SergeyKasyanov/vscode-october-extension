@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Config } from '../../config';
 import { Platform } from '../entities/platform';
@@ -7,7 +8,6 @@ import { EventIndexer } from './indexer/events-indexer';
 import { ThemesIndexer } from './indexer/themes-indexer';
 import { Store } from './store';
 import { VersionDetector } from './version-detector';
-import path = require('path');
 
 /**
  * Indexes workspaces

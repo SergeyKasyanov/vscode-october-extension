@@ -1,7 +1,7 @@
+import * as path from 'path';
+import * as prettier from "prettier";
 import * as vscode from 'vscode';
 import { Config } from '../../../../config';
-import path = require('path');
-import prettier = require('prettier');
 
 const watchers: { [path: string]: vscode.FileSystemWatcher } = {};
 

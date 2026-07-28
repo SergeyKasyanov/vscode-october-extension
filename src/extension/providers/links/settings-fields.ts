@@ -1,10 +1,9 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import * as vscode from 'vscode';
 import { Model } from '../../../domain/entities/classes/model';
-import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { PhpHelpers } from '../../../domain/helpers/php-helpers';
 import { Store } from '../../../domain/services/store';
-import path = require('path');
 
 /**
  * Document link for SettingsModel $settingsField property

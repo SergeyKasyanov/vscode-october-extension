@@ -1,9 +1,9 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import { PhpHelpers } from "../../helpers/php-helpers";
 import { Owner } from "../owners/owner";
 import { HasAjaxMethods } from "./concerns/has-ajax-methods";
 import { OctoberClass } from "./october-class";
-import path = require("path");
 
 export interface ComponentDetails {
     name: string,

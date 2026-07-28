@@ -1,7 +1,7 @@
+import * as path from 'path';
 import { FsHelpers } from '../../helpers/fs-helpers';
 import { PathHelpers } from '../../helpers/path-helpers';
 import { Store } from '../store';
-import path = require('path');
 
 const EVENT_FIRE = /(Event::fire|->fireSystemEvent|->fireViewEvent)\s*\(\s*[\'\"][\w\-\_\.\:]+[\'\"]/g;
 const EVENT_NAME = /[\'\"][\w\-\_\.\:]+[\'\"]/;

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { FsHelpers } from '../../domain/helpers/fs-helpers';
-import path = require('path');
 
 /**
  * Get completions for files and directories related to root

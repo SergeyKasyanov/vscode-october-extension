@@ -1,8 +1,8 @@
+import * as prettier from "prettier";
 import * as vscode from "vscode";
 import { Config } from "../../../../config";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
-import prettier = require('prettier');
 
 /**
  * Get prettier config based on .prettierrc config file and default values

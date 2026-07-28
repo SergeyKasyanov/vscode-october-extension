@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import * as vscode from 'vscode';
 import { PathHelpers } from '../../helpers/path-helpers';
@@ -7,7 +8,6 @@ import { ControllerBehavior } from './behavior';
 import { HasAjaxMethods } from './concerns/has-ajax-methods';
 import { BehaviorsList, HasBehaviors } from './concerns/has-behaviors';
 import { OctoberClass } from "./october-class";
-import path = require('path');
 
 /**
  * Represents controller class in plugin, module or app

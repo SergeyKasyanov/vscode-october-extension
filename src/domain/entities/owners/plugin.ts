@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from 'path';
 import { PhpHelpers } from "../../helpers/php-helpers";
 import { TwigFiltersList } from "../../static/twig-filters";
 import { TwigFunctionsList } from "../../static/twig-functions";

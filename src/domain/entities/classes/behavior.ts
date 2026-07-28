@@ -1,4 +1,4 @@
-import path = require('path');
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import { PhpHelpers } from "../../helpers/php-helpers";
 import { Owner } from '../owners/owner';

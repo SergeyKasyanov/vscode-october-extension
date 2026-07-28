@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as yaml from 'yaml';
 import { Config } from "../../../config";
 import { Blueprint } from "../../entities/blueprint";
@@ -25,7 +26,6 @@ import { DirectoryIndexer } from "./backend/directory-indexer";
 import { MigrationsIndexer } from "./backend/migrations-indexer";
 import { ModelsIndexer } from "./backend/models-indexer";
 import { FilterWidgetsIndexer, FormWidgetsIndexer, ReportWidgetsIndexer, WidgetsIndexer } from "./backend/widgets-indexer";
-import path = require("path");
 
 /**
  * Indexes files in app,modules and plugins directories

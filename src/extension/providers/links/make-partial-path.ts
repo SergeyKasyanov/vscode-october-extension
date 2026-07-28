@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Controller } from "../../../domain/entities/classes/controller";
 import { Widget } from "../../../domain/entities/classes/widget";
@@ -6,7 +7,6 @@ import { Project } from "../../../domain/entities/project";
 import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../domain/helpers/path-helpers";
 import { Store } from "../../../domain/services/store";
-import path = require("path");
 
 const PHP_MAKE_PARTIAL_METHODS_GLOBAL = /->\s*(makePartial|makeHintPartial)\s*\(\s*[\'\"][\$\~]{0,1}[\w\.\-\/\\]+[\'\"]/g;
 const PARTIAL_NAME = /[\'\"][\$\~]{0,1}[\w\.\-\/\\]+[\'\"]/;

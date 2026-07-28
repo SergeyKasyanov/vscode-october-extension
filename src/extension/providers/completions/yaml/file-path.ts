@@ -1,3 +1,5 @@
+import * as path from 'path';
+import * as pluralize from 'pluralize';
 import * as vscode from "vscode";
 import * as yaml from "yaml";
 import { Model } from "../../../../domain/entities/classes/model";
@@ -8,11 +10,9 @@ import { Project } from "../../../../domain/entities/project";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
+import { awaitsCompletions } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
-import { awaitsCompletions } from "../../../helpers/completions";
-import path = require("path");
-import pluralize = require("pluralize");
 
 const PATH_KEY = /\s*(path)\:\s*/g;
 const PATH_KEY_PLUGIN = /\s*(path)\:\s*\$/;

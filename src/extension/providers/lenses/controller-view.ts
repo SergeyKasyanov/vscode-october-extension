@@ -1,9 +1,9 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { Controller } from '../../../domain/entities/classes/controller';
 import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { Store } from '../../../domain/services/store';
 import { phpSelector } from '../../helpers/file-selectors';
-import path = require('path');
 
 const COMMAND_OPEN_CONTROLLER_VIEW = 'command.openControllerView';
 

@@ -1,8 +1,8 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Plugin } from "../../../domain/entities/owners/plugin";
 import { FsHelpers } from "../../../domain/helpers/fs-helpers";
 import { Store } from "../../../domain/services/store";
-import path = require("path");
 
 /**
  * Document links for migrations in version.yaml

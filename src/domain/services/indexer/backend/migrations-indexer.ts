@@ -1,9 +1,9 @@
+import * as path from 'path';
 import * as phpParser from 'php-parser';
 import { Migration } from "../../../entities/classes/migration";
 import { FsHelpers } from '../../../helpers/fs-helpers';
 import { PhpHelpers } from '../../../helpers/php-helpers';
 import { DirectoryIndexer } from "./directory-indexer";
-import path = require('path');
 
 /**
  * Migrations directory reader

@@ -1,14 +1,8 @@
-import path = require("path");
-import yaml = require("yaml");
-import * as phpParser from "php-parser";
 import * as vscode from "vscode";
+import * as yaml from 'yaml';
 import { Controller } from "../../../../domain/entities/classes/controller";
-import { AppDirectory } from "../../../../domain/entities/owners/app-directory";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
-import { Module } from "../../../../domain/entities/owners/module";
-import { Plugin } from "../../../../domain/entities/owners/plugin";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
-import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/completions";
 

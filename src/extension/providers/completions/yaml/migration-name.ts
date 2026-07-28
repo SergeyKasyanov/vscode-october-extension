@@ -1,8 +1,8 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { awaitsCompletions } from "../../../helpers/completions";
 import { YamlHelpers } from "../../../helpers/yaml-helpers";
-import path = require("path");
 
 const ARRAY_ELEMENT = /\s+\-\s+/g;
 const MIGRATION_PART = /^[\w\_\-\.\/\\]*$/;

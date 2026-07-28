@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import { Plugin } from "../../domain/entities/owners/plugin";
 import { FsHelpers } from "../../domain/helpers/fs-helpers";
 import { chooseProject } from "./concerns/choose-project";
-import path = require("path");
 
 /**
  * Command for open version.yaml file of plugin

@@ -1,11 +1,10 @@
 import * as vscode from 'vscode';
 import { Blueprint } from '../../../domain/entities/blueprint';
+import { Theme } from '../../../domain/entities/owners/theme';
 import { MarkupFile } from '../../../domain/entities/theme/theme-file';
 import { Store } from '../../../domain/services/store';
-import { YamlHelpers } from '../../helpers/yaml-helpers';
-import path = require('path');
 import { Str } from '../../../helpers/str';
-import { Theme } from '../../../domain/entities/owners/theme';
+import { YamlHelpers } from '../../helpers/yaml-helpers';
 
 const HANDLE_INI = /[\'\"][\w\\]+[\'\"]/g;
 const HANDLE_YAML = /[\'\"]?[\w\\]+[\'\"]?/g;

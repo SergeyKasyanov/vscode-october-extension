@@ -1,13 +1,13 @@
+import * as path from 'path';
 import * as vscode from "vscode";
 import { Controller } from "../../../../domain/entities/classes/controller";
+import { Widget } from "../../../../domain/entities/classes/widget";
 import { BackendOwner } from "../../../../domain/entities/owners/backend-owner";
 import { FsHelpers } from "../../../../domain/helpers/fs-helpers";
 import { PathHelpers } from "../../../../domain/helpers/path-helpers";
 import { Store } from "../../../../domain/services/store";
 import { awaitsCompletions } from "../../../helpers/completions";
 import { getPathCompletions } from "../../../helpers/path-autocomplete";
-import path = require("path");
-import { Widget } from "../../../../domain/entities/classes/widget";
 
 const MAKE_PARTIAL_METHOD = /->\s*(makePartial|makeHintPartial)\s*\(\s*[\'\"]/g;
 const PARTIAL_NAME_PART = /^(\$|\~){0,1}[\w\/\-\_\.]*$/;

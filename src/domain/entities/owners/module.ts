@@ -1,4 +1,4 @@
-import path = require("path");
+import * as path from 'path';
 import { Str } from "../../../helpers/str";
 import { BackendOwner } from "./backend-owner";
 

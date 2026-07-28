@@ -1,7 +1,7 @@
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { FsHelpers } from "../../helpers/fs-helpers";
 import { Store } from "../store";
-import path = require('path');
 
 /**
  * Indexes env variables in project
