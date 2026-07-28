@@ -4029,8 +4029,11 @@
                 "enum": [
                   "string",
                   "checkbox",
+                  "numeric",
                   "dropdown",
-                  "autocomplete"
+                  "autocomplete",
+                  "date",
+                  "time"
                 ]
               },
               "options": {
@@ -4044,6 +4047,21 @@
               },
               "width": {
                 "type": "number"
+              },
+              "ellipsis": {
+                "type": "boolean"
+              },
+              "dependsOn": {
+                "type": "string"
+              },
+              "dateFormat": {
+                "type": "string"
+              },
+              "timeFormat": {
+                "type": "string"
+              },
+              "useLegacy": {
+                "type": "boolean"
               },
               "validation": {
                 "type": "object",
