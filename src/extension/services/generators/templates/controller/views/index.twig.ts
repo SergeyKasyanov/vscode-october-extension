@@ -1,0 +1,12 @@
+export default `<?php
+/**
+ * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
+ */
+?>
+
+{% if addListControllerBehavior %}
+<?= $this->listRender() ?>
+{% else %}
+{{ controller_pascal }}
+{% endif %}
+`;

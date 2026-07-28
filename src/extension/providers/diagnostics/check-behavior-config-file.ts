@@ -1,4 +1,5 @@
 import * as phpParser from 'php-parser';
+import Twig from 'twig';
 import * as vscode from 'vscode';
 import { Behavior } from '../../../domain/entities/classes/behavior';
 import { Controller } from '../../../domain/entities/classes/controller';
@@ -7,10 +8,10 @@ import { FsHelpers } from '../../../domain/helpers/fs-helpers';
 import { PathHelpers } from '../../../domain/helpers/path-helpers';
 import { Store } from '../../../domain/services/store';
 import { phpSelector } from '../../helpers/file-selectors';
-import { Plugin } from '../../../domain/entities/owners/plugin';
-import { AppDirectory } from '../../../domain/entities/owners/app-directory';
-import { Str } from '../../../helpers/str';
-import { Config } from '../../../config';
+import configFormTwig from '../../services/generators/templates/controller/config/form.twig';
+import configImportExportTwig from '../../services/generators/templates/controller/config/import_export.twig';
+import configListTwig from '../../services/generators/templates/controller/config/list.twig';
+import configRelationTwig from '../../services/generators/templates/controller/config/relation.twig';
 
 const DIAGNOSTIC_CHECK_BEHAVIOR_CONFIG_FILE = 'diagnostic.checkBehaviorConfigFile';
 const COMMAND_CREATE_BEHAVIOR_CONFIG_FILE = 'command.createBehaviorConfigFile';
@@ -186,22 +187,22 @@ async function createFile(diagnostic: Diagnostic) {
 
         switch (diagnostic.behavior!.fqn) {
             case 'Backend\\Behaviors\\ListController':
-                contentTemplate = require('../../services/generators/templates/controller/config/list.twig');
+                contentTemplate = configListTwig;
                 break;
             case 'Backend\\Behaviors\\FormController':
-                contentTemplate = require('../../services/generators/templates/controller/config/form.twig');
+                contentTemplate = configFormTwig;
                 break;
             case 'Backend\\Behaviors\\ImportExportController':
-                contentTemplate = require('../../services/generators/templates/controller/config/import_export.twig');
+                contentTemplate = configImportExportTwig;
                 break;
             case 'Backend\\Behaviors\\RelationController':
-                contentTemplate = require('../../services/generators/templates/controller/config/relation.twig');
+                contentTemplate = configRelationTwig;
                 break;
         }
 
         if (contentTemplate) {
             const plugin = diagnostic.entity!.owner;
-            const templateVars: { [key: string]: string|boolean } = {
+            const templateVars: { [key: string]: string | boolean } = {
                 structured: Config.isBackendControllerStructured
             };
 
@@ -243,7 +244,9 @@ async function createFile(diagnostic: Diagnostic) {
             templateVars['model_snake'] = Str.snakeCase(model);
             templateVars['model_lower'] = model.toLowerCase();
 
-            content = contentTemplate(templateVars);
+            content = Twig
+                .twig({ data: contentTemplate })
+                .render(templateVars);
         }
 
         FsHelpers.writeFile(diagnostic.filePath!, content);

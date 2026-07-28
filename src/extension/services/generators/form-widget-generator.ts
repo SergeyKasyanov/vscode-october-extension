@@ -1,25 +1,29 @@
 import { Project } from "../../../domain/entities/project";
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import classTwig from './templates/form-widget/class.twig';
+import partialTwig from './templates/form-widget/partial.twig';
+import styleTwig from './templates/form-widget/style.twig';
+import scriptTwig from './templates/form-widget/script.twig';
 
 export class FormWidgetGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         classTemplate: {
             destination: 'formwidgets/{{ widget_pascal }}.php',
-            template: require('./templates/form-widget/class.twig')
+            template: classTwig
         },
         defaultPartial: {
             destination: 'formwidgets/{{ widget_lower }}/partials/_{{ widget_snake }}.',
-            template: require('./templates/form-widget/partial.twig')
+            template: partialTwig
         },
         styleCss: {
             destination: 'formwidgets/{{ widget_lower }}/assets/css/{{ widget_snake }}.css',
-            template: require('./templates/form-widget/style.twig')
+            template: styleTwig
         },
         scriptJs: {
             destination: 'formwidgets/{{ widget_lower }}/assets/js/{{ widget_snake }}.js',
-            template: require('./templates/form-widget/script.twig')
+            template: scriptTwig
         },
     };
 

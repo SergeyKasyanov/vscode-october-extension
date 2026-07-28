@@ -1,0 +1,10 @@
+export default `<?php
+/**
+ * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
+ */
+?>
+<ul>
+    <li><a href="<?= $this->actionUrl('/') ?>">{{ controller_pascal }}</a></li>
+    <li><?= e($this->pageTitle) ?></li>
+</ul>
+`;

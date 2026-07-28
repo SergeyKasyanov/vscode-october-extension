@@ -2,13 +2,14 @@ import { AppDirectory } from "../../../domain/entities/owners/app-directory";
 import { Project } from "../../../domain/entities/project";
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import template from './templates/migration/class.twig';
 
 export class MigrationGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         migrationTemplate: {
             destination: 'updates/{{ migration_snake }}.php',
-            template: require('./templates/migration/class.twig')
+            template
         },
     };
 

@@ -1,16 +1,18 @@
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import classTwig from './templates/settings-model/class.twig';
+import configFieldsTwig from './templates/settings-model/config/fields.twig';
 
 export class SettingsModelGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         classTemplate: {
             destination: 'models/{{ model_pascal }}.php',
-            template: require('./templates/settings-model/class.twig')
+            template: classTwig
         },
         fieldsConfig: {
             destination: 'models/{{ model_lower }}/fields.yaml',
-            template: require('./templates/settings-model/config/fields.twig'),
+            template: configFieldsTwig,
         }
     };
 

@@ -1,19 +1,22 @@
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import pluginTwig from "./templates/plugin/plugin.twig";
+import composerJsonTwig from "./templates/plugin/composer.json.twig";
+import versionYamlTwig from "./templates/plugin/version.yaml.twig";
 
 export class PluginGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         pluginClass: {
             destination: 'Plugin.php',
-            template: require("./templates/plugin/plugin.twig")
+            template: pluginTwig
         },
         composerJson: {
             destination: 'composer.json',
-            template: require("./templates/plugin/composer.json.twig"),
+            template: composerJsonTwig,
         },
         versionYaml: {
             destination: 'updates/version.yaml',
-            template: require("./templates/plugin/version.yaml.twig")
+            template: versionYamlTwig
         }
     };
 

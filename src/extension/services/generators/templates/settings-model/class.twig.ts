@@ -1,0 +1,42 @@
+export default `<?php
+
+namespace {{ namespace }}\Models;
+
+{% if usesSettingModel %}
+use System\Models\SettingModel;
+{% else %}
+use Model;
+use System\Behaviors\SettingsModel;
+{% endif %}
+
+/**
+ * @method static {{ model_pascal }} instance()
+ * @method static mixed get(string $key, mixed $default = null)
+ * @method static void set(string $key, string $value)
+ */
+{% if usesSettingModel %}
+class {{ model_pascal }} extends SettingModel
+{% else %}
+class {{ model_pascal }} extends Model
+{% endif %}
+{
+{% if not usesSettingModel %}
+    public $implement = [SettingsModel::class];
+{% endif %}
+    public $settingsCode = '{{ code }}';
+{% if placeFieldsInArray %}
+    public $settingsFields = [
+        'fields' => [
+            //
+        ]
+    ];
+{% else %}
+    public $settingsFields = 'fields.yaml';
+{% endif %}
+
+    public function initSettingsData()
+    {
+        //
+    }
+}
+`

@@ -1,12 +1,13 @@
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import template from './templates/command/class.twig';
 
 export class CommandGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         commandTemplate: {
             destination: 'console/{{ command_pascal }}.php',
-            template: require('./templates/command/class.twig')
+            template: template
         }
     };
 

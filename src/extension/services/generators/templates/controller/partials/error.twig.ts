@@ -1,0 +1,15 @@
+export default `<?php
+/**
+ * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
+ */
+?>
+{% if errorWrapper %}
+<div class="{{ errorWrapper }}">
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= $this->actionUrl('/') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+</div>
+{% else %}
+<p class="flash-message static error"><?= e($this->fatalError) ?></p>
+<p><a href="<?= $this->actionUrl('/') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+{% endif %}
+`;

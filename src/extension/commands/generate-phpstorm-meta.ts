@@ -1,9 +1,10 @@
+import Twig from 'twig';
 import * as vscode from 'vscode';
 import { FsHelpers } from "../../domain/helpers/fs-helpers";
 import { PathHelpers } from '../../domain/helpers/path-helpers';
 import { Str } from "../../helpers/str";
 import { chooseProject } from "./concerns/choose-project";
-import path = require('path');
+import template from './templates/phpstorm.meta.php.twig';
 
 
 /**
@@ -33,7 +34,9 @@ export async function generatePhpStormMeta() {
         `'${beh.uqn}' =>  \\${beh.fqn}::class`,
     ]);
 
-    const content = template({ behaviors });
+    const content = Twig
+        .twig({ data: template })
+        .render({ behaviors });
 
     FsHelpers.writeFile(filePath, content);
 }

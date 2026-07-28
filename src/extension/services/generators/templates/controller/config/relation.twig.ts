@@ -1,0 +1,16 @@
+export default `# ===================================
+#  Relation Behavior Config
+# ===================================
+
+# items:
+#     label: {{ model_pascal }} Item
+#     view:
+#         list: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/item/columns.yaml
+#         toolbarButtons: create|delete
+#     manage:
+#         form: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/item/fields.yaml
+#         recordsPerPage: 10
+#     customMessages:
+#         buttonCreate: Make Item
+#         buttonDelete: Destroy Item
+`;

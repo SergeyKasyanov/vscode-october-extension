@@ -2,20 +2,23 @@ import { AppDirectory } from "../../../domain/entities/owners/app-directory";
 import { Str } from "../../../helpers/str";
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import classTwig from './templates/model/class.twig';
+import configColumnsTwig from './templates/model/config/columns.twig';
+import configFieldsTwig from './templates/model/config/fields.twig';
 
 export class ModelGenerator extends GeneratorBase {
     protected stubs: Stubs = {
         classTemplate: {
             destination: 'models/{{ model_pascal }}.php',
-            template: require('./templates/model/class.twig')
+            template: classTwig
         },
         columnsConfig: {
             destination: 'models/{{ model_lower }}/columns.yaml',
-            template: require('./templates/model/config/columns.twig'),
+            template: configColumnsTwig,
         },
         fieldsConfig: {
             destination: 'models/{{ model_lower }}/fields.yaml',
-            template: require('./templates/model/config/fields.twig'),
+            template: configFieldsTwig,
         }
     };
 

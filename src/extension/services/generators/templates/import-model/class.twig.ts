@@ -1,0 +1,28 @@
+export default `<?php
+
+namespace {{ namespace }}\Models;
+
+use Backend\Models\ImportModel;
+use Exception;
+
+class {{ model_pascal }}Import extends ImportModel
+{
+    public $rules = [];
+
+    public function importData($results, $sessionKey = null)
+    {
+        foreach ($results as $row => $data) {
+            try {
+                $record = new {{ model_pascal }};
+                $record->fill($data);
+                $record->save();
+
+                $this->logCreated();
+            }
+            catch (Exception $ex) {
+                $this->logError($row, $ex->getMessage());
+            }
+        }
+    }
+}
+`;

@@ -1,0 +1,1 @@
+export default `1.0.1: First version of {{ namespace_dot_capital }}`;

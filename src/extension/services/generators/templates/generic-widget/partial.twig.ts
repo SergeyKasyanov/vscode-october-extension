@@ -1,0 +1,9 @@
+export default `<?php
+/**
+ * @var {{ namespace }}\Widgets\{{ widget_pascal }} $this
+ */
+?>
+<div id="<?= $this->getId() ?>">
+    <?= $this->getId() ?>
+</div>
+`;

@@ -1,0 +1,47 @@
+export default `<?php
+
+namespace {{ namespace }}\Console;
+
+use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
+
+class {{ command_pascal }} extends Command
+{
+{% if useSignature %}
+    protected $signature = '{{ plugin_lower }}:{{ command_dashed }} {exampleArgument} {--exampleOption}';
+{% else %}
+    protected $name = '{{ plugin_lower }}:{{ command_dashed }}';
+{% endif %}
+
+    protected $description = '{{ description }}';
+{% if hidden %}
+
+    protected $hidden = true;
+{% endif %}
+
+    public function handle()
+    {
+        // $argument = $this->argument('exampleArgument');
+        // $option   = $this->option('exampleOption');
+
+        $this->output->writeln('Hello world!');
+    }
+
+{% if not useSignature %}
+    protected function getArguments()
+    {
+        return [
+            // ['exampleArgument', InputArgument::REQUIRED, 'An example argument.'],
+        ];
+    }
+
+    protected function getOptions()
+    {
+        return [
+            // ['exampleOption', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+        ];
+    }
+{% endif %}
+}
+`

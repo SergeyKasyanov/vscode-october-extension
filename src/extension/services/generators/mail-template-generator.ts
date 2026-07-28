@@ -1,12 +1,13 @@
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import template from './templates/mail/template.twig';
 
 export class MailTemplateGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         file: {
             destination: 'views/mail/{{ filename }}.htm',
-            template: require('./templates/mail/template.twig')
+            template
         }
     };
 

@@ -1,25 +1,29 @@
 import { Project } from "../../../domain/entities/project";
 import { PropertyIsRequired } from "./errors/property-is-required";
 import { GeneratorBase, Stubs, TemplateVars } from "./generator-base";
+import classTwig from './templates/report-widget/class.twig';
+import partialTwig from './templates/report-widget/partial.twig';
+import scriptTwig from './templates/report-widget/script.twig';
+import styleTwig from './templates/report-widget/style.twig';
 
 export class ReportWidgetGenerator extends GeneratorBase {
 
     protected stubs: Stubs = {
         classTemplate: {
             destination: 'reportwidgets/{{ widget_pascal }}.php',
-            template: require('./templates/report-widget/class.twig')
+            template: classTwig
         },
         defaultPartial: {
             destination: 'reportwidgets/{{ widget_lower }}/partials/_{{ widget_snake }}.',
-            template: require('./templates/report-widget/partial.twig')
+            template: partialTwig
         },
         styleCss: {
             destination: 'reportwidgets/{{ widget_lower }}/assets/css/{{ widget_snake }}.css',
-            template: require('./templates/report-widget/style.twig')
+            template: styleTwig
         },
         scriptJs: {
             destination: 'reportwidgets/{{ widget_lower }}/assets/js/{{ widget_snake }}.js',
-            template: require('./templates/report-widget/script.twig')
+            template: scriptTwig
         },
     };
 
