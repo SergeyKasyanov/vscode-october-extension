@@ -16,7 +16,6 @@ async function main() {
         outfile: 'dist/extension.js',
         external: [
             'vscode',
-            'prettier',
         ],
         logLevel: 'warning',
         plugins: [
