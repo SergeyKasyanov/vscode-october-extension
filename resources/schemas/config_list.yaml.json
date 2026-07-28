@@ -48,8 +48,16 @@
           "type": "string"
         },
         {
-          "type": "boolean",
-          "const": false
+          "type": [
+            "string",
+            "boolean"
+          ],
+          "enum": [
+            "popup",
+            "popup@preview",
+            "popup@update",
+            false
+          ]
         }
       ]
     },
