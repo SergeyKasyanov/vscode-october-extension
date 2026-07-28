@@ -1,318 +1,59 @@
 {
+    "AJAX Framework": {
+        "body": "{% framework %}",
+        "description": "Enable ajax framework",
+        "prefix": "framework",
+        "scope": "text.html.twig.october"
+    },
+    "AJAX Framework extras": {
+        "body": "{% framework extras %}",
+        "description": "Enable ajax framework with extra features",
+        "prefix": "frameworkextras",
+        "scope": "text.html.twig.october"
+    },
+    "AJAX Framework extras turbo": {
+        "body": "{% framework extras turbo %}",
+        "description": "Enable ajax framework with extra features and turbo router",
+        "prefix": "frameworkextrasturbo",
+        "scope": "text.html.twig.october"
+    },
+    "AJAX Framework turbo": {
+        "body": "{% framework turbo %}",
+        "description": "Enable ajax framework with turbo router",
+        "prefix": "frameworkturbo",
+        "scope": "text.html.twig.october"
+    },
     "Apply tag": {
-        "prefix": "apply",
         "body": [
             "{% apply ${1:filter} %}",
             "    $0",
             "{% endapply %}"
         ],
         "description": "Apply Twig filters on a block of template data",
-        "scope": "text.html.twig.october"
-    },
-    "End apply block": {
-        "prefix": "endapply",
-        "body": "{% endapply %}",
-        "description": "End of apply block",
+        "prefix": "apply",
         "scope": "text.html.twig.october"
     },
     "Autoescape tag": {
-        "prefix": "autoescape",
         "body": [
             "{% autoescape '${1:type}' %}",
             "    $0",
             "{% endautoescape %}"
         ],
         "description": "Apply automatic escaping on a block of template data",
-        "scope": "text.html.twig.october"
-    },
-    "End autoescape block": {
-        "prefix": "endautoescape",
-        "body": "{% endautoescape %}",
-        "description": "End of autoescape block",
+        "prefix": "autoescape",
         "scope": "text.html.twig.october"
     },
     "Cache tag": {
-        "prefix": "cache",
         "body": [
             "{% cache '${1:key}' %}",
             "    $0",
             "{% endcache %}"
         ],
         "description": "The cache tag tells Twig to cache a template fragment",
-        "scope": "text.html.twig.october"
-    },
-    "End cache block": {
-        "prefix": "endcache",
-        "body": "{% endcache %}",
-        "description": "End of cache block",
-        "scope": "text.html.twig.october"
-    },
-    "Do tag": {
-        "prefix": "do",
-        "body": "{% do ${0:code} %}",
-        "description": "The do tag works exactly like the regular variable expression ({{ ... }}) just that it doesn't print anything",
-        "scope": "text.html.twig.october"
-    },
-    "For tag": {
-        "prefix": "for",
-        "body": [
-            "{% for ${1:item} in ${2:items} %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "Loop over each item in a sequence",
-        "scope": "text.html.twig.october"
-    },
-    "For range": {
-        "prefix": "forrange",
-        "body": [
-            "{% for ${1:item} in range(${2:low}, ${3:high}, ${4:step}) %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "Loop over each number in range",
-        "scope": "text.html.twig.october"
-    },
-    "For tag with else": {
-        "prefix": "forelse",
-        "body": [
-            "{% for ${1:item} in ${2:items} %}",
-            "    $3",
-            "{% else %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "For tag with else clause",
-        "scope": "text.html.twig.october"
-    },
-    "Loop over keys": {
-        "prefix": "forkeys",
-        "body": [
-            "{% for ${1:item} in ${2:items}|keys %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "Loop over each item key in a sequence",
-        "scope": "text.html.twig.october"
-    },
-    "Loop over keys and values": {
-        "prefix": "forkeyvalue",
-        "body": [
-            "{% for ${1:key}, ${2:item} in ${3:items} %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "Loop over each item and key in a sequence",
-        "scope": "text.html.twig.october"
-    },
-    "Loop over slice of items": {
-        "prefix": "forslice",
-        "body": [
-            "{% for ${1:item} in ${2:items}|slice(${3:0}, ${4:10}) %}",
-            "    $0",
-            "{% endfor %}"
-        ],
-        "description": "Loop over slice of items in a sequence",
-        "scope": "text.html.twig.october"
-    },
-    "End for block": {
-        "prefix": "endfor",
-        "body": "{% endfor %}",
-        "description": "End of for block",
-        "scope": "text.html.twig.october"
-    },
-    "If tag": {
-        "prefix": "if",
-        "body": [
-            "{% if ${1:condition} %}",
-            "    $0",
-            "{% endif %}"
-        ],
-        "description": "If statement",
-        "scope": "text.html.twig.october"
-    },
-    "If tag with test": {
-        "prefix": "ifis",
-        "body": [
-            "{% if ${1:variable} is ${2:test} %}",
-            "    $0",
-            "{% endif %}"
-        ],
-        "description": "If statement",
-        "scope": "text.html.twig.october"
-    },
-    "If-else tag": {
-        "prefix": "ifelse",
-        "body": [
-            "{% if ${1:condition} %}",
-            "    $2",
-            "{% else %}",
-            "    $0",
-            "{% endif %}"
-        ],
-        "description": "If statement with else block",
-        "scope": "text.html.twig.october"
-    },
-    "Else tag": {
-        "prefix": "else",
-        "body": [
-            "{% else %}",
-            "    $0"
-        ],
-        "description": "Else statement for use with \"if\" of \"for\" tags",
-        "scope": "text.html.twig.october"
-    },
-    "Elseif tag": {
-        "prefix": "elseif",
-        "body": [
-            "{% elseif ${1:condition} %}",
-            "    $0"
-        ],
-        "description": "Elseif statement",
-        "scope": "text.html.twig.october"
-    },
-    "End if block": {
-        "prefix": "endif",
-        "body": "{% endif %}",
-        "description": "End of if block",
-        "scope": "text.html.twig.october"
-    },
-    "Macro": {
-        "prefix": "macro",
-        "body": [
-            "{% macro ${1:name}(${2:params}) %}",
-            "    $0",
-            "{% endmacro %}"
-        ],
-        "description": "Define custom function",
-        "scope": "text.html.twig.october"
-    },
-    "Import macro": {
-        "prefix": "import",
-        "body": "{% import ${1:from} as ${2:name} %}",
-        "description": "Import macros",
-        "scope": "text.html.twig.october"
-    },
-    "End macro block": {
-        "prefix": "endmacro",
-        "body": "{% endmacro %}",
-        "description": "End of macro block",
-        "scope": "text.html.twig.october"
-    },
-    "Set variable": {
-        "prefix": "set",
-        "body": "{% set ${1:var} = ${0:value} %}",
-        "description": "Set variable's value",
-        "scope": "text.html.twig.october"
-    },
-    "Set block as variable value": {
-        "prefix": "setblock",
-        "body": [
-            "{% set ${1:var} %}",
-            "    $0",
-            "{% endset %}"
-        ],
-        "description": "Set block as variable value",
-        "scope": "text.html.twig.october"
-    },
-    "End set block": {
-        "prefix": "endset",
-        "body": "{% endset %}",
-        "description": "End set block",
-        "scope": "text.html.twig.october"
-    },
-    "Verbatim tag": {
-        "prefix": "verbatim",
-        "body": [
-            "{% verbatim %}",
-            "    $0",
-            "{% endverbatim %}"
-        ],
-        "description": "Verbatim tag marks sections as being raw text that should not be parsed",
-        "scope": "text.html.twig.october"
-    },
-    "End verbatim block": {
-        "prefix": "endverbatim",
-        "body": "{% endverbatim %}",
-        "description": "End of verbatim block",
-        "scope": "text.html.twig.october"
-    },
-    "With tag": {
-        "prefix": "with",
-        "body": [
-            "{% with ${1:variable} ${2:only} %}",
-            "    $0",
-            "{% endwith %}"
-        ],
-        "description": "Use the with tag to create a new inner scope.",
-        "scope": "text.html.twig.october"
-    },
-    "End with block": {
-        "prefix": "endwith",
-        "body": "{% endwith %}",
-        "description": "End with block",
-        "scope": "text.html.twig.october"
-    },
-    "Page tag": {
-        "prefix": "page",
-        "body": "{% page %}",
-        "description": "Renders the contents of a page into a layout template",
-        "scope": "text.html.twig.october"
-    },
-    "Partial tag": {
-        "prefix": "partial",
-        "body": "{% partial '${1:name}' ${2:var} %}",
-        "description": "Render partial",
-        "scope": "text.html.twig.october"
-    },
-    "Partial variable": {
-        "prefix": "partialvar",
-        "body": "{% set ${1:var} = partial('${2:name}') %}",
-        "description": "Setting Partial Contents to a Twig Variable",
-        "scope": "text.html.twig.october"
-    },
-    "Partial block": {
-        "prefix": "partialblock",
-        "body": [
-            "{% partial '${1:name}' ${2:var} %}",
-            "    $0",
-            "{% endpartial %}"
-        ],
-        "description": "Render partial",
-        "scope": "text.html.twig.october"
-    },
-    "End partial block": {
-        "prefix": "endpartial",
-        "body": "{% endpartial %}",
-        "description": "End of partial block",
-        "scope": "text.html.twig.october"
-    },
-    "Check if partial exists": {
-        "prefix": "haspartial",
-        "body": [
-            "{% if hasPartial('${1:name}') %}",
-            "    $2",
-            "{% else %}",
-            "    $0",
-            "{% endif %}"
-        ],
-        "description": "Check is partial exists",
-        "scope": "text.html.twig.october"
-    },
-    "Content tag": {
-        "prefix": "content",
-        "body": "{% content '${1:name}' ${2:var} %}",
-        "description": "Render content file",
-        "scope": "text.html.twig.october"
-    },
-    "Content variable": {
-        "prefix": "contentvar",
-        "body": "{% set ${1:var} = content('${2:name}', ${3:{var: 'val'}}) %}",
-        "description": "Setting content to a Twig Variable",
+        "prefix": "cache",
         "scope": "text.html.twig.october"
     },
     "Check if content exists": {
-        "prefix": "hascontent",
         "body": [
             "{% if hasContent('${1:name}') %}",
             "    $2",
@@ -321,148 +62,413 @@
             "{% endif %}"
         ],
         "description": "Check is content exists",
+        "prefix": "hascontent",
+        "scope": "text.html.twig.october"
+    },
+    "Check if partial exists": {
+        "body": [
+            "{% if hasPartial('${1:name}') %}",
+            "    $2",
+            "{% else %}",
+            "    $0",
+            "{% endif %}"
+        ],
+        "description": "Check is partial exists",
+        "prefix": "haspartial",
         "scope": "text.html.twig.october"
     },
     "Component tag": {
-        "prefix": "component",
         "body": "{% component '${1:name}' ${2:var} %}",
         "description": "Render component",
+        "prefix": "component",
         "scope": "text.html.twig.october"
     },
-    "Placeholder tag": {
-        "prefix": "placeholder",
-        "body": "{% placeholder ${1:name} %}",
-        "description": "Render a placeholder section",
+    "Content tag": {
+        "body": "{% content '${1:name}' ${2:var} %}",
+        "description": "Render content file",
+        "prefix": "content",
         "scope": "text.html.twig.october"
     },
-    "Placeholder tag with title and type": {
-        "prefix": "placeholdervars",
-        "body": "{% placeholder ${1:name} ${2:title=\"\"} ${3:type=\"\"} %}",
-        "description": "Render a placeholder section with title and type attributes",
+    "Content variable": {
+        "body": "{% set ${1:var} = content('${2:name}', ${3:{var: 'val'}}) %}",
+        "description": "Setting content to a Twig Variable",
+        "prefix": "contentvar",
         "scope": "text.html.twig.october"
     },
-    "Placeholder tag with default content": {
-        "prefix": "placeholderblock",
+    "Do tag": {
+        "body": "{% do ${0:code} %}",
+        "description": "The do tag works exactly like the regular variable expression ({{ ... }}) just that it doesn't print anything",
+        "prefix": "do",
+        "scope": "text.html.twig.october"
+    },
+    "Else tag": {
         "body": [
-            "{% placeholder ${1:name} default %}",
-            "    $0",
-            "{% endplaceholder %}"
+            "{% else %}",
+            "    $0"
         ],
-        "description": "Render a placeholder section with default content",
+        "description": "Else statement for use with \"if\" of \"for\" tags",
+        "prefix": "else",
+        "scope": "text.html.twig.october"
+    },
+    "Elseif tag": {
+        "body": [
+            "{% elseif ${1:condition} %}",
+            "    $0"
+        ],
+        "description": "Elseif statement",
+        "prefix": "elseif",
+        "scope": "text.html.twig.october"
+    },
+    "End apply block": {
+        "body": "{% endapply %}",
+        "description": "End of apply block",
+        "prefix": "endapply",
+        "scope": "text.html.twig.october"
+    },
+    "End autoescape block": {
+        "body": "{% endautoescape %}",
+        "description": "End of autoescape block",
+        "prefix": "endautoescape",
+        "scope": "text.html.twig.october"
+    },
+    "End cache block": {
+        "body": "{% endcache %}",
+        "description": "End of cache block",
+        "prefix": "endcache",
+        "scope": "text.html.twig.october"
+    },
+    "End for block": {
+        "body": "{% endfor %}",
+        "description": "End of for block",
+        "prefix": "endfor",
+        "scope": "text.html.twig.october"
+    },
+    "End if block": {
+        "body": "{% endif %}",
+        "description": "End of if block",
+        "prefix": "endif",
+        "scope": "text.html.twig.october"
+    },
+    "End macro block": {
+        "body": "{% endmacro %}",
+        "description": "End of macro block",
+        "prefix": "endmacro",
+        "scope": "text.html.twig.october"
+    },
+    "End of flash block": {
+        "body": "{% endflash %}",
+        "description": "End of flash block",
+        "prefix": "endflash",
         "scope": "text.html.twig.october"
     },
     "End of placeholder block": {
-        "prefix": "endplaceholder",
         "body": "{% endplaceholder %}",
         "description": "End of placeholder block",
-        "scope": "text.html.twig.october"
-    },
-    "Put tag": {
-        "prefix": "put",
-        "body": [
-            "{% put ${1:placeholder} %}",
-            "    $0",
-            "{% endput %}"
-        ],
-        "description": "Replace placeholder with provided content",
-        "scope": "text.html.twig.october"
-    },
-    "Put to variable": {
-        "prefix": "putvar",
-        "body": [
-            "{% put ${1:placeholder} = ${0:value} %}"
-        ],
-        "description": "Replace placeholder with provided content",
+        "prefix": "endplaceholder",
         "scope": "text.html.twig.october"
     },
     "End of put tag": {
-        "prefix": "endput",
         "body": "{% endput %}",
         "description": "End of put block",
+        "prefix": "endput",
         "scope": "text.html.twig.october"
     },
-    "Scripts": {
-        "prefix": "scripts",
-        "body": "{% scripts %}",
-        "description": "Inserts JavaScript file references to scripts injected by the application",
+    "End partial block": {
+        "body": "{% endpartial %}",
+        "description": "End of partial block",
+        "prefix": "endpartial",
         "scope": "text.html.twig.october"
     },
-    "Styles": {
-        "prefix": "styles",
-        "body": "{% styles %}",
-        "description": "Inserts stylesheets file references to styles injected by the application",
+    "End set block": {
+        "body": "{% endset %}",
+        "description": "End set block",
+        "prefix": "endset",
         "scope": "text.html.twig.october"
     },
-    "Put scripts": {
-        "prefix": "putscripts",
-        "body": [
-            "{% put scripts %}",
-            "    $0",
-            "{% endput %}"
-        ],
-        "description": "Inject javascript in scripts placeholder",
+    "End verbatim block": {
+        "body": "{% endverbatim %}",
+        "description": "End of verbatim block",
+        "prefix": "endverbatim",
         "scope": "text.html.twig.october"
     },
-    "Put styles": {
-        "prefix": "putstyles",
-        "body": [
-            "{% put styles %}",
-            "    $0",
-            "{% endput %}"
-        ],
-        "description": "Inject javascript in styles placeholder",
+    "End with block": {
+        "body": "{% endwith %}",
+        "description": "End with block",
+        "prefix": "endwith",
         "scope": "text.html.twig.october"
     },
     "Flash messages": {
-        "prefix": "flash",
         "body": [
             "{% flash ${1:type} %}",
             "    $0",
             "{% endflash %}"
         ],
         "description": "Render any flash messages stored in the user session",
+        "prefix": "flash",
         "scope": "text.html.twig.october"
     },
-    "End of flash block":{
-        "prefix": "endflash",
-        "body": "{% endflash %}",
-        "description": "End of flash block",
+    "For range": {
+        "body": [
+            "{% for ${1:item} in range(${2:low}, ${3:high}, ${4:step}) %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "Loop over each number in range",
+        "prefix": "forrange",
         "scope": "text.html.twig.october"
     },
-    "Page URI": {
-        "prefix": "pageuri",
-        "body": "{{ '${1:name}' | page${2:($0)} }}",
-        "description": "Page URI",
+    "For tag": {
+        "body": [
+            "{% for ${1:item} in ${2:items} %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "Loop over each item in a sequence",
+        "prefix": "for",
+        "scope": "text.html.twig.october"
+    },
+    "For tag with else": {
+        "body": [
+            "{% for ${1:item} in ${2:items} %}",
+            "    $3",
+            "{% else %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "For tag with else clause",
+        "prefix": "forelse",
+        "scope": "text.html.twig.october"
+    },
+    "If tag": {
+        "body": [
+            "{% if ${1:condition} %}",
+            "    $0",
+            "{% endif %}"
+        ],
+        "description": "If statement",
+        "prefix": "if",
+        "scope": "text.html.twig.october"
+    },
+    "If tag with test": {
+        "body": [
+            "{% if ${1:variable} is ${2:test} %}",
+            "    $0",
+            "{% endif %}"
+        ],
+        "description": "If statement",
+        "prefix": "ifis",
+        "scope": "text.html.twig.october"
+    },
+    "If-else tag": {
+        "body": [
+            "{% if ${1:condition} %}",
+            "    $2",
+            "{% else %}",
+            "    $0",
+            "{% endif %}"
+        ],
+        "description": "If statement with else block",
+        "prefix": "ifelse",
+        "scope": "text.html.twig.october"
+    },
+    "Import macro": {
+        "body": "{% import ${1:from} as ${2:name} %}",
+        "description": "Import macros",
+        "prefix": "import",
+        "scope": "text.html.twig.october"
+    },
+    "Loop over keys": {
+        "body": [
+            "{% for ${1:item} in ${2:items}|keys %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "Loop over each item key in a sequence",
+        "prefix": "forkeys",
+        "scope": "text.html.twig.october"
+    },
+    "Loop over keys and values": {
+        "body": [
+            "{% for ${1:key}, ${2:item} in ${3:items} %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "Loop over each item and key in a sequence",
+        "prefix": "forkeyvalue",
+        "scope": "text.html.twig.october"
+    },
+    "Loop over slice of items": {
+        "body": [
+            "{% for ${1:item} in ${2:items}|slice(${3:0}, ${4:10}) %}",
+            "    $0",
+            "{% endfor %}"
+        ],
+        "description": "Loop over slice of items in a sequence",
+        "prefix": "forslice",
+        "scope": "text.html.twig.october"
+    },
+    "Macro": {
+        "body": [
+            "{% macro ${1:name}(${2:params}) %}",
+            "    $0",
+            "{% endmacro %}"
+        ],
+        "description": "Define custom function",
+        "prefix": "macro",
         "scope": "text.html.twig.october"
     },
     "Page Filtered string": {
-        "prefix": "pagestr",
         "body": "'${1:name}' | page${2:($0)}",
         "description": "Page Filtered string",
+        "prefix": "pagestr",
         "scope": "text.html.twig.october"
     },
-    "AJAX Framework": {
-        "prefix": "framework",
-        "body": "{% framework %}",
-        "description": "Enable ajax framework",
+    "Page tag": {
+        "body": "{% page %}",
+        "description": "Renders the contents of a page into a layout template",
+        "prefix": "page",
         "scope": "text.html.twig.october"
     },
-    "AJAX Framework extras": {
-        "prefix": "frameworkextras",
-        "body": "{% framework extras %}",
-        "description": "Enable ajax framework with extra features",
+    "Page URI": {
+        "body": "{{ '${1:name}' | page${2:($0)} }}",
+        "description": "Page URI",
+        "prefix": "pageuri",
         "scope": "text.html.twig.october"
     },
-    "AJAX Framework turbo": {
-        "prefix": "frameworkturbo",
-        "body": "{% framework turbo %}",
-        "description": "Enable ajax framework with turbo router",
+    "Partial block": {
+        "body": [
+            "{% partial '${1:name}' ${2:var} %}",
+            "    $0",
+            "{% endpartial %}"
+        ],
+        "description": "Render partial",
+        "prefix": "partialblock",
         "scope": "text.html.twig.october"
     },
-    "AJAX Framework extras turbo": {
-        "prefix": "frameworkextrasturbo",
-        "body": "{% framework extras turbo %}",
-        "description": "Enable ajax framework with extra features and turbo router",
+    "Partial tag": {
+        "body": "{% partial '${1:name}' ${2:var} %}",
+        "description": "Render partial",
+        "prefix": "partial",
+        "scope": "text.html.twig.october"
+    },
+    "Partial variable": {
+        "body": "{% set ${1:var} = partial('${2:name}') %}",
+        "description": "Setting Partial Contents to a Twig Variable",
+        "prefix": "partialvar",
+        "scope": "text.html.twig.october"
+    },
+    "Placeholder tag": {
+        "body": "{% placeholder ${1:name} %}",
+        "description": "Render a placeholder section",
+        "prefix": "placeholder",
+        "scope": "text.html.twig.october"
+    },
+    "Placeholder tag with default content": {
+        "body": [
+            "{% placeholder ${1:name} default %}",
+            "    $0",
+            "{% endplaceholder %}"
+        ],
+        "description": "Render a placeholder section with default content",
+        "prefix": "placeholderblock",
+        "scope": "text.html.twig.october"
+    },
+    "Placeholder tag with title and type": {
+        "body": "{% placeholder ${1:name} ${2:title=\"\"} ${3:type=\"\"} %}",
+        "description": "Render a placeholder section with title and type attributes",
+        "prefix": "placeholdervars",
+        "scope": "text.html.twig.october"
+    },
+    "Partial component props": {
+        "body": "{% props {$0} %}",
+        "description": "The tag is used inside CMS partials to declare which parameters are props (template data) and which are attributes (HTML pass-through).",
+        "prefix": "props",
+        "scope": "text.html.twig.october"
+    },
+    "Put scripts": {
+        "body": [
+            "{% put scripts %}",
+            "    $0",
+            "{% endput %}"
+        ],
+        "description": "Inject javascript in scripts placeholder",
+        "prefix": "putscripts",
+        "scope": "text.html.twig.october"
+    },
+    "Put styles": {
+        "body": [
+            "{% put styles %}",
+            "    $0",
+            "{% endput %}"
+        ],
+        "description": "Inject javascript in styles placeholder",
+        "prefix": "putstyles",
+        "scope": "text.html.twig.october"
+    },
+    "Put tag": {
+        "body": [
+            "{% put ${1:placeholder} %}",
+            "    $0",
+            "{% endput %}"
+        ],
+        "description": "Replace placeholder with provided content",
+        "prefix": "put",
+        "scope": "text.html.twig.october"
+    },
+    "Put to variable": {
+        "body": [
+            "{% put ${1:placeholder} = ${0:value} %}"
+        ],
+        "description": "Replace placeholder with provided content",
+        "prefix": "putvar",
+        "scope": "text.html.twig.october"
+    },
+    "Scripts": {
+        "body": "{% scripts %}",
+        "description": "Inserts JavaScript file references to scripts injected by the application",
+        "prefix": "scripts",
+        "scope": "text.html.twig.october"
+    },
+    "Set block as variable value": {
+        "body": [
+            "{% set ${1:var} %}",
+            "    $0",
+            "{% endset %}"
+        ],
+        "description": "Set block as variable value",
+        "prefix": "setblock",
+        "scope": "text.html.twig.october"
+    },
+    "Set variable": {
+        "body": "{% set ${1:var} = ${0:value} %}",
+        "description": "Set variable's value",
+        "prefix": "set",
+        "scope": "text.html.twig.october"
+    },
+    "Styles": {
+        "body": "{% styles %}",
+        "description": "Inserts stylesheets file references to styles injected by the application",
+        "prefix": "styles",
+        "scope": "text.html.twig.october"
+    },
+    "Verbatim tag": {
+        "body": [
+            "{% verbatim %}",
+            "    $0",
+            "{% endverbatim %}"
+        ],
+        "description": "Verbatim tag marks sections as being raw text that should not be parsed",
+        "prefix": "verbatim",
+        "scope": "text.html.twig.october"
+    },
+    "With tag": {
+        "body": [
+            "{% with ${1:variable} ${2:only} %}",
+            "    $0",
+            "{% endwith %}"
+        ],
+        "description": "Use the with tag to create a new inner scope.",
+        "prefix": "with",
         "scope": "text.html.twig.october"
     }
 }
