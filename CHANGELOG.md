@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.34.0
+
+- October 4.2, 4.3 support
+- 
+
 ## 0.33.0
 
 - October 4.1 support

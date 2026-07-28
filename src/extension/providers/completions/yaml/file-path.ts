@@ -18,9 +18,9 @@ const PATH_KEY = /\s*(path)\:\s*/g;
 const PATH_KEY_PLUGIN = /\s*(path)\:\s*\$/;
 const PATH_KEY_ROOT = /\s*(path)\:\s*\~/;
 
-const CONFIG_KEY = /\s*(list|form|groups|filter)\:\s*/g;
-const CONFIG_KEY_PLUGIN = /\s*(list|form|groups|filter)\:\s*\$/;
-const CONFIG_KEY_ROOT = /\s*(list|form|groups|filter)\:\s*\~/;
+const CONFIG_KEY = /\s*(list|form|groups|filter|quickCreate|fields)\:\s*/g;
+const CONFIG_KEY_PLUGIN = /\s*(list|form|groups|filter|quickCreate|fields)\:\s*\$/;
+const CONFIG_KEY_ROOT = /\s*(list|form|groups|filter|quickCreate|fields)\:\s*\~/;
 
 const VIEW_PART = /^[\$\~\w\\\/\-\_\.:]*$/;
 const CONFIG_PART = /^[\$\~\w\\\/\-\_\.]*$/;
@@ -227,6 +227,21 @@ export class FilePath implements vscode.CompletionItemProvider {
             if (fieldType && 'repeater' === fieldType) {
                 return true;
             }
+        }
+
+        if (keyValue.key === 'quickCreate') {
+            // fields.yaml
+            const fieldType = YamlHelpers.getSibling(this.document!, this.position!, 'type');
+            if (fieldType && 'relation' === fieldType) {
+                return true;
+            }
+        }
+
+        if (keyValue.key === 'fields') {
+            // fields.yaml
+            const parentKey = YamlHelpers.getParent(this.document!, this.position!.line);
+
+            return parentKey === 'quickCreate';
         }
 
         return false;
