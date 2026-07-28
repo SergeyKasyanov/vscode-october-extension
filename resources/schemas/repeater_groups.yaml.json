@@ -314,6 +314,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -545,6 +548,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -732,6 +738,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -936,6 +945,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -1123,6 +1135,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -1317,6 +1332,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -1515,6 +1533,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -1755,6 +1776,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -1978,6 +2002,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -2187,6 +2214,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -2374,6 +2404,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -2603,6 +2636,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -2791,6 +2827,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -2978,6 +3017,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -3180,6 +3222,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -3367,6 +3412,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -3558,6 +3606,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -3758,6 +3809,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -3971,6 +4025,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -4358,6 +4415,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -4584,6 +4644,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -4850,6 +4913,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -5050,6 +5116,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -5258,6 +5327,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -5526,6 +5598,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -7449,6 +7524,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -7491,6 +7569,45 @@
               "items": {
                 "type": "string"
               }
+            }
+          ]
+        },
+        "quickCreate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "fields": {
+                  "type": "string"
+                },
+                "optionText": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "popupSize": {
+                  "type": "string",
+                  "enum": [
+                    "giant",
+                    "huge",
+                    "large",
+                    "small",
+                    "tiny",
+                    "adaptive"
+                  ]
+                },
+                "context": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "fields"
+              ],
+              "additionalProperties": false
             }
           ]
         },
@@ -7690,6 +7807,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -7940,6 +8060,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -8141,6 +8264,9 @@
             }
           ]
         },
+        "translatable": {
+          "type": "boolean"
+        },
         "trigger": {
           "$ref": "#/definitions/Trigger"
         },
@@ -8331,6 +8457,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -8535,6 +8664,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
@@ -8770,6 +8902,9 @@
               "additionalProperties": false
             }
           ]
+        },
+        "translatable": {
+          "type": "boolean"
         },
         "trigger": {
           "$ref": "#/definitions/Trigger"
