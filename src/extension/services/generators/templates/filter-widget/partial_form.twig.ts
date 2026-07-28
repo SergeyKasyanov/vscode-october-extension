@@ -1,6 +1,6 @@
 export default `<?php
 /**
- * @var {{ namespace }}\FilterWidgets\{{ widget_pascal }} $this
+ * @var {{ namespace }}\\FilterWidgets\\{{ widget_pascal }} $this
  */
 ?>
 <div class="filter-box">

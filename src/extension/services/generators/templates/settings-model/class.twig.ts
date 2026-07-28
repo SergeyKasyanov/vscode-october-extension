@@ -1,12 +1,12 @@
 export default `<?php
 
-namespace {{ namespace }}\Models;
+namespace {{ namespace }}\\Models;
 
 {% if usesSettingModel %}
-use System\Models\SettingModel;
+use System\\Models\\SettingModel;
 {% else %}
 use Model;
-use System\Behaviors\SettingsModel;
+use System\\Behaviors\\SettingsModel;
 {% endif %}
 
 /**

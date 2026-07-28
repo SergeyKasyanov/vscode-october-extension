@@ -1,8 +1,8 @@
 export default `<?php
 
-namespace {{ namespace }}\FilterWidgets;
+namespace {{ namespace }}\\FilterWidgets;
 
-use Backend\Classes\FilterWidgetBase;
+use Backend\\Classes\\FilterWidgetBase;
 
 class {{ widget_pascal }} extends FilterWidgetBase
 {

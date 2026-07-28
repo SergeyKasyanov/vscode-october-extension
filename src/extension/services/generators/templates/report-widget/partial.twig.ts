@@ -1,6 +1,6 @@
 export default `<?php
 /**
- * @var {{ namespace }}\ReportWidgets\{{ widget_pascal }} $this
+ * @var {{ namespace }}\\ReportWidgets\\{{ widget_pascal }} $this
  */
 ?>
 <div class="report-widget">

@@ -1,6 +1,6 @@
 export default `<?php
 /**
- * @var {{ namespace }}\FormWidgets\{{ widget_pascal }} $this
+ * @var {{ namespace }}\\FormWidgets\\{{ widget_pascal }} $this
  */
 ?>
 <?php if ($this->previewMode): ?>

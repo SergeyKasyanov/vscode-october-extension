@@ -1,9 +1,9 @@
 export default `
 <?php
 
-namespace {{ namespace }}\Components;
+namespace {{ namespace }}\\Components;
 
-use Cms\Classes\ComponentBase;
+use Cms\\Classes\\ComponentBase;
 
 class {{ component_pascal }} extends ComponentBase
 {

@@ -1,25 +1,25 @@
 export default `<?php
 
-namespace {{ namespace }}\Controllers;
+namespace {{ namespace }}\\Controllers;
 
 use BackendMenu;
-use Backend\Classes\Controller;
+use Backend\\Classes\\Controller;
 
 class {{ controller_pascal }} extends Controller
 {
 {% if addListControllerBehavior or addFormControllerBehavior or addRelationControllerBehavior or addImportExportControllerBehavior %}
     public $implement = [
 {% if addListControllerBehavior %}
-        \Backend\Behaviors\ListController::class,
+        \\Backend\\Behaviors\\ListController::class,
 {% endif %}
 {% if addFormControllerBehavior %}
-        \Backend\Behaviors\FormController::class,
+        \\Backend\\Behaviors\\FormController::class,
 {% endif %}
 {% if addRelationControllerBehavior %}
-        \Backend\Behaviors\RelationController::class,
+        \\Backend\\Behaviors\\RelationController::class,
 {% endif %}
 {% if addImportExportControllerBehavior %}
-        \Backend\Behaviors\ImportExportController::class,
+        \\Backend\\Behaviors\\ImportExportController::class,
 {% endif %}
     ];
 

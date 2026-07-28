@@ -1,10 +1,10 @@
 export default `<?php
 
-namespace {{ namespace }}\Console;
+namespace {{ namespace }}\\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\\Console\\Command;
+use Symfony\\Component\\Console\\Input\\InputOption;
+use Symfony\\Component\\Console\\Input\\InputArgument;
 
 class {{ command_pascal }} extends Command
 {

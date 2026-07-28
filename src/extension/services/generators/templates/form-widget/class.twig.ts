@@ -1,8 +1,8 @@
 export default `<?php
 
-namespace {{ namespace }}\FormWidgets;
+namespace {{ namespace }}\\FormWidgets;
 
-use Backend\Classes\FormWidgetBase;
+use Backend\\Classes\\FormWidgetBase;
 
 class {{ widget_pascal }} extends FormWidgetBase
 {

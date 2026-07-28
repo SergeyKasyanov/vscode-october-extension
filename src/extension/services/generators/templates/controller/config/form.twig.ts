@@ -9,7 +9,7 @@ name: {{ model_pascal }}
 form: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/fields.yaml
 
 # Model Class name
-modelClass: {{ namespace }}\Models\{{ model_pascal }}
+modelClass: {{ namespace }}\\Models\\{{ model_pascal }}
 
 # Default redirect location
 defaultRedirect: {{ namespace_slash }}/{{ controller_lower }}

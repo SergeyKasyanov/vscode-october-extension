@@ -1,7 +1,7 @@
 export default `<?php
 /**
- * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
- * @var {{ namespace }}\Models\{{ model_pascal }} $formModel
+ * @var {{ namespace }}\\Controllers\\{{ controller_pascal }} $this
+ * @var {{ namespace }}\\Models\\{{ model_pascal }} $formModel
  */
 ?>
 <?php Block::put('breadcrumb') ?>

@@ -3,9 +3,9 @@ export default `<?php
 namespace {{ namespace }};
 
 use Backend;
-use System\Classes\PluginBase;
+use System\\Classes\\PluginBase;
 {% if addRegisterScheduleMethod %}
-use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\\Console\\Scheduling\\Schedule;
 {% endif %}
 
 class Plugin extends PluginBase
@@ -36,7 +36,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            // \{{ namespace }}\Components\MyComponent::class => 'myComponent',
+            // \\{{ namespace }}\\Components\\MyComponent::class => 'myComponent',
         ];
     }
 
@@ -45,7 +45,7 @@ class Plugin extends PluginBase
     public function registerPageSnippets()
     {
         return [
-            // \{{ namespace }}\Components\MyComponent::class => 'myComponentSnippet',
+            // \\{{ namespace }}\\Components\\MyComponent::class => 'myComponentSnippet',
         ];
     }
 
@@ -77,7 +77,7 @@ class Plugin extends PluginBase
             // 'settings' => [
             //     'label'       => '{{ namespace_dot_capital }}',
             //     'description' => '{{ namespace_dot_capital }} description',
-            //     'category'    => \System\Classes\SettingsManager::CATEGORY_SYSTEM,
+            //     'category'    => \\System\\Classes\\SettingsManager::CATEGORY_SYSTEM,
             //     'icon'        => 'icon-cog',
             //     'url'         => Backend::url('{{ namespace_slash }}/settings'),
             //     'order'       => 500,
@@ -92,9 +92,9 @@ class Plugin extends PluginBase
             // 'settings' => [
             //     'label'       => '{{ namespace_dot_capital }}',
             //     'description' => '{{ namespace_dot_capital }} description',
-            //     'category'    => \System\Classes\SettingsManager::CATEGORY_SYSTEM,
+            //     'category'    => \\System\\Classes\\SettingsManager::CATEGORY_SYSTEM,
             //     'icon'        => 'icon-cog',
-            //     'class'       => \{{ namespace }}\Models\Setting::class,
+            //     'class'       => \\{{ namespace }}\\Models\\Setting::class,
             //     'order'       => 500,
             //     'keywords'    => '{{ author_lower }} {{ plugin }}',
             //     'permissions' => ['{{ namespace_dot }}.access_settings']
@@ -158,7 +158,7 @@ class Plugin extends PluginBase
     public function registerContentFields()
     {
         return [
-            // \{{ namespace }}\ContentFields\MyContentField::class => 'mycontentfield'
+            // \\{{ namespace }}\\ContentFields\\MyContentField::class => 'mycontentfield'
         ];
     }
 

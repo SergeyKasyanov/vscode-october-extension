@@ -4,11 +4,11 @@ export default `# ===================================
 
 import:
     title: Import {{ controller_pascal }}
-    modelClass: {{ namespace }}\Models\{{ model_pascal }}Import
+    modelClass: {{ namespace }}\\Models\\{{ model_pascal }}Import
     list: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/columns.yaml
 
 export:
     title: Export {{ controller_pascal }}
-    modelClass: {{ namespace }}\Models\{{ model_pascal }}Export
+    modelClass: {{ namespace }}\\Models\\{{ model_pascal }}Export
     list: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/columns.yaml
 `

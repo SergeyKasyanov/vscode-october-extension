@@ -1,8 +1,8 @@
 export default `<?php
 
-namespace {{ namespace }}\ReportWidgets;
+namespace {{ namespace }}\\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
+use Backend\\Classes\\ReportWidgetBase;
 use Exception;
 
 class {{ widget_pascal }} extends ReportWidgetBase

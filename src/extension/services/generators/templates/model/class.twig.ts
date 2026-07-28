@@ -1,49 +1,49 @@
 export default `<?php
 
-namespace {{ namespace }}\Models;
+namespace {{ namespace }}\\Models;
 
 use Model;
 {% if addTimestamps or addTraitSoftDelete %}
-use October\Rain\Argon\Argon;
+use October\\Rain\\Argon\\Argon;
 {% endif %}
 {% if addTraitNullable %}
-use October\Rain\Database\Traits\Nullable;
+use October\\Rain\\Database\\Traits\\Nullable;
 {% endif %}
 {% if addTraitHashable %}
-use October\Rain\Database\Traits\Hashable;
+use October\\Rain\\Database\\Traits\\Hashable;
 {% endif %}
 {% if addTraitPurgeable %}
-use October\Rain\Database\Traits\Purgeable;
+use October\\Rain\\Database\\Traits\\Purgeable;
 {% endif %}
 {% if addTraitEncryptable %}
-use October\Rain\Database\Traits\Encryptable;
+use October\\Rain\\Database\\Traits\\Encryptable;
 {% endif %}
 {% if addTraitSluggable %}
-use October\Rain\Database\Traits\Sluggable;
+use October\\Rain\\Database\\Traits\\Sluggable;
 {% endif %}
 {% if addTraitSortable %}
-use October\Rain\Database\Traits\Sortable;
+use October\\Rain\\Database\\Traits\\Sortable;
 {% endif %}
 {% if addTraitSortableRelation %}
-use October\Rain\Database\Traits\SortableRelation;
+use October\\Rain\\Database\\Traits\\SortableRelation;
 {% endif %}
 {% if addTraitSimpleTree %}
-use October\Rain\Database\Traits\SimpleTree;
+use October\\Rain\\Database\\Traits\\SimpleTree;
 {% endif %}
 {% if addTraitNestedTree %}
-use October\Rain\Database\Traits\NestedTree;
+use October\\Rain\\Database\\Traits\\NestedTree;
 {% endif %}
 {% if addTraitMultisite %}
-use October\Rain\Database\Traits\Multisite;
+use October\\Rain\\Database\\Traits\\Multisite;
 {% endif %}
 {% if addTraitValidation %}
-use October\Rain\Database\Traits\Validation;
+use October\\Rain\\Database\\Traits\\Validation;
 {% endif %}
 {% if addTraitSoftDelete %}
-use October\Rain\Database\Traits\SoftDelete;
+use October\\Rain\\Database\\Traits\\SoftDelete;
 {% endif %}
 {% if addTraitRevisionable %}
-use October\Rain\Database\Traits\Revisionable;
+use October\\Rain\\Database\\Traits\\Revisionable;
 use BackendAuth;
 {% endif %}
 
@@ -148,7 +148,7 @@ class {{ model_pascal }} extends Model
     public $morphOne = [];
 {% if addTraitRevisionable %}
     public $morphMany = [
-        'revision_history' => [\System\Models\Revision::class, 'name' => 'revisionable']
+        'revision_history' => [\\System\\Models\\Revision::class, 'name' => 'revisionable']
     ];
 {% else %}
     public $morphMany = [];
@@ -159,7 +159,7 @@ class {{ model_pascal }} extends Model
 {% if addTraitRevisionable and not addRelations %}
 
     public $morphMany = [
-        'revision_history' => [\System\Models\Revision::class, 'name' => 'revisionable']
+        'revision_history' => [\\System\\Models\\Revision::class, 'name' => 'revisionable']
     ];
 {% endif %}
 {% if addTraitNullable %}

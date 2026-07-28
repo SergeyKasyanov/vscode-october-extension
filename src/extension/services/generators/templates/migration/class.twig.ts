@@ -1,10 +1,10 @@
 export default `<?php
 
-namespace {{ namespace }}\Updates;
+namespace {{ namespace }}\\Updates;
 
 use Schema;
-use October\Rain\Database\Schema\Blueprint;
-use October\Rain\Database\Updates\Migration;
+use October\\Rain\\Database\\Schema\\Blueprint;
+use October\\Rain\\Database\\Updates\\Migration;
 
 {% if anonymousClass %}
 return new class extends Migration

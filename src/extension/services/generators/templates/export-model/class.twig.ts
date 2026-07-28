@@ -1,8 +1,8 @@
 export default `<?php
 
-namespace {{ namespace }}\Models;
+namespace {{ namespace }}\\Models;
 
-use Backend\Models\ExportModel;
+use Backend\\Models\\ExportModel;
 use Exception;
 
 class {{ model_pascal }}Export extends ExportModel

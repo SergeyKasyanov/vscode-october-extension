@@ -1,6 +1,6 @@
 export default `<?php
 /**
- * @var {{ namespace }}\Controllers\{{ controller_pascal }} $this
+ * @var {{ namespace }}\\Controllers\\{{ controller_pascal }} $this
  */
 ?>
 <ul>

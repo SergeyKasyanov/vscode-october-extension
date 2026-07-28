@@ -1,8 +1,8 @@
 export default `<?php
 
-namespace {{ namespace }}\Widgets;
+namespace {{ namespace }}\\Widgets;
 
-use Backend\Classes\WidgetBase;
+use Backend\\Classes\\WidgetBase;
 
 class {{ widget_pascal }} extends WidgetBase
 {

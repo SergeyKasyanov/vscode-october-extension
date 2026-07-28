@@ -6,7 +6,7 @@ export default `# ===================================
 list: {{ namespace_slash == 'app' ? '~' : '$' }}/{{ namespace_slash }}/models/{{ model_lower }}/columns.yaml
 
 # Model Class name
-modelClass: {{ namespace }}\Models\{{ model_pascal }}
+modelClass: {{ namespace }}\\Models\\{{ model_pascal }}
 
 # List Title
 title: {{ controller_pascal }}

@@ -1,14 +1,14 @@
 export default `<?php
 
 namespace PHPSTORM_META {
-    override(\app(), map(['' => '@']));
-    override(\App::make(), map(['' => '@']));
-    override(\Illuminate\Foundation\Application::make(), map(['' => '@']));
-    override(\October\Rain\Foundation\Application::make(), map(['' => '@']));
-    override(\Illuminate\Support\Facades\App::make(), map(['' => '@']));
+    override(\\app(), map(['' => '@']));
+    override(\\App::make(), map(['' => '@']));
+    override(\\Illuminate\\Foundation\\Application::make(), map(['' => '@']));
+    override(\\October\\Rain\\Foundation\\Application::make(), map(['' => '@']));
+    override(\\Illuminate\\Support\\Facades\\App::make(), map(['' => '@']));
 
     override(
-        \October\Rain\Extension\ExtendableTrait::asExtension(),
+        \\October\\Rain\\Extension\\ExtendableTrait::asExtension(),
         map([
 {% for beh in behaviors %}
             {{ beh }},
