@@ -3,7 +3,12 @@
 ## 0.34.0
 
 - October 4.2, 4.3 support
-- 
+- Add Translatable trait to model generator
+- Yaml schema for theme seed files
+- Updated yaml schemas for support new October features (form design, translatable, etc)
+- Add completions for fields in quickCreate property
+- `props` and `attributes` snippets for support partial components in themes
+- Replace webpack with esbuild for building extension
 
 ## 0.33.0
 
