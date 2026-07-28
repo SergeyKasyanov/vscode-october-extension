@@ -69,6 +69,13 @@ export class Platform {
     }
 
     /**
+     * Has `Translatable` trait
+     */
+    get hasTranslatableTrait(): boolean {
+        return this.version >= Version.oc42;
+    }
+
+    /**
      * Has multisite feature
      */
     get hasMultisite(): boolean {

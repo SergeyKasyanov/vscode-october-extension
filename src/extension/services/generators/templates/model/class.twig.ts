@@ -36,6 +36,9 @@ use October\\Rain\\Database\\Traits\\NestedTree;
 {% if addTraitMultisite %}
 use October\\Rain\\Database\\Traits\\Multisite;
 {% endif %}
+{% if addTraitTranslatable %}
+use October\\Rain\\Database\\Traits\\Translatable;
+{% endif %}
 {% if addTraitValidation %}
 use October\\Rain\\Database\\Traits\\Validation;
 {% endif %}
@@ -101,6 +104,9 @@ class {{ model_pascal }} extends Model
 {% endif %}
 {% if addTraitNestedTree %}
     use NestedTree;
+{% endif %}
+{% if addTraitTranslatable and not adjacent %}
+    use Translatable;
 {% endif %}
 {% if addTraitValidation and not adjacent %}
     use Validation;
@@ -233,6 +239,14 @@ class {{ model_pascal }} extends Model
 
 {% endif %}
     protected $propagatable = [];
+{% endif %}
+{% if addTraitTranslatable %}
+
+{% if adjacent %}
+    use Translatable;
+
+{% endif %}
+    public $translatable = [];
 {% endif %}
 }
 `;

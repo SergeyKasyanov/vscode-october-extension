@@ -11,6 +11,7 @@ import { GeneratorUiBase, InputValidators } from "./generator-ui-base";
 export class ModelGeneratorUi extends GeneratorUiBase {
 
     private options = {
+        migration: 'Create migration',
         columnsYaml: 'Add columns.yaml config',
         fieldsYaml: 'Add fields.yaml config',
         timestamps: 'Add timestamps',
@@ -30,7 +31,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
         softDelete: 'Add trait SoftDelete',
         revisionable: 'Add trait Revisionable',
         multisite: 'Add trait Multisite',
-        migration: 'Create migration',
+        translatable: 'Add trait Translatable',
     };
 
     private plugin?: Plugin | AppDirectory;
@@ -110,6 +111,10 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             optionValues.push({ label: this.options.multisite });
         }
 
+        if (this.project.platform!.hasTranslatableTrait) {
+            optionValues.push({ label: this.options.translatable });
+        }
+
         const options = await vscode.window.showQuickPick(optionValues, { canPickMany: true });
 
         if (options === undefined) {
@@ -142,6 +147,7 @@ export class ModelGeneratorUi extends GeneratorUiBase {
             addTraitSoftDelete: options.includes(this.options.softDelete),
             addTraitRevisionable: options.includes(this.options.revisionable),
             addTraitMultisite: options.includes(this.options.multisite),
+            addTraitTranslatable: options.includes(this.options.translatable),
             withTimezones: options.includes(this.options.timezones)
         };
     }
