@@ -23,6 +23,42 @@
         "prefix": "frameworkturbo",
         "scope": "text.html.twig.october"
     },
+    "Passed attributes": {
+        "body": "{{ attributes }}",
+        "description": "All attributes passed to partial",
+        "prefix": "attr",
+        "scope": "text.html.twig.october"
+    },
+    "Passed attributes (merge)": {
+        "body": "{{ attributes.merge({$0}) }}",
+        "description": "`merge` method of attributes bag",
+        "prefix": "attrm",
+        "scope": "text.html.twig.october"
+    },
+    "Passed attributes (only)": {
+        "body": "{{ attributes.only('$0') }}",
+        "description": "`only` method of attributes bag",
+        "prefix": "attro",
+        "scope": "text.html.twig.october"
+    },
+    "Passed attributes (except)": {
+        "body": "{{ attributes.except('$0') }}",
+        "description": "`except` method of attributes bag",
+        "prefix": "attre",
+        "scope": "text.html.twig.october"
+    },
+    "Passed attributes (has)": {
+        "body": "{{ attributes.has('$0') }}",
+        "description": "`has` method of attributes bag",
+        "prefix": "attrh",
+        "scope": "text.html.twig.october"
+    },
+    "Passed attributes (get)": {
+        "body": "{{ attributes.get('$0') }}",
+        "description": "`get` method of attributes bag",
+        "prefix": "attrg",
+        "scope": "text.html.twig.october"
+    },
     "Apply tag": {
         "body": [
             "{% apply ${1:filter} %}",
